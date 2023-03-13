@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './quiz-list.component.html',
     styleUrls: ['./quiz-list.component.scss']
 })
-export class MyEpicComponent implements OnInit {
+export class ListeQuiz implements OnInit {
     constructor() {}
     ngOnInit(): void {}
 } 
