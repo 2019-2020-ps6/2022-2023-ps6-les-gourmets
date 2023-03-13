@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./Quiz.component.scss']
 })
 export class Quiz implements OnInit {
+    
     constructor() {}
     ngOnInit(): void {}
 } 
