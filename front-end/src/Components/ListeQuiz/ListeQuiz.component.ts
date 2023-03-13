@@ -1,9 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 @Component({
-    selector: 'app-quiz-list',
-    templateUrl: './quiz-list.component.html',
-    styleUrls: ['./quiz-list.component.scss']
+    selector: 'app-ListeQuiz',
+    templateUrl: './ListeQuiz.component.html',
+    styleUrls: ['./ListeQuiz.component.scss']
 })
 export class ListeQuiz implements OnInit {
     constructor() {}
