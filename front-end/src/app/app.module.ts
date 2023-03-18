@@ -5,20 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListeQuizPage } from 'src/Components/ListeQuizPage/ListeQuizPage.component';
 import { ListeQuiz } from 'src/Components/ListeQuiz/ListeQuiz.component';
-import { Quiz } from 'src/Components/Quiz/Quiz.component';
-import { QuizForm } from 'src/Components/QuizForm/QuizForm.component';
+import { QuizComponent } from 'src/Components/Quiz/Quiz.component';
+import { QuizFormComponent } from 'src/Components/QuizForm/QuizForm.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListeQuizPage,
     ListeQuiz,
-    Quiz,
-    QuizForm
+    QuizComponent,
+    QuizFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
