@@ -7,4 +7,4 @@ import { Component, OnInit } from '@angular/core';
 export class ListeQuizPage implements OnInit {
     constructor() {}
     ngOnInit(): void {}
-} 
+}
