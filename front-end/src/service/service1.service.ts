@@ -18,7 +18,7 @@ public quizSelected$: Subject<Quiz> = new Subject();
 private quizUrl = "http://localhost:4200" + '/quizzes';
 
 // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
-constructor(private http: HttpClient) {
+constructor() {
 
 }
 
