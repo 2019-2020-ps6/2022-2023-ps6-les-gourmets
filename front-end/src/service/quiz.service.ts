@@ -30,7 +30,7 @@ addQuiz(quiz : Quiz) {
 }
 
 deleteQuiz(quiz: Quiz) {
-  this.quizzes = this.quizzes.filter(q => q.id !== quiz.id);
+  this.quizzes = this.quizzes.filter(q => q !== quiz);
   this.quizzes$.next(this.quizzes);
  }
 }

@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { ListeQuizPage } from 'src/Components/ListeQuizPage/ListeQuizPage.component';
 import { ListeQuiz } from 'src/Components/ListeQuiz/ListeQuiz.component';
 import { QuizComponent } from 'src/Components/Quiz/Quiz.component';
-import { QuizForm } from 'src/Components/QuizForm/QuizForm.component';
+import { QuizFormComponent } from 'src/Components/QuizForm/QuizForm.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +15,12 @@ import { QuizForm } from 'src/Components/QuizForm/QuizForm.component';
     ListeQuizPage,
     ListeQuiz,
     QuizComponent,
-    QuizForm
+    QuizFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

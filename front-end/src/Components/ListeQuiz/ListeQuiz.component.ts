@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from 'src/service/service1.service';
+import { QuizService } from 'src/service/quiz.service';
 import { Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 
@@ -28,7 +28,7 @@ export class ListeQuiz implements OnInit {
       this.router.navigate(['/edit-quiz/' + quiz.name]);
     }
 
-    deleteQuizz(quiz: Quiz): void {
+    deleteQuiz(quiz: Quiz): void {
       this.quizService.deleteQuiz(quiz);
     }
   }
