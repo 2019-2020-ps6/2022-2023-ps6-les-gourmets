@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListeQuizPage } from 'src/Components/ListeQuizPage/ListeQuizPage.component';
 import { ListeQuiz } from 'src/Components/ListeQuiz/ListeQuiz.component';
-import { Quiz } from 'src/Components/Quiz/Quiz.component';
+import { QuizComponent } from 'src/Components/Quiz/Quiz.component';
 import { QuizForm } from 'src/Components/QuizForm/QuizForm.component';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { QuizForm } from 'src/Components/QuizForm/QuizForm.component';
     AppComponent,
     ListeQuizPage,
     ListeQuiz,
-    Quiz,
+    QuizComponent,
     QuizForm
   ],
   imports: [

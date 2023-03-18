@@ -15,8 +15,8 @@ private quizzes: Quiz[] = QUIZ_LIST; // Ici on initialise la valeur avec un mock
 constructor(private http: HttpClient) {}
 
 
-addQuizz(quiz : Quiz) { 
-    
+addQuizz(quiz : Quiz) {
+
 }
 
 deleteQuizz(id: string) {  }
