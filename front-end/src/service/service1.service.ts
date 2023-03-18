@@ -18,16 +18,19 @@ public quizSelected$: Subject<Quiz> = new Subject();
 private quizUrl = "http://localhost:4200" + '/quizzes';
 
 // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
-constructor() {
+constructor() { }
 
+
+retrieveQuizes(): void {
 }
 
-retrieveQuizzes(): void {
+addQuiz(quiz : Quiz) {
+  this.quizzes.push(quiz);
+  this.quizzes$.next(this.quizzes);
 }
 
-addQuizz(quiz : Quiz) {
-
-}
-
-deleteQuizz(id: string) {  }
+deleteQuiz(quiz: Quiz) {
+  this.quizzes = this.quizzes.filter(q => q.id !== quiz.id);
+  this.quizzes$.next(this.quizzes);
+ }
 }
