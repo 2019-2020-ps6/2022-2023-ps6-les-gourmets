@@ -28,7 +28,7 @@ export class ListeQuiz implements OnInit {
       this.router.navigate(['/edit-quiz/' + quiz.name]);
     }
 
-    deleteQuiz(quiz: Quiz): void {
+    deleteQuizz(quiz: Quiz): void {
       this.quizService.deleteQuiz(quiz);
     }
   }
