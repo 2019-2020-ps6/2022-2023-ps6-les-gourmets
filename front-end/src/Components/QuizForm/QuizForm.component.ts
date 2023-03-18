@@ -1,11 +1,11 @@
 
 import { Component, OnInit } from '@angular/core';
 @Component({
-    selector: 'app-CreationForm',
-    templateUrl: './CreationForm.component.html',
-    styleUrls: ['./CreationForm.component.scss']
+    selector: 'app-QuizForm',
+    templateUrl: './QuizForm.component.html',
+    styleUrls: ['./QuizForm.component.scss']
 })
 export class QuizForm implements OnInit {
     constructor() {}
     ngOnInit(): void {}
-} 
+}
