@@ -9,6 +9,7 @@ import { QuizComponent } from './Components/Quizs/Quiz/Quiz.component';
 import { QuizFormComponent } from './Components/Quizs/QuizForm/QuizForm.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GamePageComponent } from './Components/Quizs/GamePage/GamePageComponent.component';
+import { MenuComponent } from './Components/Menu/MenuComponents/Menu.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { GamePageComponent } from './Components/Quizs/GamePage/GamePageComponent
     QuizComponent,
     QuizFormComponent,
     GamePageComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
