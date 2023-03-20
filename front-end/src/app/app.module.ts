@@ -9,6 +9,9 @@ import { QuizComponent } from './Components/Quizs/Quiz/Quiz.component';
 import { QuizFormComponent } from './Components/Quizs/QuizForm/QuizForm.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GamePageComponent } from './Components/Quizs/GamePage/GamePageComponent.component';
+import { ListeUserPage } from './Components/Users/UserListPage/ListeUserPage.component';
+import { ListeUser } from './Components/Users/ListUser/ListeUser.component';
+import { UserComponent } from './Components/Users/User/User.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { GamePageComponent } from './Components/Quizs/GamePage/GamePageComponent
     QuizComponent,
     QuizFormComponent,
     GamePageComponent,
+    ListeUserPage,
+    ListeUser,
+    UserComponent
   ],
   imports: [
     BrowserModule,
