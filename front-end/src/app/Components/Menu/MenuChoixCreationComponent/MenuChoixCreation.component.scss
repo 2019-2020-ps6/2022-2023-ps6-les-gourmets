@@ -2,12 +2,16 @@ $app-background-color: #f2f2f2;
 $blue: #3f51b5;
 $white: white;
 
-.h1 {
+h1 {
   color: $blue;
   font-size: 1.5em;
   font-weight: bold;
   margin: 0;
   padding: 0.5em 0;
+}
+
+body {
+  justify-content: center;
 }
 
 .menu {
@@ -17,6 +21,7 @@ $white: white;
   text-align: center;
   align-self: center;
   background: $white;
+  border-radius: 2px;
   display: inline-block;
   position: relative;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
