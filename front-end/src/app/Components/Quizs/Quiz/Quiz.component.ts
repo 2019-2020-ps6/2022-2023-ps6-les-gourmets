@@ -2,6 +2,7 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Quiz } from 'src/models/quiz.model';
 import { GamePageComponent } from '../GamePage/GamePageComponent.component';
+import { Quiz } from src/models/quiz.model';
 
 @Component({
     selector: 'app-Quiz',
