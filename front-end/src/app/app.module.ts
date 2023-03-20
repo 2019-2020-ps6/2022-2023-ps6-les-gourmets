@@ -17,6 +17,7 @@ import { MenuChoixCreation } from './Components/Menu/MenuChoixCreationComponent/
 import { ListeUserPage } from './Components/Users/UserListPage/ListeUserPage.component';
 import { ListeUser } from './Components/Users/ListUser/ListeUser.component';
 import { UserComponent } from './Components/Users/User/User.component';
+import { ListeQuestionPage } from './Components/Questions/ListeQuestionPage/ListeQuestionPage.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserComponent } from './Components/Users/User/User.component';
     MenuChoixCreation,
     ListeUserPage,
     ListeUser,
-    UserComponent
+    UserComponent,
+    ListeQuestionPage
   ],
   imports: [
     BrowserModule,

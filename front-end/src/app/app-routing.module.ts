@@ -7,6 +7,8 @@ import { GamePageComponent } from './Components/Quizs/GamePage/GamePageComponent
 import { MenuComponent } from './Components/Menu/MenuComponents/Menu.component';
 import { MenuChoixCreation } from './Components/Menu/MenuChoixCreationComponent/MenuChoixCreation.component';
 import { QuizFormComponent } from './Components/Quizs/QuizForm/QuizForm.component';
+import { QuestionFormComponent } from './Components/Questions/QuestionForm/QuestionForm.component';
+import { ListeQuestionPage } from './Components/Questions/ListeQuestionPage/ListeQuestionPage.component';
 
 const routes: Routes = [
   { path: 'ListeQuizPage', component: ListeQuizPage },
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'Menu', component: MenuComponent },
   { path: 'MenuChoixCreation', component:MenuChoixCreation},
   { path: 'QuizForm', component: QuizFormComponent },
+  { path: 'QuestionForm', component: QuestionFormComponent },
+  { path: 'ListeQuestionPage', component: ListeQuestionPage }
 ];
 
 @NgModule({
