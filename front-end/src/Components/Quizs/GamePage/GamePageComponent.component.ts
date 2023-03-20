@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Answer } from '../../models/question.model';
-import { Question } from '../../models/question.model';
+import { Answer } from 'src/models/question.model';
+import { Question } from 'src/models/question.model';
 //import { Quiz } from '../models/Quiz.model';
 
 
