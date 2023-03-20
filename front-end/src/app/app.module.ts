@@ -24,7 +24,7 @@ import { UserComponent } from './Components/Users/User/User.component';
     QuizFormComponent,
     GamePageComponent,
     MenuComponent,
-    MenuChoixCreation
+    MenuChoixCreation,
     ListeUserPage,
     ListeUser,
     UserComponent
