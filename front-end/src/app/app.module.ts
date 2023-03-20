@@ -11,7 +11,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionComponent } from 'src/app/Components/Questions/Question/Question.component';
 import { ListeQuestion } from 'src/app/Components/Questions/ListeQuestion/ListeQuestion.component';
 import { QuestionFormComponent } from 'src/app/Components/Questions/QuestionForm/QuestionForm.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { GamePageComponent } from './Components/Quizs/GamePage/GamePageComponent.component';
 import { MenuComponent } from './Components/Menu/MenuComponents/Menu.component';
 import { MenuChoixCreation } from './Components/Menu/MenuChoixCreationComponent/MenuChoixCreation.component';
@@ -29,7 +28,7 @@ import { UserComponent } from './Components/Users/User/User.component';
     GamePageComponent,
     QuestionComponent,
     ListeQuestion,
-    QuestionFormComponent
+    QuestionFormComponent,
     MenuComponent,
     MenuChoixCreation,
     ListeUserPage,
