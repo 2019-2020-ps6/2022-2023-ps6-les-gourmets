@@ -5,6 +5,7 @@ import { ListeUserPage } from './Components/Users/UserListPage/ListeUserPage.com
 import { GamePageComponent } from './Components/Quizs/GamePage/GamePageComponent.component';
 import { MenuComponent } from './Components/Menu/MenuComponents/Menu.component';
 import { MenuChoixCreation } from './Components/Menu/MenuChoixCreationComponent/MenuChoixCreation.component';
+import { QuizFormComponent } from './Components/Quizs/QuizForm/QuizForm.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'ListeUserPage', component: ListeUserPage },
   { path: 'GamePageComponent', component: GamePageComponent },
   { path: 'Menu', component: MenuComponent },
-  { path: 'MenuChoixCreation', component:MenuChoixCreation}
+  { path: 'MenuChoixCreation', component:MenuChoixCreation},
+  { path: 'QuizForm', component: QuizFormComponent },
 ];
 
 @NgModule({
