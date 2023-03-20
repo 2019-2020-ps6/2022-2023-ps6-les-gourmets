@@ -1,0 +1,14 @@
+<div class="card">
+    <h2>Create a new Question</h2>
+    <form class="question-form" [formGroup]="questionForm">
+      <label for="title">
+        Title <br>
+        <input class="input-custom" type="text" id="name" [formControlName]="'label'">
+      </label>
+      <br>
+      <button type="submit" class="button-card" (click)="addQuestion()">Create</button>
+    </form>
+  </div>
+  <!-- Uncomment below to see your form structure and how it changes-->
+ <br><br>{{questionForm.getRawValue() | json}} 
+  
