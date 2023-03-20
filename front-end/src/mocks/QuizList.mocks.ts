@@ -12,9 +12,64 @@ export const QUESTION_ACTOR: Question = {
       {
           value: 'La grande illusion',
           isCorrect: true,
+      },
+      {
+          value: 'Le parrain',
+          isCorrect: false,
+      },
+      {
+          value: 'Le parrain',  
+          isCorrect: false,
       }
   ]
 };
+
+export const QUESTIONLIST_ACTOR: Question[] = [
+  {
+    id: '1',
+    label: 'Jean Gabin a joué dans...',
+    answers: [
+        {
+            value: 'Les tuches II',
+            isCorrect: false,
+        },
+        {
+            value: 'La grande illusion',
+            isCorrect: true,
+        },    
+        {
+            value: 'Le parrain',
+            isCorrect: false,
+        },  
+        { 
+            value: 'Le parrain',
+            isCorrect: false,
+        }
+      ]    
+  },
+  {
+    id: '2',
+    label: 'Jean Reno a joué dans...',
+    answers: [
+        {
+            value: 'Les tuches III',
+            isCorrect: false,
+        },
+        {
+            value: 'La grande illusion',
+            isCorrect: false,
+        },
+        {
+            value: 'Le parrain',
+            isCorrect: false,
+        },
+        {
+            value: 'Leon',
+            isCorrect: true,
+        }
+      ]
+  }
+  ];
 
 
 export const QUIZ_LIST: Quiz[] = [

@@ -6,6 +6,6 @@ export interface Answer {
 
 export interface Question {
     id: string;
-    label: string;
+    label: string | undefined;
     answers: Answer[];
 }
