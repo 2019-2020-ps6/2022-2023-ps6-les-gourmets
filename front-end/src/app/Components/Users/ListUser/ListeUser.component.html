@@ -1,6 +1,6 @@
 <h1>Liste User</h1>
 <div class="user-List">
   <div class="User" *ngFor="let user of UserList">
-    <app-User [User]="user" (deleteUser)="deleteUser($event)"></app-User>
+    <app-User [User]="user" (deleteUser)="deleteUser($event)" (UserSelected)="UserSelected($event)"></app-User>
   </div>
 </div>

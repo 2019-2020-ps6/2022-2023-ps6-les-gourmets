@@ -1,0 +1,11 @@
+<h1>Coucou c'est la page des Users</h1>
+<form [formGroup]="userForm">
+    <label for="title">
+    <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+    </label>
+    <label for="title">
+    <input class="input-custom" type="text" id="surname" [formControlName]="'surname'">
+    </label>
+    <button type="submit" class="button-card" (click)="addUser()">Create</button>
+
+</form>

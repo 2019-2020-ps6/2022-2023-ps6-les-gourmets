@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/models/User.model';
 @Component({
     selector: 'app-ListeUserPage',
@@ -6,10 +6,10 @@ import { User } from 'src/models/User.model';
     styleUrls: ['./ListeUserPage.component.scss']
 })
 export class ListeUserPage implements OnInit {
+    @Input()
+    public user !: User;
     constructor() {}
     ngOnInit(): void {}
 
-    SelectUser(user : User){
-        
-    }
+    
 }
