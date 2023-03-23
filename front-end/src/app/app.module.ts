@@ -18,23 +18,29 @@ import { ListeUserPage } from './Components/Users/UserListPage/ListeUserPage.com
 import { ListeUser } from './Components/Users/ListUser/ListeUser.component';
 import { UserComponent } from './Components/Users/User/User.component';
 import { ListeQuestionPage } from './Components/Questions/ListeQuestionPage/ListeQuestionPage.component';
+import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfilePage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent,
+    MenuChoixCreation,
+
+    GamePageComponent,
+
+    UserComponent,
+    ListeUserPage,
+    ListeUser,
+    UserProfilePage,
+
     ListeQuizPage,
     ListeQuiz,
     QuizComponent,
     QuizFormComponent,
-    GamePageComponent,
+
     QuestionComponent,
-    ListeQuestion,
     QuestionFormComponent,
-    MenuComponent,
-    MenuChoixCreation,
-    ListeUserPage,
-    ListeUser,
-    UserComponent,
+    ListeQuestion,
     ListeQuestionPage
   ],
   imports: [

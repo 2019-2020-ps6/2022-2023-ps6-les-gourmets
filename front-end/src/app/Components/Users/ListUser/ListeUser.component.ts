@@ -21,7 +21,7 @@ export class ListeUser implements OnInit {
     ngOnInit(): void {}
 
     UserSelected(User: User): void {
-      console.log('event received from child:', User.name);
+      this.router.navigate(['/UserProfilePage/'],{state : {data : {User}}});
     }
 
     editUser(User: User): void {
