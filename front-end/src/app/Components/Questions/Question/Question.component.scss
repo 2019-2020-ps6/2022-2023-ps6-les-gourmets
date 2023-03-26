@@ -1,29 +1,52 @@
-$app-background-color: #f2f2f2;
+$grey-background-color: #f2f2f2;
 $blue: #3f51b5;
 $white: white;
+$card-border-color: #ccd0d5;
+$card-hover-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
 
 .card {
-  background: $white;
-  border-radius: 2px;
-  display: inline-block;
+  background: #222831;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 1rem;
   position: relative;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
-  padding: 0 1em 1em 1em;
+  padding: 1em;
+  border: solid 1px $card-border-color;
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: $card-hover-shadow;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin: 0;
+  color:#f2f2f2
 }
 
 .button-card {
-  background-color: $white;
-  border: solid 1px $blue;
-  color: $blue;
+  background-color: #4d535dc6;
+  border: solid 1px $white;
+  color:#f2f2f2;
   font-weight: bold;
   padding: 0.5em 1em;
+  margin-top: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .button-card:hover {
   cursor: pointer;
+  background-color: #00ff008a;
+  color: $white;
 }
 
-.edit {
+.delete {
   margin-left: 0.3em;
+}
+div{
+  background-color: #222831;
 }
