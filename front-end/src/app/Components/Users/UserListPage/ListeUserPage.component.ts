@@ -7,9 +7,9 @@ import { User } from 'src/models/User.model';
 })
 export class ListeUserPage implements OnInit {
     constructor() {}
-    ngOnInit(): void {}
+    ngOnInit() : void {}
 
-    SelectUser(user : User){
+    SelectUser(user : User) : void {
         
     }
 }

@@ -10,6 +10,8 @@ import { QuizFormComponent } from './Components/Quizs/QuizForm/QuizForm.componen
 import { QuestionFormComponent } from './Components/Questions/QuestionForm/QuestionForm.component';
 import { ListeQuestionPage } from './Components/Questions/ListeQuestionPage/ListeQuestionPage.component';
 import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfilePage.component';
+import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.component';
+import { UserForm } from './Components/Users/UserForm/UserForm.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Menu', pathMatch: 'full' },
@@ -19,7 +21,9 @@ const routes: Routes = [
   { path: 'GamePageComponent', component: GamePageComponent },
 
   { path: 'ListeUserPage', component: ListeUserPage },
+  { path: 'UserForm', component:UserForm},
   { path: 'UserProfilePage', component: UserProfilePage },
+  { path: 'UserStatsPage', component: UserStatsPage },
 
   { path: 'ListeQuizPage', component: ListeQuizPage },
   { path: 'QuizForm', component: QuizFormComponent },

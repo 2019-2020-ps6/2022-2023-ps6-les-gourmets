@@ -1,5 +1,6 @@
 <h1>Coucou c'est la page de l'Utilsateur</h1>
-<button >Retour</button>
+<button (click)="return()" >Retour</button>
+<button (click)="switchPage()" >Stats</button>
 <div>
     <input type="text" value={{UserModified.surname}} placeholder={{UserModified.surname}}/>
     <input type="text" value={{UserModified.name}} placeholder={{UserModified.name}}/>
@@ -9,8 +10,9 @@
     <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1"/>
 </div>
 <div>
-    <h2>Quizs de l'utilisateur</h2>
-    <ul>
+    <h2> Quizs de l'utilisateur</h2>
+    <button >+</button>
+    <ul> 
         <div *ngFor="let quiz of UserModified.quizzes">
             <li> <app-Quiz [quiz]="quiz" (deleteQuizz)="deleteQuizForProfile($event)"></app-Quiz> </li>
         </div>
