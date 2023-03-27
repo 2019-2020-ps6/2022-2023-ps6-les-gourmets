@@ -1,4 +1,4 @@
-import { HostListener, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { User } from 'src/models/User.model';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { USERS } from 'src/mocks/UserList.mocks';
