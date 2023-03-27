@@ -3,5 +3,5 @@
     surname : {{User.surname}},<br>
     aggressiveness : {{User.aggressivness}}.
     <button (click)="delete()">Delete</button>
-    <button (click)="selectUser()">Select</button>
+    <button (click)="selectUser()" [routerLink]="['/UserProfilePage']">Select</button>
 </div>

@@ -9,15 +9,16 @@ import { UserService } from 'src/service/user.service';
     styleUrls: ['./UserProfilePage.component.scss']
 })
 export class UserProfilePage implements OnInit {
-    
-    public User : User;
-    public UserModified : User;
+
+    public User!: User;
+    public UserModified!: User;
     public hidden : boolean = false
 
     constructor(private router: Router, public userService: UserService) {
-        if(history.state.data == undefined)router.navigate(["/ListeUserPage/"])
-        this.User = history.state.data;
-        this.UserModified = JSON.parse(JSON.stringify(this.User))
+      this.userService.UserSelected$.subscribe((UserSelected: User) => {
+        this.User = UserSelected;
+        this.UserModified = JSON.parse(JSON.stringify(this.User));
+      });
     }
     ngOnInit(): void {}
 
@@ -43,5 +44,5 @@ export class UserProfilePage implements OnInit {
         this.router.navigate(["/ListeUserPage/"])
     }
 
-    
+
 }
