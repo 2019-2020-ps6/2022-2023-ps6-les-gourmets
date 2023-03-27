@@ -1,6 +1,8 @@
 
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
+import { QuizService } from 'src/service/quiz.service';
 
 @Component({
     selector: 'app-Quiz',
@@ -9,6 +11,8 @@ import { Quiz } from 'src/models/quiz.model';
 })
 
 export class QuizComponent implements OnInit {
+
+  public isMod: Boolean = false;
 
   @Input()
   quiz!: Quiz;
@@ -22,14 +26,16 @@ export class QuizComponent implements OnInit {
   @Output()
   deleteQuizz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
-  constructor() {
+  constructor(route: ActivatedRoute, public quizService: QuizService) {
+    route.url.subscribe((url) =>
+    this.isMod = (route.snapshot.url[0].path == "ListeQuizPage"));
   }
 
   ngOnInit(): void {
   }
 
   selectQuiz(): void {
-    this.quizSelected.emit(true);
+    this.quizService.selectQuiz(this.quiz);
   }
 
   edit(): void {
