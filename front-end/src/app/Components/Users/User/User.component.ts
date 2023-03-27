@@ -25,18 +25,18 @@ export class UserComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
+  ngOnInit() : void {
   }
 
-  selectUser(): void {
+  selectUser() : void {
     this.UserSelected.emit(this.User);
   }
 
-  edit(): void {
+  edit() : void {
     this.editUser.emit(this.User);
   }
 
-  delete(): void {
+  delete() : void {
     this.deleteUser.emit(this.User);
   }
 }

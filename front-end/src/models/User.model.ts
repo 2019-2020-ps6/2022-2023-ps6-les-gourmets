@@ -4,5 +4,6 @@ export interface User {
     name: string,
     surname : string,
     aggressivness : number,
-    quizzes : Quiz[]
+    quizzes : Quiz[],
+    id : number
 } 

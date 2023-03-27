@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/models/User.model';
 @Component({
     selector: 'app-ListeUserPage',
@@ -6,10 +7,14 @@ import { User } from 'src/models/User.model';
     styleUrls: ['./ListeUserPage.component.scss']
 })
 export class ListeUserPage implements OnInit {
-    constructor() {}
-    ngOnInit(): void {}
+    constructor(public router : Router) {}
+    ngOnInit() : void {}
 
-    SelectUser(user : User){
+    AddUser(){
+        this.router.navigate(["/UserForm/"]);
+    }
+
+    SelectUser(user : User) : void {
         
     }
 }

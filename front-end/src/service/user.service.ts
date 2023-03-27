@@ -23,13 +23,23 @@ constructor() { }
 retrieveUseres(): void {
 }
 
-addUser(User : User) {
-  this.Users.push(User);
+addUser(value : User) {
+  this.Users.push(value);
   this.Users$.next(this.Users);
 }
+updateUser(value : User) {
+  const index = this.Users.findIndex(user => user.id === value.id);
+  if (index !== -1) {
+    console.log("old object:")
+    console.log(this.Users[index])
+    this.Users[index] = value;
+    console.log("new object:")
+    console.log(this.Users[index])
+  }
+}
 
-deleteUser(User: User) {
-  this.Users = this.Users.filter(u => u !== User);
+deleteUser(value: User) {
+  this.Users = this.Users.filter(u => u.id !== value.id);
   this.Users$.next(this.Users);
  }
 }

@@ -18,17 +18,17 @@ export class ListeUser implements OnInit {
       });
     }
 
-    ngOnInit(): void {}
+    ngOnInit() : void {}
 
-    UserSelected(User: User): void {
-      console.log('event received from child:', User.name);
+    UserSelected(User: User) : void {
+      this.router.navigate(['/UserProfilePage/'],{state : {data : User}});
     }
 
-    editUser(User: User): void {
+    editUser(User: User) : void {
       this.router.navigate(['/edit-User/' + User.name]);
     }
 
-    deleteUser(User: User): void {
+    deleteUser(User: User) : void {
       this.UserService.deleteUser(User);
     }
   }
