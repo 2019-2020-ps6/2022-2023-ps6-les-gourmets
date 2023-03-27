@@ -28,6 +28,6 @@ export class UserForm implements OnInit {
     addUser() : void {
       const userToCreate: User = this.userForm.getRawValue() as User;
       this.userService.addUser(userToCreate);
-      this.router.navigate(['/UserProfilePage/'],{state : {data : userToCreate}});
+      this.userService.selectUser(userToCreate);
     }
 }
