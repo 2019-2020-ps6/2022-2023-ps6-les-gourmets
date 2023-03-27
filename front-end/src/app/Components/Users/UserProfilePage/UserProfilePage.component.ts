@@ -39,10 +39,9 @@ export class UserProfilePage implements OnInit {
     }
 
     applyChanges() : void {
-        console.log(this.modifs.getRawValue() as User)
         this.UserModified = this.modifs.getRawValue() as User;
+        this.userService.updateUser(this.User, this.UserModified)
         this.User = this.UserModified;
-        this.userService.updateUser(this.UserModified)
     }
     cancelChanges() : void {
         this.UserModified = this.User;

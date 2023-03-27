@@ -28,11 +28,10 @@ addUser(value : User) {
   this.Users.push(value);
   this.Users$.next(this.Users);
 }
-updateUser(value : User) {
-  const index = this.Users.findIndex(user => user === value);
-  if (index !== -1) {
-    this.Users[index] = value;
-  }
+updateUser(userTochange : User, value : User) {
+  this.Users = this.Users.filter(u => u !== userTochange);
+  this.Users.push(value);
+  this.Users$.next(this.Users);
 }
 
 deleteUser(value: User) {
