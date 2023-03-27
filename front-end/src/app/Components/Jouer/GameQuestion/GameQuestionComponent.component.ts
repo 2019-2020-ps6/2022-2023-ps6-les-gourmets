@@ -9,12 +9,21 @@ import { Question } from 'src/models/question.model';
   })
 
   export class GameQuestionComponent implements OnInit {
-    @Input() question: Question | undefined;
+    @Input() question!: Question;
+
+    @Output()
+    nextQuestion: EventEmitter<Question> = new EventEmitter<Question>();
 
     constructor() {
       }
 
     ngOnInit(): void {
       }
+
+    answerSelected(answer: boolean): void {
+      if (answer==true){
+        console.log(answer);
+      }
+    }
 
   }

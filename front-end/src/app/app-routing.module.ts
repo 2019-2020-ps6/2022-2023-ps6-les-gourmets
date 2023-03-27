@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ListeQuizPage } from './Components/Quizs/ListeQuizPage/ListeQuizPage.component';
 import { ListeUserPage } from './Components/Users/UserListPage/ListeUserPage.component';
-import { GamePageComponent } from './Components/Jouer/GamePage/GamePageComponent.component';
+import { GamePageComponent } from './Components/Jouer/GamePage/GamepageComponent.component';
 import { MenuComponent } from './Components/Menu/MenuComponents/Menu.component';
 import { MenuChoixCreation } from './Components/Menu/MenuChoixCreationComponent/MenuChoixCreation.component';
 import { QuizFormComponent } from './Components/Quizs/QuizForm/QuizForm.component';
@@ -13,6 +13,7 @@ import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfileP
 import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.component';
 import { UserForm } from './Components/Users/UserForm/UserForm.component';
 import { ChoixUser } from './Components/Jouer/ChoixUser/ChoixUser.component';
+import {GameAnswerComponent} from './Components/Jouer/GameAnswer/GameAnswerComponent.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/Menu', pathMatch: 'full' },

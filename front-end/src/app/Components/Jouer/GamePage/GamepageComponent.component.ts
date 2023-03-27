@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Answer } from 'src/models/question.model';
 import { Question } from 'src/models/question.model';
-//import { Quiz } from '../models/Quiz.model';
+import { Quiz } from 'src/models/quiz.model';
+import { QUESTION_ACTOR } from 'src/mocks/QuizList.mocks';
 
 
 
@@ -12,9 +13,9 @@ import { Question } from 'src/models/question.model';
   })
 
   export class GamePageComponent implements OnInit {
-    @Input() questions: Question[] = [];
+    @Input() quiz!: Quiz;
     currentQuestionIndex = 0;
-    currentQuestion: Question | undefined;
+    currentQuestion: Question;
 
 
     @Output()
@@ -32,17 +33,19 @@ import { Question } from 'src/models/question.model';
     }
 
     constructor() {
-      this.currentQuestion = this.questions[0];
+      //this.currentQuestion = this.quiz.questions[0];
+      this.currentQuestion = QUESTION_ACTOR;
     }
 
     ngOnInit(): void {
-      this.currentQuestion = this.questions[this.currentQuestionIndex];
+      //this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
+      this.currentQuestion = QUESTION_ACTOR;
     }
 
     onNextQuestion(): void {
       this.currentQuestionIndex++;
-      if (this.currentQuestionIndex < this.questions.length) {
-        this.currentQuestion = this.questions[this.currentQuestionIndex];
+      if (this.currentQuestionIndex < this.quiz.questions.length) {
+        this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
       }
     }
 

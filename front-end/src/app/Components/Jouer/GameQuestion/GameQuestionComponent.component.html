@@ -1,0 +1,6 @@
+<div class="question">
+  <h1> {{question.label}}</h1>
+  <div class="réponses" *ngFor="let a of question.answers">
+    <app-GameAnswer [answer]="a" (answerSelected)="answerSelected($event)"></app-GameAnswer>
+  </div>
+</div>
