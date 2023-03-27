@@ -7,7 +7,7 @@
     width: 300px;
     color: #f2f2f2;
     font-family: Arial, sans-serif;
-  
+
     button {
       background-color: #00adb5;
       border: none;
@@ -19,14 +19,17 @@
       padding: 0.5rem 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
-  
+
       &:hover {
         background-color: #007f8b;
       }
-  
+
       &:not(:last-child) {
         margin-right: 0.5rem;
       }
     }
   }
-  
+
+.mod {
+  display: none;
+}

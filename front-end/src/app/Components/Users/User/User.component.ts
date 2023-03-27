@@ -1,5 +1,6 @@
 
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/User.model';
 import { UserService } from 'src/service/user.service';
 
@@ -10,6 +11,8 @@ import { UserService } from 'src/service/user.service';
 })
 
 export class UserComponent implements OnInit {
+
+  public isMod: Boolean = true;
 
   @Input()
   User!: User;
@@ -23,7 +26,9 @@ export class UserComponent implements OnInit {
   @Output()
   deleteUser: EventEmitter<User> = new EventEmitter<User>();
 
-  constructor(public userService: UserService) {
+  constructor(public userService: UserService, route: ActivatedRoute) {
+    route.url.subscribe((url) =>
+    this.isMod = (route.snapshot.url[0].path == "ListeUserPage"));
   }
 
   ngOnInit() : void {
