@@ -1,7 +1,6 @@
 
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Question } from 'src/models/question.model';
-import { GamePageComponent } from '../../Quizs/GamePage/GamePageComponent.component';
 
 @Component({
     selector: 'app-Question',
