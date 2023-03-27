@@ -3,6 +3,7 @@ import { Answer } from 'src/models/question.model';
 import { Question } from 'src/models/question.model';
 import { Quiz } from 'src/models/quiz.model';
 import { QUESTION_ACTOR } from 'src/mocks/QuizList.mocks';
+import { QuizService } from 'src/service/quiz.service';
 
 
 
@@ -13,7 +14,7 @@ import { QUESTION_ACTOR } from 'src/mocks/QuizList.mocks';
   })
 
   export class GamePageComponent implements OnInit {
-    @Input() quiz!: Quiz;
+    quiz!: Quiz;
     currentQuestionIndex = 0;
     currentQuestion: Question;
 
@@ -32,14 +33,15 @@ import { QUESTION_ACTOR } from 'src/mocks/QuizList.mocks';
       console.log(this.selectedAnswers);
     }
 
-    constructor() {
+    constructor(public quizService:QuizService) {
       //this.currentQuestion = this.quiz.questions[0];
-      this.currentQuestion = QUESTION_ACTOR;
+      this.quiz=quizService.quizSelected$;
+      this.currentQuestion = this.quiz.questions[0];
     }
 
     ngOnInit(): void {
       //this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
-      this.currentQuestion = QUESTION_ACTOR;
+      this.currentQuestion = this.quiz.questions[0];
     }
 
     onNextQuestion(): void {

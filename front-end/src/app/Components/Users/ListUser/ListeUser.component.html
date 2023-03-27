@@ -2,7 +2,7 @@
 <div class="user-List">
   <ul>
     <div class="User" *ngFor="let user of UserList">
-      <li><app-User [User]="user" (deleteUser)="deleteUser($event)" (UserSelected)="UserSelected($event)"></app-User></li>
+      <li><app-User [User]="user" (deleteUser)="deleteUser($event)"></app-User></li>
     </div>
   </ul>
 </div>

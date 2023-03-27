@@ -24,6 +24,7 @@ import { ChoixUser } from './Components/Jouer/ChoixUser/ChoixUser.component';
 import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.component';
 import {GameAnswerComponent} from './Components/Jouer/GameAnswer/GameAnswerComponent.component'
 import {GameQuestionComponent} from './Components/Jouer/GameQuestion/GameQuestionComponent.component'
+import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {GameQuestionComponent} from './Components/Jouer/GameQuestion/GameQuestio
     ListeQuestion,
     ListeQuestionPage,
 
-    ChoixUser
+    ChoixUser,
+    ChoixQuiz
   ],
   imports: [
     BrowserModule,

@@ -15,14 +15,13 @@ export class UserProfilePage implements OnInit {
     public UserModified!: User;
     public modifs : FormGroup
 
-    constructor(private router : Router, public formBuilder : FormBuilder, public userService : UserService) {
+    constructor(public formBuilder : FormBuilder, public userService : UserService) {
         this.User = userService.UserSelected$.getValue();
         this.userService.UserSelected$.subscribe((UserSelected: User) => {
             this.User = UserSelected;
             this.UserModified = JSON.parse(JSON.stringify(this.User));
         });
-        if(this.User==undefined) router.navigate(['UserListePage']);
-      
+
         this.modifs = this.formBuilder.group({
             id: [this.User.id],
             name: [this.User.name],
@@ -40,10 +39,9 @@ export class UserProfilePage implements OnInit {
     }
 
     applyChanges() : void {
-        console.log(this.modifs.getRawValue() as User)
         this.UserModified = this.modifs.getRawValue() as User;
+        this.userService.updateUser(this.User, this.UserModified)
         this.User = this.UserModified;
-        this.userService.updateUser(this.UserModified)
     }
     cancelChanges() : void {
         this.UserModified = this.User;
