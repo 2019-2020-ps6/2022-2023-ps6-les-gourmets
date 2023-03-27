@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/models/User.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from 'src/service/user.service';
@@ -28,7 +28,7 @@ export class UserForm implements OnInit {
     addUser() : void {
       const userToCreate: User = this.userForm.getRawValue() as User;
       this.userService.addUser(userToCreate);
-      this.router.navigate(['/UserProfilePage/'],{state : {data : {userToCreate}}});
+      this.router.navigate(['/UserProfilePage/'],{state : {data : userToCreate}});
       
     }
 }

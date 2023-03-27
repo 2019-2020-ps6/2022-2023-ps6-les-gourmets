@@ -19,6 +19,7 @@ import { ListeUser } from './Components/Users/ListUser/ListeUser.component';
 import { UserComponent } from './Components/Users/User/User.component';
 import { ListeQuestionPage } from './Components/Questions/ListeQuestionPage/ListeQuestionPage.component';
 import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfilePage.component';
+import { UserForm } from './Components/Users/UserForm/UserForm.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfileP
     ListeUserPage,
     ListeUser,
     UserProfilePage,
+    UserForm,
 
     ListeQuizPage,
     ListeQuiz,
@@ -46,7 +48,7 @@ import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfileP
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
