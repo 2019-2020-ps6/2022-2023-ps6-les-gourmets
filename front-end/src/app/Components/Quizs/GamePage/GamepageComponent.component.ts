@@ -15,7 +15,7 @@ import { UserService } from 'src/service/user.service';
     @Input() questions: Question[] = [];
     currentQuestionIndex = 0;
     currentQuestion: Question | undefined;
-    
+
 
     @HostListener('document:mousedown', ['$event']) onClick(event : MouseEvent){
       this.userService.mouseClickInQuiz(event);
@@ -26,7 +26,7 @@ import { UserService } from 'src/service/user.service';
     changeQuestion() : void{
         this.currentQuestion.emit(this.quiz.nextQuestion());
     }*/
-    
+
 
     selectedAnswers = {};
 
@@ -41,7 +41,7 @@ import { UserService } from 'src/service/user.service';
     ngOnInit(): void {
       this.currentQuestion = this.questions[this.currentQuestionIndex];
     }
-  
+
     onNextQuestion(): void {
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex < this.questions.length) {
@@ -51,5 +51,4 @@ import { UserService } from 'src/service/user.service';
 
   }
 
-  
-  
+
