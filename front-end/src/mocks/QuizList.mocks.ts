@@ -76,7 +76,7 @@ export const QUIZ_LIST: Quiz[] = [
   {
     id: '1',
     name: 'Les Acteurs',
-    questions: [],
+    questions: QUESTIONLIST_ACTOR,
   },
 
   {

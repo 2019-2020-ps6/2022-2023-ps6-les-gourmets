@@ -13,7 +13,6 @@ import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfileP
 import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.component';
 import { UserForm } from './Components/Users/UserForm/UserForm.component';
 import { ChoixUser } from './Components/Jouer/ChoixUser/ChoixUser.component';
-import {GameAnswerComponent} from './Components/Jouer/GameAnswer/GameAnswerComponent.component'
 import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
 
 
@@ -34,7 +33,7 @@ const routes: Routes = [
 
   { path: 'QuestionForm', component: QuestionFormComponent },
   { path: 'ListeQuestionPage', component: ListeQuestionPage },
-  { path: 'ChoixUser', component: ChoixUser }
+  { path: 'ChoixUser', component: ChoixUser },
   { path: 'ChoixQuiz', component: ChoixQuiz },
 ];
 

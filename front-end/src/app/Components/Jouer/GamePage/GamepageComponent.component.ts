@@ -35,7 +35,7 @@ import { QuizService } from 'src/service/quiz.service';
 
     constructor(public quizService:QuizService) {
       //this.currentQuestion = this.quiz.questions[0];
-      this.quiz=quizService.quizSelected$;
+      this.quiz=quizService.quizSelected;
       this.currentQuestion = this.quiz.questions[0];
     }
 
@@ -49,6 +49,15 @@ import { QuizService } from 'src/service/quiz.service';
       if (this.currentQuestionIndex < this.quiz.questions.length) {
         this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
       }
+      else{ this.currentQuestionIndex--;}
+    }
+
+    onPreviousQuestion(): void {
+      this.currentQuestionIndex--;
+      if (this.currentQuestionIndex >= 0) {
+        this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
+      }
+      else{ this.currentQuestionIndex++;}
     }
 
   }
