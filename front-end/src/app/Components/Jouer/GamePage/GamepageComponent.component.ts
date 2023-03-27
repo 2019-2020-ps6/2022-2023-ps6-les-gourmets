@@ -15,7 +15,7 @@ import { Question } from 'src/models/question.model';
     @Input() questions: Question[] = [];
     currentQuestionIndex = 0;
     currentQuestion: Question | undefined;
-    
+
 
     @Output()
    /* currentQuestion: EventEmitter<Question>=new EventEmitter<Question>();
@@ -23,7 +23,7 @@ import { Question } from 'src/models/question.model';
     changeQuestion() : void{
         this.currentQuestion.emit(this.quiz.nextQuestion());
     }*/
-    
+
 
     selectedAnswers = {};
 
@@ -38,7 +38,7 @@ import { Question } from 'src/models/question.model';
     ngOnInit(): void {
       this.currentQuestion = this.questions[this.currentQuestionIndex];
     }
-  
+
     onNextQuestion(): void {
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex < this.questions.length) {
@@ -48,5 +48,4 @@ import { Question } from 'src/models/question.model';
 
   }
 
-  
-  
+
