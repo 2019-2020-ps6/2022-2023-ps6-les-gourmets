@@ -3,11 +3,47 @@
     <form class="question-form" [formGroup]="questionForm">
       <label for="title">
         Title <br>
-        <input class="input-custom" type="text" id="name" [formControlName]="'label'">
+        <input class="input-custom" type="text" id="label" formControlName="label"><br><br><br>
+        Answer 1 <br>
       </label>
+      <div formArrayName="answers">
+        <div [formGroupName]="0">
+          <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
+        </div>
+        Answer 2 <br>
+        <div [formGroupName]="1">
+          <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
+        </div>
+        Answer 3 <br>
+        <div [formGroupName]="2">
+          <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
+        </div>
+        Answer 4 <br>
+        <div [formGroupName]="3">
+          <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
+        </div>
+      </div>
+      <fieldset>
+        <legend>wich answer is true:</legend>
+        <div>
+          <input type="radio" id="Choice1" name="contact" value="email" />
+          <label for="Choice1">1</label>
+    
+          <input type="radio" id="tChoice2" name="contact" value="phone" />
+          <label for="Choice2">2</label>
+    
+          <input type="radio" id="Choice3" name="contact" value="mail" />
+          <label for="Choice3">3</label>
+
+          <input type="radio" id="Choice4" name="contact" value="mail" />
+          <label for="Choice4">4</label>
+        </div>
+
+      </fieldset>
       <br>
       <button type="submit" class="button-card" (click)="addQuestion()" [routerLink]="['/ListeQuestionPage']">Create</button>
     </form>
+    
   </div>
   <!-- Uncomment below to see your form structure and how it changes-->
  <!-- <br><br>{{questionForm.getRawValue() | json}}  -->

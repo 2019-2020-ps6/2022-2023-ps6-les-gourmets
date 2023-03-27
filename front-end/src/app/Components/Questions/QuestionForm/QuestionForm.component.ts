@@ -1,3 +1,4 @@
+// QuestionForm.ts
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -16,7 +17,29 @@ export class QuestionFormComponent implements OnInit {
   constructor(public formBuilder: FormBuilder, private questionService: QuestionService) {
     this.questionForm = this.formBuilder.group({
       id: 7,
-      label: ['']
+      label: [''],
+      answers: this.formBuilder.array([
+        this.formBuilder.group({
+          type: [''],
+          value: [''],
+          isCorrect: [false],
+        }),
+        this.formBuilder.group({
+          type: [''],
+          value: [''],
+          isCorrect: [false],
+        }),
+        this.formBuilder.group({
+          type: [''],
+          value: [''],
+          isCorrect: [false],
+        }),
+        this.formBuilder.group({
+          type: [''],
+          value: [''],
+          isCorrect: [false],
+        }),
+      ])
     });
   }
 
@@ -26,4 +49,6 @@ export class QuestionFormComponent implements OnInit {
     const questionToCreate: Question = this.questionForm.getRawValue() as Question;
     this.questionService.addQuestion(questionToCreate);
   }
+
+
 }
