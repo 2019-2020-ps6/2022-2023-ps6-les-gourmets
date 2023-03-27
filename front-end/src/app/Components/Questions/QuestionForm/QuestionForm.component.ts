@@ -1,7 +1,7 @@
 // QuestionForm.ts
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Question } from 'src/models/question.model';
 import { QuestionService } from 'src/service/question.service';
 
@@ -50,5 +50,15 @@ export class QuestionFormComponent implements OnInit {
     this.questionService.addQuestion(questionToCreate);
   }
 
+  getAnswersFormArray(): FormArray {
+    return this.questionForm.get('answers') as FormArray;
+  }
+
+  onAnswerSelected(index: number): void {
+    const answersFormArray = this.getAnswersFormArray();
+    for (let i = 0; i < 4; i++) {
+      answersFormArray.at(i).patchValue({ isCorrect: i === index });
+    }
+  }
 
 }

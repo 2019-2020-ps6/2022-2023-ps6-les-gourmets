@@ -26,19 +26,18 @@
       <fieldset>
         <legend>wich answer is true:</legend>
         <div>
-          <input type="radio" id="Choice1" name="contact" value="email" />
+          <input type="radio" id="Choice1" name="contact" value="email" (change)="onAnswerSelected(0)" />
           <label for="Choice1">1</label>
-    
-          <input type="radio" id="tChoice2" name="contact" value="phone" />
+      
+          <input type="radio" id="tChoice2" name="contact" value="phone" (change)="onAnswerSelected(1)" />
           <label for="Choice2">2</label>
-    
-          <input type="radio" id="Choice3" name="contact" value="mail" />
+      
+          <input type="radio" id="Choice3" name="contact" value="mail" (change)="onAnswerSelected(2)" />
           <label for="Choice3">3</label>
-
-          <input type="radio" id="Choice4" name="contact" value="mail" />
+      
+          <input type="radio" id="Choice4" name="contact" value="mail" (change)="onAnswerSelected(3)" />
           <label for="Choice4">4</label>
         </div>
-
       </fieldset>
       <br>
       <button type="submit" class="button-card" (click)="addQuestion()" [routerLink]="['/ListeQuestionPage']">Create</button>
