@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
@@ -10,10 +10,11 @@ import { UserService } from 'src/service/user.service';
     styleUrls: ['./UserProfilePage.component.scss']
 })
 export class UserProfilePage implements OnInit {
-
+    
+    
     public User!: User;
     public UserModified!: User;
-    public modifs : FormGroup
+    public modifs : FormGroup;
 
     constructor(private router : Router, public formBuilder : FormBuilder, public userService : UserService) {
         this.User = userService.UserSelected$.getValue();
@@ -46,7 +47,12 @@ export class UserProfilePage implements OnInit {
         this.userService.updateUser(this.UserModified)
     }
     cancelChanges() : void {
-        this.UserModified = this.User;
+        console.log("cancel");
+        console.log(this.User);
+        console.log(this.UserModified);
+        this.UserModified = JSON.parse(JSON.stringify(this.User));
+        console.log(this.UserModified);
+        
     }
 
 

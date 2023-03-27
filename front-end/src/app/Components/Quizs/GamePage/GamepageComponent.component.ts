@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Answer } from 'src/models/question.model';
 import { Question } from 'src/models/question.model';
+import { UserService } from 'src/service/user.service';
 //import { Quiz } from '../models/Quiz.model';
 
 
@@ -17,6 +18,9 @@ import { Question } from 'src/models/question.model';
     currentQuestion: Question | undefined;
     
 
+    @HostListener('document:mousedown', ['$event']) onClick(event : MouseEvent){
+      this.userService.mouseClickInQuiz(event);
+    }
    // @Output()
    /* currentQuestion: EventEmitter<Question>=new EventEmitter<Question>();
 
@@ -31,7 +35,7 @@ import { Question } from 'src/models/question.model';
       console.log(this.selectedAnswers);
     }
 
-    constructor() {
+    constructor(public userService : UserService) {
       this.currentQuestion = this.questions[0];
     }
 

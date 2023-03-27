@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/models/User.model';
 @Component({
@@ -7,6 +7,7 @@ import { User } from 'src/models/User.model';
     styleUrls: ['./ListeUserPage.component.scss']
 })
 export class ListeUserPage implements OnInit {
+
     constructor(public router : Router) {}
     ngOnInit() : void {}
 
