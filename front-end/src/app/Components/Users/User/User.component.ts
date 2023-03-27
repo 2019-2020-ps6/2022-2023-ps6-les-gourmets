@@ -35,7 +35,6 @@ export class UserComponent implements OnInit {
   }
 
   selectUser() : void {
-    this.UserSelected.emit(this.User);
     this.userService.selectUser(this.User);
   }
 
