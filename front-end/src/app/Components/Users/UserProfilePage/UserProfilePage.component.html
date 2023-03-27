@@ -1,14 +1,18 @@
 <h1>Coucou c'est la page de l'Utilsateur</h1>
-<button (click)="return()" >Retour</button>
-<button (click)="switchPage()" >Stats</button>
-<div>
-    <input type="text" value={{UserModified.surname}} placeholder={{UserModified.surname}}/>
-    <input type="text" value={{UserModified.name}} placeholder={{UserModified.name}}/>
-</div>
-<div>
-    <h2>Perks de l'utilisateur</h2>
-    <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1"/>
-</div>
+<button [routerLink]="['/ListeUserPage']" >Retour</button>
+<button [routerLink]="['/UserStatsPage']" >Stats</button>
+
+<form [formGroup]="modifs">
+    <div>
+        <input type="text" value={{UserModified.surname}} placeholder={{UserModified.surname}} [formControlName]="'surname'"/>
+        <input type="text" value={{UserModified.name}} placeholder={{UserModified.name}} [formControlName]="'name'"/>
+    </div>
+    <div>
+        <h2>Perks de l'utilisateur</h2>
+        <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1" [formControlName]="'aggressivness'"/>
+    </div>
+</form>
+
 <div>
     <h2> Quizs de l'utilisateur</h2>
     <button >+</button>

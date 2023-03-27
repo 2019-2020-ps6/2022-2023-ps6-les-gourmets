@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { User } from 'src/models/User.model';
@@ -12,13 +13,22 @@ export class UserProfilePage implements OnInit {
 
     public User!: User;
     public UserModified!: User;
-    public hidden : boolean = false
+    public modifs : FormGroup
 
-    constructor(private router: Router, public userService: UserService) {
-      this.userService.UserSelected$.subscribe((UserSelected: User) => {
-        this.User = UserSelected;
-        this.UserModified = JSON.parse(JSON.stringify(this.User));
-      });
+    constructor(private router : Router, public formBuilder : FormBuilder, public userService : UserService) {
+        this.User = userService.UserSelected$.getValue();
+        this.userService.UserSelected$.subscribe((UserSelected: User) => {
+            this.User = UserSelected;
+            this.UserModified = JSON.parse(JSON.stringify(this.User));
+        });
+        if(this.User==undefined) router.navigate(['UserListePage']);
+      
+        this.modifs = this.formBuilder.group({
+            id: [this.User.id],
+            name: [this.User.name],
+            surname: [this.User.surname],
+            aggressivness: this.User.aggressivness
+        });
     }
     ngOnInit(): void {}
 
@@ -30,18 +40,13 @@ export class UserProfilePage implements OnInit {
     }
 
     applyChanges() : void {
+        console.log(this.modifs.getRawValue() as User)
+        this.UserModified = this.modifs.getRawValue() as User;
         this.User = this.UserModified;
         this.userService.updateUser(this.UserModified)
     }
     cancelChanges() : void {
         this.UserModified = this.User;
-    }
-    switchPage() : void {
-        console.log(this.UserModified)
-        this.router.navigate(["/UserStatsPage/"],{state : { data : this.UserModified}})
-    }
-    return() : void {
-        this.router.navigate(["/ListeUserPage/"])
     }
 
 

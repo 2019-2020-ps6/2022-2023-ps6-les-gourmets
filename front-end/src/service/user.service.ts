@@ -31,11 +31,7 @@ addUser(value : User) {
 updateUser(value : User) {
   const index = this.Users.findIndex(user => user.id === value.id);
   if (index !== -1) {
-    console.log("old object:")
-    console.log(this.Users[index])
     this.Users[index] = value;
-    console.log("new object:")
-    console.log(this.Users[index])
   }
 }
 

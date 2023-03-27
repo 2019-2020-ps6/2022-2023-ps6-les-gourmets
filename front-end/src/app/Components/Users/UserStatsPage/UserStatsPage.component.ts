@@ -20,12 +20,5 @@ export class UserStatsPage implements OnInit {
     }
     ngOnInit() : void {}
 
-    switchPage() : void {
-        this.router.navigate(["/UserProfilePage/"],{state : { data : this.User}})
-    }
-    return() : void {
-        this.router.navigate(["/ListeUserPage/"])
-    }
-
     
 }

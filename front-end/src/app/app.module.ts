@@ -20,6 +20,7 @@ import { UserComponent } from './Components/Users/User/User.component';
 import { ListeQuestionPage } from './Components/Questions/ListeQuestionPage/ListeQuestionPage.component';
 import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfilePage.component';
 import { UserForm } from './Components/Users/UserForm/UserForm.component';
+import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UserForm } from './Components/Users/UserForm/UserForm.component';
     ListeUserPage,
     ListeUser,
     UserProfilePage,
+    UserStatsPage,
     UserForm,
 
     ListeQuizPage,
