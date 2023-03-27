@@ -12,13 +12,13 @@
 <div>
     <h2> Quizs de l'utilisateur</h2>
     <button >+</button>
-    <ul> 
+    <ul>
         <div *ngFor="let quiz of UserModified.quizzes">
             <li> <app-Quiz [quiz]="quiz" (deleteQuizz)="deleteQuizForProfile($event)"></app-Quiz> </li>
         </div>
     </ul>
 </div>
 <div>
-    <button (click) ="applyChanges()">confirm changes</button>
+    <button (click) ="applyChanges()" [routerLink]="['/ListeUserPage']">confirm changes</button>
     <button (click) ="cancelChanges()">revert changes</button>
 </div>
