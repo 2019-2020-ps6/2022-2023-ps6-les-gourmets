@@ -17,7 +17,7 @@ import { Question } from 'src/models/question.model';
     currentQuestion: Question | undefined;
     
 
-   // @Output()
+    @Output()
    /* currentQuestion: EventEmitter<Question>=new EventEmitter<Question>();
 
     changeQuestion() : void{

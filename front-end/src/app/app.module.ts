@@ -20,7 +20,7 @@ import { UserComponent } from './Components/Users/User/User.component';
 import { ListeQuestionPage } from './Components/Questions/ListeQuestionPage/ListeQuestionPage.component';
 import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfilePage.component';
 import { UserForm } from './Components/Users/UserForm/UserForm.component';
-import { ChoixUser } from './Components/Jouer/ChoixUser.component';
+import { ChoixUser } from './Components/Jouer/ChoixUser/ChoixUser.component';
 import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.component';
 
 @NgModule({

@@ -12,7 +12,7 @@ import { ListeQuestionPage } from './Components/Questions/ListeQuestionPage/List
 import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfilePage.component';
 import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.component';
 import { UserForm } from './Components/Users/UserForm/UserForm.component';
-import { ChoixUser } from './Components/Jouer/ChoixUser.component';
+import { ChoixUser } from './Components/Jouer/ChoixUser/ChoixUser.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Menu', pathMatch: 'full' },
