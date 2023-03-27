@@ -13,7 +13,7 @@ export class UserForm implements OnInit {
 
 
     public userForm: FormGroup;
-  
+
     constructor(public router : Router, public formBuilder: FormBuilder, private userService: UserService) {
       this.userForm = this.formBuilder.group({
         name: [''],
@@ -22,13 +22,12 @@ export class UserForm implements OnInit {
         aggressivness: 0.5
       });
     }
-  
+
     ngOnInit() : void {}
-  
+
     addUser() : void {
       const userToCreate: User = this.userForm.getRawValue() as User;
       this.userService.addUser(userToCreate);
       this.router.navigate(['/UserProfilePage/'],{state : {data : userToCreate}});
-      
     }
 }
