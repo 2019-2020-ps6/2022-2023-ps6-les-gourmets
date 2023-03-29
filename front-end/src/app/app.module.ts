@@ -25,6 +25,7 @@ import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.co
 import {GameAnswerComponent} from './Components/Jouer/GameAnswer/GameAnswerComponent.component'
 import {GameQuestionComponent} from './Components/Jouer/GameQuestion/GameQuestionComponent.component'
 import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
+import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
     GamePageComponent,
     GameAnswerComponent,
     GameQuestionComponent,
+    EndPageComponent,
 
     UserComponent,
     ListeUserPage,

@@ -10,9 +10,10 @@ import { Question } from 'src/models/question.model';
 
   export class GameQuestionComponent implements OnInit {
     @Input() question!: Question;
+    @Input() answer_selected!:boolean;
 
     @Output()
-    nextQuestion: EventEmitter<Question> = new EventEmitter<Question>();
+    nextQuestion: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor() {
       }
@@ -24,6 +25,8 @@ import { Question } from 'src/models/question.model';
       if (answer==true){
         console.log(answer);
       }
+      this.nextQuestion.emit(answer)
+
       
     }
 

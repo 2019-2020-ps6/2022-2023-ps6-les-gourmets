@@ -8,10 +8,10 @@ import { BehaviorSubject, Subject } from 'rxjs';
     providedIn: 'root'
   })
     export class QuestionService {  
-    //The list of quiz. The list is retrieved from the mock.
-    private questions: Question[] = QUESTIONLIST_ACTOR; // Ici on initialise la valeur avec un mock QUIZ_LIST
+    //The list of question. The list is retrieved from the mock.
+    private questions: Question[] = QUESTIONLIST_ACTOR; // Ici on initialise la valeur avec un mock QUESTIONLIST
 
-    public questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions); // Ici on crée un observable qui va permettre de récupérer la liste des quiz
+    public questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions); // Ici on crée un observable qui va permettre de récupérer la liste des suestions
     public questionSelected$: Subject<Question> = new Subject();
     private questionUrl = "http://localhost:4200" + '/questions';
 

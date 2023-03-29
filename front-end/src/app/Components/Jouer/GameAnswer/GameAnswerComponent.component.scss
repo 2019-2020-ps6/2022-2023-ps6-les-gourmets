@@ -1,24 +1,27 @@
-button.answer_selected {
+button.answer_selected_true {
     background-color: lightgreen;
 }
 
 button {
-  background-color: #00adb5;
-  border: none;
-  border-radius: 4px;
-  color: #222831;
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
+    background-color: #00adb5;
+    border: none;
+    border-radius: 4px;
+    color: #222831;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+
+button.answer {
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
     background-color: #007f8b;
-  }
-
-  &:not(:last-child) {
-    margin-right: 0.5rem;
   }
 }
