@@ -24,6 +24,7 @@ import { Question } from 'src/models/question.model';
       if (answer==true){
         console.log(answer);
       }
+      
     }
 
   }

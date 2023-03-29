@@ -14,13 +14,18 @@ import { Question } from 'src/models/question.model';
     @Output()
     answerSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+    selected:boolean;
+
     constructor() {
+      this.selected = false;
       }
 
     ngOnInit(): void {
       }
     
     selectAnswer(): void {
+        this.selected = true;
+        console.log(this.selected)
         this.answerSelected.emit(this.answer.isCorrect);
     }
     

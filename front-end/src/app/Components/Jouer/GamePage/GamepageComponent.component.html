@@ -1,4 +1,4 @@
-<h1>Coucou c'est la page de jeu</h1>
+<h1>{{quiz.name}}</h1>
+<app-GameQuestion [question]="currentQuestion"></app-GameQuestion>
 <button type="submit" class="previous" (click)="onPreviousQuestion()">Question precedente</button>
 <button type="submit" class="next" (click)="onNextQuestion()">Question suivante</button>
-<app-GameQuestion [question]="currentQuestion"></app-GameQuestion>
