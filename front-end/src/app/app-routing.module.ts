@@ -14,6 +14,7 @@ import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.co
 import { UserForm } from './Components/Users/UserForm/UserForm.component';
 import { ChoixUser } from './Components/Jouer/ChoixUser/ChoixUser.component';
 import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
+import { ListeQuizAdable } from './Components/Users/ListQuizAdable/ListeQuizAdable.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'ListeQuestionPage', component: ListeQuestionPage },
   { path: 'ChoixUser', component: ChoixUser },
   { path: 'ChoixQuiz', component: ChoixQuiz },
+  { path: 'ListeQuizAdable', component: ListeQuizAdable }
 ];
 
 @NgModule({
