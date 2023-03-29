@@ -10,7 +10,7 @@ import { Question } from 'src/models/question.model';
 
   export class GameAnswerComponent implements OnInit {
     @Input() answer!: Answer;
-    
+
     @Output()
     answerSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -22,11 +22,11 @@ import { Question } from 'src/models/question.model';
 
     ngOnInit(): void {
       }
-    
+
     selectAnswer(): void {
         this.selected = true;
         console.log(this.selected)
         this.answerSelected.emit(this.answer.isCorrect);
     }
-    
+
   }
