@@ -45,6 +45,9 @@ export class UserProfilePage implements OnInit {
     }
     cancelChanges() : void {
         this.UserModified = this.User;
+        this.modifs['controls']['name'].setValue(this.User.name);
+        this.modifs['controls']['surname'].setValue(this.User.surname);
+        this.modifs['controls']['aggressivness'].setValue(this.User.aggressivness);
     }
 
 
