@@ -13,6 +13,7 @@ import { QuizService } from 'src/service/quiz.service';
 export class QuizComponent implements OnInit {
 
   public isMod: Boolean = false;
+  public isPlay: Boolean = false;
 
   @Input()
   quiz!: Quiz;
@@ -28,7 +29,9 @@ export class QuizComponent implements OnInit {
 
   constructor(route: ActivatedRoute, public quizService: QuizService) {
     route.url.subscribe((url) =>
-    this.isMod = (route.snapshot.url[0].path == "ListeQuizPage") || (route.snapshot.url[0].path == "UserProfilePage"));
+    this.isMod = (route.snapshot.url[0].path == "ListeQuizPage") || (route.snapshot.url[0].path == "UserProfilePage") || (route.snapshot.url[0].path == "ListeQuizAdable"));
+    route.url.subscribe((url) =>
+    this.isPlay = (route.snapshot.url[0].path == "ChoixQuiz"));
   }
 
   ngOnInit(): void {

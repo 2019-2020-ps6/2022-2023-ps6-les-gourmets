@@ -13,14 +13,14 @@ export class UserProfilePage implements OnInit {
 
     public User!: User;
     public UserModified!: User;
-    public modifs : FormGroup
+    public modifs : FormGroup;
 
     constructor(public formBuilder : FormBuilder, public userService : UserService) {
         this.User = userService.UserSelected$.getValue();
         this.userService.UserSelected$.subscribe((UserSelected: User) => {
             this.User = UserSelected;
-            this.UserModified = JSON.parse(JSON.stringify(this.User));
         });
+        this.UserModified = JSON.parse(JSON.stringify(this.User));
 
         this.modifs = this.formBuilder.group({
             id: [this.User.id],
