@@ -43,8 +43,12 @@ import { Router } from '@angular/router';
 
     constructor(private router: Router,public quizService:QuizService, public userService:UserService) {
       //this.currentQuestion = this.quiz.questions[0];
-      this.quiz=quizService.quizSelected;
-      this.user=userService.UserSelected;
+      this.userService.UserSelected$.subscribe((user: User) => {
+        this.user = user;
+      });
+      this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
+        this.quiz = quiz;
+      });
       this.currentQuestion = this.quiz.questions[0];
       this.validate = false;
       this.answers = [];
