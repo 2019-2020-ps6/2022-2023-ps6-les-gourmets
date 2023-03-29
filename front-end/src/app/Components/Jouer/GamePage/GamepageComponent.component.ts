@@ -35,7 +35,9 @@ import { QuizService } from 'src/service/quiz.service';
 
     constructor(public quizService:QuizService) {
       //this.currentQuestion = this.quiz.questions[0];
-      this.quiz=quizService.quizSelected;
+      this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
+        this.quiz = quiz;
+      });
       this.currentQuestion = this.quiz.questions[0];
     }
 
