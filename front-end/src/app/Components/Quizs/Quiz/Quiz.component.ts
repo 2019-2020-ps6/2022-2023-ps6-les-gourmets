@@ -28,7 +28,7 @@ export class QuizComponent implements OnInit {
 
   constructor(route: ActivatedRoute, public quizService: QuizService) {
     route.url.subscribe((url) =>
-    this.isMod = (route.snapshot.url[0].path == "ListeQuizPage"));
+    this.isMod = (route.snapshot.url[0].path == "ListeQuizPage") || (route.snapshot.url[0].path == "UserProfilePage"));
   }
 
   ngOnInit(): void {
