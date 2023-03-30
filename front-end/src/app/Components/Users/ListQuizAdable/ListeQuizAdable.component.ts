@@ -35,5 +35,6 @@ export class ListeQuizAdable implements OnInit {
       this.userTemp = this.user;
       this.userTemp.quizzes.push(quiz);
       this.userService.updateUser(this.user, this.userTemp);
+      this.user = this.userTemp;
     }
   }

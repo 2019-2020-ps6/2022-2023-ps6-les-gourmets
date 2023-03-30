@@ -49,4 +49,12 @@ deleteUser(value: User) {
    this.UserSelected = value;
    this.UserSelected$.next(this.UserSelected);
  }
+
+ deleteQuizForProfile(value : Quiz){
+  this.Users = this.Users.filter(u => u !== this.UserSelected);
+  this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value !== quiz);
+  this.UserSelected$.next(this.UserSelected);
+  this.Users.push(this.UserSelected);
+  this.Users$.next(this.Users);
+ }
 }
