@@ -17,7 +17,7 @@ private UserSelected!: User; // Ici on initialise la valeur avec un mock User
 public Users$: BehaviorSubject<User[]> = new BehaviorSubject(this.Users); // Ici on crée un observable qui va permettre de récupérer la liste des User
 public UserSelected$: BehaviorSubject<User> = new BehaviorSubject(this.UserSelected); // Ici on crée un observable qui va permettre de récupérer un User sélectionné
 
-
+private idCPT: number = 3;
 
 private UserUrl = "http://localhost:4200" + '/Users';
 
@@ -29,11 +29,15 @@ retrieveUseres(): void {
 }
 
 addUser(value : User) {
+  value.id = this.idCPT;
+  this.idCPT++;
   this.Users.push(value);
   this.Users$.next(this.Users);
 }
 updateUser(userTochange : User, value : User) {
-  this.Users = this.Users.filter(u => u !== userTochange);
+  console.log(this.Users);
+  this.Users = this.Users.filter(u => u.id !== userTochange.id);
+  console.log(this.Users);
   this.Users.push(value);
   this.Users$.next(this.Users);
   this.UserSelected = value;
@@ -41,7 +45,7 @@ updateUser(userTochange : User, value : User) {
 }
 
 deleteUser(value: User) {
-  this.Users = this.Users.filter(u => u !== value);
+  this.Users = this.Users.filter(u => u.id !== value.id);
   this.Users$.next(this.Users);
  }
 
@@ -51,7 +55,7 @@ deleteUser(value: User) {
  }
 
  deleteQuizForProfile(value : Quiz){
-  this.Users = this.Users.filter(u => u !== this.UserSelected);
+  this.Users = this.Users.filter(u => u.id !== this.UserSelected.id);
   this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value !== quiz);
   this.UserSelected$.next(this.UserSelected);
   this.Users.push(this.UserSelected);
