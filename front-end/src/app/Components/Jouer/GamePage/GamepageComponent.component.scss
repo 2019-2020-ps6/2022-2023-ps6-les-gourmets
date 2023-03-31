@@ -1,0 +1,57 @@
+$primary-color: #1c611f;
+
+header {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  margin: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  margin-top: 30px;
+  text-align: center;
+}
+
+label {
+  margin: 10px 0;
+}
+
+input[type="b"] {
+  margin-right: 50px;
+}
+
+button {
+  background-color: gray;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  margin-top: 30px;
+  align-self: center;
+}
+
+
+button.submit {
+  background-color: $primary-color;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  margin-top: 30px;
+  align-self: flex-end;
+}
+
+footer {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin-top: 30px;
+}

@@ -7,6 +7,7 @@ export const USERS: User[] = [
         surname: 'Jean',
         quizzes: [QUIZ_LIST[0]],
         aggressivness : 0.8,
+        answerDisplay : true,
         id:1
     },
     {
@@ -14,6 +15,7 @@ export const USERS: User[] = [
         surname: 'Pierre',
         quizzes: QUIZ_LIST,
         aggressivness : 0.2,
+        answerDisplay : false,
         id:2
     },
 

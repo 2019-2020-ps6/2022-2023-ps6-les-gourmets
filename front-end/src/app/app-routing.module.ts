@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ListeQuizPage } from './Components/Quizs/ListeQuizPage/ListeQuizPage.component';
 import { ListeUserPage } from './Components/Users/UserListPage/ListeUserPage.component';
+import { GamePageComponent } from './Components/Jouer/GamePage/GamepageComponent.component';
+import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.component';
 import { MenuComponent } from './Components/Menu/MenuComponents/Menu.component';
 import { MenuChoixCreation } from './Components/Menu/MenuChoixCreationComponent/MenuChoixCreation.component';
 import { QuizFormComponent } from './Components/Quizs/QuizForm/QuizForm.component';
@@ -11,12 +13,17 @@ import { ListeQuestionPage } from './Components/Questions/ListeQuestionPage/List
 import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfilePage.component';
 import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.component';
 import { UserForm } from './Components/Users/UserForm/UserForm.component';
-import { ChoixUser } from './Components/Jouer/ChoixUser.component';
+import { ChoixUser } from './Components/Jouer/ChoixUser/ChoixUser.component';
+import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/Menu', pathMatch: 'full' },
   { path: 'Menu', component: MenuComponent },
   { path: 'MenuChoixCreation', component:MenuChoixCreation},
+
+  { path: 'GamePageComponent', component: GamePageComponent },
+  { path: 'EndPageComponent', component: EndPageComponent },
 
   { path: 'ListeUserPage', component: ListeUserPage },
   { path: 'UserForm', component:UserForm},
@@ -28,7 +35,8 @@ const routes: Routes = [
 
   { path: 'QuestionForm', component: QuestionFormComponent },
   { path: 'ListeQuestionPage', component: ListeQuestionPage },
-  { path: 'ChoixUser', component: ChoixUser }
+  { path: 'ChoixUser', component: ChoixUser },
+  { path: 'ChoixQuiz', component: ChoixQuiz },
 ];
 
 @NgModule({

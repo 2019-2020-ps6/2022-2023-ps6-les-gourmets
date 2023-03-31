@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionComponent } from 'src/app/Components/Questions/Question/Question.component';
 import { ListeQuestion } from 'src/app/Components/Questions/ListeQuestion/ListeQuestion.component';
 import { QuestionFormComponent } from 'src/app/Components/Questions/QuestionForm/QuestionForm.component';
+import { GamePageComponent } from './Components/Jouer/GamePage/GamepageComponent.component';
 import { MenuComponent } from './Components/Menu/MenuComponents/Menu.component';
 import { MenuChoixCreation } from './Components/Menu/MenuChoixCreationComponent/MenuChoixCreation.component';
 import { ListeUserPage } from './Components/Users/UserListPage/ListeUserPage.component';
@@ -19,14 +20,23 @@ import { UserComponent } from './Components/Users/User/User.component';
 import { ListeQuestionPage } from './Components/Questions/ListeQuestionPage/ListeQuestionPage.component';
 import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfilePage.component';
 import { UserForm } from './Components/Users/UserForm/UserForm.component';
-import { ChoixUser } from './Components/Jouer/ChoixUser.component';
+import { ChoixUser } from './Components/Jouer/ChoixUser/ChoixUser.component';
 import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.component';
+import {GameAnswerComponent} from './Components/Jouer/GameAnswer/GameAnswerComponent.component'
+import {GameQuestionComponent} from './Components/Jouer/GameQuestion/GameQuestionComponent.component'
+import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
+import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     MenuChoixCreation,
+
+    GamePageComponent,
+    GameAnswerComponent,
+    GameQuestionComponent,
+    EndPageComponent,
 
     UserComponent,
     ListeUserPage,
@@ -45,7 +55,8 @@ import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.co
     ListeQuestion,
     ListeQuestionPage,
 
-    ChoixUser
+    ChoixUser,
+    ChoixQuiz
   ],
   imports: [
     BrowserModule,
