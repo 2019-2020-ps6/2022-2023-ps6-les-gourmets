@@ -11,14 +11,30 @@ import { USERS } from 'src/mocks/UserList.mocks';
 export class UserService {
 
   
-  private dateTab : number[] = []
-  public mouseClickInQuiz(event : MouseEvent) {
-      const now : number = Date.now();
-      const agressive = this.UserSelected!=undefined? this.UserSelected.aggressivness : 1;
-      this.dateTab = this.dateTab.filter(date => date > now - 1000 * (1/agressive));
-      this.dateTab.push(now);
-      console.log(this.dateTab);
-  }
+
+  /*
+    can be called by:
+    @HostListener("document:mousedown",['$event'])
+    onClick(event: MouseEvent){this.userService.mouseClickInQuiz(event);}
+  */
+    private rage = false;
+    private dateTab : number[] = []
+    public mouseClickInQuiz(event : MouseEvent) {
+        const now : number = Date.now();
+        const agressive = this.UserSelected!=undefined? this.UserSelected.aggressivness : 1;
+        this.dateTab = this.dateTab.filter(date => date > now - 1000 * (1/agressive));
+        this.dateTab.push(now);
+        console.log(this.dateTab.length)
+        if(this.dateTab.length>5) this.triggerRage();
+    }
+  
+    public triggerRage(){
+      if(this.rage) return;
+      const music = new Audio('assets/Music/ZenMusic.mp3');
+      music.loop = true;
+      music.play();
+      this.rage = true;
+    }
 
   
     //The list of User. The list is retrieved from the mock.

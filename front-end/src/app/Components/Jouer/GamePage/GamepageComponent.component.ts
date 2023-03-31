@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Answer } from 'src/models/question.model';
 import { Question } from 'src/models/question.model';
 import { Quiz } from 'src/models/quiz.model';
@@ -26,6 +26,8 @@ import { Router } from '@angular/router';
     end: boolean;
     nbAnswers: number;
 
+    @HostListener("document:mousedown",['$event'])
+    onClick(event: MouseEvent){this.userService.mouseClickInQuiz(event);}
 
     @Output()
    /* currentQuestion: EventEmitter<Question>=new EventEmitter<Question>();
@@ -48,6 +50,10 @@ import { Router } from '@angular/router';
       });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
         this.quiz = quiz;
+      });
+      // Randomise question order
+      this.quiz.questions.sort(() => {
+        return Math.random() - 0.5;
       });
       this.currentQuestion = this.quiz.questions[0];
       this.validate = false;
