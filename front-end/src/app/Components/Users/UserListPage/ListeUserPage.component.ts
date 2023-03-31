@@ -7,6 +7,7 @@ import { User } from 'src/models/User.model';
     styleUrls: ['./ListeUserPage.component.scss']
 })
 export class ListeUserPage implements OnInit {
+
     constructor(public router : Router) {}
     ngOnInit() : void {}
 

@@ -10,10 +10,11 @@ import { UserService } from 'src/service/user.service';
     styleUrls: ['./UserProfilePage.component.scss']
 })
 export class UserProfilePage implements OnInit {
-
+    
+    
     public User!: User;
     public UserModified!: User;
-    public modifs : FormGroup
+    public modifs : FormGroup;
 
     constructor(public formBuilder : FormBuilder, public userService : UserService) {
         this.User = userService.UserSelected$.getValue();

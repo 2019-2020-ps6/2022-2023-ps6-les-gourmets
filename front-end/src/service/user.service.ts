@@ -9,6 +9,18 @@ import { USERS } from 'src/mocks/UserList.mocks';
 })
 
 export class UserService {
+
+  
+  private dateTab : number[] = []
+  public mouseClickInQuiz(event : MouseEvent) {
+      const now : number = Date.now();
+      const agressive = this.UserSelected!=undefined? this.UserSelected.aggressivness : 1;
+      this.dateTab = this.dateTab.filter(date => date > now - 1000 * (1/agressive));
+      this.dateTab.push(now);
+      console.log(this.dateTab);
+  }
+
+  
     //The list of User. The list is retrieved from the mock.
 private Users: User[] = USERS; // Ici on initialise la valeur avec un mock User_LIST
 private UserSelected!: User; // Ici on initialise la valeur avec un mock User
