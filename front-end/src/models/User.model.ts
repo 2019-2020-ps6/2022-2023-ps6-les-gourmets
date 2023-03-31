@@ -6,5 +6,6 @@ export interface User {
     aggressivness : number,
     answerDisplay: boolean,
     quizzes : Quiz[],
+    music : string[],
     id : number
 } 

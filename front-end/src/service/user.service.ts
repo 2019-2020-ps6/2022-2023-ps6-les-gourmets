@@ -9,33 +9,6 @@ import { USERS } from 'src/mocks/UserList.mocks';
 })
 
 export class UserService {
-
-  
-
-  /*
-    can be called by:
-    @HostListener("document:mousedown",['$event'])
-    onClick(event: MouseEvent){this.userService.mouseClickInQuiz(event);}
-  */
-    private rage = false;
-    private dateTab : number[] = []
-    public mouseClickInQuiz(event : MouseEvent) {
-        const now : number = Date.now();
-        const agressive = this.UserSelected!=undefined? this.UserSelected.aggressivness : 1;
-        this.dateTab = this.dateTab.filter(date => date > now - 1000 * (1/agressive));
-        this.dateTab.push(now);
-        console.log(this.dateTab.length)
-        if(this.dateTab.length>5) this.triggerRage();
-    }
-  
-    public triggerRage(){
-      if(this.rage) return;
-      const music = new Audio('assets/Music/ZenMusic.mp3');
-      music.loop = true;
-      music.play();
-      this.rage = true;
-    }
-
   
     //The list of User. The list is retrieved from the mock.
 private Users: User[] = USERS; // Ici on initialise la valeur avec un mock User_LIST
@@ -71,4 +44,74 @@ deleteUser(value: User) {
    this.UserSelected = value;
    this.UserSelected$.next(this.UserSelected);
  }
+
+
+   /*
+    can be called by:
+    @HostListener("document:mousedown",['$event'])
+    onClick(event: MouseEvent){this.userService.mouseClickInQuiz(event);}
+  */
+    private music !: HTMLAudioElement ;
+    private rage = false;
+    private dateTab : number[] = [];
+    private musicFade : any;
+    public mouseClickInQuiz(event : MouseEvent) {
+        const now : number = Date.now();
+        const agressive = this.UserSelected!=undefined? this.UserSelected.aggressivness : 1;
+        this.dateTab = this.dateTab.filter(date => date > now - 3000 * (1/agressive));
+        this.dateTab.push(now);
+        console.log(this.dateTab.length)
+        if(this.dateTab.length>5) this.triggerRage();
+    }
+  
+    private triggerRage(){
+      if(this.rage) return;
+      this.playMusic();
+      this.rage = true;
+    }
+    public playMusic(){
+    
+      const audiopath = this.UserSelected.music.sort(()=>Math.random()-0.5)[0];
+      this.music = new Audio('assets/Music/'+audiopath);
+      this.music.loop = true;
+      this.music.volume=0;
+      this.music.play();
+      this.switchMusicVolume(true);
+
+    }public stopMusic(){
+      clearInterval(this.musicFade);
+      const interval =50;
+      let fadeVolume = this.music.volume;
+      const fade = setInterval(()=>{
+        if(fadeVolume-0.01 >= 0)fadeVolume -=0.01;
+        else {
+          this.music.volume = 0;
+          this.music.pause();
+          this.music.currentTime=0;
+          clearInterval(fade);
+        }
+        this.music.volume=fadeVolume;
+        
+
+      }, interval)
+    }
+
+    
+    public switchMusicVolume(fadeIn:boolean){
+      const interval = 20;
+      const increment = fadeIn ? 0.01 : -0.01;
+      clearInterval(this.musicFade);
+
+      this.musicFade = setInterval(() => {
+        if (fadeIn && this.music.volume+increment >= 1) {
+          this.music.volume = 1;
+          clearInterval(this.musicFade);
+        }
+        else if (!fadeIn && this.music.volume+increment <= 0) {
+          this.music.volume = 0;
+          clearInterval(this.musicFade);
+        }
+        else this.music.volume += increment;
+      }, interval);
+    }
 }

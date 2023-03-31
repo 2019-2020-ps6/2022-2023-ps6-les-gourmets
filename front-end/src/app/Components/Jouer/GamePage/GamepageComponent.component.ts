@@ -116,6 +116,10 @@ import { Router } from '@angular/router';
       this.currentQuestionIndex++;
     }
 
+    ChangeMusic(event : any){
+      this.userService.switchMusicVolume(event.target.checked);
+    }
+
   }
 
 

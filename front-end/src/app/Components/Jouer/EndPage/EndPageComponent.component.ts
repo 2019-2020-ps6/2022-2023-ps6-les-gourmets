@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { UserService } from 'src/service/user.service';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
   export class EndPageComponent implements OnInit {
 
-    constructor() {
+    constructor(public userService : UserService) {
+      this.userService.stopMusic();
     }
 
     ngOnInit(): void {
