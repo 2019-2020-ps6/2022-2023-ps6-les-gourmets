@@ -18,6 +18,7 @@ import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
 
 
 const routes: Routes = [
+  //Menu
   { path: '', redirectTo: '/Menu', pathMatch: 'full' },
   { path: 'Menu', component: MenuComponent },
   { path: 'MenuChoixCreation', component:MenuChoixCreation},
@@ -25,18 +26,22 @@ const routes: Routes = [
   { path: 'GamePageComponent', component: GamePageComponent },
   { path: 'EndPageComponent', component: EndPageComponent },
 
+
+  //User
+  { path: 'ChoixUser', component: ChoixUser },
   { path: 'ListeUserPage', component: ListeUserPage },
   { path: 'UserForm', component:UserForm},
   { path: 'UserProfilePage', component: UserProfilePage },
   { path: 'UserStatsPage', component: UserStatsPage },
 
+  //Quiz
+  { path: 'ChoixQuiz', component: ChoixQuiz },
   { path: 'ListeQuizPage', component: ListeQuizPage },
   { path: 'QuizForm', component: QuizFormComponent },
 
+  //Question
   { path: 'QuestionForm', component: QuestionFormComponent },
   { path: 'ListeQuestionPage', component: ListeQuestionPage },
-  { path: 'ChoixUser', component: ChoixUser },
-  { path: 'ChoixQuiz', component: ChoixQuiz },
 ];
 
 @NgModule({

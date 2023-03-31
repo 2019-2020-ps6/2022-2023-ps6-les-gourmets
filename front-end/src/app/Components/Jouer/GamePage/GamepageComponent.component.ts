@@ -117,7 +117,7 @@ import { Router } from '@angular/router';
     }
 
     ChangeMusic(event : any){
-      this.userService.switchMusicVolume(event.target.checked);
+      this.userService.fadeVolume(event.target.checked);
     }
 
   }

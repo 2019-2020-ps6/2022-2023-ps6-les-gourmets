@@ -70,15 +70,15 @@ deleteUser(value: User) {
       this.rage = true;
     }
     public playMusic(){
-    
       const audiopath = this.UserSelected.music.sort(()=>Math.random()-0.5)[0];
       this.music = new Audio('assets/Music/'+audiopath);
       this.music.loop = true;
       this.music.volume=0;
       this.music.play();
-      this.switchMusicVolume(true);
+      this.fadeVolume(true);
 
     }public stopMusic(){
+      if(this.music==null) return;
       clearInterval(this.musicFade);
       const interval =50;
       let fadeVolume = this.music.volume;
@@ -97,7 +97,8 @@ deleteUser(value: User) {
     }
 
     
-    public switchMusicVolume(fadeIn:boolean){
+    public fadeVolume(fadeIn:boolean){
+      if (this.music ==null) return;
       const interval = 20;
       const increment = fadeIn ? 0.01 : -0.01;
       clearInterval(this.musicFade);
