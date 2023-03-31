@@ -20,6 +20,7 @@ export class ListeQuizAdable implements OnInit {
     constructor(public userService: UserService, public quizService: QuizService) {
       this.userService.UserSelected$.subscribe((user: User) => {
         this.user = user;
+        this.updateQuizSelectable();
       });
       this.quizService.quizzes$.subscribe((quizList: Quiz[]) => {
         this.quizList = quizList;
@@ -34,7 +35,14 @@ export class ListeQuizAdable implements OnInit {
     addQuizToUser(quiz: Quiz): void {
       this.userTemp = this.user;
       this.userTemp.quizzes.push(quiz);
-      this.userService.updateUser(this.user, this.userTemp);
-      this.user = this.userTemp;
+      this.userService.selectUser(this.userTemp);
+      //this.userService.updateUser(this.user, this.userTemp);
+      //this.user = this.userTemp;
+    }
+
+    updateQuizSelectable(): void {
+      this.QuizSelectable = this.quizList.filter(
+        (quiz) => !this.user.quizzes.includes(quiz)
+      );
     }
   }

@@ -17,20 +17,19 @@ export class UserProfilePage implements OnInit {
 
     constructor(public formBuilder : FormBuilder, public userService : UserService) {
 
-        this.User = userService.UserSelected$.getValue();
         this.userService.UserSelected$.subscribe((UserSelected: User) => {
-            this.User = UserSelected;
+            this.UserModified = UserSelected;
         });
-        this.UserModified = JSON.parse(JSON.stringify(this.User));
+
+        this.User = JSON.parse(JSON.stringify(this.UserModified));
 
         this.modifs = this.formBuilder.group({
-            id: [this.User.id],
-            name: [this.User.name],
-            surname: [this.User.surname],
-            aggressivness: this.User.aggressivness
+            id: [this.UserModified.id],
+            name: [this.UserModified.name],
+            surname: [this.UserModified.surname],
+            aggressivness: this.UserModified.aggressivness
         });
-        userService.selectUser(this.UserModified);
-
+        // userService.selectUser(this.UserModified);
     }
     ngOnInit(): void {}
 
@@ -39,17 +38,22 @@ export class UserProfilePage implements OnInit {
     }
     deleteQuizForProfile(value : Quiz) : void {
         this.userService.deleteQuizForProfile(value);
-        this.userService.updateUser(this.User, this.UserModified);
     }
 
     applyChanges() : void {
-        this.UserModified = this.modifs.getRawValue() as User;
-        this.userService.updateUser(this.User, this.UserModified);
-        this.User = this.UserModified;
+      let Quizzs: Quiz[] = [];
+      Quizzs = JSON.parse(JSON.stringify(this.UserModified.quizzes));
+      this.UserModified = this.modifs.getRawValue() as User;
+      this.UserModified.quizzes = JSON.parse(JSON.stringify(Quizzs));
+
+      this.userService.updateUser(this.User, this.UserModified);
+      this.User = JSON.parse(JSON.stringify(this.UserModified));
+      this.userService.selectUser(this.UserModified);
     }
     cancelChanges() : void {
-        this.UserModified = this.User;
+        this.UserModified = JSON.parse(JSON.stringify(this.User));;
         this.userService.updateUser(this.UserModified, this.User);
+        this.userService.selectUser(this.UserModified);
         this.modifs['controls']['name'].setValue(this.User.name);
         this.modifs['controls']['surname'].setValue(this.User.surname);
         this.modifs['controls']['aggressivness'].setValue(this.User.aggressivness);

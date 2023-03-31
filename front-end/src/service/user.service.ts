@@ -35,9 +35,7 @@ addUser(value : User) {
   this.Users$.next(this.Users);
 }
 updateUser(userTochange : User, value : User) {
-  console.log(this.Users);
   this.Users = this.Users.filter(u => u.id !== userTochange.id);
-  console.log(this.Users);
   this.Users.push(value);
   this.Users$.next(this.Users);
   this.UserSelected = value;
@@ -55,10 +53,7 @@ deleteUser(value: User) {
  }
 
  deleteQuizForProfile(value : Quiz){
-  this.Users = this.Users.filter(u => u.id !== this.UserSelected.id);
   this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value !== quiz);
   this.UserSelected$.next(this.UserSelected);
-  this.Users.push(this.UserSelected);
-  this.Users$.next(this.Users);
  }
 }
