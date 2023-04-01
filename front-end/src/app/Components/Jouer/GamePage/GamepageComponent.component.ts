@@ -129,7 +129,10 @@ export class GamePageComponent implements OnInit {
     }
 
     ChangeMusic(event : any){
-      this.jouerService.fadeVolume(event.target.checked);
+      this.jouerService.setMusicActivated(event.target.checked);
+    }
+    getMusicActivated() : boolean {
+      return this.jouerService.musicActivated;
     }
 
 
