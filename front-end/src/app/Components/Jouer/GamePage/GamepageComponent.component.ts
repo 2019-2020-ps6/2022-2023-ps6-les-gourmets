@@ -21,17 +21,19 @@ export class GamePageComponent implements OnInit {
   user!: User;
   quiz!: Quiz;
   currentQuestionIndex = 0;
-  answers: boolean[]
+  answers: boolean[] = [];
   currentQuestion: Question;
-  validate: boolean;
-  end: boolean;
-
+  validate: boolean = false;
+  end: boolean = false;
   nbAnswers: number;
+  quitPopup !: boolean;
+  PopupVisibility: string = "hidden";
 
-    @HostListener("document:mousedown",['$event'])
-    onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
+  @HostListener("document:mousedown",['$event'])
+  onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
 
   @Output()
+    selectedAnswers = {};
   /* currentQuestion: EventEmitter<Question>=new EventEmitter<Question>();
 
    changeQuestion() : void{
@@ -39,29 +41,28 @@ export class GamePageComponent implements OnInit {
    }*/
 
 
-    selectedAnswers = {};
 
     submit(): void {
       console.log(this.selectedAnswers);
     }
 
     constructor(private router: Router,public quizService:QuizService, public userService:UserService,public jouerService:JouerService) {
-      //this.currentQuestion = this.quiz.questions[0];
       this.userService.UserSelected$.subscribe((user: User) => {
         this.user = JSON.parse(JSON.stringify(user));
       });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
         this.quiz = JSON.parse(JSON.stringify(quiz));
       });
+      this.jouerService.quitPopup$.subscribe((appearance: boolean) => {
+        this.quitPopup = appearance;
+      });
       // Randomise question order
       this.quiz.questions.sort(() => {
         return Math.random() - 0.5;
       });
       this.currentQuestion = this.quiz.questions[0];
-      this.validate = false;
-      this.answers = [];
-      this.end = false;
       this.nbAnswers = this.quiz.questions.length;
+      jouerService.chronoStart();
     }
 
     ngOnInit(): void {
@@ -69,22 +70,32 @@ export class GamePageComponent implements OnInit {
       this.currentQuestion = this.quiz.questions[0];
     }
 
-    onNextQuestion(): void {
-      console.log(this.answers);
-      if (!this.validate || !this.answers[this.currentQuestionIndex]){
+    NextQuestion(): void {
+
+      if (!this.answers[this.currentQuestionIndex]){
         this.quiz.questions.push(this.currentQuestion);
       }
+      this.jouerService.removeLastClick();
+      this.ChangeQuestion();
+    }
+    SkipQuestion(){
+      this.quiz.questions.push(this.currentQuestion);
+      this.ChangeQuestion();
+    }
+    ChangeQuestion(){
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex < this.quiz.questions.length) {
         this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
         this.validate = false;
       }
       else{ this.endQuiz()}
+
     }
 
     validateQuestion(answer:boolean): void {
       this.validate = true;
       this.answers[this.currentQuestionIndex] = answer;
+      if(answer) this.jouerService.removeLastClick();
       let i:number = 0;
       for(let a of this.answers){
         if(a){
@@ -98,7 +109,7 @@ export class GamePageComponent implements OnInit {
         }
       }
       if(!this.user.answerDisplay){
-        this.onNextQuestion();
+        this.NextQuestion();
       }
     }
 
@@ -122,9 +133,21 @@ export class GamePageComponent implements OnInit {
     }
 
     ChangeMusic(event : any){
-      this.jouerService.fadeVolume(event.target.checked);
+      this.jouerService.setMusicActivated(event.target.checked);
+    }
+    getMusicActivated() : boolean {
+      return this.jouerService.musicActivated;
     }
 
+    hidepopup(){
+      //put popup visibility to none
+      this.PopupVisibility = "hidden";
+    }
+
+    showpopup(){
+      //put popup visibility to none
+      this.PopupVisibility = "show";
+    }
 
 }
 

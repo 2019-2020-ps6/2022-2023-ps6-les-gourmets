@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { Question } from 'src/models/question.model';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 
 @Injectable({
@@ -9,16 +9,33 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 
 export class JouerService {
-    //private startTime: number;
+
+    constructor(private userService :UserService){
+
+    }
+
+    //Musique permanence
+    //Interrompre quiz lors de 2eme rage
+    //Aucun click pdt longtem, arreter le quiz
+
+    //Timer
+    private start : number = Date.now();
+    private Timer: number = 0;
 
     chronoStart(){
-
+        this.start = Date.now();
+        console.log("Timer Start")
+        console.log("timer Start: " + this.start);
     }
-    chronoStop() {
-      //throw new Error('Method not implemented.');
+    chronoStop() : number {
+        const end = Date.now()
+        this.Timer = end - this.start;
+        console.log("Timer Stop")
+        console.log("timer Start: " + this.start);
+        console.log("timer End: " + end);
+        console.log("timer Value: " + this.Timer);
+        return this.Timer;
     }
-    
-    //Timer
 
     //Music
    /*
@@ -26,7 +43,8 @@ export class JouerService {
     @HostListener("document:mousedown",['$event'])
     onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
   */
-    
+    private mainMusics : string[] = ["MainTheme.mp3"]
+    public musicActivated = true;
     private music !: HTMLAudioElement ;
     private rage = false;
     private dateTab : number[] = [];
@@ -35,9 +53,14 @@ export class JouerService {
     private questions : Question[]=[];
     public questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions);
     public results$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.results);
+    private quitPopup = false;
+    public quitPopup$: BehaviorSubject<boolean> = new BehaviorSubject(this.quitPopup);
+    private ezNextQuestion = false;
+    private ezNextQuestion$ : BehaviorSubject<boolean> = new BehaviorSubject(this.ezNextQuestion);;
+    private timeSpan = 3000 // in ms
+    private nbClick = 5 // number of click during timeSpan to trigger
 
     constructor(private userService :UserService){
-
     }
 
     public updateResults(questions:Question[],answers:boolean[]){
@@ -49,26 +72,32 @@ export class JouerService {
         const CurrentUser = this.userService.getCurrentUser();
         const now : number = Date.now();
         const agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
-        this.dateTab = this.dateTab.filter(date => date > now - 3000 * (1/agressive));
+        this.dateTab = this.dateTab.filter(date => date > now - this.timeSpan * (1/agressive));
         this.dateTab.push(now);
         if(this.dateTab.length>5) this.triggerRage();
     }
-  
+
     private triggerRage(){
-        if(this.rage) return;
-        this.playMusic();
+        this.ezNextQuestion = true;
+        this.resetClickCounter();
+        if(this.rage) {this.quitPopup = true; return;}
+        this.playMusic(null);
         this.rage = true;
     }
-    public playMusic(){
-        const CurrentUser = this.userService.getCurrentUser();
-        const audiopath = CurrentUser.music.sort(()=>Math.random()-0.5)[0];
-        this.music = new Audio('assets/Music/'+audiopath);
-        this.music.loop = true;
-        this.music.volume=0;
-        this.music.play();
+
+    public playMusic(path : string|null){
+        if(!this.musicActivated || !this.rage) return;
+        if(this.music == null || path!=null){
+            if(path ==null) path = this.userService.getCurrentUser().music.sort(()=>Math.random()-0.5)[0];
+            this.music = new Audio('assets/Music/'+path);
+            this.music.loop = true;
+            this.music.volume=0;
+            this.music.play();
+        }
         this.fadeVolume(true);
 
-    }public stopMusic(){
+    }
+    public stopMusic(){
       if(this.music==null) return;
       clearInterval(this.musicFade);
       const interval =50;
@@ -82,12 +111,17 @@ export class JouerService {
           clearInterval(fade);
         }
         this.music.volume=fadeVolume;
-        
+
 
       }, interval)
     }
+    public setMusicActivated(activated : boolean){
+        this.musicActivated = activated;
+        //if(activated) this.playMusic();
+        //else this.stopMusic();
+    }
 
-    
+
     public fadeVolume(fadeIn:boolean){
       if (this.music ==null) return;
       const interval = 20;
@@ -105,5 +139,21 @@ export class JouerService {
         }
         else this.music.volume += increment;
       }, interval);
+    }
+    public resetClickCounter(){
+        this.dateTab = [];
+    }
+    public removeLastClick(){
+        this.dateTab.pop();
+        console.log("new size = "+this.dateTab.length);
+    }
+    public popupAnswer(answer : boolean){
+        if(answer){//User quitte le quiz
+            this.chronoStop();
+        } else { //User reste sur le quiz
+
+        }
+        this.rage = false;
+        this.resetClickCounter();
     }
 }

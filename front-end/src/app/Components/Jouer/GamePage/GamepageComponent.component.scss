@@ -33,7 +33,7 @@ h1, h2 {
 
 label {
   margin: 10px 0;
-  color: #fff; 
+  color: #fff;
 }
 
 input[type="b"] {
@@ -47,12 +47,13 @@ button {
   padding: 10px 20px;
   margin-top: 30px;
   margin-right: 10px;
-  border-radius: 4px; 
-  transition: background-color 0.3s; 
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #888; 
+  background-color: #3a3939;
+  cursor: pointer;
 }
 
 button.submit {
@@ -124,4 +125,30 @@ input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
+}
+
+.popup {
+  top: 50%;
+  left: 50%;
+  width: 25%;
+  height: 25%;
+  background-color: #ffffff;
+  // put in the middle of the screen
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 1;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  //align the button inside at the center
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //hide the popup
+}
+
+// h1 in popup
+.popup h1 {
+  color: #000000;
+  text-align: center;
+  margin-top: 20px;
 }

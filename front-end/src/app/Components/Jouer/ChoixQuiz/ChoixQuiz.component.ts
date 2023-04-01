@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/models/User.model';
 import { Quiz } from 'src/models/quiz.model';
+import { JouerService } from 'src/service/jouer.service';
 import { QuizService } from 'src/service/quiz.service';
 import { UserService } from 'src/service/user.service';
 

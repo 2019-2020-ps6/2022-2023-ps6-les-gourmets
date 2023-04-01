@@ -11,7 +11,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 export class QuizService {
 
-  
+
 
     //The list of quiz. The list is retrieved from the mock.
 private quizzes: Quiz[] = QUIZ_LIST; // Ici on initialise la valeur avec un mock QUIZ_LIST
