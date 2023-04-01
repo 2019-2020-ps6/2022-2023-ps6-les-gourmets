@@ -21,7 +21,9 @@ export const QUESTION_ACTOR: Question = {
           value: 'Le parrain',  
           isCorrect: false,
       }
-  ]
+  ],
+  trueAnswer:0,
+  falseAnswer:0,
 };
 
 export const QUESTIONLIST_ACTOR: Question[] = [
@@ -45,7 +47,9 @@ export const QUESTIONLIST_ACTOR: Question[] = [
             value: 'Le parrain',
             isCorrect: false,
         }
-      ]    
+      ],
+      trueAnswer: 10,
+      falseAnswer: 0,
   },
   {
     id: '2',
@@ -67,7 +71,9 @@ export const QUESTIONLIST_ACTOR: Question[] = [
             value: 'Leon',
             isCorrect: true,
         }
-      ]
+      ],
+      trueAnswer: 5,
+      falseAnswer: 5,
   }
   ];
 
@@ -77,12 +83,16 @@ export const QUIZ_LIST: Quiz[] = [
     id: '1',
     name: 'Les Acteurs',
     questions: QUESTIONLIST_ACTOR,
+    timerMoyen:45000,
+    times:2
   },
 
   {
     id: '2',
     name: 'Les technos WEB',
     questions: [],
+    timerMoyen:0,
+    times:0
   }
 ];
 

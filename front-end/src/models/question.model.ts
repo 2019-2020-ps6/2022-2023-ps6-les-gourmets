@@ -8,4 +8,6 @@ export interface Question {
     id: string;
     label: string | undefined;
     answers: Answer[];
+    trueAnswer: number;
+    falseAnswer: number;
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
+import { Question } from 'src/models/question.model';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 
@@ -8,10 +9,6 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 })
 
 export class JouerService {
-    
-    constructor(private userService :UserService){
-        
-    }
 
     //Musique permanence
     //Interrompre quiz lors de 2eme rage
@@ -33,7 +30,7 @@ export class JouerService {
         console.log("timer Start: " + this.start);
         console.log("timer End: " + end);
         console.log("timer Value: " + this.Timer);
-        return end;
+        return this.Timer;
     }
 
     //Music
@@ -56,16 +53,23 @@ export class JouerService {
     private timeSpan = 6000 // in ms
     private nbClick = 15 // number of click during timeSpan to trigger
 
+    constructor(private userService :UserService){
+    }
+    //TODO jsp ce que c'est
+    public updateResults(questions:Question[],answers:boolean[]){
+      /*this.results=answers;
+      this.questions = questions;*/
+    }
+
     public mouseClickInQuiz(event : MouseEvent) {
         const CurrentUser = this.userService.getCurrentUser();
         const now : number = Date.now();
         const agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
         this.dateTab = this.dateTab.filter(date => date > now - this.timeSpan * (1/agressive));
         this.dateTab.push(now);
-        console.log(this.dateTab.length);
-        if(this.dateTab.length>this.nbClick) this.triggerRage();
+        if(this.dateTab.length>5) this.triggerRage();
     }
-  
+
     private triggerRage(){
         this.ezNextQuestion = true;
         this.resetClickCounter();
@@ -124,7 +128,7 @@ export class JouerService {
         if(answer){//User quitte le quiz
             this.chronoStop();
         } else { //User reste sur le quiz
-            
+
         }
         this.rage = false;
         this.resetClickCounter();

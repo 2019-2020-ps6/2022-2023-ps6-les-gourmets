@@ -5,16 +5,17 @@ export const USERS: User[] = [
     {
         name: 'Gabin',
         surname: 'Jean',
-        quizzes: [QUIZ_LIST[0]],
+        quizzes: [JSON.parse(JSON.stringify(QUIZ_LIST[0]))],
         aggressivness : 0.8,
         answerDisplay : true,
         music : ["calmAndPeaceful.mp3"],
         id:1
+        
     },
     {
         name: 'Palmade',
         surname: 'Pierre',
-        quizzes: QUIZ_LIST,
+        quizzes: JSON.parse(JSON.stringify(QUIZ_LIST)),
         aggressivness : 0.2,
         answerDisplay : false,
         music : ["calmAndPeaceful.mp3","garden.mp3"],
