@@ -61,6 +61,7 @@ export class GamePageComponent implements OnInit {
       this.answers = [];
       this.end = false;
       this.nbAnswers = this.quiz.questions.length;
+      jouerService.chronoStart();
     }
 
     ngOnInit(): void {

@@ -7,16 +7,31 @@ import { UserService } from './user.service';
 })
 
 export class JouerService {
-    //private startTime: number;
+    
+
+    constructor(private userService :UserService){
+
+    }
+
+
+    //Timer
+    private start : number = Date.now();
+    private Timer: number = 0;
 
     chronoStart(){
-
+        this.start = Date.now();
+        console.log("Timer Start")
+        console.log("timer Start: " + this.start);
     }
-    chronoStop() {
-      //throw new Error('Method not implemented.');
+    chronoStop() : number {
+        const end = Date.now()
+        this.Timer = end - this.start;
+        console.log("Timer Stop")
+        console.log("timer Start: " + this.start);
+        console.log("timer End: " + end);
+        console.log("timer Value: " + this.Timer);
+        return end;
     }
-    
-    //Timer
 
     //Music
    /*
@@ -29,10 +44,7 @@ export class JouerService {
     private rage = false;
     private dateTab : number[] = [];
     private musicFade : any;
-
-    constructor(private userService :UserService){
-
-    }
+    private ezNextQuestion = false;
 
     public mouseClickInQuiz(event : MouseEvent) {
         const CurrentUser = this.userService.getCurrentUser();
@@ -40,11 +52,12 @@ export class JouerService {
         const agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
         this.dateTab = this.dateTab.filter(date => date > now - 3000 * (1/agressive));
         this.dateTab.push(now);
-        console.log(this.dateTab.length)
+        console.log(this.dateTab.length);
         if(this.dateTab.length>5) this.triggerRage();
     }
   
     private triggerRage(){
+        this.ezNextQuestion = true;
         if(this.rage) return;
         this.playMusic();
         this.rage = true;
