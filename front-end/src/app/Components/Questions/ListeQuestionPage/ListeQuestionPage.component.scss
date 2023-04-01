@@ -1,7 +1,7 @@
-.button-card{
+.button-card {
     background-color: #4d535dc6;
     border: solid 1px #F2F2F2;
-    color:#f2f2f2;
+    color: #f2f2f2;
     font-weight: bold;
     padding: 0.5em 1em;
     margin-top: 1rem;
@@ -9,33 +9,25 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-h1{
+h1 {
     color: #fff;
     margin-top: 30px;
     text-align: center;
 }
 
-app-ListeQuestion{
-    
-    display : flex;
+app-ListeQuestion {
+    display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    
-   
-    height: 100vh;
-    width: 100vw;
-
-    
-
 }
 
-div{
+div {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 100%;
-    
 }
 
 .button-card:hover {
@@ -43,4 +35,3 @@ div{
     background-color: #7f858ed1;
     color: #F2F2F2;
 }
-
