@@ -66,21 +66,31 @@ export class GamePageComponent implements OnInit {
     }
 
     onNextQuestion(): void {
-      console.log(this.answers);
-      if (!this.validate || !this.answers[this.currentQuestionIndex]){
+      
+      if (!this.answers[this.currentQuestionIndex]){
         this.quiz.questions.push(this.currentQuestion);
       }
+      this.jouerService.removeLastClick();
+      this.NextQuestion();
+    }
+    SkipQuestion(){
+      this.quiz.questions.push(this.currentQuestion);
+      this.NextQuestion();
+    }
+    NextQuestion(){
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex < this.quiz.questions.length) {
         this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
         this.validate = false;
       }
       else{ this.endQuiz()}
+
     }
 
     validateQuestion(answer:boolean): void {
       this.validate = true;
       this.answers[this.currentQuestionIndex] = answer;
+      if(answer) this.jouerService.removeLastClick();
       let i:number = 0;
       for(let a of this.answers){
         if(a){

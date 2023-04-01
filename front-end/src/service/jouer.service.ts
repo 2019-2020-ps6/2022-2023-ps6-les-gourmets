@@ -13,6 +13,9 @@ export class JouerService {
 
     }
 
+    //Musique permanence
+    //Interrompre quiz lors de 2eme rage
+    //Aucun click pdt longtem, arreter le quiz
 
     //Timer
     private start : number = Date.now();
@@ -59,6 +62,7 @@ export class JouerService {
     private triggerRage(){
         this.ezNextQuestion = true;
         if(this.rage) return;
+        this.resetClickCounter;
         this.playMusic();
         this.rage = true;
     }
@@ -108,5 +112,12 @@ export class JouerService {
         }
         else this.music.volume += increment;
       }, interval);
+    }
+    public resetClickCounter(){
+        this.dateTab = [];
+    }
+    public removeLastClick(){
+        this.dateTab.pop();
+        console.log("new size = "+this.dateTab.length);
     }
 }
