@@ -9,6 +9,21 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
+h1{
+    color: #fff;
+    margin-top: 30px;
+    text-align: center;
+}
+
+div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    
+}
+
 .button-card:hover {
     cursor: pointer;
     background-color: #7f858ed1;
