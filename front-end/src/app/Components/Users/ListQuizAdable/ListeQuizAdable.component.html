@@ -1,0 +1,6 @@
+<h1>Liste Quiz Adable</h1>
+<div class="quiz-List">
+  <div class="Quiz" *ngFor="let quiz of QuizSelectable">
+    <app-Quiz [quiz]="quiz" (deleteQuizz)="addQuizToUser($event)"></app-Quiz>
+  </div>
+</div>
