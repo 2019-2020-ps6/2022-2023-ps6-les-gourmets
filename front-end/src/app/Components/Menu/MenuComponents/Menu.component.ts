@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { JouerService } from 'src/service/jouer.service';
 
 @Component({
   selector: 'app-Menu',
@@ -8,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 
 export class MenuComponent implements OnInit {
 
-  constructor() {
+  private interacted=false;
+  @HostListener("document:mousedown",['$event'])
+  onClick(event: MouseEvent){
+    if(!this.interacted){
+      this.jouerService.playBackgroundMusic();
+    }
+  }
+
+  constructor(public jouerService : JouerService) {
+    this.jouerService.playBackgroundMusic();
   }
 
   ngOnInit(): void {
+  }
+
+  activateMusic(){
+    this.jouerService.playBackgroundMusic();
   }
 }

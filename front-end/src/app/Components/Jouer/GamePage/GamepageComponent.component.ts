@@ -147,7 +147,11 @@ export class GamePageComponent implements OnInit {
     showpopup(){
       //put popup visibility to none
       this.PopupVisibility = "show";
+    }ngOnDestroy() {
+      this.jouerService.playBackgroundMusic();
+      this.jouerService.reset();
     }
+  
 
 }
 

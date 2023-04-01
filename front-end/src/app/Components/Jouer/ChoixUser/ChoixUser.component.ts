@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JouerService } from 'src/service/jouer.service';
 
 @Component({
   selector: 'app-ChoixUser',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class ChoixUser implements OnInit {
 
-  constructor() {
+  constructor(public jouerService : JouerService) {
   }
 
   ngOnInit(): void {
