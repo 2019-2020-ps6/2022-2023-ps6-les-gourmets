@@ -26,7 +26,8 @@ export class GamePageComponent implements OnInit {
   validate: boolean = false;
   end: boolean = false;
   nbAnswers: number;
-  public quitPopup !: boolean;
+  quitPopup !: boolean;
+  PopupVisibility: string = "hidden";
 
   @HostListener("document:mousedown",['$event'])
   onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
@@ -70,7 +71,7 @@ export class GamePageComponent implements OnInit {
     }
 
     NextQuestion(): void {
-      
+
       if (!this.answers[this.currentQuestionIndex]){
         this.quiz.questions.push(this.currentQuestion);
       }
@@ -132,6 +133,15 @@ export class GamePageComponent implements OnInit {
       this.jouerService.fadeVolume(event.target.checked);
     }
 
+    hidepopup(){
+      //put popup visibility to none
+      this.PopupVisibility = "hidden";
+    }
+
+    showpopup(){
+      //put popup visibility to none
+      this.PopupVisibility = "show";
+    }
 
 }
 
