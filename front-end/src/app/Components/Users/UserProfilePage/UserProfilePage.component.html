@@ -16,16 +16,19 @@
     </div>
 </form>
 
-<div>
-    <h2> Quizs de l'utilisateur</h2>
+<div >
+    <span>
+        <h2> Quizs de l'utilisateur : </h2>
 
-    <button [routerLink]="['/ListeQuizAdable']">Ajouter</button>
+        <button [routerLink]="['/ListeQuizAdable']">Ajouter</button>
+    
+        
+            <div *ngFor="let quiz of UserModified.quizzes">
+                 <app-Quiz [quiz]="quiz" (deleteQuizz)="deleteQuizForProfile($event)"></app-Quiz> 
+            </div>
+        
+    </span>
 
-    <ul>
-        <div *ngFor="let quiz of UserModified.quizzes">
-            <li> <app-Quiz [quiz]="quiz" (deleteQuizz)="deleteQuizForProfile($event)"></app-Quiz> </li>
-        </div>
-    </ul>
 </div>
 <div>
     <button (click) ="applyChanges()" [routerLink]="['/ListeUserPage']">confirm changes</button>
