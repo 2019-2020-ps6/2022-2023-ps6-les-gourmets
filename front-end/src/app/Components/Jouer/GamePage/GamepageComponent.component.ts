@@ -48,10 +48,10 @@ export class GamePageComponent implements OnInit {
 
     constructor(private router: Router,public quizService:QuizService, public userService:UserService,public jouerService:JouerService) {
       this.userService.UserSelected$.subscribe((user: User) => {
-        this.user = user;
+        this.user = JSON.parse(JSON.stringify(user));
       });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
-        this.quiz = quiz;
+        this.quiz = JSON.parse(JSON.stringify(quiz));
       });
       this.jouerService.quitPopup$.subscribe((appearance: boolean) => {
         this.quitPopup = appearance;
@@ -122,6 +122,9 @@ export class GamePageComponent implements OnInit {
     }
 
     endQuiz():void{
+      this.jouerService.updateResults(this.quiz.questions,this.answers);
+      this.userService.updateUserStats(this.quizService.quizSelected$.getValue(),this.quiz.questions,this.answers);
+      console.log(this.userService.UserSelected$.getValue().quizzes[0].questions[0].falseAnswer)
       this.router.navigate(['/EndPageComponent']);
     }
 

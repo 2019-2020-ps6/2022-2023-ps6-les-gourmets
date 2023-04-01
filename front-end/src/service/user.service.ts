@@ -3,6 +3,7 @@ import { User } from 'src/models/User.model';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { USERS } from 'src/mocks/UserList.mocks';
 import { Quiz } from 'src/models/quiz.model';
+import { Question } from 'src/models/question.model';
 
 
 @Injectable({
@@ -59,6 +60,25 @@ deleteUser(value: User) {
  deleteQuizForProfile(value : Quiz){
   this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value !== quiz);
   this.UserSelected$.next(this.UserSelected);
+ }
+
+ updateUserStats(quiz: Quiz,questions: Question[],answers: boolean[]){
+  
+  for(let i=0; i< this.UserSelected.quizzes.length;i++){
+    if(quiz.id==this.UserSelected.quizzes[i].id){
+      for(let j=0; j<answers.length; j++){
+        for(let k=0; k<this.UserSelected.quizzes[i].questions.length; k++){
+          if(this.UserSelected.quizzes[i].questions[k].id==questions[j].id){
+            if (answers[j]){
+              this.UserSelected.quizzes[i].questions[k].trueAnswer+=1;
+            }else{
+              this.UserSelected.quizzes[i].questions[k].falseAnswer+=1;
+            }
+          }
+        }
+      }
+    }
+  }
  }
 
 }

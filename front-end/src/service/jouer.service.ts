@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
+import { Question } from 'src/models/question.model';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 
@@ -48,6 +49,10 @@ export class JouerService {
     private rage = false;
     private dateTab : number[] = [];
     private musicFade : any;
+    private results : boolean[]=[];
+    private questions : Question[]=[];
+    public questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions);
+    public results$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.results);
     private quitPopup = false;
     public quitPopup$: BehaviorSubject<boolean> = new BehaviorSubject(this.quitPopup);
     private ezNextQuestion = false;
@@ -55,14 +60,21 @@ export class JouerService {
     private timeSpan = 3000 // in ms
     private nbClick = 5 // number of click during timeSpan to trigger
 
+    constructor(private userService :UserService){
+    }
+
+    public updateResults(questions:Question[],answers:boolean[]){
+      this.results=answers;
+      this.questions = questions;
+    }
+
     public mouseClickInQuiz(event : MouseEvent) {
         const CurrentUser = this.userService.getCurrentUser();
         const now : number = Date.now();
         const agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
         this.dateTab = this.dateTab.filter(date => date > now - this.timeSpan * (1/agressive));
         this.dateTab.push(now);
-        console.log(this.dateTab.length);
-        if(this.dateTab.length>this.nbClick) this.triggerRage();
+        if(this.dateTab.length>5) this.triggerRage();
     }
 
     private triggerRage(){

@@ -21,7 +21,9 @@ export const QUESTION_ACTOR: Question = {
           value: 'Le parrain',  
           isCorrect: false,
       }
-  ]
+  ],
+  trueAnswer:0,
+  falseAnswer:0,
 };
 
 export const QUESTIONLIST_ACTOR: Question[] = [
@@ -45,7 +47,9 @@ export const QUESTIONLIST_ACTOR: Question[] = [
             value: 'Le parrain',
             isCorrect: false,
         }
-      ]    
+      ],
+      trueAnswer: 10,
+      falseAnswer: 0,
   },
   {
     id: '2',
@@ -67,7 +71,9 @@ export const QUESTIONLIST_ACTOR: Question[] = [
             value: 'Leon',
             isCorrect: true,
         }
-      ]
+      ],
+      trueAnswer: 5,
+      falseAnswer: 5,
   }
   ];
 
