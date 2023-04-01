@@ -12,30 +12,30 @@ import { JouerService } from 'src/service/jouer.service';
 
 
 @Component({
-    selector: 'app-GamePage',
-    templateUrl: './GamePageComponent.component.html',
-    styleUrls: ['./GamePageComponent.component.scss']
-  })
+  selector: 'app-GamePage',
+  templateUrl: './GamePageComponent.component.html',
+  styleUrls: ['./GamePageComponent.component.scss']
+})
 
-  export class GamePageComponent implements OnInit {
-    user!: User;
-    quiz!: Quiz;
-    currentQuestionIndex = 0;
-    answers:boolean[]
-    currentQuestion: Question;
-    validate: boolean;
-    end: boolean;
-    nbAnswers: number;
+export class GamePageComponent implements OnInit {
+  user!: User;
+  quiz!: Quiz;
+  currentQuestionIndex = 0;
+  answers: boolean[]
+  currentQuestion: Question;
+  validate: boolean;
+  end: boolean;
+  nbAnswers: number;
 
     @HostListener("document:mousedown",['$event'])
     onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
 
-    @Output()
-   /* currentQuestion: EventEmitter<Question>=new EventEmitter<Question>();
+  @Output()
+  /* currentQuestion: EventEmitter<Question>=new EventEmitter<Question>();
 
-    changeQuestion() : void{
-        this.currentQuestion.emit(this.quiz.nextQuestion());
-    }*/
+   changeQuestion() : void{
+       this.currentQuestion.emit(this.quiz.nextQuestion());
+   }*/
 
 
     selectedAnswers = {};
@@ -121,6 +121,7 @@ import { JouerService } from 'src/service/jouer.service';
       this.jouerService.fadeVolume(event.target.checked);
     }
 
-  }
+
+}
 
 
