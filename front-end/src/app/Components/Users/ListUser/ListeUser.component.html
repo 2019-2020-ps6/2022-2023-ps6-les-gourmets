@@ -1,8 +1,8 @@
 <h1>Liste User</h1>
 <div class="user-List">
-  <ul>
+  <span>
     <div class="User" *ngFor="let user of UserList">
-      <li><app-User [User]="user" (deleteUser)="deleteUser($event)"></app-User></li>
+      <app-User [User]="user" (deleteUser)="deleteUser($event)"></app-User>
     </div>
-  </ul>
+  </span>
 </div>
