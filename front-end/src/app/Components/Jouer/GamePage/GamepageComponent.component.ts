@@ -21,16 +21,17 @@ export class GamePageComponent implements OnInit {
   user!: User;
   quiz!: Quiz;
   currentQuestionIndex = 0;
-  answers: boolean[]
+  answers: boolean[] = [];
   currentQuestion: Question;
-  validate: boolean;
-  end: boolean;
+  validate: boolean = false;
+  end: boolean = false;
   nbAnswers: number;
 
     @HostListener("document:mousedown",['$event'])
     onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
 
   @Output()
+    selectedAnswers = {};
   /* currentQuestion: EventEmitter<Question>=new EventEmitter<Question>();
 
    changeQuestion() : void{
@@ -38,14 +39,12 @@ export class GamePageComponent implements OnInit {
    }*/
 
 
-    selectedAnswers = {};
 
     submit(): void {
       console.log(this.selectedAnswers);
     }
 
     constructor(private router: Router,public quizService:QuizService, public userService:UserService,public jouerService:JouerService) {
-      //this.currentQuestion = this.quiz.questions[0];
       this.userService.UserSelected$.subscribe((user: User) => {
         this.user = user;
       });
@@ -57,9 +56,6 @@ export class GamePageComponent implements OnInit {
         return Math.random() - 0.5;
       });
       this.currentQuestion = this.quiz.questions[0];
-      this.validate = false;
-      this.answers = [];
-      this.end = false;
       this.nbAnswers = this.quiz.questions.length;
       jouerService.chronoStart();
     }
