@@ -124,7 +124,7 @@ export class GamePageComponent implements OnInit {
     endQuiz():void{
       this.jouerService.updateResults(this.quiz.questions,this.answers);
       this.userService.updateUserStats(this.quizService.quizSelected$.getValue(),this.quiz.questions,this.answers);
-      console.log(this.userService.UserSelected$.getValue().quizzes[0].questions[0].falseAnswer)
+      this.userService.updateUserTimer(this.quizService.quizSelected$.getValue(),this.jouerService.getTimer());
       this.router.navigate(['/EndPageComponent']);
     }
 
@@ -147,7 +147,11 @@ export class GamePageComponent implements OnInit {
     showpopup(){
       //put popup visibility to none
       this.PopupVisibility = "show";
+    }ngOnDestroy() {
+      this.jouerService.playBackgroundMusic();
+      this.jouerService.reset();
     }
+  
 
 }
 

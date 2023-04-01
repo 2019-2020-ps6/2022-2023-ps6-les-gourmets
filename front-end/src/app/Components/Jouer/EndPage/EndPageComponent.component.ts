@@ -22,32 +22,8 @@ import { UserService } from 'src/service/user.service';
 
 
     constructor(public jouerService : JouerService) {
-      this.jouerService.stopMusic();
-      let temp:number = this.jouerService.chronoStop();
-      this.minutes = Math.floor(temp/60000);
-      this.secondes = Math.floor((temp%60000)/1000);
-
-      jouerService.results$.subscribe((results) => {
-        this.results = JSON.parse(JSON.stringify(results));
-      });
-      jouerService.questions$.subscribe((questions) => {
-        this.questions = JSON.parse(JSON.stringify(questions));
-      });
-
-      console.log(this.results);
-      console.log(this.questions);
-
-      for(let i = 0; i < this.results.length; i++){
-        if(this.results[i] == true){
-          this.questionsJustes.push(this.questions[i]);
-          for(let j = 0; j < this.questions[i].answers.length; j++){
-            if(this.questions[i].answers[j].isCorrect) {
-              this.answersJustes.push(this.questions[i].answers[j].value);
-            }
-          }
-        }
-      }
-
+      this.jouerService.playBackgroundMusic();
+      this.jouerService.chronoStop();
     }
 
     ngOnInit(): void {
