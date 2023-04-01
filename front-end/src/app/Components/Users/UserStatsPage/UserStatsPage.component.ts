@@ -9,16 +9,12 @@ import { UserService } from 'src/service/user.service';
     styleUrls: ['./UserStatsPage.component.scss']
 })
 export class UserStatsPage implements OnInit {
-    
-    public User : User;
-    public hidden : boolean = false
 
-    constructor(private router: Router, public userService: UserService) {
-        
-        if(history.state.data == undefined)router.navigate(["/ListeUserPage/"])
-        this.User = history.state.data;
+    public User!: User;
+
+    constructor(public userService: UserService) {
     }
     ngOnInit() : void {}
 
-    
+
 }

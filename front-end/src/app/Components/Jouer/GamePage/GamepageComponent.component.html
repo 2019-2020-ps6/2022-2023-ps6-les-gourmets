@@ -1,4 +1,4 @@
-<h1>{{quiz.name}}</h1>  <span>music; </span> 
+<h1>{{quiz.name}}</h1>  <span>music; </span>
 
 <label class="switch">
     <input type="checkbox" (change)="ChangeMusic($event)" [checked]="getMusicActivated()">
@@ -9,4 +9,9 @@
 <button *ngIf="validate && !end" type="submit" class="next" (click)="NextQuestion()">Question suivante</button>
 <button *ngIf="validate && end" type="submit" class="next" (click)="endQuiz()">finir le quiz</button>
 <button *ngIf="!validate" type="submit" class="next" (click)="SkipQuestion()">Passer la question</button>
-
+<div class="popup" [ngStyle]="{'visibility': PopupVisibility}">
+  <h1>Voulez-vous continuer le Quiz ?</h1>
+  <!-- button with label test that put popup visibility to none on click -->
+  <button (click)="hidepopup()">Continuer</button>
+  <button [routerLink]="'/Menu'">Arrêter</button>
+</div>
