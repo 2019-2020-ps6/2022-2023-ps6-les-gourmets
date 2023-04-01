@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
+import { Question } from 'src/models/question.model';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -29,9 +31,18 @@ export class JouerService {
     private rage = false;
     private dateTab : number[] = [];
     private musicFade : any;
+    private results : boolean[]=[];
+    private questions : Question[]=[];
+    public questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions);
+    public results$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.results);
 
     constructor(private userService :UserService){
 
+    }
+
+    public updateResults(questions:Question[],answers:boolean[]){
+      this.results=answers;
+      this.questions = questions;
     }
 
     public mouseClickInQuiz(event : MouseEvent) {
@@ -40,7 +51,6 @@ export class JouerService {
         const agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
         this.dateTab = this.dateTab.filter(date => date > now - 3000 * (1/agressive));
         this.dateTab.push(now);
-        console.log(this.dateTab.length)
         if(this.dateTab.length>5) this.triggerRage();
     }
   
