@@ -47,6 +47,10 @@ export class JouerService {
     private rage = false;
     private dateTab : number[] = [];
     private quitPopup = false;
+    private results : boolean[]=[];
+    private questions : Question[]=[];
+    public questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions);
+    public results$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.results);
     public quitPopup$: BehaviorSubject<boolean> = new BehaviorSubject(this.quitPopup);
     private ezNextQuestion = false;
     private ezNextQuestion$ : BehaviorSubject<boolean> = new BehaviorSubject(this.ezNextQuestion);;
@@ -55,10 +59,13 @@ export class JouerService {
 
     constructor(private userService :UserService){
     }
-    //TODO jsp ce que c'est
-    public updateResults(questions:Question[],answers:boolean[]){
-      /*this.results=answers;
-      this.questions = questions;*/
+
+    public updateResults(questions:Question[],answers:boolean[]){   
+        this.results=answers;
+        this.results$.next(this.results);
+        this.questions = questions;
+        this.questions$.next(this.questions);
+      
     }
 
     public mouseClickInQuiz(event : MouseEvent) {
@@ -143,6 +150,10 @@ export class JouerService {
     
   }
 
+  getTimer() : number{
+    return Date.now() - this.start;
+  }
+
 }
 
 
@@ -191,5 +202,4 @@ class AudioFade extends Audio{
         else this.volume += increment;
       }, interval);
     }
-
 }
