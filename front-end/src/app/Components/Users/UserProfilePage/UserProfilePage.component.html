@@ -18,8 +18,9 @@
 
 <div>
     <h2> Quizs de l'utilisateur</h2>
-   
-    <button >Ajouter</button>
+
+    <button [routerLink]="['/ListeQuizAdable']">Ajouter</button>
+
     <ul>
         <div *ngFor="let quiz of UserModified.quizzes">
             <li> <app-Quiz [quiz]="quiz" (deleteQuizz)="deleteQuizForProfile($event)"></app-Quiz> </li>
