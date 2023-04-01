@@ -1,0 +1,49 @@
+$grey-background-color: #f2f2f2;
+
+
+h1{
+  color: #ffffff;
+  font-size: 48px;
+  margin-bottom: 50px;
+  color: #ffffff;
+}
+
+div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 500px;
+  
+}
+
+button{
+  background-color: #4d535dc6;
+  border: solid 1px #F2F2F2;
+  color:#f2f2f2;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  margin-top: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  width: 300px;
+}
+
+.question-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  background-color: #222831;
+  padding: 2rem;
+  align-items: center;
+  width: 300px;
+
+}
+
+.Question{
+  flex-basis: calc(33% - 1rem);
+  width : 600 px;
+  
+}

@@ -1,0 +1,12 @@
+<div class="card">
+  <h2>
+    <i class="fab fa-leanpub"></i>
+    {{quiz.name}}
+  </h2>
+  <div *ngIf="isMod">
+    <button class="button-card" (click)="delete()">Delete</button>
+  </div>
+  <div *ngIf="isPlay">
+    <button class="button-card" (click)="selectQuiz()" [routerLink]="['/GamePageComponent']">Select</button>
+</div>
+</div>

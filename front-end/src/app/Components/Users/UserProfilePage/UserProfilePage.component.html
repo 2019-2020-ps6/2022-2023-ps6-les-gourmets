@@ -1,0 +1,36 @@
+<h1>Page de l'Utilsateur</h1>
+<div>
+    <button [routerLink]="['/ListeUserPage']" >Retour</button>
+    <button [routerLink]="['/UserStatsPage']" >Stats</button>
+</div>
+
+
+<form [formGroup]="modifs">
+    <div>
+        <input type="text" value={{UserModified.surname}} placeholder={{UserModified.surname}} [formControlName]="'surname'"/>
+        <input type="text" value={{UserModified.name}} placeholder={{UserModified.name}} [formControlName]="'name'"/>
+    </div>
+    <div>
+        <h2>Perks de l'utilisateur</h2>
+        <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1" [formControlName]="'aggressivness'"/>
+    </div>
+</form>
+
+<div >
+    <span>
+        <h2> Quizs de l'utilisateur : </h2>
+
+        <button [routerLink]="['/ListeQuizAdable']">Ajouter</button>
+    
+        
+            <div *ngFor="let quiz of UserModified.quizzes">
+                 <app-Quiz [quiz]="quiz" (deleteQuizz)="deleteQuizForProfile($event)"></app-Quiz> 
+            </div>
+        
+    </span>
+
+</div>
+<div>
+    <button (click) ="applyChanges()" [routerLink]="['/ListeUserPage']">confirm changes</button>
+    <button (click) ="cancelChanges()">revert changes</button>
+</div>

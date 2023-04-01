@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Liste Quiz</h1>
+  <div class="quiz-list">
+      <div class="Quiz" *ngFor="let quiz of quizList">
+          <app-Quiz [quiz]="quiz" (deleteQuizz)="deleteQuiz($event)"></app-Quiz>
+      </div>
+  </div>
+</div>

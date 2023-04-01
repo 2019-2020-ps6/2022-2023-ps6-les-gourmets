@@ -1,0 +1,12 @@
+<h1>Créer un profil</h1>
+<form [formGroup]="userForm">
+    <label for="title">
+    <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+    </label>
+    <label for="title">
+    <input class="input-custom" type="text" id="surname" [formControlName]="'surname'">
+    </label>
+    <button type="submit" class="button-card" (click)="addUser()" [routerLink]="'/UserProfilePage'">Create</button>
+
+</form>
+<!-- <br> data: {{userForm.getRawValue() | json}} -->

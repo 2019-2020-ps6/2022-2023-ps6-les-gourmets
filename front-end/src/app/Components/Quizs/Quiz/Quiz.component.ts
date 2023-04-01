@@ -1,0 +1,51 @@
+
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Quiz } from 'src/models/quiz.model';
+import { QuizService } from 'src/service/quiz.service';
+
+@Component({
+    selector: 'app-Quiz',
+    templateUrl: './Quiz.component.html',
+    styleUrls: ['./Quiz.component.scss']
+})
+
+export class QuizComponent implements OnInit {
+
+  public isMod: Boolean = false;
+  public isPlay: Boolean = false;
+
+  @Input()
+  quiz!: Quiz;
+
+  @Output()
+  quizSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Output()
+  editQuiz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
+
+  @Output()
+  deleteQuizz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
+
+  constructor(route: ActivatedRoute, public quizService: QuizService) {
+    route.url.subscribe((url) =>
+    this.isMod = (route.snapshot.url[0].path == "ListeQuizPage") || (route.snapshot.url[0].path == "UserProfilePage") || (route.snapshot.url[0].path == "ListeQuizAdable"));
+    route.url.subscribe((url) =>
+    this.isPlay = (route.snapshot.url[0].path == "ChoixQuiz"));
+  }
+
+  ngOnInit(): void {
+  }
+
+  selectQuiz(): void {
+    this.quizService.selectQuiz(this.quiz);
+  }
+
+  edit(): void {
+    this.editQuiz.emit(this.quiz);
+  }
+
+  delete(): void {
+    this.deleteQuizz.emit(this.quiz);
+  }
+}

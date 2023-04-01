@@ -1,0 +1,69 @@
+$app-background-color: #222831;
+$white: white;
+
+div{
+  background-color: $app-background-color;
+
+  align-items: center;
+  color: #f2f2f2;
+}
+
+
+h2{
+  font-size: 1.5em;
+  margin: 0;
+  text-align: center;
+  color:#f2f2f2;
+  
+}
+input{
+  background-color: #f2f2f2;
+  border: solid 1px #f2f2f2;
+  border-radius: 16px;
+  align-items: center;
+}
+
+label{
+  color: #f2f2f2;
+  align-items: center;
+}
+
+.card {
+  background: $app-background-color;
+  border: solid 1px #f2f2f2;
+  border-radius: 8px;
+  border-color: aliceblue;
+  display: inline-block;
+  margin: 1rem;
+  position: relative;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  padding: 0 1em 1em 1em;
+  align-items: center;
+}
+
+.button-card {
+  background-color: #4d535dc6;
+  border: solid 1px #f2f2f2;
+  border-radius: 16px ;
+  color: $white;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  align-items: center;
+}
+
+.button-card:hover {
+  cursor: pointer;
+    background-color: #7f858ed1;
+    
+}
+
+.edit {
+  margin-left: 0.3em;
+  align-items: center;
+ 
+}
+
+legend{
+  color: #f2f2f2;
+  align-items: center;
+}
