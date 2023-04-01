@@ -1,6 +1,9 @@
-<h1>Coucou c'est la page de l'Utilsateur</h1>
-<button [routerLink]="['/ListeUserPage']" >Retour</button>
-<button [routerLink]="['/UserStatsPage']" >Stats</button>
+<h1>Page de l'Utilsateur</h1>
+<div>
+    <button [routerLink]="['/ListeUserPage']" >Retour</button>
+    <button [routerLink]="['/UserStatsPage']" >Stats</button>
+</div>
+
 
 <form [formGroup]="modifs">
     <div>
@@ -15,7 +18,9 @@
 
 <div>
     <h2> Quizs de l'utilisateur</h2>
-    <button [routerLink]="['/ListeQuizAdable']">+</button>
+
+    <button [routerLink]="['/ListeQuizAdable']">Ajouter</button>
+
     <ul>
         <div *ngFor="let quiz of UserModified.quizzes">
             <li> <app-Quiz [quiz]="quiz" (deleteQuizz)="deleteQuizForProfile($event)"></app-Quiz> </li>
