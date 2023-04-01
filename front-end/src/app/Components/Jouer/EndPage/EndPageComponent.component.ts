@@ -12,7 +12,7 @@ import { UserService } from 'src/service/user.service';
   export class EndPageComponent implements OnInit {
 
     constructor(public jouerService : JouerService) {
-      this.jouerService.stopMusic();
+      this.jouerService.playBackgroundMusic();
       this.jouerService.chronoStop();
     }
 
