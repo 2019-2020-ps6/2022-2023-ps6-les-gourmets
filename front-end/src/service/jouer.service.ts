@@ -18,6 +18,10 @@ export class JouerService {
     private start : number = Date.now();
     private Timer: number = 0;
 
+    getTimer() : number{
+      return Date.now() - this.start;
+    }
+
     chronoStart(){
         this.start = Date.now();
         console.log("Timer Start")

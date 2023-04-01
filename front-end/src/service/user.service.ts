@@ -81,4 +81,13 @@ deleteUser(value: User) {
   }
  }
 
+   updateUserTimer(quiz: Quiz,timer: number){
+    for(let i=0; i< this.UserSelected.quizzes.length;i++){
+      if(quiz.id==this.UserSelected.quizzes[i].id){
+        this.UserSelected.quizzes[i].timerMoyen=((this.UserSelected.quizzes[i].timerMoyen*this.UserSelected.quizzes[i].times)+timer)/(this.UserSelected.quizzes[i].times+1);
+        console.log(this.UserSelected.quizzes[i].timerMoyen);
+        this.UserSelected.quizzes[i].times+=1;
+    }
+   }
+ }
 }
