@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { JouerService } from 'src/service/jouer.service';
 import { UserService } from 'src/service/user.service';
 
 
@@ -10,8 +11,9 @@ import { UserService } from 'src/service/user.service';
 
   export class EndPageComponent implements OnInit {
 
-    constructor(public userService : UserService) {
-      this.userService.stopMusic();
+    constructor(public jouerService : JouerService) {
+      this.jouerService.stopMusic();
+      this.jouerService.chronoStop();
     }
 
     ngOnInit(): void {

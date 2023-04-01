@@ -7,6 +7,7 @@ import { QuizService } from 'src/service/quiz.service';
 import { User } from 'src/models/User.model';
 import { UserService } from 'src/service/user.service';
 import { Router } from '@angular/router';
+import { JouerService } from 'src/service/jouer.service';
 
 
 
@@ -27,7 +28,7 @@ import { Router } from '@angular/router';
     nbAnswers: number;
 
     @HostListener("document:mousedown",['$event'])
-    onClick(event: MouseEvent){this.userService.mouseClickInQuiz(event);}
+    onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
 
     @Output()
    /* currentQuestion: EventEmitter<Question>=new EventEmitter<Question>();
@@ -43,7 +44,7 @@ import { Router } from '@angular/router';
       console.log(this.selectedAnswers);
     }
 
-    constructor(private router: Router,public quizService:QuizService, public userService:UserService) {
+    constructor(private router: Router,public quizService:QuizService, public userService:UserService,public jouerService:JouerService) {
       //this.currentQuestion = this.quiz.questions[0];
       this.userService.UserSelected$.subscribe((user: User) => {
         this.user = user;
@@ -117,7 +118,7 @@ import { Router } from '@angular/router';
     }
 
     ChangeMusic(event : any){
-      this.userService.fadeVolume(event.target.checked);
+      this.jouerService.fadeVolume(event.target.checked);
     }
 
   }

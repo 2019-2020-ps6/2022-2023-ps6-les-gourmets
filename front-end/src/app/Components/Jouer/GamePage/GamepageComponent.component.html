@@ -1,12 +1,12 @@
 <h1>{{quiz.name}}</h1>  <span>music; </span> 
 
 <label class="switch">
-    <input type="checkbox" (change)="ChangeMusic($event)">
+    <input type="checkbox" (change)="ChangeMusic($event)" checked>
     <span class="slider"></span>
   </label>
 <app-GameQuestion (nextQuestion)="validateQuestion($event)" [answer_selected]="validate" [question]="currentQuestion"></app-GameQuestion>
 <button *ngIf="!validate && !user.answerDisplay" type="submit" class="previous" (click)="onPreviousQuestion()">Question precedente</button>
-<button  *ngIf="validate && !end" type="submit" class="next" (click)="onNextQuestion()">Question suivante</button>
+<button *ngIf="validate && !end" type="submit" class="next" (click)="onNextQuestion()">Question suivante</button>
 <button *ngIf="validate && end" type="submit" class="next" (click)="endQuiz()">finir le quiz</button>
 <button *ngIf="!validate" type="submit" class="next" (click)="onNextQuestion()">Passer la question</button>
 
