@@ -10,10 +10,6 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 export class JouerService {
 
-    constructor(private userService :UserService){
-
-    }
-
     //Musique permanence
     //Interrompre quiz lors de 2eme rage
     //Aucun click pdt longtem, arreter le quiz

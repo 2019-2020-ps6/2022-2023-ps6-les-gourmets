@@ -13,6 +13,9 @@ export class UserStatsPage implements OnInit {
     public User!: User;
 
     constructor(public userService: UserService) {
+        userService.UserSelected$.subscribe(user => {
+          this.User = JSON.parse(JSON.stringify(user));
+        });
     }
     ngOnInit() : void {}
 
