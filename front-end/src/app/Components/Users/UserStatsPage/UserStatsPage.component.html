@@ -1,8 +1,17 @@
 <h1>Coucou c'est la page de stats de l'utilsateur</h1>
-<button [routerLink]="['/UserProfilePage']" >Retour</button>
+<button [routerLink]="['/UserProfilePage']">Retour</button>
 <div>
-    <input type="text" value={{User.surname}} placeholder={{User.surname}}/>
-    <input type="text" value={{User.name}} placeholder={{User.name}}/>
+  <input type="text" value={{User.surname}} placeholder={{User.surname}} />
+  <input type="text" value={{User.name}} placeholder={{User.name}} />
 </div>
-<div>
+<div *ngFor="let quiz of User.quizzes">
+  <h1>{{quiz.name}}</h1>
+  <ul>
+    <li>
+      <div *ngFor="let question of quiz.questions">
+        <h2>{{question.label}} : {{question.trueAnswer / (question.falseAnswer + question.trueAnswer) * 100}} %</h2>
+      </div>
+
+    </li>
+  </ul>
 </div>
