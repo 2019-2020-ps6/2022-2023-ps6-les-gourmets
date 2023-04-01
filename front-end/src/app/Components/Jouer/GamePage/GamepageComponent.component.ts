@@ -65,19 +65,19 @@ export class GamePageComponent implements OnInit {
       this.currentQuestion = this.quiz.questions[0];
     }
 
-    onNextQuestion(): void {
+    NextQuestion(): void {
       
       if (!this.answers[this.currentQuestionIndex]){
         this.quiz.questions.push(this.currentQuestion);
       }
       this.jouerService.removeLastClick();
-      this.NextQuestion();
+      this.ChangeQuestion();
     }
     SkipQuestion(){
       this.quiz.questions.push(this.currentQuestion);
-      this.NextQuestion();
+      this.ChangeQuestion();
     }
-    NextQuestion(){
+    ChangeQuestion(){
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex < this.quiz.questions.length) {
         this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
@@ -104,7 +104,7 @@ export class GamePageComponent implements OnInit {
         }
       }
       if(!this.user.answerDisplay){
-        this.onNextQuestion();
+        this.NextQuestion();
       }
     }
 
