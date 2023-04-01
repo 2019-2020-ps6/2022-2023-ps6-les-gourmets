@@ -61,8 +61,10 @@ export class JouerService {
     }
     //TODO jsp ce que c'est
     public updateResults(questions:Question[],answers:boolean[]){
-      /*this.results=answers;
-      this.questions = questions;*/
+      this.results=answers;
+      this.results$.next(this.results);
+      this.questions = questions;
+      this.questions$.next(this.questions);
     }
 
     public mouseClickInQuiz(event : MouseEvent) {
