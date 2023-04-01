@@ -83,12 +83,16 @@ export const QUIZ_LIST: Quiz[] = [
     id: '1',
     name: 'Les Acteurs',
     questions: QUESTIONLIST_ACTOR,
+    timerMoyen:45000,
+    times:2
   },
 
   {
     id: '2',
     name: 'Les technos WEB',
     questions: [],
+    timerMoyen:0,
+    times:0
   }
 ];
 
