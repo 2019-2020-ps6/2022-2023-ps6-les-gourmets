@@ -60,8 +60,11 @@ export class JouerService {
     }
 
     public updateResults(questions:Question[],answers:boolean[]){
+      console.log("oui");
       this.results=answers;
+      this.results$.next(this.results);
       this.questions = questions;
+      this.questions$.next(this.questions);
     }
 
     public mouseClickInQuiz(event : MouseEvent) {
