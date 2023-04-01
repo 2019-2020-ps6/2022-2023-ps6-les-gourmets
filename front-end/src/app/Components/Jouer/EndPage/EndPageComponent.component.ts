@@ -10,10 +10,14 @@ import { UserService } from 'src/service/user.service';
   })
 
   export class EndPageComponent implements OnInit {
+    minutes: number = 0;
+    secondes: number = 0;
 
     constructor(public jouerService : JouerService) {
       this.jouerService.stopMusic();
-      this.jouerService.chronoStop();
+      let temp:number = this.jouerService.chronoStop();
+      this.minutes = Math.floor(temp/60000);
+      this.secondes = Math.floor((temp%60000)/1000);
     }
 
     ngOnInit(): void {

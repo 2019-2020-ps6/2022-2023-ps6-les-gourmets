@@ -8,9 +8,9 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 })
 
 export class JouerService {
-    
+
     constructor(private userService :UserService){
-        
+
     }
 
     //Musique permanence
@@ -33,7 +33,7 @@ export class JouerService {
         console.log("timer Start: " + this.start);
         console.log("timer End: " + end);
         console.log("timer Value: " + this.Timer);
-        return end;
+        return this.Timer;
     }
 
     //Music
@@ -64,7 +64,7 @@ export class JouerService {
         console.log(this.dateTab.length);
         if(this.dateTab.length>this.nbClick) this.triggerRage();
     }
-  
+
     private triggerRage(){
         this.ezNextQuestion = true;
         this.resetClickCounter();
@@ -99,7 +99,7 @@ export class JouerService {
           clearInterval(fade);
         }
         this.music.volume=fadeVolume;
-        
+
 
       }, interval)
     }
@@ -109,7 +109,7 @@ export class JouerService {
         //else this.stopMusic();
     }
 
-    
+
     public fadeVolume(fadeIn:boolean){
       if (this.music ==null) return;
       const interval = 20;
@@ -139,7 +139,7 @@ export class JouerService {
         if(answer){//User quitte le quiz
             this.chronoStop();
         } else { //User reste sur le quiz
-            
+
         }
         this.rage = false;
         this.resetClickCounter();
