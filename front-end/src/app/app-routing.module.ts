@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListeQuizPage } from './Components/Quizs/ListeQuizPage/ListeQuizPage.component';
 import { ListeUserPage } from './Components/Users/UserListPage/ListeUserPage.component';
 import { GamePageComponent } from './Components/Jouer/GamePage/GamepageComponent.component';
+import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.component';
 import { MenuComponent } from './Components/Menu/MenuComponents/Menu.component';
 import { MenuChoixCreation } from './Components/Menu/MenuChoixCreationComponent/MenuChoixCreation.component';
 import { QuizFormComponent } from './Components/Quizs/QuizForm/QuizForm.component';
@@ -18,20 +19,28 @@ import { ListeQuizAdable } from './Components/Users/ListQuizAdable/ListeQuizAdab
 
 
 const routes: Routes = [
+  //Menu
   { path: '', redirectTo: '/Menu', pathMatch: 'full' },
   { path: 'Menu', component: MenuComponent },
   { path: 'MenuChoixCreation', component:MenuChoixCreation},
 
   { path: 'GamePageComponent', component: GamePageComponent },
+  { path: 'EndPageComponent', component: EndPageComponent },
 
+
+  //User
+  { path: 'ChoixUser', component: ChoixUser },
   { path: 'ListeUserPage', component: ListeUserPage },
   { path: 'UserForm', component:UserForm},
   { path: 'UserProfilePage', component: UserProfilePage },
   { path: 'UserStatsPage', component: UserStatsPage },
 
+  //Quiz
+  { path: 'ChoixQuiz', component: ChoixQuiz },
   { path: 'ListeQuizPage', component: ListeQuizPage },
   { path: 'QuizForm', component: QuizFormComponent },
 
+  //Question
   { path: 'QuestionForm', component: QuestionFormComponent },
   { path: 'ListeQuestionPage', component: ListeQuestionPage },
   { path: 'ChoixUser', component: ChoixUser },

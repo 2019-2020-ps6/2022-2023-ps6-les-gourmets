@@ -10,7 +10,8 @@ import { UserService } from 'src/service/user.service';
     styleUrls: ['./UserProfilePage.component.scss']
 })
 export class UserProfilePage implements OnInit {
-
+    
+    
     public User!: User;
     public UserModified!: User;
     public modifs : FormGroup;
