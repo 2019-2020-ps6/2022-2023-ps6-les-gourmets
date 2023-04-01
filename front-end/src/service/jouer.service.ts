@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 
 @Injectable({
@@ -47,6 +48,8 @@ export class JouerService {
     private rage = false;
     private dateTab : number[] = [];
     private musicFade : any;
+    private quitPopup = false;
+    public quitPopup$: BehaviorSubject<boolean> = new BehaviorSubject(this.quitPopup);
     private ezNextQuestion = false;
 
     public mouseClickInQuiz(event : MouseEvent) {
@@ -61,11 +64,12 @@ export class JouerService {
   
     private triggerRage(){
         this.ezNextQuestion = true;
-        if(this.rage) return;
-        this.resetClickCounter;
+        this.resetClickCounter();
+        if(this.rage) {console.log("popingPopup");this.quitPopup = true;return;}
         this.playMusic();
         this.rage = true;
     }
+
     public playMusic(){
         const CurrentUser = this.userService.getCurrentUser();
         const audiopath = CurrentUser.music.sort(()=>Math.random()-0.5)[0];
@@ -119,5 +123,14 @@ export class JouerService {
     public removeLastClick(){
         this.dateTab.pop();
         console.log("new size = "+this.dateTab.length);
+    }
+    public popupAnswer(answer : boolean){
+        if(answer){//User quitte le quiz
+            this.chronoStop();
+        } else { //User reste sur le quiz
+            
+        }
+        this.rage = false;
+        this.resetClickCounter();
     }
 }

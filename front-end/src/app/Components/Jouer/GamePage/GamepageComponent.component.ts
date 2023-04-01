@@ -26,9 +26,10 @@ export class GamePageComponent implements OnInit {
   validate: boolean = false;
   end: boolean = false;
   nbAnswers: number;
+  public quitPopup !: boolean;
 
-    @HostListener("document:mousedown",['$event'])
-    onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
+  @HostListener("document:mousedown",['$event'])
+  onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
 
   @Output()
     selectedAnswers = {};
@@ -50,6 +51,9 @@ export class GamePageComponent implements OnInit {
       });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
         this.quiz = quiz;
+      });
+      this.jouerService.quitPopup$.subscribe((appearance: boolean) => {
+        this.quitPopup = appearance;
       });
       // Randomise question order
       this.quiz.questions.sort(() => {
