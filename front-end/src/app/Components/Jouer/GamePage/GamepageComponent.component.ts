@@ -145,6 +145,7 @@ export class GamePageComponent implements OnInit {
     }
     
     ngOnDestroy() {
+      this.cancelPopup();
       this.jouerService.playBackgroundMusic();
       this.jouerService.reset();
     }
