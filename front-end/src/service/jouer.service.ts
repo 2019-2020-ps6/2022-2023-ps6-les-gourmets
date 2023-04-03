@@ -71,10 +71,11 @@ export class JouerService {
     public mouseClickInQuiz(event : MouseEvent) {
         const CurrentUser = this.userService.getCurrentUser();
         const now : number = Date.now();
-        const agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
+        let agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
+        if (agressive ==0) agressive = 0.01;
         this.dateTab = this.dateTab.filter(date => date > now - this.timeSpan * (1/agressive));
         this.dateTab.push(now);
-        if(this.dateTab.length>5) this.triggerRage();
+        if(this.dateTab.length>this.nbClick) this.triggerRage();
     }
 
     private triggerRage(){

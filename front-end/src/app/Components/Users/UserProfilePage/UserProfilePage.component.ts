@@ -28,7 +28,10 @@ export class UserProfilePage implements OnInit {
             id: [this.UserModified.id],
             name: [this.UserModified.name],
             surname: [this.UserModified.surname],
-            aggressivness: this.UserModified.aggressivness
+            aggressivness: this.UserModified.aggressivness,
+            answerDisplay: this.UserModified.answerDisplay,
+            music: [this.UserModified.music],
+
         });
         // userService.selectUser(this.UserModified);
     }

@@ -1,6 +1,10 @@
-<h1>Liste Quiz Adable</h1>
+<h1>Liste des Quizs</h1>
+<button [routerLink]="['/UserProfilePage']" >retour</button>
 <div class="quiz-List">
   <div class="Quiz" *ngFor="let quiz of QuizSelectable">
     <app-Quiz [quiz]="quiz" (deleteQuizz)="addQuizToUser($event)"></app-Quiz>
   </div>
+</div>
+<div>
+  <button [routerLink]="['/UserProfilePage']" >comfirmer</button>
 </div>

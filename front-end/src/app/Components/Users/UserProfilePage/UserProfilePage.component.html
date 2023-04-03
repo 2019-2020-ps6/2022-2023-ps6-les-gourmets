@@ -1,4 +1,4 @@
-<h1>Page de l'Utilsateur</h1>
+<h1>Page de l'Utilisateur</h1>
 <div>
     <button [routerLink]="['/ListeUserPage']" >Retour</button>
     <button [routerLink]="['/UserStatsPage']" >Stats</button>
@@ -11,7 +11,7 @@
         <input type="text" value={{UserModified.name}} placeholder={{UserModified.name}} [formControlName]="'name'"/>
     </div>
     <div>
-        <h2>Perks de l'utilisateur</h2>
+        <h2>Niveau d'agressivité</h2>
         <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1" [formControlName]="'aggressivness'"/>
     </div>
 </form>

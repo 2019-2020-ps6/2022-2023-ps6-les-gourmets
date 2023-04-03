@@ -18,7 +18,7 @@ export const QUESTION_ACTOR: Question = {
           isCorrect: false,
       },
       {
-          value: 'Le parrain',  
+          value: 'Retour vers le futur',  
           isCorrect: false,
       }
   ],
@@ -44,7 +44,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
             isCorrect: false,
         },  
         { 
-            value: 'Le parrain',
+            value: 'Retour vers le futur',
             isCorrect: false,
         }
       ],
