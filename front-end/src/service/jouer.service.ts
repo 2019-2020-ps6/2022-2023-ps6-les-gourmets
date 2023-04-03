@@ -46,12 +46,12 @@ export class JouerService {
     public musicActivated = true;
     private rage = false;
     private dateTab : number[] = [];
-    private quitPopup = false;
+    private displayPopup = false;
     private results : boolean[]=[];
     private questions : Question[]=[];
     public questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions);
     public results$: BehaviorSubject<boolean[]> = new BehaviorSubject(this.results);
-    public quitPopup$: BehaviorSubject<boolean> = new BehaviorSubject(this.quitPopup);
+    public displayPopup$: BehaviorSubject<boolean> = new BehaviorSubject(this.displayPopup);
     private ezNextQuestion = false;
     private ezNextQuestion$ : BehaviorSubject<boolean> = new BehaviorSubject(this.ezNextQuestion);;
     private timeSpan = 6000 // in ms
@@ -75,17 +75,23 @@ export class JouerService {
         if (agressive ==0) agressive = 0.01;
         this.dateTab = this.dateTab.filter(date => date > now - this.timeSpan * (1/agressive));
         this.dateTab.push(now);
+        console.log(this.dateTab.length);
         if(this.dateTab.length>this.nbClick) this.triggerRage();
     }
 
     private triggerRage(){
         this.ezNextQuestion = true;
         this.resetClickCounter();
-        if(this.rage) {this.quitPopup = true; return;}
-        console.log("randomised")
+        if(this.rage) {console.log("popup");this.setShowPopup(true); return;}
+        
         const path = this.userService.getCurrentUser().music.sort(() => Math.random()-0.5)[0];
         this.playUserMusic(path);
         this.rage = true;
+    }
+
+    setShowPopup(popupState: boolean) {
+      this.displayPopup = popupState;
+      this.displayPopup$.next(this.displayPopup);
     }
 
     public playBackgroundMusic(){
@@ -147,7 +153,7 @@ export class JouerService {
     this.resetClickCounter();
     this.rage=false;
     this.ezNextQuestion = false;
-    this.quitPopup = false;
+    this.displayPopup = false;
     
   }
 

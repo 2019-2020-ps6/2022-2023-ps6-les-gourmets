@@ -26,8 +26,8 @@ export class GamePageComponent implements OnInit {
   validate: boolean = false;
   end: boolean = false;
   nbAnswers: number;
-  quitPopup !: boolean;
   PopupVisibility: string = "hidden";
+  displayPopup = false;
 
   @HostListener("document:mousedown",['$event'])
   onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
@@ -53,8 +53,8 @@ export class GamePageComponent implements OnInit {
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
         this.quiz = JSON.parse(JSON.stringify(quiz));
       });
-      this.jouerService.quitPopup$.subscribe((appearance: boolean) => {
-        this.quitPopup = appearance;
+      this.jouerService.displayPopup$.subscribe((appearance: boolean) => {
+        this.displayPopup = appearance;
       });
       // Randomise question order
       this.quiz.questions.sort(() => {
@@ -139,15 +139,12 @@ export class GamePageComponent implements OnInit {
       return this.jouerService.musicActivated;
     }
 
-    hidepopup(){
-      //put popup visibility to none
-      this.PopupVisibility = "hidden";
-    }
+    cancelPopup(){
+      this.jouerService.setShowPopup(false);
 
-    showpopup(){
-      //put popup visibility to none
-      this.PopupVisibility = "show";
-    }ngOnDestroy() {
+    }
+    
+    ngOnDestroy() {
       this.jouerService.playBackgroundMusic();
       this.jouerService.reset();
     }
