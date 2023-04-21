@@ -10,4 +10,5 @@ export interface Question {
     answers: Answer[];
     trueAnswer: number;
     falseAnswer: number;
+    estFacile: boolean;
 }

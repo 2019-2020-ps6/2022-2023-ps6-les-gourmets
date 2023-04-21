@@ -151,6 +151,9 @@ export class GamePageComponent implements OnInit {
       this.jouerService.playBackgroundMusic();
       this.jouerService.reset();
     }
+
+
+    
   
 
 }

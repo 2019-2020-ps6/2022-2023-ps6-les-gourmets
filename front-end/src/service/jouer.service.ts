@@ -57,14 +57,21 @@ export class JouerService {
     private timeSpan = 6000 // in ms
     private nbClick = 15 // number of click during timeSpan to trigger
 
+    private easyQuestions: Question[] = [];
+    public easyQuestions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.easyQuestions);
     constructor(private userService :UserService){
     }
 
     public updateResults(questions:Question[],answers:boolean[]){   
-        this.results=answers;
+        
+        this.results = answers;
         this.results$.next(this.results);
+      
         this.questions = questions;
         this.questions$.next(this.questions);
+      
+        this.easyQuestions = questions.filter(q => q.estFacile);
+        this.easyQuestions$.next(this.easyQuestions);
       
     }
 
@@ -79,12 +86,22 @@ export class JouerService {
 
     private triggerRage(){
         this.ezNextQuestion = true;
+
+
+
         this.resetClickCounter();
         if(this.rage) {this.quitPopup = true; return;}
         console.log("randomised")
         const path = this.userService.getCurrentUser().music.sort(() => Math.random()-0.5)[0];
         this.playUserMusic(path);
         this.rage = true;
+
+        const currentQuestionIndex = this.results$.value.findIndex(result => !result);
+        if (currentQuestionIndex >= 0) {
+            const easyQuestions = this.easyQuestions.slice();
+            const remainingQuestions = this.questions$.value.slice(currentQuestionIndex + 1);
+            this.questions$.value.splice(currentQuestionIndex + 1, this.questions$.value.length - currentQuestionIndex - 1, ...easyQuestions, ...remainingQuestions);
+        }
     }
 
     public playBackgroundMusic(){

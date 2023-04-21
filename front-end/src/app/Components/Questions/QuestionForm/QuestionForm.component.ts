@@ -18,6 +18,7 @@ export class QuestionFormComponent implements OnInit {
     this.questionForm = this.formBuilder.group({
       id: 7,
       label: [''],
+      estFacile:[false],
       answers: this.formBuilder.array([
         this.formBuilder.group({
           type: [''],
