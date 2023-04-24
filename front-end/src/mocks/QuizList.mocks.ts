@@ -144,6 +144,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
       ],
       trueAnswer: 4,
       falseAnswer: 2,
+      estFacile: false,
   },
 
   ];
