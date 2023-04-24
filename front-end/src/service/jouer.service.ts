@@ -56,6 +56,12 @@ export class JouerService {
     private ezNextQuestion$ : BehaviorSubject<boolean> = new BehaviorSubject(this.ezNextQuestion);;
     private timeSpan = 6000 // in ms
     private nbClick = 5 // number of click during timeSpan to trigger
+    private timeout = 10000; // delay before quitpopup shows up
+    private inactivity = 0;
+    private quitInterval : any;
+
+  
+  
 
     constructor(private userService :UserService){
     }
@@ -72,6 +78,8 @@ export class JouerService {
         const CurrentUser = this.userService.getCurrentUser();
         const now : number = Date.now();
         const agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
+
+        this.relaunchTimer();
         this.dateTab = this.dateTab.filter(date => date > now - this.timeSpan * (1/agressive));
         this.dateTab.push(now);
         if(this.dateTab.length>this.nbClick) this.triggerRage();
@@ -141,12 +149,30 @@ export class JouerService {
     }
 
     
-  public reset() {
+  reset() {
     this.resetClickCounter();
+    clearInterval(this.quitInterval);
     this.rage=false;
     this.ezNextQuestion = false;
     this.quitPopup = false;
     
+  }
+  quizLaunch(){
+    this.reset();
+    
+    this.quitInterval = setInterval(() => {
+        this.inactivity += 1000;
+        if (this.inactivity >= this.timeout) {
+            this.inactive();
+            this.inactivity = 0; // Réinitialiser le compteur d'inactivité
+        }
+    }, 1000);
+
+    this.chronoStart();
+  }
+
+  quizLeave(){
+    this.reset();
   }
 
   getTimer() : number{
@@ -155,6 +181,17 @@ export class JouerService {
   quitPopupVisibility(value:boolean=false){
     this.quitPopup = value;
     this.quitPopup$.next(this.quitPopup);
+  }
+  
+  relaunchTimer() {
+    this.inactivity = 0;
+  }
+  
+  inactive() {
+    this.quitPopupVisibility(true);
+  }
+  mouseMoveInQuiz(event: MouseEvent) {
+    this.relaunchTimer();
   }
 
 }

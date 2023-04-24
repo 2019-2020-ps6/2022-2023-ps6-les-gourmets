@@ -27,6 +27,7 @@ import {GameQuestionComponent} from './Components/Jouer/GameQuestion/GameQuestio
 import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
 import { ListeQuizAdable } from './Components/Users/ListQuizAdable/ListeQuizAdable.component';
 import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.component';
+import { QuizEditComponent } from './Components/Quizs/QuizEdit/quizEdit.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.co
     ListeQuestionPage,
 
     ChoixUser,
-    ChoixQuiz
+    ChoixQuiz,
+    QuizEditComponent
   ],
   imports: [
     BrowserModule,

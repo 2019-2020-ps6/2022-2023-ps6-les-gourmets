@@ -23,4 +23,7 @@ export class ListeQuiz implements OnInit {
     deleteQuiz(quiz: Quiz): void {
       this.quizService.deleteQuiz(quiz);
     }
+    /*selectQuiz(){
+      this.quizService.selectQuiz()
+    }*/
   }
