@@ -16,6 +16,7 @@ import { UserForm } from './Components/Users/UserForm/UserForm.component';
 import { ChoixUser } from './Components/Jouer/ChoixUser/ChoixUser.component';
 import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
 import { ListeQuizAdable } from './Components/Users/ListQuizAdable/ListeQuizAdable.component';
+import { ChoixTypeQuestion } from './Components/Questions/ChoixTypeQuestion/ChoixTypeQuestion.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'UserProfilePage', component: UserProfilePage },
   { path: 'UserStatsPage', component: UserStatsPage },
 
+
   //Quiz
   { path: 'ChoixQuiz', component: ChoixQuiz },
   { path: 'ListeQuizPage', component: ListeQuizPage },
@@ -42,6 +44,7 @@ const routes: Routes = [
 
   //Question
   { path: 'QuestionForm', component: QuestionFormComponent },
+  { path: 'choixTypeQuestion', component: ChoixTypeQuestion },
   { path: 'ListeQuestionPage', component: ListeQuestionPage },
   { path: 'ChoixUser', component: ChoixUser },
   { path: 'ChoixQuiz', component: ChoixQuiz },

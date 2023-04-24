@@ -1,4 +1,9 @@
+<div>
+  <button class="cancel" [routerLink]="['/ListeQuestionPage']">Annuler</button>
+</div>
+<div class="page">
 <div class="card">
+  
     <h2>Create a new Question</h2>
     <form class="question-form" [formGroup]="questionForm">
       <label for="title">
@@ -40,9 +45,18 @@
         </div>
       </fieldset>
       <br>
-      <button type="submit" class="button-card" (click)="addQuestion()" [routerLink]="['/ListeQuestionPage']">Create</button>
+      <button *ngIf="!getEdit()" type="submit" class="button-card" (click)="addQuestion()" [routerLink]="['/ListeQuestionPage']">Create</button>
+      <button *ngIf="getEdit()" type="submit" class="button-card" (click)="updateQuestion()" [routerLink]="['/ListeQuestionPage']">Update</button>
     </form>
+</div>
     
+  <div class="card">
+    <h2>Preview</h2>
+    <div class = "preview">
+      <app-GameQuestion [answer_selected]="true" [question]="getPreview()"></app-GameQuestion>
+    </div>
   </div>
+</div>
+
   <!-- Uncomment below to see your form structure and how it changes-->
  <!-- <br><br>{{questionForm.getRawValue() | json}}  -->
