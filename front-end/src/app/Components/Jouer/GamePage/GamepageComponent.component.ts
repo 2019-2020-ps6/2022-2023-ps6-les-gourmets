@@ -28,6 +28,7 @@ export class GamePageComponent implements OnInit {
   nbAnswers: number;
   quitPopup !: boolean;
   PopupVisibility: string = "hidden";
+  ezActivited: boolean = false;
 
   @HostListener("document:mousedown",['$event'])
   onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
@@ -66,8 +67,9 @@ export class GamePageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      //this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
+
       this.currentQuestion = this.quiz.questions[0];
+
     }
 
     NextQuestion(): void {
@@ -83,6 +85,16 @@ export class GamePageComponent implements OnInit {
       this.ChangeQuestion();
     }
     ChangeQuestion(){
+      console.log("cc");
+      console.log(this.jouerService.getRage());
+      if(this.jouerService.getRage() ){
+        if(this.ezActivited==false){
+          this.ezActivited=true;
+          console.log("insertez");
+          this.InsertEasyQuestion2();
+        }
+
+      } 
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex < this.quiz.questions.length) {
         this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
@@ -90,6 +102,43 @@ export class GamePageComponent implements OnInit {
       }
       else{ this.endQuiz()}
 
+    }
+
+    InsertEasyQuestion(){
+      this.jouerService.untriggerRage();
+      var eznumber = this.quiz.easyQuestions.length;
+      var number =this.quiz.questions.length;
+      console.log("oui");
+      for(var i = 0; i < eznumber; i++){
+        this.quiz.questions.push(this.quiz.easyQuestions[i]);
+        
+        console.log(this.quiz.questions[number+i])
+        console.log(this.quiz.questions[this.currentQuestionIndex+i])
+        this.InvertQuestion(this.quiz.questions[number+i],this.quiz.questions[this.currentQuestionIndex+i]);
+        console.log(this.quiz.questions[number+i])
+        console.log(this.quiz.questions[this.currentQuestionIndex+i])
+        this.nbAnswers++;
+      }
+      
+    }
+
+    InsertEasyQuestion2(){
+      this.jouerService.untriggerRage();
+      const eznumber = this.quiz.easyQuestions.length;
+      const currentIndex = this.currentQuestionIndex;
+    
+      console.log("oui");
+      for (let i = 0; i < eznumber; i++) {
+        // Insérer la question facile après la question courante
+        this.quiz.questions.splice(currentIndex + 1 + i, 0, this.quiz.easyQuestions[i]);
+        this.nbAnswers++;
+      }
+    }
+
+    InvertQuestion(q1:Question,q2:Question): void {
+      let temp: Question = q1;
+      q1 = q2;
+      q2 = temp;
     }
 
     validateQuestion(answer:boolean): void {
@@ -151,6 +200,9 @@ export class GamePageComponent implements OnInit {
       this.jouerService.playBackgroundMusic();
       this.jouerService.reset();
     }
+
+
+    
   
 
 }

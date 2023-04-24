@@ -1,46 +1,50 @@
-$primary-color: #1c611f;
-
-header {
-  background-color: $primary-color;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-
-main {
-  margin: 20px;
+.popup {
+  top: 50%;
+  left: 50%;
+  width: 25%;
+  height: 25%;
+  background-color: #ffffff;
+  // put in the middle of the screen
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 1;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  //align the button inside at the center
   display: flex;
   flex-direction: column;
   align-items: center;
+  //hide the popup
 }
 
-span{
-  color: #fff;
-  font-size: large;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-h1, h2 {
-  color: #fff;
-  margin-top: 30px;
+// h1 in popup
+.popup h1 {
+  color: #000000;
   text-align: center;
+  margin-top: 20px;
+}
+
+footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  align-items: flex-end;
+}
+
+.music{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 label {
   margin: 10px 0;
   color: #fff;
+  display: flex;
 }
 
-input[type="b"] {
-  margin-right: 50px;
-}
-
-button {
+footer button {
   background-color: gray;
   border: none;
   color: #fff;
@@ -51,27 +55,11 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+footer button:hover {
   background-color: #3a3939;
   cursor: pointer;
 }
 
-button.submit {
-  background-color: $primary-color;
-  border: none;
-  color: #fff;
-  padding: 10px 20px;
-  margin-top: 30px;
-  align-self: flex-end;
-}
-
-footer {
-  background-color: $primary-color;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  margin-top: 30px;
-}
 
 .switch {
   position: relative;
@@ -127,28 +115,6 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-.popup {
-  top: 50%;
-  left: 50%;
-  width: 25%;
-  height: 25%;
-  background-color: #ffffff;
-  // put in the middle of the screen
-  transform: translate(-50%, -50%);
-  position: absolute;
-  z-index: 1;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  //align the button inside at the center
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  //hide the popup
-}
-
-// h1 in popup
-.popup h1 {
-  color: #000000;
-  text-align: center;
-  margin-top: 20px;
+span{
+  color: #fff;
 }

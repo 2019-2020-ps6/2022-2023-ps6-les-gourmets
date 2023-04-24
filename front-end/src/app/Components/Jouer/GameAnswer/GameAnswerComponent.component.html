@@ -1,3 +1,10 @@
-<button *ngIf="selected && answer.isCorrect" class="answer_selected_true" >{{answer.value}}</button>
-<button *ngIf="selected && !answer.isCorrect" class="answer_selected_false" >{{answer.value}}</button>
-<button *ngIf="!selected" class="answer" (click)="selectAnswer()" >{{answer.value}}</button>
+<div *ngIf="answer.type=='text'">
+    <button *ngIf="selected && answer.isCorrect" class="answer_selected_true" >{{answer.value}}</button>
+    <button *ngIf="selected && !answer.isCorrect" class="answer_selected_false" >{{answer.value}}</button>
+    <button *ngIf="!selected" class="answer" (click)="selectAnswer()" >{{answer.value}}</button>
+</div>
+<div *ngIf="answer.type=='image'">
+    <button *ngIf="selected && answer.isCorrect" class="answer_selected_true" ><img src={{answer.value}}></button>
+    <button *ngIf="selected && !answer.isCorrect" class="answer_selected_false" ><img src={{answer.value}}></button>
+    <button *ngIf="!selected" class="answer" (click)="selectAnswer()" ><img src={{answer.value}}></button>
+</div>

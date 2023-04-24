@@ -63,14 +63,21 @@ export class JouerService {
   
   
 
+    private easyQuestions: Question[] = [];
+    public easyQuestions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.easyQuestions);
     constructor(private userService :UserService){
     }
 
     public updateResults(questions:Question[],answers:boolean[]){   
-        this.results=answers;
+        
+        this.results = answers;
         this.results$.next(this.results);
+      
         this.questions = questions;
         this.questions$.next(this.questions);
+      
+        this.easyQuestions = questions.filter(q => q.estFacile);
+        this.easyQuestions$.next(this.easyQuestions);
       
     }
 
@@ -87,6 +94,9 @@ export class JouerService {
 
     private triggerRage(){
         this.ezNextQuestion = true;
+
+
+
         this.resetClickCounter();
         if(this.rage) {this.quitPopupVisibility(true);}
         else{
@@ -94,6 +104,21 @@ export class JouerService {
             this.playUserMusic(path);
             this.rage = true;
         }
+
+        const currentQuestionIndex = this.results$.value.findIndex(result => !result);
+        if (currentQuestionIndex >= 0) {
+            const easyQuestions = this.easyQuestions.slice();
+            const remainingQuestions = this.questions$.value.slice(currentQuestionIndex + 1);
+            this.questions$.value.splice(currentQuestionIndex + 1, this.questions$.value.length - currentQuestionIndex - 1, ...easyQuestions, ...remainingQuestions);
+        }
+    }
+
+    public untriggerRage(){
+        this.ezNextQuestion = false;
+    }
+
+    public getRage() : boolean{
+        return this.rage;
     }
 
     public playBackgroundMusic(){
