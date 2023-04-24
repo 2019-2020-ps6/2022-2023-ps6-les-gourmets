@@ -32,6 +32,8 @@ export class GamePageComponent implements OnInit {
 
   @HostListener("document:mousedown",['$event'])
   onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
+  @HostListener("document:mousemove",['$event'])
+  onMove(event: MouseEvent){this.jouerService.mouseMoveInQuiz(event);}
 
   @Output()
     selectedAnswers = {};
@@ -40,8 +42,6 @@ export class GamePageComponent implements OnInit {
    changeQuestion() : void{
        this.currentQuestion.emit(this.quiz.nextQuestion());
    }*/
-
-
 
     submit(): void {
       console.log(this.selectedAnswers);
@@ -63,7 +63,7 @@ export class GamePageComponent implements OnInit {
       });
       this.currentQuestion = this.quiz.questions[0];
       this.nbAnswers = this.quiz.questions.length;
-      jouerService.chronoStart();
+      jouerService.quizLaunch();
     }
 
     ngOnInit(): void {
@@ -189,14 +189,14 @@ export class GamePageComponent implements OnInit {
     }
 
     hidepopup(){
-      //put popup visibility to none
-      this.PopupVisibility = "hidden";
+      this.jouerService.quitPopupVisibility(false);
     }
 
     showpopup(){
-      //put popup visibility to none
-      this.PopupVisibility = "show";
-    }ngOnDestroy() {
+      this.jouerService.quitPopupVisibility(true);
+    }
+    
+    ngOnDestroy() {
       this.jouerService.playBackgroundMusic();
       this.jouerService.reset();
     }

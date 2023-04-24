@@ -2,8 +2,7 @@
 
 
 <app-GameQuestion (nextQuestion)="validateQuestion($event)" [answer_selected]="validate" [question]="currentQuestion"></app-GameQuestion>
-
-<div class="popup" [ngStyle]="{'visibility': PopupVisibility}">
+<div class="popup" [ngStyle]="{'display': quitPopup ? 'flex' : 'none'}">
   <h1>Voulez-vous continuer le Quiz ?</h1>
   <!-- button with label test that put popup visibility to none on click -->
   <button (click)="hidepopup()">Continuer</button>

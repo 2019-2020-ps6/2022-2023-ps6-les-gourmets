@@ -20,16 +20,16 @@ export class JouerService {
 
     chronoStart(){
         this.start = Date.now();
-        console.log("Timer Start")
-        console.log("timer Start: " + this.start);
+        // console.log("Timer Start")
+        // console.log("timer Start: " + this.start);
     }
     chronoStop() : number {
         const end = Date.now()
         this.Timer = end - this.start;
-        console.log("Timer Stop")
-        console.log("timer Start: " + this.start);
-        console.log("timer End: " + end);
-        console.log("timer Value: " + this.Timer);
+        // console.log("Timer Stop")
+        // console.log("timer Start: " + this.start);
+        // console.log("timer End: " + end);
+        // console.log("timer Value: " + this.Timer);
         return this.Timer;
     }
 
@@ -55,7 +55,13 @@ export class JouerService {
     private ezNextQuestion = false;
     private ezNextQuestion$ : BehaviorSubject<boolean> = new BehaviorSubject(this.ezNextQuestion);;
     private timeSpan = 6000 // in ms
-    private nbClick = 15 // number of click during timeSpan to trigger
+    private nbClick = 5 // number of click during timeSpan to trigger
+    private timeout = 10000; // delay before quitpopup shows up
+    private inactivity = 0;
+    private quitInterval : any;
+
+  
+  
 
     private easyQuestions: Question[] = [];
     public easyQuestions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.easyQuestions);
@@ -79,9 +85,11 @@ export class JouerService {
         const CurrentUser = this.userService.getCurrentUser();
         const now : number = Date.now();
         const agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
+
+        this.relaunchTimer();
         this.dateTab = this.dateTab.filter(date => date > now - this.timeSpan * (1/agressive));
         this.dateTab.push(now);
-        if(this.dateTab.length>5) this.triggerRage();
+        if(this.dateTab.length>this.nbClick) this.triggerRage();
     }
 
     private triggerRage(){
@@ -90,11 +98,12 @@ export class JouerService {
 
 
         this.resetClickCounter();
-        if(this.rage) {this.quitPopup = true; return;}
-        console.log("randomised")
-        const path = this.userService.getCurrentUser().music.sort(() => Math.random()-0.5)[0];
-        this.playUserMusic(path);
-        this.rage = true;
+        if(this.rage) {this.quitPopupVisibility(true);}
+        else{
+            const path = this.userService.getCurrentUser().music.sort(() => Math.random()-0.5)[0];
+            this.playUserMusic(path);
+            this.rage = true;
+        }
 
         const currentQuestionIndex = this.results$.value.findIndex(result => !result);
         if (currentQuestionIndex >= 0) {
@@ -140,7 +149,6 @@ export class JouerService {
     public setMusicActivated(activated : boolean){
         this.musicActivated = activated;
         if(activated) {
-            console.log(this.rage);
             if (this.rage) this.playUserMusic(null)
             else this.playBackgroundMusic();
         }
@@ -153,7 +161,6 @@ export class JouerService {
 
     public removeLastClick(){
         this.dateTab.pop();
-        console.log("new size = "+this.dateTab.length);
     }
 
     public popupAnswer(answer : boolean){
@@ -167,16 +174,49 @@ export class JouerService {
     }
 
     
-  public reset() {
+  reset() {
     this.resetClickCounter();
+    clearInterval(this.quitInterval);
     this.rage=false;
     this.ezNextQuestion = false;
     this.quitPopup = false;
     
   }
+  quizLaunch(){
+    this.reset();
+    
+    this.quitInterval = setInterval(() => {
+        this.inactivity += 1000;
+        if (this.inactivity >= this.timeout) {
+            this.inactive();
+            this.inactivity = 0; // Réinitialiser le compteur d'inactivité
+        }
+    }, 1000);
+
+    this.chronoStart();
+  }
+
+  quizLeave(){
+    this.reset();
+  }
 
   getTimer() : number{
     return Date.now() - this.start;
+  }
+  quitPopupVisibility(value:boolean=false){
+    this.quitPopup = value;
+    this.quitPopup$.next(this.quitPopup);
+  }
+  
+  relaunchTimer() {
+    this.inactivity = 0;
+  }
+  
+  inactive() {
+    this.quitPopupVisibility(true);
+  }
+  mouseMoveInQuiz(event: MouseEvent) {
+    this.relaunchTimer();
   }
 
 }
@@ -219,7 +259,6 @@ class AudioFade extends Audio{
         }
         else if (!fadeIn && this.volume+increment <= 0) {
         this.volume = 0;
-            console.log("stop")
           clearInterval(this.fade);
           this.reset()
           return super.pause();

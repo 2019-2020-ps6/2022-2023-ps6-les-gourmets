@@ -1,0 +1,24 @@
+$grey-background-color: #f2f2f2;
+
+
+h1{
+  color: #ffffff;
+  font-size: 48px;
+  margin-bottom: 50px;
+  color: #ffffff;
+}
+
+.quiz-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  background-color: #222831;
+  padding: 2rem;
+}
+
+.Quiz {
+  flex-basis: calc(33% - 1rem);
+  max-width: calc(33% - 1rem);
+  
+}

@@ -20,7 +20,7 @@ import { Question } from 'src/models/question.model';
 
     ngOnInit(): void {
       //Randomise answers order
-      console.log(this.question)
+      // console.log(this.question)
       this.question.answers.sort(() => {
         return Math.random() - 0.5;
       })

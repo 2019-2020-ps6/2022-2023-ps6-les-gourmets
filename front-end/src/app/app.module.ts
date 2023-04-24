@@ -22,23 +22,26 @@ import { UserProfilePage } from './Components/Users/UserProfilePage/UserProfileP
 import { UserForm } from './Components/Users/UserForm/UserForm.component';
 import { ChoixUser } from './Components/Jouer/ChoixUser/ChoixUser.component';
 import { UserStatsPage } from './Components/Users/UserStatsPage/UserStatsPage.component';
-import {GameAnswerComponent} from './Components/Jouer/GameAnswer/GameAnswerComponent.component'
-import {GameQuestionComponent} from './Components/Jouer/GameQuestion/GameQuestionComponent.component'
+import { GameAnswerComponent } from './Components/Jouer/GameAnswer/GameAnswerComponent.component'
+import { GameQuestionComponent } from './Components/Jouer/GameQuestion/GameQuestionComponent.component'
 import { ChoixQuiz } from './Components/Jouer/ChoixQuiz/ChoixQuiz.component';
 import { ListeQuizAdable } from './Components/Users/ListQuizAdable/ListeQuizAdable.component';
 import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.component';
+import { QuizEditComponent } from './Components/Quizs/QuizEdit/quizEdit.component';
+import { ListeQuestionAdable } from './Components/Quizs/ListQuestionAdable/ListeQuestionAdable.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     MenuChoixCreation,
-
+    //InGame
     GamePageComponent,
     GameAnswerComponent,
     GameQuestionComponent,
     EndPageComponent,
-
+    //Users
     UserComponent,
     ListeUserPage,
     ListeUser,
@@ -46,19 +49,21 @@ import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.co
     UserStatsPage,
     UserForm,
     ListeQuizAdable,
-
+    //Quizs
     ListeQuizPage,
     ListeQuiz,
     QuizComponent,
     QuizFormComponent,
-
+    ListeQuestionAdable,
+    //Questions
     QuestionComponent,
     QuestionFormComponent,
     ListeQuestion,
     ListeQuestionPage,
 
     ChoixUser,
-    ChoixQuiz
+    ChoixQuiz,
+    QuizEditComponent
   ],
   imports: [
     BrowserModule,
