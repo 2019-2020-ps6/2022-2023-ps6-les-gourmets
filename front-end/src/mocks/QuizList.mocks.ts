@@ -96,24 +96,28 @@ export const QUESTIONLIST_ACTOR: Question[] = [
     label: 'Jean Dujardin a joué dans...',
     answers: [
         {
+            type: 'text',
             value: 'Les tuches II',
             isCorrect: false,
         },
         {
+            type: 'text',
             value: 'La grande illusion',
             isCorrect: false,
         },
         {
+            type: 'text',
             value: 'Le parrain',
             isCorrect: false,
         },
         {
+            type: 'text',
             value: 'The Artist',
             isCorrect: true,
         }
         ],
-        trueAnswer: 0,
-        falseAnswer: 0,
+        trueAnswer: 8,
+        falseAnswer: 9,
         estFacile: false,
 
   },
@@ -162,24 +166,28 @@ export const QUESTIONLIST_ACTOR: Question[] = [
       label: 'la capitale de la France est...',
       answers: [
           {
+              type : 'text',
               value: 'Lyon',
               isCorrect: false,
           },
           {
+              type : 'text',
               value: 'Paris',
               isCorrect: true,
           },    
           {
+              type : 'text',
               value: 'Pégomas',
               isCorrect: false,
           },  
           { 
+              type : 'text', 
               value: 'Marseille',
               isCorrect: false,
           }
         ],
         trueAnswer: 10,
-        falseAnswer: 0,
+        falseAnswer: 25,
         estFacile: false,
     },
     {
@@ -204,7 +212,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
           }
         ],
         trueAnswer: 5,
-        falseAnswer: 5,
+        falseAnswer: 17,
         estFacile: false,
     }
   
