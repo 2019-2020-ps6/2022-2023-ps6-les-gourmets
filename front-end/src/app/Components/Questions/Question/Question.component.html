@@ -1,7 +1,7 @@
 <div class="card">
     <h2>
         <i class="fab fa-leanpub"></i>
-        {{question.label}}
+        {{question.label}}<span *ngIf="question.estFacile">(facile).</span>
     </h2>
     <h3>Answer 1: {{question.answers[0].value}} <span *ngIf="question.answers[0].isCorrect">(Correct)</span></h3>
     <h3>Answer 2: {{question.answers[1].value}} <span *ngIf="question.answers[1].isCorrect">(Correct)</span></h3>
