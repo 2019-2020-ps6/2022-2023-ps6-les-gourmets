@@ -20,16 +20,16 @@ export class JouerService {
 
     chronoStart(){
         this.start = Date.now();
-        console.log("Timer Start")
-        console.log("timer Start: " + this.start);
+        // console.log("Timer Start")
+        // console.log("timer Start: " + this.start);
     }
     chronoStop() : number {
         const end = Date.now()
         this.Timer = end - this.start;
-        console.log("Timer Stop")
-        console.log("timer Start: " + this.start);
-        console.log("timer End: " + end);
-        console.log("timer Value: " + this.Timer);
+        // console.log("Timer Stop")
+        // console.log("timer Start: " + this.start);
+        // console.log("timer End: " + end);
+        // console.log("timer Value: " + this.Timer);
         return this.Timer;
     }
 
@@ -55,7 +55,7 @@ export class JouerService {
     private ezNextQuestion = false;
     private ezNextQuestion$ : BehaviorSubject<boolean> = new BehaviorSubject(this.ezNextQuestion);;
     private timeSpan = 6000 // in ms
-    private nbClick = 15 // number of click during timeSpan to trigger
+    private nbClick = 5 // number of click during timeSpan to trigger
 
     constructor(private userService :UserService){
     }
@@ -74,17 +74,18 @@ export class JouerService {
         const agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
         this.dateTab = this.dateTab.filter(date => date > now - this.timeSpan * (1/agressive));
         this.dateTab.push(now);
-        if(this.dateTab.length>5) this.triggerRage();
+        if(this.dateTab.length>this.nbClick) this.triggerRage();
     }
 
     private triggerRage(){
         this.ezNextQuestion = true;
         this.resetClickCounter();
-        if(this.rage) {this.quitPopup = true; return;}
-        console.log("randomised")
-        const path = this.userService.getCurrentUser().music.sort(() => Math.random()-0.5)[0];
-        this.playUserMusic(path);
-        this.rage = true;
+        if(this.rage) {this.quitPopupVisibility(true);}
+        else{
+            const path = this.userService.getCurrentUser().music.sort(() => Math.random()-0.5)[0];
+            this.playUserMusic(path);
+            this.rage = true;
+        }
     }
 
     public playBackgroundMusic(){
@@ -115,7 +116,6 @@ export class JouerService {
     public setMusicActivated(activated : boolean){
         this.musicActivated = activated;
         if(activated) {
-            console.log(this.rage);
             if (this.rage) this.playUserMusic(null)
             else this.playBackgroundMusic();
         }
@@ -128,7 +128,6 @@ export class JouerService {
 
     public removeLastClick(){
         this.dateTab.pop();
-        console.log("new size = "+this.dateTab.length);
     }
 
     public popupAnswer(answer : boolean){
@@ -152,6 +151,10 @@ export class JouerService {
 
   getTimer() : number{
     return Date.now() - this.start;
+  }
+  quitPopupVisibility(value:boolean=false){
+    this.quitPopup = value;
+    this.quitPopup$.next(this.quitPopup);
   }
 
 }
@@ -194,7 +197,6 @@ class AudioFade extends Audio{
         }
         else if (!fadeIn && this.volume+increment <= 0) {
         this.volume = 0;
-            console.log("stop")
           clearInterval(this.fade);
           this.reset()
           return super.pause();
