@@ -7,11 +7,11 @@ import { QuestionService } from 'src/service/question.service';
 import { Question } from 'src/models/question.model';
 
 @Component({
-    selector: 'app-ListeQuizAdable',
-    templateUrl: './ListeQuizAdable.component.html',
-    styleUrls: ['./ListeQuizAdable.component.scss']
+    selector: 'app-ListeQuestionAdable',
+    templateUrl: './ListeQuestionAdable.component.html',
+    styleUrls: ['./ListeQuestionAdable.component.scss']
 })
-export class ListeQuizAdable implements OnInit {
+export class ListeQuestionAdable implements OnInit {
     public quiz!: Quiz;
     public questionList: Question[] = [];
     public quizTemp!: Quiz;
@@ -20,14 +20,18 @@ export class ListeQuizAdable implements OnInit {
     constructor(public questionService: QuestionService, public quizService: QuizService) {
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
         this.quiz = quiz;
-        this.updateQuizSelectable();
+        this.updateQuestionSelectable();
       });
       this.questionService.questions$.subscribe((questionList: Question[]) => {
         this.questionList = questionList;
       });
+      console.log("questionList")
+      console.log(this.questionList);
       this.QuestionSelectable = this.questionList.filter(
         (quiz) => !this.quiz.questions.includes(quiz)
       );
+      console.log("questionSelect")
+      console.log(this.QuestionSelectable);
     }
 
     ngOnInit(): void {}
@@ -40,7 +44,7 @@ export class ListeQuizAdable implements OnInit {
       //this.user = this.userTemp;
     }
 
-    updateQuizSelectable(): void {
+    updateQuestionSelectable(): void {
       this.QuestionSelectable = this.questionList.filter(
         (quiz) => !this.quiz.questions.includes(quiz)
       );
