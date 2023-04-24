@@ -1,7 +1,3 @@
-<h1>{{quiz.name}}</h1>
-
-
-<app-GameQuestion (nextQuestion)="validateQuestion($event)" [answer_selected]="validate" [question]="currentQuestion"></app-GameQuestion>
 <div class="popup" [ngStyle]="{'display': quitPopup ? 'flex' : 'none'}">
   <h1>Voulez-vous continuer le Quiz ?</h1>
   <!-- button with label test that put popup visibility to none on click -->
@@ -9,19 +5,28 @@
   <button [routerLink]="'/Menu'">Arrêter</button>
 </div>
 
-<footer>
-  <button *ngIf="!validate && !user.answerDisplay" type="submit" class="previous" (click)="onPreviousQuestion()">Question precedente</button>
-  <button *ngIf="validate && !end" type="submit" class="next" (click)="NextQuestion()">Question suivante</button>
-  <button *ngIf="validate && end" type="submit" class="next" (click)="endQuiz()">finir le quiz</button>
-  <button *ngIf="!validate" type="submit" class="next" (click)="SkipQuestion()">Passer la question</button>
+<div class="blur" [ngStyle]="{'backdrop-filter': quitPopup ? 'blur(5px)' : 'blur(0px)'}">
+  <h1>{{quiz.name}}</h1>
+
+  <app-GameQuestion (nextQuestion)="validateQuestion($event)" [answer_selected]="validate"
+    [question]="currentQuestion"></app-GameQuestion>
 
 
-  <div class="music">
-    <label class="switch">
-      <input type="checkbox" (change)="ChangeMusic($event)" [checked]="getMusicActivated()">
-      <span class="slider"></span>
-    </label>
-    <span>musique </span>
-  </div>
+  <footer>
+    <button *ngIf="!validate && !user.answerDisplay" type="submit" class="previous"
+      (click)="onPreviousQuestion()">Question precedente</button>
+    <button *ngIf="validate && !end" type="submit" class="next" (click)="NextQuestion()">Question suivante</button>
+    <button *ngIf="validate && end" type="submit" class="next" (click)="endQuiz()">finir le quiz</button>
+    <button *ngIf="!validate" type="submit" class="next" (click)="SkipQuestion()">Passer la question</button>
 
-</footer>
+
+    <div class="music">
+      <label class="switch">
+        <input type="checkbox" (change)="ChangeMusic($event)" [checked]="getMusicActivated()">
+        <span class="slider"></span>
+      </label>
+      <span>musique </span>
+    </div>
+
+  </footer>
+</div>
