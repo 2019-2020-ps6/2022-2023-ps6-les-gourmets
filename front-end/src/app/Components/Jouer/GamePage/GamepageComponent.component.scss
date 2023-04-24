@@ -34,6 +34,7 @@ h1, h2 {
 label {
   margin: 10px 0;
   color: #fff;
+  display: flex;
 }
 
 input[type="b"] {
@@ -151,4 +152,16 @@ input:checked + .slider:before {
   color: #000000;
   text-align: center;
   margin-top: 20px;
+}
+
+footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.music{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
