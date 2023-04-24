@@ -195,22 +195,27 @@ export const QUESTIONLIST_ACTOR: Question[] = [
       label: 'Le mer est ',
       answers: [
           {
+              type : 'text',
               value: 'rouge',
               isCorrect: false,
           },
           {
+              type : 'text',
               value: 'jaune',
               isCorrect: false,
           },
           {
+              type : 'text',
               value: 'verte',
               isCorrect: false,
           },
           {
+              type : 'text',
               value: 'Bleue',
               isCorrect: true,
           }
         ],
+
         trueAnswer: 5,
         falseAnswer: 17,
         estFacile: false,
