@@ -77,6 +77,32 @@ export const QUESTIONLIST_ACTOR: Question[] = [
       trueAnswer: 5,
       falseAnswer: 5,
       estFacile: false,
+  },
+  {
+    id:'3',
+    label: 'Jean Dujardin a joué dans...',
+    answers: [
+        {
+            value: 'Les tuches II',
+            isCorrect: false,
+        },
+        {
+            value: 'La grande illusion',
+            isCorrect: false,
+        },
+        {
+            value: 'Le parrain',
+            isCorrect: false,
+        },
+        {
+            value: 'The Artist',
+            isCorrect: true,
+        }
+        ],
+        trueAnswer: 0,
+        falseAnswer: 0,
+        estFacile: false,
+
   }
 
   ];

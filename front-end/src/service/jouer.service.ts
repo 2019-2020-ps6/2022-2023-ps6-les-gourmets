@@ -104,6 +104,14 @@ export class JouerService {
         }
     }
 
+    public untriggerRage(){
+        this.ezNextQuestion = false;
+    }
+
+    public getRage() : boolean{
+        return this.rage;
+    }
+
     public playBackgroundMusic(){
         this.stopMusic(this.UserMusic);
         if(this.backgroundMusic!=null && !this.backgroundMusic.paused)return;
