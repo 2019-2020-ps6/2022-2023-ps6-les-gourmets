@@ -37,11 +37,12 @@ export class ListeQuestionAdable implements OnInit {
     ngOnInit(): void {}
 
     addQuestionToQuiz(question: Question): void {
-      this.quizTemp = this.quiz;
-      this.quizTemp.questions.push(question);
-      this.quizService.selectQuiz(this.quizTemp);
+      
+      this.quizService.selectQuiz(this.quiz);
+      this.quizService.addQuestionForQuiz(question);
       //this.userService.updateUser(this.user, this.userTemp);
       //this.user = this.userTemp;
+      
     }
 
     updateQuestionSelectable(): void {

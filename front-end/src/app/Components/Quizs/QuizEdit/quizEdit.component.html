@@ -1,18 +1,17 @@
 <p>quiz-edit works!</p>
 <h1>{{currentQuiz.name}}</h1>
-<button [routerLink]="['/ListeQuestionAdable']">Ajouter</button>
 
-<!-- <div >
+<div >
     <span>
-        <h2> Quizs de l'utilisateur : </h2>
+        <h2> Questions presentes dans le quiz : </h2>
 
-        <button [routerLink]="['/ListeQuizAdable']">Ajouter</button>
+        <button [routerLink]="['/ListeQuestionAdable']">Ajouter</button>
     
         
-            <div *ngFor="let question of UserModified.quizzes">
-                 <app-Question [question]="question" (deleteQuizz)="deleteQuestionForQuiz($event)"></app-Question> 
+            <div *ngFor="let question of currentQuiz.questions">
+                 <app-Question [question]="question" (deleteQuestion)="deleteQuestionForQuiz($event)"></app-Question> 
             </div>
         
     </span>
 
-</div> -->
+</div>

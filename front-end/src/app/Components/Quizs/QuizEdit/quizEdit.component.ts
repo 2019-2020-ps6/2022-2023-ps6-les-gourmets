@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Question } from 'src/models/question.model';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/service/quiz.service';
 
@@ -13,5 +14,11 @@ export class QuizEditComponent {
 
   constructor(private quizService: QuizService) {
     this.currentQuiz = quizService.quizSelected$.getValue();
+    
+  }
+
+  public deleteQuestionForQuiz(question : Question){
+    this.quizService.selectQuiz(this.currentQuiz);
+    this.quizService.deleteQuestionForQuiz(question);
   }
 }
