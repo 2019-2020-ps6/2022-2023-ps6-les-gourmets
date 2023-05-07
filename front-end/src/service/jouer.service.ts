@@ -9,6 +9,8 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 })
 
 export class JouerService {
+  // console.log("timer End: " + end);
+  // console.log("timer Value: " + this.Timer);
 
     //Musique permanence
     //Interrompre quiz lors de 2eme rage
@@ -129,8 +131,7 @@ export class JouerService {
         if(this.backgroundMusic!=null && !this.backgroundMusic.paused)return;
         const path = this.mainMusics.sort(() => Math.random()-0.5)[0];
         this.backgroundMusic = new AudioFade('assets/Music/'+path);
-        this.backgroundMusic.play(0.4);
-        console.log(this.backgroundMusic);
+        this.backgroundMusic.play(0.5);
     }
 
     public playUserMusic(path : string|null){
@@ -138,7 +139,7 @@ export class JouerService {
         if(this.UserMusic == null && path!=null){
             this.UserMusic = new AudioFade('assets/Music/'+path);
         }
-        this.UserMusic.play(0.4);
+        this.UserMusic.play(0.5);
     }
 
 
@@ -236,7 +237,6 @@ export class JouerService {
     }
     this.buttonSound.play();
   }
-
 }
 
 enum ButtonSound{
@@ -253,10 +253,9 @@ class AudioFade extends Audio{
     }
 
     public override play(volume : number =1): Promise<void> {
-        this.muted = true;
-        
-        var result = super.play()
-        this.fadeVolume(true,volume);
+      this.muted = true;
+      var result = super.play()
+      this.fadeVolume(true,volume);
         this.muted=false;
         return result
     }
