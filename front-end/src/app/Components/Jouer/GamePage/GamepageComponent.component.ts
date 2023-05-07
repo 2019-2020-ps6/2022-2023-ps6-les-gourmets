@@ -61,6 +61,10 @@ export class GamePageComponent implements OnInit {
       this.quiz.questions.sort(() => {
         return Math.random() - 0.5;
       });
+      const timeout = this.userService.getCurrentUser().passivity * 20000;
+
+      console.log("timeout: " + timeout);
+      this.jouerService.setTimeout(timeout);
       this.currentQuestion = this.quiz.questions[0];
       this.nbAnswers = this.quiz.questions.length;
       jouerService.quizLaunch();
@@ -94,7 +98,7 @@ export class GamePageComponent implements OnInit {
           this.InsertEasyQuestion2();
         }
 
-      } 
+      }
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex < this.quiz.questions.length) {
         this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
@@ -111,7 +115,7 @@ export class GamePageComponent implements OnInit {
       console.log("oui");
       for(var i = 0; i < eznumber; i++){
         this.quiz.questions.push(this.quiz.easyQuestions[i]);
-        
+
         console.log(this.quiz.questions[number+i])
         console.log(this.quiz.questions[this.currentQuestionIndex+i])
         this.InvertQuestion(this.quiz.questions[number+i],this.quiz.questions[this.currentQuestionIndex+i]);
@@ -119,14 +123,14 @@ export class GamePageComponent implements OnInit {
         console.log(this.quiz.questions[this.currentQuestionIndex+i])
         this.nbAnswers++;
       }
-      
+
     }
 
     InsertEasyQuestion2(){
       this.jouerService.untriggerRage();
       const eznumber = this.quiz.easyQuestions.length;
       const currentIndex = this.currentQuestionIndex;
-    
+
       console.log("oui");
       for (let i = 0; i < eznumber; i++) {
         // Insérer la question facile après la question courante
@@ -195,15 +199,15 @@ export class GamePageComponent implements OnInit {
     showpopup(){
       this.jouerService.quitPopupVisibility(true);
     }
-    
+
     ngOnDestroy() {
       this.jouerService.playBackgroundMusic();
       this.jouerService.reset();
     }
 
 
-    
-  
+
+
 
 }
 
