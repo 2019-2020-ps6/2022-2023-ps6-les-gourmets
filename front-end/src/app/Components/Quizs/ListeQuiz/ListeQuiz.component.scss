@@ -1,24 +1,10 @@
-.quiz-list-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
-
 .quiz-list {
   display: flex;
-  flex-direction: column;
-
+  flex-direction: row;
+  flex-flow: wrap;
   gap: 1rem;
-  justify-content: center;
+  justify-content: space-around;
   background-color: #222831;
-  padding: 2rem;
-  align-items: center;
-}
-
-.Quiz {
-  flex-basis: calc(33% - 1rem);
-  max-width: calc(33% - 1rem);
 }
 
 h1{
