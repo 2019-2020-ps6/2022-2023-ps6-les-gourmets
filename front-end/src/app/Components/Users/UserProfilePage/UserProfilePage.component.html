@@ -13,12 +13,18 @@
   </div>
   <div>
     <h2>Agressivité de l'utilisateur </h2>
-    <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1" [formControlName]="'aggressivness'" />
+    <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1"
+      [formControlName]="'aggressivness'" />
   </div>
   <div>
     <h2>Passivité de l'utilisateur (temps d'attente avant popup) </h2>
-    <input type="range" class="slider" name="Name" min="0" max="1" step="0.1" [formControlName]="'passivity'"/>
+    <input type="range" class="slider" name="Name" min="0" max="1" step="0.1" [formControlName]="'passivity'" />
   </div>
+  <div>
+    <h2>Afficher les réponses justes : </h2>
+    <input class="input-custom" type="checkbox" id="answerDisplay" [formControlName]="'answerDisplay'">
+  </div>
+
 </form>
 <div class="userquizzes">
   <h2> Quiz de l'utilisateur : </h2>
