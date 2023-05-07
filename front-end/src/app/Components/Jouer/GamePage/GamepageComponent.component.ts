@@ -63,7 +63,7 @@ export class GamePageComponent implements OnInit {
       });
       const timeout = this.userService.getCurrentUser().passivity * 20000;
 
-      console.log("timeout: " + timeout);
+      //console.log("timeout: " + timeout);
       this.jouerService.setTimeout(timeout);
       this.currentQuestion = this.quiz.questions[0];
       this.nbAnswers = this.quiz.questions.length;
