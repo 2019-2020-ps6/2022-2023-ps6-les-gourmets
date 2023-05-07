@@ -35,4 +35,18 @@ export class UserForm implements OnInit {
       this.userService.addUser(userToCreate);
       this.userService.selectUser(userToCreate);
     }
+
+toggleAnswerDisplay() {
+  if(this.userForm.get('answerDisplay')!=null){
+    
+    if(this.userForm.get('answerDisplay')?.value == false){
+      this.userForm.get('answerDisplay')?.setValue(true);
+    }
+    else{
+      this.userForm.get('answerDisplay')?.setValue(false);
+    }
+  }
+
+
+}
 }
