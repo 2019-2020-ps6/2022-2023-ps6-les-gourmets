@@ -25,6 +25,11 @@ button{
     transition: background-color 0.3s, color 0.3s;
 }
 
+button:hover{
+    cursor: pointer;
+    background-color: #8e939bc7;
+}
+
 app-ListeUser{
     display : flex;
     flex-direction: column;
