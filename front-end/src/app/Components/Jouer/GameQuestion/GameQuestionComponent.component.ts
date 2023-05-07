@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Answer } from 'src/models/question.model';
 import { Question } from 'src/models/question.model';
+import { JouerService } from 'src/service/jouer.service';
 
 @Component({
     selector: 'app-GameQuestion',
@@ -15,7 +16,7 @@ import { Question } from 'src/models/question.model';
     @Output()
     nextQuestion: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor() {
+    constructor(private jouerService : JouerService) {
     }
 
     ngOnInit(): void {
@@ -30,6 +31,7 @@ import { Question } from 'src/models/question.model';
       if (answer==true){
         console.log(answer);
       }
+      this.jouerService.playButtonSimpleSound();
       this.nextQuestion.emit(answer)
 
       
