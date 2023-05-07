@@ -16,6 +16,7 @@ export class QuizComponent implements OnInit {
 
   public isMod: Boolean = false;
   public isPlay: Boolean = false;
+  public DeleteorAdd: String = "Delete";
 
   @Input()
   quiz!: Quiz;
@@ -34,6 +35,9 @@ export class QuizComponent implements OnInit {
     this.isMod = (route.snapshot.url[0].path == "ListeQuizPage") || (route.snapshot.url[0].path == "UserProfilePage") || (route.snapshot.url[0].path == "ListeQuizAdable"));
     route.url.subscribe((url) =>
     this.isPlay = (route.snapshot.url[0].path == "ChoixQuiz"));
+    route.url.subscribe((url) =>
+    this.DeleteorAdd = (route.snapshot.url[0].path == "ListeQuizAdable") ? "Ajouter" : "Supprimer"
+    );
   }
 
   ngOnInit(): void {

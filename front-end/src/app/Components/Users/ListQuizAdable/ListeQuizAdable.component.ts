@@ -18,6 +18,8 @@ export class ListeQuizAdable implements OnInit {
     public user!: User;
     public userTemp!: User;
     public QuizSelectable: Quiz[] = [];
+    public DeleteorAdd: String = "Add";
+
 
     constructor(public userService: UserService, public quizService: QuizService, private jouerService : JouerService) {
       this.userService.UserSelected$.subscribe((user: User) => {

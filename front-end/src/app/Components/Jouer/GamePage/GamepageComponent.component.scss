@@ -73,7 +73,8 @@ footer button:hover {
 
 .switch {
   position: relative;
-  display: inline-block;
+  display: flex; 
+  align-items: center; 
   width: 60px;
   height: 34px;
   margin-bottom: 20px;
@@ -120,15 +121,28 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
 }
+.music{
+  display: flex;
+  flex-direction: column;
 
+  margin-top: 10px;
+  align-items: center;
+  margin-left: 10px;
+}
 span{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px; 
   color: #fff;
+  font-size: 20px;
 }
 
 h1 {
   color: #fff;
 }
+
+
