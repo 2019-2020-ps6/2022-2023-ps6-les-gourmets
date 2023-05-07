@@ -14,13 +14,21 @@
         <h2>Agressivité de l'utilisateur</h2>
         <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1" [formControlName]="'aggressivness'"/>
     </div>
+    <div>
+    <h2>Passivité de l'utilisateur (temps d'attente avant popup)</h2>
+        <input type="range" class="slider" name="Name" min="30" max="200"  step="10" [formControlName]="'passivity'"/>
+    </div>
 </form>
+<div class="userquizzes"><h2> Quiz de l'utilisateur : </h2>
+    <button [routerLink]="['/ListeQuizAdable']">Ajouter</button></div>
 
 <div >
+    
+    <br>
     <span>
-        <h2> Quiz de l'utilisateur : </h2>
+        
 
-        <button [routerLink]="['/ListeQuizAdable']">Ajouter</button>
+        
     
         
             <div *ngFor="let quiz of UserModified.quizzes">
