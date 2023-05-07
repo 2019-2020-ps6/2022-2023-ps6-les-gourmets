@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { Question } from 'src/models/question.model';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { ButtonSound } from 'src/models/ButtonSound';
 
 
 @Injectable({
@@ -225,24 +226,39 @@ export class JouerService {
   }
 
   private buttonSound = new Audio();
-  public playButtonSimpleSound(AudioType:ButtonSound = ButtonSound.SimpleButtonClick){
-    this.buttonSound.currentTime=0;
+  public playButtonSimpleSound(AudioType:ButtonSound = ButtonSound.SelectAnswer){
+    if (!this.buttonSound.paused) {
+      this.buttonSound.pause();
+      this.buttonSound.currentTime = 0;
+    }
+    this.buttonSound.src="assets/Sounds/"
     switch(AudioType){
-      case ButtonSound.SimpleButtonClick:
-        this.buttonSound.src = "assets/Sounds/simpleButtonClick1.mp3";
+      case ButtonSound.SelectAnswer:
+        this.buttonSound.src += "simpleButtonClick1.mp3";
         break;
-      case ButtonSound.SimpleButtonClickRandomized:
-        this.buttonSound.src = "assets/Sounds/simpleButtonClick1.mp3";
+      case ButtonSound.MainMenuCreate:
+        this.buttonSound.src += "MainMenuCreate.mp3";
+        break;
+      case ButtonSound.MainMenuPlay:
+        this.buttonSound.src += "MainMenuPlay.mp3";
+        break;
+      case ButtonSound.deleteSound:
+        this.buttonSound.src += "deleteSound.mp3";
+      break;
+      case ButtonSound.SelectingObject:
+        this.buttonSound.src += "selectObject.wav"
+      break;
+      case ButtonSound.NextQuestion:
+        this.buttonSound.src += "NextQuestion.mp3"
+      break;
+      case ButtonSound.back:
+        this.buttonSound.src += "back.mp3"
         break;
     }
     this.buttonSound.play();
   }
 }
 
-enum ButtonSound{
-  SimpleButtonClick,
-  SimpleButtonClickRandomized
-}
 
 
 class AudioFade extends Audio{

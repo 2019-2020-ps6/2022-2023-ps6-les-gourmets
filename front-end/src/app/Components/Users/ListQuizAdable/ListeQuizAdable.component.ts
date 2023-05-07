@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { UserService } from 'src/service/user.service';
 import { User } from 'src/models/User.model';
+import { JouerService } from 'src/service/jouer.service';
+import { ButtonSound } from 'src/models/ButtonSound';
 
 @Component({
     selector: 'app-ListeQuizAdable',
@@ -17,7 +19,7 @@ export class ListeQuizAdable implements OnInit {
     public userTemp!: User;
     public QuizSelectable: Quiz[] = [];
 
-    constructor(public userService: UserService, public quizService: QuizService) {
+    constructor(public userService: UserService, public quizService: QuizService, private jouerService : JouerService) {
       this.userService.UserSelected$.subscribe((user: User) => {
         this.user = user;
         this.updateQuizSelectable();
@@ -44,5 +46,8 @@ export class ListeQuizAdable implements OnInit {
       this.QuizSelectable = this.quizList.filter(
         (quiz) => !this.user.quizzes.includes(quiz)
       );
+    }
+    playBackSound(){
+      this.jouerService.playButtonSimpleSound(ButtonSound.back);
     }
   }

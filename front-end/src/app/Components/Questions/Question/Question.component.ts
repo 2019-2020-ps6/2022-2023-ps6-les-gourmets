@@ -1,6 +1,8 @@
 
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { ButtonSound } from 'src/models/ButtonSound';
 import { Question } from 'src/models/question.model';
+import { JouerService } from 'src/service/jouer.service';
 
 @Component({
     selector: 'app-Question',
@@ -22,13 +24,14 @@ export class QuestionComponent implements OnInit {
   @Output()
   deleteQuestion: EventEmitter<Question> = new EventEmitter<Question>();
 
-  constructor() {
+  constructor(private jouerService : JouerService) {
   }
 
   ngOnInit(): void {
   }
 
   selectQuestion(): void {
+    this.jouerService.playButtonSimpleSound(ButtonSound.SelectingObject);
     this.questionSelected.emit(true);
   }
 
@@ -37,6 +40,7 @@ export class QuestionComponent implements OnInit {
   }
 
   delete(): void {
+    this.jouerService.playButtonSimpleSound(ButtonSound.deleteSound);
     this.deleteQuestion.emit(this.question);
   }
 }

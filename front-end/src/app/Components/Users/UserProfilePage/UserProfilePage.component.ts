@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ButtonSound } from 'src/models/ButtonSound';
 import { Quiz } from 'src/models/quiz.model';
 import { User } from 'src/models/User.model';
+import { JouerService } from 'src/service/jouer.service';
 import { UserService } from 'src/service/user.service';
 @Component({
     selector: 'app-UserProfilePage',
@@ -16,7 +18,7 @@ export class UserProfilePage implements OnInit {
     public UserModified!: User;
     public modifs : FormGroup;
 
-    constructor(public formBuilder : FormBuilder, public userService : UserService) {
+    constructor(public formBuilder : FormBuilder, public userService : UserService, private jouerService: JouerService) {
 
         this.userService.UserSelected$.subscribe((UserSelected: User) => {
             this.UserModified = UserSelected;
@@ -64,5 +66,11 @@ export class UserProfilePage implements OnInit {
         this.modifs['controls']['answerDisplay'].setValue(this.User.answerDisplay);
     }
 
+    playBackSound(){
+        this.jouerService.playButtonSimpleSound(ButtonSound.back)
 
+    }
+    switchPage(){
+        this.jouerService.playButtonSimpleSound(ButtonSound.NextQuestion)
+    }
 }

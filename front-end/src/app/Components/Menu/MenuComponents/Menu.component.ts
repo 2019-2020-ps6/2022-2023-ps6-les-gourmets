@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ButtonSound } from 'src/models/ButtonSound';
 import { JouerService } from 'src/service/jouer.service';
 
 @Component({
@@ -26,5 +27,12 @@ export class MenuComponent implements OnInit {
 
   activateMusic(){
     this.jouerService.playBackgroundMusic();
+  }
+
+  playJouerSound(){
+    this.jouerService.playButtonSimpleSound(ButtonSound.MainMenuPlay)
+  }
+  playCreateSound(){
+    this.jouerService.playButtonSimpleSound(ButtonSound.MainMenuCreate)
   }
 }

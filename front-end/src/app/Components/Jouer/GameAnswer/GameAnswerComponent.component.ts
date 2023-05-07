@@ -23,8 +23,7 @@ import { JouerService } from 'src/service/jouer.service';
     ngOnInit(): void {
       }
 
-    selectAnswer(): void {      
-      this.jouerService.playButtonSimpleSound();
+    selectAnswer(): void {
         this.answerSelected.emit(this.answer.isCorrect);
     }
 

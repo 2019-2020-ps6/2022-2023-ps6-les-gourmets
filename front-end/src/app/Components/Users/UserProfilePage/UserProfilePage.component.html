@@ -1,7 +1,7 @@
 <h1>Page de l'utilsateur</h1>
 <div>
-  <button [routerLink]="['/ListeUserPage']">Retour</button>
-  <button [routerLink]="['/UserStatsPage']">Stats</button>
+  <button [routerLink]="['/ListeUserPage']"(click)="playBackSound()">Retour</button>
+  <button [routerLink]="['/UserStatsPage']"(click)="switchPage()">Stats</button>
 </div>
 
 

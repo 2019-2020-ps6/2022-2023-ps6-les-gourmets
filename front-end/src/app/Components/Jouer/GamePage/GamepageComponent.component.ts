@@ -8,6 +8,7 @@ import { User } from 'src/models/User.model';
 import { UserService } from 'src/service/user.service';
 import { Router } from '@angular/router';
 import { JouerService } from 'src/service/jouer.service';
+import { ButtonSound } from 'src/models/ButtonSound';
 
 
 
@@ -77,7 +78,7 @@ export class GamePageComponent implements OnInit {
     }
 
     NextQuestion(): void {
-
+      
       if (!this.answers[this.currentQuestionIndex]){
         this.quiz.questions.push(this.currentQuestion);
       }
@@ -85,16 +86,15 @@ export class GamePageComponent implements OnInit {
       this.ChangeQuestion();
     }
     SkipQuestion(){
+      
       this.quiz.questions.push(this.currentQuestion);
       this.ChangeQuestion();
     }
     ChangeQuestion(){
-      console.log("cc");
-      console.log(this.jouerService.getRage());
+      if(this.user.answerDisplay) this.jouerService.playButtonSimpleSound(ButtonSound.NextQuestion)
       if(this.jouerService.getRage() ){
         if(this.ezActivited==false){
           this.ezActivited=true;
-          console.log("insertez");
           this.InsertEasyQuestion2();
         }
 
@@ -193,6 +193,7 @@ export class GamePageComponent implements OnInit {
     }
 
     hidepopup(){
+      this.jouerService.playButtonSimpleSound(ButtonSound.back)
       this.jouerService.quitPopupVisibility(false);
     }
 

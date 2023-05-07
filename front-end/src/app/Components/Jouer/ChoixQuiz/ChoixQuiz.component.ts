@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ButtonSound } from 'src/models/ButtonSound';
 import { User } from 'src/models/User.model';
 import { Quiz } from 'src/models/quiz.model';
 import { JouerService } from 'src/service/jouer.service';
@@ -16,7 +17,7 @@ export class ChoixQuiz implements OnInit {
   public quizs: Quiz[] = [];
   public user!: User;
 
-    constructor(public userService: UserService) {
+    constructor(public userService: UserService, private jouerService: JouerService) {
       this.userService.UserSelected$.subscribe((user: User) => {
         this.user = user;
       });
@@ -26,4 +27,7 @@ export class ChoixQuiz implements OnInit {
 
     ngOnInit(): void {}
 
+    playBackSound(){
+      this.jouerService.playButtonSimpleSound(ButtonSound.back)
+    }
 }
