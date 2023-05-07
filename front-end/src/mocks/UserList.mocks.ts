@@ -9,8 +9,8 @@ export const USERS: User[] = [
         aggressivness : 0.8,
         answerDisplay : true,
         music : ["calmAndPeaceful.mp3"],
-        id:1
-        
+        id:1,
+        passivity : 0.2
     },
     {
         name: 'Palmade',
@@ -19,7 +19,8 @@ export const USERS: User[] = [
         aggressivness : 0.2,
         answerDisplay : false,
         music : ["calmAndPeaceful.mp3","garden.mp3"],
-        id:2
+        id:2,
+        passivity : 0.8
     },
 
 ];

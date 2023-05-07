@@ -28,7 +28,8 @@ export class UserProfilePage implements OnInit {
             id: [this.UserModified.id],
             name: [this.UserModified.name],
             surname: [this.UserModified.surname],
-            aggressivness: this.UserModified.aggressivness
+            aggressivness: this.UserModified.aggressivness,
+            passivity: this.UserModified.passivity
         });
         // userService.selectUser(this.UserModified);
     }
@@ -58,6 +59,7 @@ export class UserProfilePage implements OnInit {
         this.modifs['controls']['name'].setValue(this.User.name);
         this.modifs['controls']['surname'].setValue(this.User.surname);
         this.modifs['controls']['aggressivness'].setValue(this.User.aggressivness);
+        this.modifs['controls']['passivity'].setValue(this.User.passivity);
     }
 
 

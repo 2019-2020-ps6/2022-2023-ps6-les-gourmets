@@ -1,44 +1,40 @@
 <h1>Page de l'utilsateur</h1>
 <div>
-    <button [routerLink]="['/ListeUserPage']" >Retour</button>
-    <button [routerLink]="['/UserStatsPage']" >Stats</button>
+  <button [routerLink]="['/ListeUserPage']">Retour</button>
+  <button [routerLink]="['/UserStatsPage']">Stats</button>
 </div>
 
 
 <form [formGroup]="modifs">
-    <div>
-        <input type="text" value={{UserModified.surname}} placeholder={{UserModified.surname}} [formControlName]="'surname'"/>
-        <input type="text" value={{UserModified.name}} placeholder={{UserModified.name}} [formControlName]="'name'"/>
-    </div>
-    <div>
-        <h2>Agressivité de l'utilisateur</h2>
-        <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1" [formControlName]="'aggressivness'"/>
-    </div>
-    <div>
-    <h2>Passivité de l'utilisateur (temps d'attente avant popup)</h2>
-        <input type="range" class="slider" name="Name" min="30" max="200"  step="10" [formControlName]="'passivity'"/>
-    </div>
+  <div>
+    <input type="text" value={{UserModified.surname}} placeholder={{UserModified.surname}}
+      [formControlName]="'surname'" />
+    <input type="text" value={{UserModified.name}} placeholder={{UserModified.name}} [formControlName]="'name'" />
+  </div>
+  <div>
+    <h2>Agressivité de l'utilisateur </h2>
+    <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1" [formControlName]="'aggressivness'" />
+  </div>
+  <div>
+    <h2>Passivité de l'utilisateur (temps d'attente avant popup) </h2>
+    <input type="range" class="slider" name="Name" min="0" max="1" step="0.1" [formControlName]="'passivity'"/>
+  </div>
 </form>
-<div class="userquizzes"><h2> Quiz de l'utilisateur : </h2>
-    <button [routerLink]="['/ListeQuizAdable']">Ajouter</button></div>
+<div class="userquizzes">
+  <h2> Quiz de l'utilisateur : </h2>
+  <button [routerLink]="['/ListeQuizAdable']">Ajouter</button>
+</div>
 
-<div >
-    
-    <br>
-    <span>
-        
-
-        
-    
-        
-            <div *ngFor="let quiz of UserModified.quizzes">
-                 <app-Quiz [quiz]="quiz" (deleteQuizz)="deleteQuizForProfile($event)"></app-Quiz> 
-            </div>
-        
-    </span>
+<div>
+  <br>
+  <span>
+    <div *ngFor="let quiz of UserModified.quizzes">
+      <app-Quiz [quiz]="quiz" (deleteQuizz)="deleteQuizForProfile($event)"></app-Quiz>
+    </div>
+  </span>
 
 </div>
 <div>
-    <button (click) ="applyChanges()" [routerLink]="['/ListeUserPage']">confirmer les changements</button>
-    <button (click) ="cancelChanges()">annuler les changements</button>
+  <button (click)="applyChanges()" [routerLink]="['/ListeUserPage']">confirmer les changements</button>
+  <button (click)="cancelChanges()">annuler les changements</button>
 </div>

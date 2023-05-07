@@ -7,5 +7,6 @@ export interface User {
     answerDisplay: boolean,
     quizzes : Quiz[],
     music : string[],
-    id : number
-} 
+    id : number,
+    passivity : number
+}
