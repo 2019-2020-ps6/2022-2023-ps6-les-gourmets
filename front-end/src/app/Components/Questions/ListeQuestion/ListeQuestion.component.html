@@ -1,4 +1,4 @@
-<h1>Liste Questions</h1>
+<h1>Liste des questions</h1>
 <div class="question-List">
   <div class="Question" *ngFor="let question of quizQuestion">
     <app-Question [question]="question" (deleteQuestion)="deleteQuestion($event)"></app-Question>
