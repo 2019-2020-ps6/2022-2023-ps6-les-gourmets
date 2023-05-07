@@ -4,6 +4,15 @@ h1{
     text-align: center;
 }
 
+.quiz-List {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: space-around;
+  background-color: #222831;
+}
+
+
 button{
     background-color: #4d535dc6;
     border: solid 1px #F2F2F2;
