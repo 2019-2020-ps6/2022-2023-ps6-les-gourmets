@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { QUIZ_LIST } from 'src/mocks/QuizList.mocks';
 import { Quiz } from 'src/models/quiz.model';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { Question } from 'src/models/question.model';
 
 
 @Injectable({
@@ -10,9 +10,6 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 
 export class QuizService {
-
-
-
     //The list of quiz. The list is retrieved from the mock.
 private quizzes: Quiz[] = QUIZ_LIST; // Ici on initialise la valeur avec un mock QUIZ_LIST
 private quizSelected!: Quiz; // Ici on initialise la valeur avec un mock QUIZ_LIST
@@ -22,7 +19,6 @@ public quizSelected$: BehaviorSubject<Quiz> = new BehaviorSubject(this.quizSelec
 
 // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
 constructor() { }
-
 
 retrieveQuizes(): void {
 }
@@ -40,5 +36,19 @@ deleteQuiz(quiz: Quiz) {
  selectQuiz(quiz: Quiz) {
     this.quizSelected = quiz;
     this.quizSelected$.next(this.quizSelected);
+  }
+
+  addQuestionForQuiz(question : Question){
+    if(this.quizSelected.questions.indexOf(question)==-1) this.quizSelected.questions.push(question) ;
+    this.quizSelected$.next(this.quizSelected);
+    console.log("Add Question For Quiz");
+    console.log(this.quizSelected);
+  }
+
+  deleteQuestionForQuiz(question : Question){
+    this.quizSelected.questions = this.quizSelected.questions.filter(value => value !== question);
+    this.quizSelected$.next(this.quizSelected);
+    console.log("Delete Question For Quiz");
+    console.log(this.quizSelected);
   }
 }
