@@ -10,11 +10,12 @@ h1{
 
 div{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-flow: wrap;
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 500px;
+  width: vw;
   
 }
 
