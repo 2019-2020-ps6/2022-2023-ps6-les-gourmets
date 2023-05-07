@@ -24,11 +24,15 @@
 
 
     <div class="music">
-      <label class="switch">
-        <input type="checkbox" (change)="ChangeMusic($event)" [checked]="getMusicActivated()">
-        <span class="slider"></span>
-      </label>
-      <span>musique </span>
+      <span>
+        <span>musique : </span>
+        <label class="switch">
+          <input type="checkbox" (change)="ChangeMusic($event)" [checked]="getMusicActivated()">
+          <span class="slider"></span>
+        </label>
+
+
+    </span>
     </div>
 
   </footer>
