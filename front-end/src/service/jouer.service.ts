@@ -101,7 +101,8 @@ export class JouerService {
         if(this.backgroundMusic!=null && !this.backgroundMusic.paused)return;
         const path = this.mainMusics.sort(() => Math.random()-0.5)[0];
         this.backgroundMusic = new AudioFade('assets/Music/'+path);
-        this.backgroundMusic.play();
+        this.backgroundMusic.play(0.4);
+        console.log(this.backgroundMusic);
     }
 
     public playUserMusic(path : string|null){
@@ -109,7 +110,7 @@ export class JouerService {
         if(this.UserMusic == null && path!=null){
             this.UserMusic = new AudioFade('assets/Music/'+path);
         }
-        this.UserMusic.play();
+        this.UserMusic.play(0.4);
     }
 
 
@@ -194,6 +195,25 @@ export class JouerService {
     this.relaunchTimer();
   }
 
+  private buttonSound = new Audio();
+  public playButtonSimpleSound(AudioType:ButtonSound = ButtonSound.SimpleButtonClick){
+    this.buttonSound.currentTime=0;
+    switch(AudioType){
+      case ButtonSound.SimpleButtonClick:
+        this.buttonSound.src = "assets/Sounds/simpleButtonClick1.mp3";
+        break;
+      case ButtonSound.SimpleButtonClickRandomized:
+        this.buttonSound.src = "assets/Sounds/simpleButtonClick1.mp3";
+        break;
+    }
+    this.buttonSound.play();
+  }
+
+}
+
+enum ButtonSound{
+  SimpleButtonClick,
+  SimpleButtonClickRandomized
 }
 
 
@@ -204,10 +224,11 @@ class AudioFade extends Audio{
         this.reset();
     }
 
-    public override play(): Promise<void> {
+    public override play(volume : number =1): Promise<void> {
         this.muted = true;
+        
         var result = super.play()
-        this.fadeVolume(true);
+        this.fadeVolume(true,volume);
         this.muted=false;
         return result
     }

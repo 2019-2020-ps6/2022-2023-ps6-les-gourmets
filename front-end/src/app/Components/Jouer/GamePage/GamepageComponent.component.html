@@ -13,5 +13,5 @@
   <h1>Voulez-vous continuer le Quiz ?</h1>
   <!-- button with label test that put popup visibility to none on click -->
   <button (click)="hidepopup()">Continuer</button>
-  <button [routerLink]="'/Menu'">Arrêter</button>
+  <button [routerLink]="'/Menu'" (click)="hidepopup()" >Arrêter</button>
 </div>
