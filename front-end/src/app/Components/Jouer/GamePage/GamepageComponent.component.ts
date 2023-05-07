@@ -61,7 +61,7 @@ export class GamePageComponent implements OnInit {
       this.quiz.questions.sort(() => {
         return Math.random() - 0.5;
       });
-      const timeout = this.userService.getCurrentUser().passivity * 20000;
+      const timeout = this.userService.getCurrentUser().passivity * 20000 + 30000;
 
       //console.log("timeout: " + timeout);
       this.jouerService.setTimeout(timeout);

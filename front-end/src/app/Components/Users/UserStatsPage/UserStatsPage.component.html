@@ -8,18 +8,26 @@
   <input type="text" value={{User.name}} placeholder={{User.name}} />
 </div>
 <div *ngFor="let quiz of User.quizzes">
-  <span>
-    <h1>{{quiz.name}}</h1>
+  <table>
+    <h2>{{quiz.name}}</h2>
+    <tr>
+      
+      <th>Questions et taux de réussite</th>
+      
+    </tr>
+    <span>
+      <ng-container *ngFor="let quiz of User.quizzes">
+        <tr *ngFor="let question of quiz.questions">
+          
+      
+          <td>{{question.label}}</td>
+          <td>{{question.trueAnswer / (question.falseAnswer + question.trueAnswer) * 100}}%</td>
+        </tr>
 
-    <ul>
-  
-      <div *ngFor="let question of quiz.questions">
-        <li>
-          <h2>{{question.label}} : {{question.trueAnswer / (question.falseAnswer + question.trueAnswer) * 100}} %</h2>
-        </li>
-      </div>
-    </ul>
-    <h2>temps moyen : {{quiz.timerMoyen/1000}} secondes</h2>
-  </span>
-
+      </ng-container>
+      
+    
+      <h2>temps moyen : {{quiz.timerMoyen/1000}} secondes</h2>
+    </span>
+</table>
 </div>
