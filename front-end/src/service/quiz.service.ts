@@ -3,6 +3,7 @@ import { QUIZ_LIST } from 'src/mocks/QuizList.mocks';
 import { Quiz } from 'src/models/quiz.model';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Question } from 'src/models/question.model';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes); //
 public quizSelected$: BehaviorSubject<Quiz> = new BehaviorSubject(this.quizSelected); // Ici on crée un observable qui va permettre de récupérer un quiz sélectionné
 
 // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
-constructor() { }
+constructor(private userService: UserService) { }
 
 retrieveQuizes(): void {
 }
@@ -47,8 +48,21 @@ deleteQuiz(quiz: Quiz) {
 
   deleteQuestionForQuiz(question : Question){
     this.quizSelected.questions = this.quizSelected.questions.filter(value => value !== question);
+    this.QuizUpdate(this.quizSelected);
     this.quizSelected$.next(this.quizSelected);
     console.log("Delete Question For Quiz");
     console.log(this.quizSelected);
+  }
+
+  QuizUpdate(quizModified: Quiz){
+    this.userService.Users.forEach(user=>{
+      user.quizzes.forEach((quiz:Quiz,index:number)=>{
+        if(quiz.id==quizModified.id){
+          user.quizzes[index]=quizModified;
+          
+        }
+      })
+    })
+
   }
 }
