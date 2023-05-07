@@ -1,10 +1,10 @@
 <div class = "profile">
-    name : {{User.name}},<br>
-    surname : {{User.surname}}<br>
+    Nom : {{User.name}},<br>
+    Prénom : {{User.surname}}<br>
     <div *ngIf="isMod">
-      aggressiveness : {{User.aggressivness}}<br>
-      <button (click)="delete()">Delete</button>
-      <button (click)="selectUser()" [routerLink]="['/UserProfilePage']">Select</button>
+      Taux d'agressivité : {{User.aggressivness}}<br>
+      <button (click)="delete()">Supprimer</button>
+      <button (click)="selectUser()" [routerLink]="['/UserProfilePage']">Éditer</button>
     </div>
     <div *ngIf="isMod == false">
       <button (click)="selectUser()" [routerLink]="['/ChoixQuiz']">Sélectionner</button>

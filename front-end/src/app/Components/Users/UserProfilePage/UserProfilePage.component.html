@@ -11,7 +11,7 @@
         <input type="text" value={{UserModified.name}} placeholder={{UserModified.name}} [formControlName]="'name'"/>
     </div>
     <div>
-        <h2>Perks de l'utilisateur</h2>
+        <h2>Agressivité de l'utilisateur</h2>
         <input type="range" class="slider" name="Name" min="0" max="1" value={{UserModified.aggressivness}} step="0.1" [formControlName]="'aggressivness'"/>
     </div>
 </form>
@@ -31,6 +31,6 @@
 
 </div>
 <div>
-    <button (click) ="applyChanges()" [routerLink]="['/ListeUserPage']">confirm changes</button>
-    <button (click) ="cancelChanges()">revert changes</button>
+    <button (click) ="applyChanges()" [routerLink]="['/ListeUserPage']">confirmer les changements</button>
+    <button (click) ="cancelChanges()">annuler les changements</button>
 </div>
