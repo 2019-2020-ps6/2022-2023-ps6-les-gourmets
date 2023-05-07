@@ -5,7 +5,10 @@
   <button [routerLink]="'/Menu'">Arrêter</button>
 </div>
 
-<div class="blur" [ngStyle]="{'backdrop-filter': quitPopup ? 'blur(5px)' : 'blur(0px)'}">
+<div class="blur" *ngIf="quitPopup">
+</div>
+
+
   <h1>{{quiz.name}}</h1>
 
   <app-GameQuestion (nextQuestion)="validateQuestion($event)" [answer_selected]="validate"
@@ -29,4 +32,4 @@
     </div>
 
   </footer>
-</div>
+
