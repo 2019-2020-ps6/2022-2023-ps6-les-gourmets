@@ -60,25 +60,30 @@ export class JouerService {
     private inactivity = 0;
     private quitInterval : any;
 
-  
-  
+
+
 
     private easyQuestions: Question[] = [];
     public easyQuestions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.easyQuestions);
+
     constructor(private userService :UserService){
     }
 
-    public updateResults(questions:Question[],answers:boolean[]){   
-        
+    public setTimeout(nb: number){
+        this.timeout = nb;
+    }
+
+    public updateResults(questions:Question[],answers:boolean[]){
+
         this.results = answers;
         this.results$.next(this.results);
-      
+
         this.questions = questions;
         this.questions$.next(this.questions);
-      
+
         this.easyQuestions = questions.filter(q => q.estFacile);
         this.easyQuestions$.next(this.easyQuestions);
-      
+
     }
 
     public mouseClickInQuiz(event : MouseEvent) {
@@ -94,8 +99,6 @@ export class JouerService {
 
     private triggerRage(){
         this.ezNextQuestion = true;
-
-
 
         this.resetClickCounter();
         if(this.rage) {this.quitPopupVisibility(true);}
@@ -173,18 +176,18 @@ export class JouerService {
         this.resetClickCounter();
     }
 
-    
+
   reset() {
     this.resetClickCounter();
     clearInterval(this.quitInterval);
     this.rage=false;
     this.ezNextQuestion = false;
     this.quitPopup = false;
-    
+
   }
   quizLaunch(){
     this.reset();
-    
+
     this.quitInterval = setInterval(() => {
         this.inactivity += 1000;
         if (this.inactivity >= this.timeout) {
@@ -207,11 +210,11 @@ export class JouerService {
     this.quitPopup = value;
     this.quitPopup$.next(this.quitPopup);
   }
-  
+
   relaunchTimer() {
     this.inactivity = 0;
   }
-  
+
   inactive() {
     this.quitPopupVisibility(true);
   }
@@ -239,7 +242,7 @@ class AudioFade extends Audio{
     override pause(): void {
         this.fadeVolume(false);
     }
-    
+
     public reset(){
         this.currentTime = 0;
         this.autoplay=true;

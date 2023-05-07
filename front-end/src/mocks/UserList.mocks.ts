@@ -21,8 +21,7 @@ export const USERS: User[] = [
         music : ["calmAndPeaceful.mp3","garden.mp3"],
         id:2,
         passivity : 0.8
-    },
-
+    }
 ];
 
 
