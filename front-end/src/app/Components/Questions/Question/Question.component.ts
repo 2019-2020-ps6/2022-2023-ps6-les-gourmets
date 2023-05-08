@@ -18,6 +18,9 @@ export class QuestionComponent implements OnInit {
   question!: Question;
 
   @Output()
+  questionSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Output()
   editQuestion: EventEmitter<Question> = new EventEmitter<Question>();
 
   @Output()
