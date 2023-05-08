@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Answer } from 'src/models/question.model';
 import { Question } from 'src/models/question.model';
+import { JouerService } from 'src/service/jouer.service';
 
 @Component({
     selector: 'app-GameAnswer',
@@ -16,7 +17,7 @@ import { Question } from 'src/models/question.model';
     answerSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
-    constructor() {
+    constructor(private jouerService : JouerService) {
       }
 
     ngOnInit(): void {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ButtonSound } from 'src/models/ButtonSound';
 import { JouerService } from 'src/service/jouer.service';
 
 @Component({
@@ -13,5 +14,8 @@ export class ChoixUser implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  playBackSound(){
+    this.jouerService.playButtonSimpleSound(ButtonSound.back)
   }
 }

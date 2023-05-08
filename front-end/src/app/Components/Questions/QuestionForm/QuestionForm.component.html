@@ -45,6 +45,11 @@
         </div>
       </fieldset>
       <br>
+      <label for="estFacile">
+        Question facile
+        <input class="input-custom" type="checkbox" id="estFacile" formControlName="estFacile">
+      </label>
+      <br><br>
       <button *ngIf="!getEdit()" type="submit" class="button-card" (click)="addQuestion()" [routerLink]="['/ListeQuestionPage']">Create</button>
       <button *ngIf="getEdit()" type="submit" class="button-card" (click)="updateQuestion()" [routerLink]="['/ListeQuestionPage']">Update</button>
     </form>

@@ -1,0 +1,17 @@
+<h1>{{currentQuiz.name}}</h1>
+
+<button class="button-card" [routerLink]="['/ListeQuizPage']"(click)="playBackSound()">Retour</button>
+<div >
+    <span>
+        <h2> Questions presentes dans le quiz : </h2>
+
+        <button [routerLink]="['/ListeQuestionAdable']">Ajouter</button>
+    
+        
+            <div *ngFor="let question of currentQuiz.questions">
+                 <app-Question [question]="question" (deleteQuestion)="deleteQuestionForQuiz($event)"></app-Question> 
+            </div>
+        
+    </span>
+
+</div>

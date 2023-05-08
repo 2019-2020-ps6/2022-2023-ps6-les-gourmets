@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ButtonSound } from 'src/models/ButtonSound';
+import { JouerService } from 'src/service/jouer.service';
 
 @Component({
   selector: 'app-MenuChoixCreation',
@@ -8,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 
 export class MenuChoixCreation implements OnInit {
 
-  constructor() {
+  constructor(private jouerService : JouerService) {
   }
 
   ngOnInit(): void {
   }
+  playBackSound(){
+    this.jouerService.playButtonSimpleSound(ButtonSound.back)}
 }

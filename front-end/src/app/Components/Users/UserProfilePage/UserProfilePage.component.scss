@@ -7,16 +7,30 @@ h1,h2{
 div{
     display: flex;
     flex-direction: row;
+
     align-items: center;
     justify-content: center;
     height: 100%;
-    
+    width: vw;
+
+}
+
+
+.userquizzes{
+    display: flex;
+    flex-direction: column;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: vw;
+
 }
 
 span{
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 100%;
@@ -44,4 +58,20 @@ button:hover {
     cursor: pointer;
     background-color: #7f858ed1;
     color: #F2F2F2;
+}
+
+.formC {
+  width: 75%;
+  //center
+  margin: 0 auto;
+  //border: 1px solid #ccc;
+  padding: 1rem;
+  background-color: #445570;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  margin: 0;
+  color:#f2f2f2;
+  position: relative;
+  left: 12.5%;
+  border: solid 1px #f2f2f2;
 }

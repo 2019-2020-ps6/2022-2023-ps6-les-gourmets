@@ -16,8 +16,8 @@ export class UserService {
     }
 
     //The list of User. The list is retrieved from the mock.
-private Users: User[] = USERS; // Ici on initialise la valeur avec un mock User_LIST
-private UserSelected!: User; // Ici on initialise la valeur avec un mock User
+public Users: User[] = USERS; // Ici on initialise la valeur avec un mock User_LIST
+public UserSelected!: User; // Ici on initialise la valeur avec un mock User
 
 public Users$: BehaviorSubject<User[]> = new BehaviorSubject(this.Users); // Ici on crée un observable qui va permettre de récupérer la liste des User
 public UserSelected$: BehaviorSubject<User> = new BehaviorSubject(this.UserSelected); // Ici on crée un observable qui va permettre de récupérer un User sélectionné
@@ -85,7 +85,7 @@ deleteUser(value: User) {
   for(let i=0; i< this.UserSelected.quizzes.length;i++){
     if(quiz.id==this.UserSelected.quizzes[i].id){
       this.UserSelected.quizzes[i].timerMoyen=((this.UserSelected.quizzes[i].timerMoyen*this.UserSelected.quizzes[i].times)+timer)/(this.UserSelected.quizzes[i].times+1);
-      console.log(this.UserSelected.quizzes[i].timerMoyen);
+      // console.log(this.UserSelected.quizzes[i].timerMoyen);
       this.UserSelected.quizzes[i].times+=1;
   }
  }

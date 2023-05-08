@@ -1,12 +1,15 @@
 <h1>Créer un profil</h1>
+<button class="button-card" [routerLink]="['/UserList']"(click)="playBackSound()">Retour</button>
 <form [formGroup]="userForm">
     <label for="title">
+    <h2>Nom : </h2>
     <input class="input-custom" type="text" id="name" [formControlName]="'name'">
     </label>
     <label for="title">
+    <h2>Prénom : </h2>
     <input class="input-custom" type="text" id="surname" [formControlName]="'surname'">
     </label>
-    <button type="submit" class="button-card" (click)="addUser()" [routerLink]="'/UserProfilePage'">Create</button>
+    <button type="submit" class="button-card" (click)="addUser()" [routerLink]="'/UserProfilePage'">Créer</button>
 
 </form>
 <!-- <br> data: {{userForm.getRawValue() | json}} -->

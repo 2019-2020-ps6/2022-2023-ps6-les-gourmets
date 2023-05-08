@@ -1,0 +1,8 @@
+<h1>{{quiz.name}}</h1>
+
+<button class="button-card" [routerLink]="['/QuizEditComponent']"(click)="playBackSound()">Retour</button>
+<div class="Question-List">
+  <div class="Question" *ngFor="let question of QuestionSelectable">
+    <app-Question [question]="question" (deleteQuestion)="addQuestionToQuiz($event)"></app-Question>
+  </div>
+</div>

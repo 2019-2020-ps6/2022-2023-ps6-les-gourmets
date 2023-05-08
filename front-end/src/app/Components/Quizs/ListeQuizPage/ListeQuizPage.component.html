@@ -1,6 +1,7 @@
-<h1>Page des quizs</h1>
+<h1>Page des quiz</h1>
 <div>
-    <button class="button-card" [routerLink]="['/QuizForm']">Ajouter un quiz</button>
+    <button class="button-card" [routerLink]="['/MenuChoixCreation']"(click)="playBackSound()">Retour</button>
+    <button class="button-card" [routerLink]="['/QuizForm']"(click)="playAddSound()">Ajouter un quiz</button>
 </div>
 
 <app-ListeQuiz></app-ListeQuiz>

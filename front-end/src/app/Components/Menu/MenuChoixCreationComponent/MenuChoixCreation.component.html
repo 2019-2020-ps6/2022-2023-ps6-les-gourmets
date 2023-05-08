@@ -1,6 +1,10 @@
+
+
 <div class="retour">
-  <button class="button-card-return" [routerLink]="['/Menu']"><-</button>
+  <button class="button-card-return" [routerLink]="['/Menu']" (click)="playBackSound()"><-</button>
 </div>
+<h1>Que voulez vous gérer ? </h1>
+<br>
   <div class="menu">
     <button class="button-card" [routerLink]="['/ListeQuestionPage']">Question</button>
     <button class="button-card" [routerLink]="['/ListeQuizPage']" >Quiz</button>

@@ -8,6 +8,7 @@ import { User } from 'src/models/User.model';
 import { UserService } from 'src/service/user.service';
 import { Router } from '@angular/router';
 import { JouerService } from 'src/service/jouer.service';
+import { ButtonSound } from 'src/models/ButtonSound';
 
 
 
@@ -28,9 +29,12 @@ export class GamePageComponent implements OnInit {
   nbAnswers: number;
   quitPopup !: boolean;
   PopupVisibility: string = "hidden";
+  ezActivited: boolean = false;
 
   @HostListener("document:mousedown",['$event'])
   onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
+  @HostListener("document:mousemove",['$event'])
+  onMove(event: MouseEvent){this.jouerService.mouseMoveInQuiz(event);}
 
   @Output()
     selectedAnswers = {};
@@ -39,8 +43,6 @@ export class GamePageComponent implements OnInit {
    changeQuestion() : void{
        this.currentQuestion.emit(this.quiz.nextQuestion());
    }*/
-
-
 
     submit(): void {
       console.log(this.selectedAnswers);
@@ -60,18 +62,23 @@ export class GamePageComponent implements OnInit {
       this.quiz.questions.sort(() => {
         return Math.random() - 0.5;
       });
+      const timeout = this.userService.getCurrentUser().passivity * 20000 + 30000;
+
+      //console.log("timeout: " + timeout);
+      this.jouerService.setTimeout(timeout);
       this.currentQuestion = this.quiz.questions[0];
       this.nbAnswers = this.quiz.questions.length;
-      jouerService.chronoStart();
+      jouerService.quizLaunch();
     }
 
     ngOnInit(): void {
-      //this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
+
       this.currentQuestion = this.quiz.questions[0];
+
     }
 
     NextQuestion(): void {
-
+      
       if (!this.answers[this.currentQuestionIndex]){
         this.quiz.questions.push(this.currentQuestion);
       }
@@ -79,10 +86,19 @@ export class GamePageComponent implements OnInit {
       this.ChangeQuestion();
     }
     SkipQuestion(){
+      
       this.quiz.questions.push(this.currentQuestion);
       this.ChangeQuestion();
     }
     ChangeQuestion(){
+      if(this.user.answerDisplay) this.jouerService.playButtonSimpleSound(ButtonSound.NextQuestion)
+      if(this.jouerService.getRage() ){
+        if(this.ezActivited==false){
+          this.ezActivited=true;
+          this.InsertEasyQuestion2();
+        }
+
+      }
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex < this.quiz.questions.length) {
         this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
@@ -90,6 +106,43 @@ export class GamePageComponent implements OnInit {
       }
       else{ this.endQuiz()}
 
+    }
+
+    InsertEasyQuestion(){
+      this.jouerService.untriggerRage();
+      var eznumber = this.quiz.easyQuestions.length;
+      var number =this.quiz.questions.length;
+      console.log("oui");
+      for(var i = 0; i < eznumber; i++){
+        this.quiz.questions.push(this.quiz.easyQuestions[i]);
+
+        console.log(this.quiz.questions[number+i])
+        console.log(this.quiz.questions[this.currentQuestionIndex+i])
+        this.InvertQuestion(this.quiz.questions[number+i],this.quiz.questions[this.currentQuestionIndex+i]);
+        console.log(this.quiz.questions[number+i])
+        console.log(this.quiz.questions[this.currentQuestionIndex+i])
+        this.nbAnswers++;
+      }
+
+    }
+
+    InsertEasyQuestion2(){
+      this.jouerService.untriggerRage();
+      const eznumber = this.quiz.easyQuestions.length;
+      const currentIndex = this.currentQuestionIndex;
+
+      console.log("oui");
+      for (let i = 0; i < eznumber; i++) {
+        // Insérer la question facile après la question courante
+        this.quiz.questions.splice(currentIndex + 1 + i, 0, this.quiz.easyQuestions[i]);
+        this.nbAnswers++;
+      }
+    }
+
+    InvertQuestion(q1:Question,q2:Question): void {
+      let temp: Question = q1;
+      q1 = q2;
+      q2 = temp;
     }
 
     validateQuestion(answer:boolean): void {
@@ -140,18 +193,22 @@ export class GamePageComponent implements OnInit {
     }
 
     hidepopup(){
-      //put popup visibility to none
-      this.PopupVisibility = "hidden";
+      this.jouerService.playButtonSimpleSound(ButtonSound.back)
+      this.jouerService.quitPopupVisibility(false);
     }
 
     showpopup(){
-      //put popup visibility to none
-      this.PopupVisibility = "show";
-    }ngOnDestroy() {
+      this.jouerService.quitPopupVisibility(true);
+    }
+
+    ngOnDestroy() {
       this.jouerService.playBackgroundMusic();
       this.jouerService.reset();
     }
-  
+
+
+
+
 
 }
 
