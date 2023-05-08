@@ -16,6 +16,7 @@ export class QuizEditComponent {
 
   constructor(private quizService: QuizService, private jouerService : JouerService) {
     this.currentQuiz = quizService.quizSelected$.getValue();
+    console.log(this.currentQuiz);
     
   }
 

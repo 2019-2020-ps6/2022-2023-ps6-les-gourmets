@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { ButtonSound } from 'src/models/ButtonSound';
 import { Question } from 'src/models/question.model';
 import { JouerService } from 'src/service/jouer.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-Question',
@@ -24,7 +25,12 @@ export class QuestionComponent implements OnInit {
   @Output()
   deleteQuestion: EventEmitter<Question> = new EventEmitter<Question>();
 
-  constructor(private jouerService : JouerService) {
+  public DeleteorAdd: String = "Delete";
+
+  constructor(route: ActivatedRoute, private jouerService : JouerService) {
+    route.url.subscribe((url) =>
+    this.DeleteorAdd = (route.snapshot.url[0].path == "ListeQuestionAdable") ? "Ajouter" : "Supprimer"
+    );
   }
 
   ngOnInit(): void {
