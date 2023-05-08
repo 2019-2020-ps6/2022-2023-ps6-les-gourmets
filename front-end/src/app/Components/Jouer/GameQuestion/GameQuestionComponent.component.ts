@@ -3,6 +3,7 @@ import { Answer } from 'src/models/question.model';
 import { Question } from 'src/models/question.model';
 import { JouerService } from 'src/service/jouer.service';
 
+
 @Component({
     selector: 'app-GameQuestion',
     templateUrl: './GameQuestionComponent.component.html',
