@@ -11,6 +11,9 @@
             <div *ngFor="let question of currentQuiz.questions">
                  <app-Question [question]="question" (deleteQuestion)="deleteQuestionForQuiz($event)"></app-Question> 
             </div>
+            <div *ngFor="let question of currentQuiz.easyQuestions">
+                <app-Question [question]="question" (deleteQuestion)="deleteQuestionForQuiz($event)"></app-Question> 
+           </div>
         
     </span>
 

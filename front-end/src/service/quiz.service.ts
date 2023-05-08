@@ -42,16 +42,12 @@ deleteQuiz(quiz: Quiz) {
   addQuestionForQuiz(question : Question){
     if(this.quizSelected.questions.indexOf(question)==-1) this.quizSelected.questions.push(question) ;
     this.quizSelected$.next(this.quizSelected);
-    console.log("Add Question For Quiz");
-    console.log(this.quizSelected);
   }
 
   deleteQuestionForQuiz(question : Question){
     this.quizSelected.questions = this.quizSelected.questions.filter(value => value !== question);
     this.QuizUpdate(this.quizSelected);
     this.quizSelected$.next(this.quizSelected);
-    console.log("Delete Question For Quiz");
-    console.log(this.quizSelected);
   }
 
   QuizUpdate(quizModified: Quiz){

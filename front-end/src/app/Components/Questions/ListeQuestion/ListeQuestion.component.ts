@@ -23,7 +23,6 @@ export class ListeQuestion implements OnInit {
     ngOnInit(): void {}
 
     questionSelected(selected: boolean): void {
-      console.log('event received from child:', selected);
     }
 
    /* editQuestion(question: Question): void {

@@ -30,7 +30,6 @@ export class QuizFormComponent implements OnInit {
 
   addQuiz(): void {
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
-    console.log(quizToCreate);
     this.quizService.addQuiz(quizToCreate);
   }
   

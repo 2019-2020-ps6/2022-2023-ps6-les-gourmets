@@ -45,7 +45,6 @@ export class GamePageComponent implements OnInit {
    }*/
 
     submit(): void {
-      console.log(this.selectedAnswers);
     }
 
     constructor(private router: Router,public quizService:QuizService, public userService:UserService,public jouerService:JouerService) {
@@ -62,9 +61,7 @@ export class GamePageComponent implements OnInit {
       this.quiz.questions.sort(() => {
         return Math.random() - 0.5;
       });
-      const timeout = this.userService.getCurrentUser().passivity * 20000 + 30000;
-
-      //console.log("timeout: " + timeout);
+      const timeout = this.userService.getCurrentUser().passivity * 20000 + 15000;
       this.jouerService.setTimeout(timeout);
       this.currentQuestion = this.quiz.questions[0];
       this.nbAnswers = this.quiz.questions.length;
@@ -112,15 +109,9 @@ export class GamePageComponent implements OnInit {
       this.jouerService.untriggerRage();
       var eznumber = this.quiz.easyQuestions.length;
       var number =this.quiz.questions.length;
-      console.log("oui");
       for(var i = 0; i < eznumber; i++){
         this.quiz.questions.push(this.quiz.easyQuestions[i]);
-
-        console.log(this.quiz.questions[number+i])
-        console.log(this.quiz.questions[this.currentQuestionIndex+i])
         this.InvertQuestion(this.quiz.questions[number+i],this.quiz.questions[this.currentQuestionIndex+i]);
-        console.log(this.quiz.questions[number+i])
-        console.log(this.quiz.questions[this.currentQuestionIndex+i])
         this.nbAnswers++;
       }
 
@@ -130,8 +121,6 @@ export class GamePageComponent implements OnInit {
       this.jouerService.untriggerRage();
       const eznumber = this.quiz.easyQuestions.length;
       const currentIndex = this.currentQuestionIndex;
-
-      console.log("oui");
       for (let i = 0; i < eznumber; i++) {
         // Insérer la question facile après la question courante
         this.quiz.questions.splice(currentIndex + 1 + i, 0, this.quiz.easyQuestions[i]);

@@ -52,7 +52,8 @@ const routes: Routes = [
   { path: 'ListeQuestionPage', component: ListeQuestionPage },
   { path: 'ChoixUser', component: ChoixUser },
   { path: 'ChoixQuiz', component: ChoixQuiz },
-  { path: 'ListeQuizAdable', component: ListeQuizAdable }
+  { path: 'ListeQuizAdable', component: ListeQuizAdable },
+  { path: 'ChoixTypeQuestion', component: ChoixTypeQuestion }
 ];
 
 @NgModule({

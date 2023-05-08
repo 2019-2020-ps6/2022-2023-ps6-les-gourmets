@@ -9,7 +9,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   })
     export class QuestionService {  
     //The list of question. The list is retrieved from the mock.
-    private questions: Question[] = QUESTIONLIST_ACTOR; // Ici on initialise la valeur avec un mock QUESTIONLIST
+    private questions: Question[] = JSON.parse(JSON.stringify(QUESTIONLIST_ACTOR)); // Ici on initialise la valeur avec un mock QUESTIONLIST
     private questionSelected!: Question;
     private edit!: boolean;
 

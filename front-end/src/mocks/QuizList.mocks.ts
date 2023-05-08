@@ -188,7 +188,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
         ],
         trueAnswer: 10,
         falseAnswer: 25,
-        estFacile: false,
+        estFacile: true,
     },
     {
       id: '2',
@@ -218,7 +218,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
 
         trueAnswer: 5,
         falseAnswer: 17,
-        estFacile: false,
+        estFacile: true,
     }
   
     ];  
@@ -227,8 +227,8 @@ export const QUIZ_LIST: Quiz[] = [
   {
     id: '1',
     name: 'Les Acteurs',
-    questions: QUESTIONLIST_ACTOR,
-    easyQuestions: EZQUESTIONLIST_ACTOR,
+    questions: JSON.parse(JSON.stringify(QUESTIONLIST_ACTOR)),
+    easyQuestions: JSON.parse(JSON.stringify(EZQUESTIONLIST_ACTOR)),
     timerMoyen:45000,
     times:2
   },

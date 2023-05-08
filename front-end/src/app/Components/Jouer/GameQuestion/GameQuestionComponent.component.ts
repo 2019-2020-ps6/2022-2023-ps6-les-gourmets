@@ -21,17 +21,12 @@ import { JouerService } from 'src/service/jouer.service';
     }
 
     ngOnInit(): void {
-      //Randomise answers order
-      // console.log(this.question)
       this.question.answers.sort(() => {
         return Math.random() - 0.5;
       })
     }
 
     answerSelected(answer: boolean): void {
-      if (answer==true){
-        console.log(answer);
-      }
       this.jouerService.playButtonSimpleSound();
       this.nextQuestion.emit(answer)
 
