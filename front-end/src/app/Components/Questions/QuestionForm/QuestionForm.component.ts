@@ -47,7 +47,9 @@ export class QuestionFormComponent implements OnInit {
           value: [this.question.answers[3].value],
           isCorrect: [this.question.answers[3].isCorrect],
         }),
-      ])
+      ]),
+      trueAnswer: 0,
+      falseAnswer: 0
     });
   }
 

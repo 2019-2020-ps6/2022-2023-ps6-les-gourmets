@@ -3,7 +3,7 @@
   <h1>Vous avez mis {{minutes}} minutes et {{secondes}} secondes, Bravo !</h1>
   <button [routerLink]="['/GamePageComponent']">Refaire le Quiz</button>
   <button [routerLink]="['/ChoixQuiz']">Choisir un autre quiz</button>
-  <button *ngIf="!StatsOn" (click)="statsOn()">Afficher les bonnes réponses</button>
+  <button *ngIf="!StatsOn" (click)="statsOn()">Afficher les réponses</button>
   <div *ngIf="StatsOn">
       <span>
         <ul>
