@@ -14,6 +14,8 @@ import { ActivatedRoute } from '@angular/router';
 
 export class QuestionComponent implements OnInit {
 
+  public isMod: Boolean = false;
+
   @Input()
   question!: Question;
 
@@ -28,6 +30,8 @@ export class QuestionComponent implements OnInit {
   public DeleteorAdd: String = "Delete";
 
   constructor(route: ActivatedRoute, private jouerService : JouerService, private questionService: QuestionService) {
+    route.url.subscribe((url) =>
+    this.isMod = (route.snapshot.url[0].path == "ListeQuestionPage")) ;
     route.url.subscribe((url) =>
     this.DeleteorAdd = (route.snapshot.url[0].path == "ListeQuestionAdable") ? "Ajouter" : "Supprimer"
     );

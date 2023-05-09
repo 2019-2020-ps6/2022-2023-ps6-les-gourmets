@@ -4,32 +4,32 @@
 <div class="page">
 <div class="card">
   
-    <h2>Create a new Question</h2>
+    <h2>Créer une nouvelle question</h2>
     <form class="question-form" [formGroup]="questionForm">
       <label for="title">
         Title <br>
         <input class="input-custom" type="text" id="label" formControlName="label"><br><br><br>
-        Answer 1 <br>
+        réponse 1 <br>
       </label>
       <div formArrayName="answers">
         <div [formGroupName]="0">
           <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
         </div>
-        Answer 2 <br>
+        réponse 2 <br>
         <div [formGroupName]="1">
           <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
         </div>
-        Answer 3 <br>
+        réponse 3 <br>
         <div [formGroupName]="2">
           <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
         </div>
-        Answer 4 <br>
+        réponse 4 <br>
         <div [formGroupName]="3">
           <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
         </div>
       </div>
       <fieldset>
-        <legend>wich answer is true:</legend>
+        <legend>Cocher la bonne réponse:</legend>
         <div>
           <input type="radio" id="Choice1" (change)="onAnswerSelected(0)" />
           <label for="Choice1">1</label>

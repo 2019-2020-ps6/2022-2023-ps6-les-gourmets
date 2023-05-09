@@ -12,7 +12,7 @@ import { UserService } from './user.service';
 
 export class QuizService {
     //The list of quiz. The list is retrieved from the mock.
-private quizzes: Quiz[] = QUIZ_LIST; // Ici on initialise la valeur avec un mock QUIZ_LIST
+private quizzes: Quiz[] = JSON.parse(JSON.stringify(QUIZ_LIST)); // Ici on initialise la valeur avec un mock QUIZ_LIST
 private quizSelected!: Quiz; // Ici on initialise la valeur avec un mock QUIZ_LIST
 
 public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes); // Ici on crée un observable qui va permettre de récupérer la liste des quiz
@@ -40,14 +40,49 @@ deleteQuiz(quiz: Quiz) {
   }
 
   addQuestionForQuiz(question : Question){
-    if(this.quizSelected.questions.indexOf(question)==-1) this.quizSelected.questions.push(question) ;
+    if(question.estFacile){
+      if(this.quizSelected.easyQuestions.indexOf(question)==-1){
+        this.quizSelected.easyQuestions.push(question) ;
+      }
+    }else {
+      if(this.quizSelected.questions.indexOf(question)==-1){
+        this.quizSelected.questions.push(question) ;
+      }
+    }
+    this.QuizUpdate(this.quizSelected);
     this.quizSelected$.next(this.quizSelected);
   }
 
   deleteQuestionForQuiz(question : Question){
-    this.quizSelected.questions = this.quizSelected.questions.filter(value => value !== question);
+    if(question.estFacile){
+      this.quizSelected.easyQuestions = this.quizSelected.easyQuestions.filter(value => value !== question);
+    }else{
+      this.quizSelected.questions = this.quizSelected.questions.filter(value => value !== question);
+    }
     this.QuizUpdate(this.quizSelected);
     this.quizSelected$.next(this.quizSelected);
+  }
+
+  updateQuestionForQuiz(questionToChange : Question, newQuestion : Question) {
+    if(questionToChange.estFacile){
+      this.quizzes.forEach(quiz=>{
+        quiz.easyQuestions = quiz.easyQuestions.filter(u => u.id !== questionToChange.id);
+        if(newQuestion.estFacile){
+          quiz.easyQuestions.push(newQuestion);
+        }else{
+          quiz.questions.push(newQuestion);
+        }
+      })
+    }else {
+      this.quizzes.forEach(quiz=>{
+        quiz.questions = quiz.questions.filter(u => u.id !== questionToChange.id);
+        if(newQuestion.estFacile){
+          quiz.easyQuestions.push(newQuestion);
+        }else{
+          quiz.questions.push(newQuestion);
+        }
+      })
+    }
   }
 
   QuizUpdate(quizModified: Quiz){
