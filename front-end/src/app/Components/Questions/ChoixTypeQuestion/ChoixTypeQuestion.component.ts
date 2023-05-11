@@ -18,7 +18,7 @@ export class ChoixTypeQuestion implements OnInit {
 
   selectType(type:string): void {
     const nouvelleQuestion: Question = {
-        id: '12',
+        id:  12,
         label: '',
         type:type,
         answers: [

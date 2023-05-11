@@ -2,7 +2,7 @@ import { Question } from "src/models/question.model";
 import { Quiz } from "src/models/quiz.model";
 
 export const QUESTION_ACTOR: Question = {
-    id: '1',
+    id: 0,
     label: 'Jean Gabin a joué dans...',
     answers: [
         {
@@ -33,7 +33,7 @@ export const QUESTION_ACTOR: Question = {
 
 export const QUESTIONLIST_ACTOR: Question[] = [
   {
-    id: '1',
+    id: 1,
     label: 'Jean Gabin a joué dans...',
     answers: [
         {
@@ -62,7 +62,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
       estFacile: false,
   },
   {
-    id: '2',
+    id: 2,
     label: 'Jean Reno a joué dans...',
     answers: [
         {
@@ -92,7 +92,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
       estFacile: false,
   },
   {
-    id:'3',
+    id:3,
     label: 'Jean Dujardin a joué dans...',
     answers: [
         {
@@ -122,7 +122,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
 
   },
   {
-    id: '4',
+    id: 4,
     label: 'Lequel de ces acteurs est Louis de Funès',
     answers: [
         {
@@ -162,7 +162,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
   
   export const EZQUESTIONLIST_ACTOR: Question[] = [
     {
-      id: '1',
+      id: 5,
       label: 'la capitale de la France est...',
       answers: [
           {
@@ -191,7 +191,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
         estFacile: true,
     },
     {
-      id: '2',
+      id: 6,
       label: 'Le mer est ',
       answers: [
           {
@@ -225,7 +225,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
 
 export const QUIZ_LIST: Quiz[] = [
   {
-    id: '1',
+    id: 7,
     name: 'Les Acteurs',
     questions: JSON.parse(JSON.stringify(QUESTIONLIST_ACTOR)),
     easyQuestions: JSON.parse(JSON.stringify(EZQUESTIONLIST_ACTOR)),
@@ -234,7 +234,7 @@ export const QUIZ_LIST: Quiz[] = [
   },
 
   {
-    id: '2',
+    id: 8,
     name: 'Les technos WEB',
     questions: [],
     easyQuestions: [],

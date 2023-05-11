@@ -25,6 +25,15 @@
     <h2>Afficher les réponses justes : </h2>
     <input class="input-custom" type="checkbox" id="answerDisplay" [formControlName]="'answerDisplay'">
   </div>
+  <h2>Liste des musiques : </h2><br>
+  <div>
+    <input class="input-custom" type="text" id="music" >
+    <button class="addButton" (click)="addMusic()"> Ajouter</button>
+  </div>
+  <div *ngFor="let music of UserModified.music">
+    <button (click)="deleteMusic(music)"> Retirer {{music}}</button>
+  </div>
+  
 
 </form>
 <div class="userquizzes">

@@ -10,10 +10,10 @@
         <br>
         <span>
             <div *ngFor="let question of currentQuiz.questions">
-                <app-Question [question]="question" (deleteQuestion)="deleteQuestionForQuiz($event)"></app-Question> 
+                <app-Question [question]="question" (deleteQuestion)="removeQuestionForQuiz($event)"></app-Question> 
             </div>
             <div *ngFor="let question of currentQuiz.easyQuestions">
-                <app-Question [question]="question" (deleteQuestion)="deleteQuestionForQuiz($event)"></app-Question> 
+                <app-Question [question]="question" (deleteQuestion)="removeQuestionForQuiz($event)"></app-Question> 
             </div>
         </span>
     </div>

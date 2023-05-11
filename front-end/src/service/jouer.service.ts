@@ -129,10 +129,12 @@ export class JouerService {
 
     public playUserMusic(path : string|null){
         this.stopMusic(this.backgroundMusic);
-        if(this.UserMusic == null && path!=null){
+        if(path!=null){
             this.UserMusic = new AudioFade('assets/Music/'+path);
         }
-        this.UserMusic.play(0.5);
+        if(this.UserMusic!=undefined){
+          this.UserMusic.play(0.5);
+        }
     }
 
 

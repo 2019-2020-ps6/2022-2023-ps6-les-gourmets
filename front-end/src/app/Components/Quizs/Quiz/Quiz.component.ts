@@ -35,7 +35,7 @@ export class QuizComponent implements OnInit {
     route.url.subscribe((url) =>
     this.isMod = (route.snapshot.url[0].path == "ListeQuizPage")) ;
     route.url.subscribe((url) =>
-    this.isAdd = (route.snapshot.url[0].path == "UserProfilePage" || route.snapshot.url[0].path == "ListeQuizAdable")) ;
+    this.isAdd = (route.snapshot.url[0].path == "ListeQuizPage" || route.snapshot.url[0].path == "UserProfilePage" || route.snapshot.url[0].path == "ListeQuizAdable")) ;
     route.url.subscribe((url) =>
     this.isPlay = (route.snapshot.url[0].path == "ChoixQuiz"));
     route.url.subscribe((url) =>

@@ -20,16 +20,13 @@ export class ListeQuestionAdable implements OnInit {
     public QuestionSelectable: Question[] = [];
 
     constructor(public questionService: QuestionService, public quizService: QuizService,private jouerService: JouerService) {
+      this.questionService.questions$.subscribe((questionList: Question[]) => {
+        this.questionList = questionList;
+      });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
         this.quiz = quiz;
         this.updateQuestionSelectable();
       });
-      this.questionService.questions$.subscribe((questionList: Question[]) => {
-        this.questionList = questionList;
-      });
-      this.QuestionSelectable = this.questionList.filter(
-        (quiz) => !this.quiz.questions.includes(quiz)
-      );
     }
 
     ngOnInit(): void {}
@@ -42,9 +39,22 @@ export class ListeQuestionAdable implements OnInit {
     }
 
     updateQuestionSelectable(): void {
-      this.QuestionSelectable = this.questionList.filter(
-        (quiz) => !this.quiz.questions.includes(quiz)
-      );
+      this.QuestionSelectable = this.questionList;
+      console.log(this.QuestionSelectable);
+      this.quiz.questions.forEach(q=>{
+        this.QuestionSelectable = this.QuestionSelectable.filter(
+          question => q.id!=question.id
+        );
+        console.log(this.QuestionSelectable);
+        console.log(this.quiz.questions);
+        console.log(this.questionList);
+      })
+      this.quiz.easyQuestions.forEach(q=>{
+        this.QuestionSelectable = this.QuestionSelectable.filter(
+          question => q.id!=question.id
+          
+        );
+      })
     }
     playBackSound(){
       this.jouerService.playButtonSimpleSound(ButtonSound.back)

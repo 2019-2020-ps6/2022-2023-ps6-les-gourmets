@@ -51,7 +51,7 @@ export class QuestionComponent implements OnInit {
     this.editQuestion.emit(this.question);
   }
 
-  delete(): void {
+  remove(): void {
     this.jouerService.playButtonSimpleSound(ButtonSound.deleteSound);
     this.deleteQuestion.emit(this.question);
   }

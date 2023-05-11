@@ -19,9 +19,9 @@ export class QuizEditComponent {
     
   }
 
-  public deleteQuestionForQuiz(question : Question){
+  public removeQuestionForQuiz(question : Question){
     this.quizService.selectQuiz(this.currentQuiz);
-    this.quizService.deleteQuestionForQuiz(question);
+    this.quizService.removeQuestionForQuiz(question);
   }
 
   

@@ -14,17 +14,22 @@ export class QuizService {
     //The list of quiz. The list is retrieved from the mock.
 private quizzes: Quiz[] = JSON.parse(JSON.stringify(QUIZ_LIST)); // Ici on initialise la valeur avec un mock QUIZ_LIST
 private quizSelected!: Quiz; // Ici on initialise la valeur avec un mock QUIZ_LIST
+private id:number = 100;
 
 public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes); // Ici on crée un observable qui va permettre de récupérer la liste des quiz
 public quizSelected$: BehaviorSubject<Quiz> = new BehaviorSubject(this.quizSelected); // Ici on crée un observable qui va permettre de récupérer un quiz sélectionné
 
 // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
-constructor(private userService: UserService) { }
+constructor(private userService: UserService) {
+
+ }
 
 retrieveQuizes(): void {
 }
 
 addQuiz(quiz : Quiz) {
+  this.id++;
+  quiz.id=this.id;
   this.quizzes.push(quiz);
   this.quizzes$.next(this.quizzes);
 }
@@ -53,11 +58,11 @@ deleteQuiz(quiz: Quiz) {
     this.quizSelected$.next(this.quizSelected);
   }
 
-  deleteQuestionForQuiz(question : Question){
+  removeQuestionForQuiz(question : Question){
     if(question.estFacile){
-      this.quizSelected.easyQuestions = this.quizSelected.easyQuestions.filter(value => value !== question);
+      this.quizSelected.easyQuestions = this.quizSelected.easyQuestions.filter(value => value.id !== question.id);
     }else{
-      this.quizSelected.questions = this.quizSelected.questions.filter(value => value !== question);
+      this.quizSelected.questions = this.quizSelected.questions.filter(value => value.id !== question.id);
     }
     this.QuizUpdate(this.quizSelected);
     this.quizSelected$.next(this.quizSelected);
@@ -66,27 +71,31 @@ deleteQuiz(quiz: Quiz) {
   updateQuestionForQuiz(questionToChange : Question, newQuestion : Question) {
     if(questionToChange.estFacile){
       this.quizzes.forEach(quiz=>{
-        quiz.easyQuestions = quiz.easyQuestions.filter(u => u.id !== questionToChange.id);
+        quiz.easyQuestions = quiz.easyQuestions.filter(q => q.id !== questionToChange.id);
         if(newQuestion.estFacile){
           quiz.easyQuestions.push(newQuestion);
         }else{
           quiz.questions.push(newQuestion);
         }
+        this.QuizUpdate(quiz);
       })
     }else {
       this.quizzes.forEach(quiz=>{
-        quiz.questions = quiz.questions.filter(u => u.id !== questionToChange.id);
+        quiz.questions = quiz.questions.filter(q => q.id !== questionToChange.id);
         if(newQuestion.estFacile){
           quiz.easyQuestions.push(newQuestion);
         }else{
           quiz.questions.push(newQuestion);
         }
+        this.QuizUpdate(quiz);
       })
     }
+    console.log(this.quizzes);
+    this.quizzes$.next(this.quizzes);
   }
 
   QuizUpdate(quizModified: Quiz){
-    this.userService.Users.forEach(user=>{
+    this.userService.getUsers().forEach(user=>{
       user.quizzes.forEach((quiz:Quiz,index:number)=>{
         if(quiz.id==quizModified.id){
           user.quizzes[index]=quizModified;

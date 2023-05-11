@@ -23,7 +23,7 @@ export class UserForm implements OnInit {
         surname: [''],
         quizzes: [],
         aggressivness: 0.5,
-        music : [],
+        music : [[]],
         answerDisplay: false,
       });
     }

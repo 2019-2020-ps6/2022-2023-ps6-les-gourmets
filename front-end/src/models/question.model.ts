@@ -5,7 +5,7 @@ export interface Answer {
 }
 
 export interface Question {
-    id: string;
+    id: number;
     type?: string;
     images?: string[];
     label: string | undefined;

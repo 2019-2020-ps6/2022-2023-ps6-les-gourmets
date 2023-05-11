@@ -14,10 +14,13 @@ export class UserService {
     getCurrentUser() : User {
       return this.UserSelected;
     }
+    getUsers(): User[] {
+      return this.Users;
+    }
 
     //The list of User. The list is retrieved from the mock.
-public Users: User[] = USERS; // Ici on initialise la valeur avec un mock User_LIST
-public UserSelected!: User; // Ici on initialise la valeur avec un mock User
+private Users: User[] = USERS; // Ici on initialise la valeur avec un mock User_LIST
+private UserSelected!: User; // Ici on initialise la valeur avec un mock User
 
 public Users$: BehaviorSubject<User[]> = new BehaviorSubject(this.Users); // Ici on crée un observable qui va permettre de récupérer la liste des User
 public UserSelected$: BehaviorSubject<User> = new BehaviorSubject(this.UserSelected); // Ici on crée un observable qui va permettre de récupérer un User sélectionné
@@ -58,12 +61,11 @@ deleteUser(value: User) {
  }
 
  deleteQuizForProfile(value : Quiz){
-  this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value !== quiz);
+  this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value.id !== quiz.id);
   this.UserSelected$.next(this.UserSelected);
  }
 
  updateUserStats(quiz: Quiz,questions: Question[],answers: boolean[]){
-  
   for(let i=0; i< this.UserSelected.quizzes.length;i++){
     if(quiz.id==this.UserSelected.quizzes[i].id){
       for(let j=0; j<answers.length; j++){
