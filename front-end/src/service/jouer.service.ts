@@ -10,8 +10,6 @@ import { ButtonSound } from 'src/models/ButtonSound';
 })
 
 export class JouerService {
-  // console.log("timer End: " + end);
-  // console.log("timer Value: " + this.Timer);
 
     //Musique permanence
     //Interrompre quiz lors de 2eme rage
@@ -23,16 +21,10 @@ export class JouerService {
 
     chronoStart(){
         this.start = Date.now();
-        // console.log("Timer Start")
-        // console.log("timer Start: " + this.start);
     }
     chronoStop() : number {
         const end = Date.now()
         this.Timer = end - this.start;
-        // console.log("Timer Stop")
-        // console.log("timer Start: " + this.start);
-        // console.log("timer End: " + end);
-        // console.log("timer Value: " + this.Timer);
         return this.Timer;
     }
 
@@ -137,10 +129,12 @@ export class JouerService {
 
     public playUserMusic(path : string|null){
         this.stopMusic(this.backgroundMusic);
-        if(this.UserMusic == null && path!=null){
+        if(path!=null){
             this.UserMusic = new AudioFade('assets/Music/'+path);
         }
-        this.UserMusic.play(0.5);
+        if(this.UserMusic!=undefined){
+          this.UserMusic.play(0.5);
+        }
     }
 
 

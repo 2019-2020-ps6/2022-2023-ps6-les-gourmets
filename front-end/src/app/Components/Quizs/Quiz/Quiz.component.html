@@ -4,10 +4,12 @@
     {{quiz.name}}
   </h2>
   <div class="aroundB" *ngIf="isMod">
-    <button class="button-card" (click)="selectQuiz()" [routerLink]="['/QuizEditComponent']">Select</button>
+    <button class="button-card" (click)="selectQuiz()" [routerLink]="['/QuizEditComponent']">Modifier</button>
+  </div>
+  <div class="aroundB" *ngIf="isAdd">
     <button class="button-card" (click)="delete()">{{DeleteorAdd}}</button>
   </div>
   <div class="aroundB" *ngIf="isPlay">
-    <button class="button-card" (click)="selectQuiz()" [routerLink]="['/GamePageComponent']">Select</button>
+    <button class="button-card" (click)="selectQuiz()" [routerLink]="['/GamePageComponent']">Choisir</button>
 </div>
 </div>

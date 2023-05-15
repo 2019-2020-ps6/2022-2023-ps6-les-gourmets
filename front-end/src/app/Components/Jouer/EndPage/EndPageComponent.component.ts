@@ -36,9 +36,6 @@ import { UserService } from 'src/service/user.service';
         this.questions = JSON.parse(JSON.stringify(questions));
       });
 
-      console.log(this.results);
-      console.log(this.questions);
-
       for(let i = 0; i < this.results.length; i++){
         if(this.results[i] == true){
           this.questionsJustes.push(this.questions[i]);

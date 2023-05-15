@@ -3,6 +3,7 @@ import { Answer } from 'src/models/question.model';
 import { Question } from 'src/models/question.model';
 import { JouerService } from 'src/service/jouer.service';
 
+
 @Component({
     selector: 'app-GameQuestion',
     templateUrl: './GameQuestionComponent.component.html',
@@ -20,17 +21,12 @@ import { JouerService } from 'src/service/jouer.service';
     }
 
     ngOnInit(): void {
-      //Randomise answers order
-      // console.log(this.question)
       this.question.answers.sort(() => {
         return Math.random() - 0.5;
       })
     }
 
     answerSelected(answer: boolean): void {
-      if (answer==true){
-        console.log(answer);
-      }
       this.jouerService.playButtonSimpleSound();
       this.nextQuestion.emit(answer)
 

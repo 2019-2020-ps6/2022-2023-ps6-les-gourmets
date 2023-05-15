@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonSound } from 'src/models/ButtonSound';
 import { Quiz } from 'src/models/quiz.model';
@@ -32,15 +32,13 @@ export class UserProfilePage implements OnInit {
             surname: [this.UserModified.surname],
             aggressivness: this.UserModified.aggressivness,
             passivity: this.UserModified.passivity,
-            answerDisplay: this.UserModified.answerDisplay
+            answerDisplay: this.UserModified.answerDisplay,
+            music: [this.UserModified.music],
         });
         // userService.selectUser(this.UserModified);
     }
     ngOnInit(): void {}
 
-    addQuizForProfile() : void {
-
-    }
     deleteQuizForProfile(value : Quiz) : void {
         this.userService.deleteQuizForProfile(value);
     }
@@ -48,9 +46,11 @@ export class UserProfilePage implements OnInit {
     applyChanges() : void {
       let Quizzs: Quiz[] = [];
       Quizzs = JSON.parse(JSON.stringify(this.UserModified.quizzes));
+      let musics: string[] = [];
+      musics = JSON.parse(JSON.stringify(this.UserModified.music));
       this.UserModified = this.modifs.getRawValue() as User;
       this.UserModified.quizzes = JSON.parse(JSON.stringify(Quizzs));
-
+      this.UserModified.music = JSON.parse(JSON.stringify(musics));
       this.userService.updateUser(this.User, this.UserModified);
       this.User = JSON.parse(JSON.stringify(this.UserModified));
       this.userService.selectUser(this.UserModified);
@@ -66,11 +66,24 @@ export class UserProfilePage implements OnInit {
         this.modifs['controls']['answerDisplay'].setValue(this.User.answerDisplay);
     }
 
-    playBackSound(){
+    playBackSound() : void{
         this.jouerService.playButtonSimpleSound(ButtonSound.back)
 
     }
-    switchPage(){
+    switchPage() : void{
         this.jouerService.playButtonSimpleSound(ButtonSound.NextQuestion)
+    }
+
+    addMusic() : void{
+        const input = document.getElementById(
+            'music',
+          ) as HTMLInputElement;
+        if(!this.UserModified.music.includes(input.value)){
+            this.UserModified.music.push(input.value);
+        }
+    }
+
+    deleteMusic(value : string) : void{
+        this.UserModified.music= this.UserModified.music.filter(m => m!== value);
     }
 }

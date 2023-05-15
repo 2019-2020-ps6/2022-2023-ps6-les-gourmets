@@ -1,4 +1,4 @@
-<h1>Stats de l'utilsateur</h1>
+<h1>Stats de l'utilisateur</h1>
 <div>
   <button [routerLink]="['/UserProfilePage']"(clic)="switchPage()">Retour</button>
 </div>
@@ -16,15 +16,12 @@
       
     </tr>
     <span>
-      <ng-container *ngFor="let quiz of User.quizzes">
         <tr *ngFor="let question of quiz.questions">
           
       
           <td>{{question.label}}</td>
           <td>{{question.trueAnswer / (question.falseAnswer + question.trueAnswer) * 100}}%</td>
         </tr>
-
-      </ng-container>
       
     
       <h2>temps moyen : {{quiz.timerMoyen/1000}} secondes</h2>

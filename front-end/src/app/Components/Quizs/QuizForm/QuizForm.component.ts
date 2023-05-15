@@ -18,7 +18,11 @@ export class QuizFormComponent implements OnInit {
   constructor(public formBuilder: FormBuilder, private quizService: QuizService,private jouerService : JouerService) {
     this.quizForm = this.formBuilder.group({
       id: 7,
-      name: ['']
+      name: [''],
+      questions: [[]],
+      easyQuestions: [[]],
+      timerMoyen: 0,
+      times: 0,
     });
   }
 

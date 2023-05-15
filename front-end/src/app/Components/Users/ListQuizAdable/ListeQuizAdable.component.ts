@@ -22,16 +22,13 @@ export class ListeQuizAdable implements OnInit {
 
 
     constructor(public userService: UserService, public quizService: QuizService, private jouerService : JouerService) {
+      this.quizService.quizzes$.subscribe((quizList: Quiz[]) => {
+        this.quizList = quizList;
+      });
       this.userService.UserSelected$.subscribe((user: User) => {
         this.user = user;
         this.updateQuizSelectable();
       });
-      this.quizService.quizzes$.subscribe((quizList: Quiz[]) => {
-        this.quizList = quizList;
-      });
-      this.QuizSelectable = this.quizList.filter(
-        (quiz) => !this.user.quizzes.includes(quiz)
-      );
     }
 
     ngOnInit(): void {}
@@ -45,9 +42,12 @@ export class ListeQuizAdable implements OnInit {
     }
 
     updateQuizSelectable(): void {
-      this.QuizSelectable = this.quizList.filter(
-        (quiz) => !this.user.quizzes.includes(quiz)
+      this.QuizSelectable = this.quizList;
+      this.user.quizzes.forEach(q=>{
+      this.QuizSelectable = this.QuizSelectable.filter(
+        quiz => q.id!==quiz.id
       );
+      })
     }
     playBackSound(){
       this.jouerService.playButtonSimpleSound(ButtonSound.back);
