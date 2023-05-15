@@ -8,6 +8,5 @@ module.exports = new BaseModel('User', {
     answerDisplay: Joi.boolean().required(),
     quizzes : Joi.array().required(),
     music : Joi.array().required(),
-    id : Joi.number().required(),
     passivity : Joi.number().required(),
 })
