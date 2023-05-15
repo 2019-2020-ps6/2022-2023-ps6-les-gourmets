@@ -7,5 +7,5 @@ module.exports = new BaseModel('Quiz', {
     questions: Joi.array().required(),
     easyQuestions: Joi.array().required(),
     timerMoyen: Joi.number().required(),
-    times: Joi.array().required(),
+    times: Joi.number().required(),
     })
