@@ -25,7 +25,7 @@ export class QuestionFormComponent implements OnInit {
     this.questionForm = this.formBuilder.group({
       id: this.question.id,
       label: [this.question.label],
-      theme: [this.question.theme],
+      themes: [this.question.themes],
       estFacile:[false],
       answers: this.formBuilder.array([
         this.formBuilder.group({
@@ -85,5 +85,14 @@ export class QuestionFormComponent implements OnInit {
       answersFormArray.at(i).patchValue({ isCorrect: i === index });
     }
   }
+
+  addTheme() : void{
+    const input = document.getElementById(
+        'theme',
+      ) as HTMLInputElement;
+}
+deleteMusic(value : string) : void{
+  this.UserModified.themes= this.UserModified.music.filter(m => m!== value);
+}
 
 }

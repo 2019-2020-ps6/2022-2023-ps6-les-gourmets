@@ -8,9 +8,11 @@ import { JouerService } from 'src/service/jouer.service';
     styleUrls: ['./ListeQuestionPage.component.scss']
 })
 export class ListeQuestionPage implements OnInit {
-    public themeSelected:string;
+    theme:string;
+    afficheTheme:boolean;
     constructor(private jouerService : JouerService) {
-      this.themeSelected="";
+      this.theme="";
+      this.afficheTheme=false;
     }
     ngOnInit(): void {}
     playBackSound(){
@@ -21,7 +23,14 @@ export class ListeQuestionPage implements OnInit {
     }
 
     chooseTheme(theme:string): void{
-      this.themeSelected=theme;
+      console.log("oui");
+      this.theme=theme;
+      this.afficheTheme=false;
+    }
+
+    changeAffichage(): void{
+      console.log(this.afficheTheme);
+      this.afficheTheme=!this.afficheTheme;
     }
 
 }

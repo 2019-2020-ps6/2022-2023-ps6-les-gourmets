@@ -9,8 +9,12 @@
       <label for="title">
         Question <br>
         <input class="input-custom" type="text" id="label" formControlName="label"><br><br><br>
-        Theme <br>
-        <input class="input-custom" type="text" id="label" formControlName="theme"><br><br><br>
+        Themes <br>
+        <input class="input-custom" type="text" id="theme" formControlName="themes"><br><br>
+        <button class="button-card" (click)="addTheme()"> Ajouter</button><br><br>
+        <div *ngFor="let theme of this.getPreview().themes">
+          <button (click)="deleteTheme(theme)"> Retirer {{theme}}</button>
+        </div>
         réponse 1 <br>
       </label>
       <div formArrayName="answers">

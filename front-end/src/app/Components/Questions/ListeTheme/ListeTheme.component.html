@@ -1,5 +1,5 @@
 <div class="theme-list">
-  <div class="Question" *ngFor="let question of quizQuestion">
-    <button (click)="selectTheme(question.theme)">{{question.theme}}</button>
+  <div class="Question" *ngFor="let theme of allThemes()">
+    <button class="button-card" (click)="selectTheme(theme)">{{theme}}</button>
   </div>
 </div>

@@ -22,6 +22,17 @@ export class ListeTheme implements OnInit {
 
     ngOnInit(): void {}
 
+    allThemes(): string[]{
+        let themes:string[] = [];
+        for(let question of this.quizQuestion){
+            for(let questionThemes of question.themes)
+            if(!themes.includes(questionThemes)){
+                themes.push(questionThemes);
+            }
+        }
+        return themes;
+    }
+
     selectTheme(theme: string): void {
         this.themeSelected.emit(theme);
     }

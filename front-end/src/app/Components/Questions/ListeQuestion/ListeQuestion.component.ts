@@ -37,9 +37,9 @@ export class ListeQuestion implements OnInit {
     }
 
     themeSelected(question: Question): boolean {
-      if(this.theme!=""){
-        return question.theme==this.theme;
+      if(this.theme==""){
+        return true;
       }
-      return true;
+      return question.themes.includes(this.theme);
     }
   }

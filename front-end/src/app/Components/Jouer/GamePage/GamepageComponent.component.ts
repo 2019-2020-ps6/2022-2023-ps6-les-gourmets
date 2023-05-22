@@ -1,8 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { Answer } from 'src/models/question.model';
 import { Question } from 'src/models/question.model';
 import { Quiz } from 'src/models/quiz.model';
-import { QUESTION_ACTOR } from 'src/mocks/QuizList.mocks';
 import { QuizService } from 'src/service/quiz.service';
 import { User } from 'src/models/User.model';
 import { UserService } from 'src/service/user.service';
