@@ -4,6 +4,7 @@ const { AnswerSchema } = require('./answer.model.js')
 
 module.exports = new BaseModel('Question', {
   type: Joi.string(),
+  theme: Joi.string(),
   images: Joi.array(),
   label: Joi.string().required(),
   answers: Joi.array().items(AnswerSchema).required(),
