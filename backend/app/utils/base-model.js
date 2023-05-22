@@ -73,7 +73,7 @@ module.exports = class BaseModel {
   }
 
   deleteAll() {
-    this.items = [];
+    this.items = this.items.filter((item) => item.id !== -1)
     this.save();
   }
 }

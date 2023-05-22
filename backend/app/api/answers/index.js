@@ -25,4 +25,14 @@ router.post('/', (req, res) => {
             }
          } )
 
+router.delete('/', (req, res) => {
+    try {
+        Answer.deleteAll()
+        res.status(201).json(Answer)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
 module.exports = router
