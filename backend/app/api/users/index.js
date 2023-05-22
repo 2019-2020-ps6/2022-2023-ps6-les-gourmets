@@ -24,4 +24,15 @@ router.post('/', (req, res) => {
             }
          } )
 
+router.delete('/:userId', (req, res) => {
+    try {
+        User.delete(req.params.userId)
+        res.status(201).end()
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
+
 module.exports = router

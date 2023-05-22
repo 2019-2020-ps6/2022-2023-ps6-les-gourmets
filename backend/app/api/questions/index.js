@@ -35,4 +35,15 @@ router.delete('/:questionId', (req, res) => {
         res.status(500).json({message: 'Something went wrong', err})
     }
 })
+
+router.patch('/:questionId', (req, res) => {
+    try {
+        const question = Question.update(req.params.questionId, req.body)
+        res.status(201).json(question)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
 module.exports = router
