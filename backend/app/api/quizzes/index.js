@@ -27,7 +27,19 @@ router.delete('/', (req, res) => {
     try {
         const id = req.body.id
         Quiz.delete(id)
-        res.status(201).json(Quiz)
+        res.status(201).end()
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
+
+router.delete('/:quizId', (req, res) => {
+    try {
+        
+        Quiz.delete(req.params.quizId)
+        res.status(201).end()
     }
     catch (err) {
         console.log(err)
