@@ -18,10 +18,10 @@
       [formControlName]="'aggressivness'" />
   </div>
   <div>
-    <h2>Passivité de l'utilisateur (temps d'attente avant popup) </h2>
+    <h2>Temps d'attente avant détection de l'ennui</h2>
     <input type="range" class="slider" name="Name" min="0" max="1" step="0.1" [formControlName]="'passivity'" />
   </div>
-  <div>
+  <div class="input-checkbox">
     <h2>Afficher les réponses justes : </h2>
     <input class="input-custom" type="checkbox" id="answerDisplay" [formControlName]="'answerDisplay'">
   </div>
@@ -37,7 +37,7 @@
 
 </form>
 <div class="userquizzes">
-  <h2> Quiz de l'utilisateur : </h2>
+  <h2> Quizs de l'utilisateur : </h2>
   <button [routerLink]="['/ListeQuizAdable']">Ajouter</button>
 </div>
 
