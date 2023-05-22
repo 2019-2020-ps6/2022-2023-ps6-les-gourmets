@@ -25,10 +25,10 @@ router.post('/', (req, res) => {
             }
          } )
 
-router.delete('/', (req, res) => {
+router.delete('/:answerId', (req, res) => {
     try {
-        Answer.deleteAll()
-        res.status(201).json(Answer)
+        Answer.delete(req.params.answerId)
+        res.status(201).end()
     }
     catch (err) {
         console.log(err)
