@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 
 router.get('/:userId', (req, res) => {
     try {
-        res.status(200).json(User.getById(req.params.answerId))
+        res.status(200).json(User.getById(req.params.userId))
     }
     catch (err) {
         console.log(err)
