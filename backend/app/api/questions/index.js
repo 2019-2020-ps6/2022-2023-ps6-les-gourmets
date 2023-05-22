@@ -23,10 +23,12 @@ router.post('/', (req, res) => {
             res.status(500).json({message: 'Something went wrong', err})  
             }
          } )
-router.delete('/', (req, res) => {
+
+
+router.delete('/:questionId', (req, res) => {
     try {
-        Question.deleteAll()
-        res.status(201).json(Questions)
+        Question.delete(req.params.questionId)
+        res.status(201).end()
     }
     catch (err) {
         console.log(err)
