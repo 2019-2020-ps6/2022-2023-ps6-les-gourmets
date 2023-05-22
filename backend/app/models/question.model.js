@@ -12,3 +12,4 @@ module.exports = new BaseModel('Question', {
   falseAnswer: Joi.number().required(),
   estFacile: Joi.boolean().required(),
 })
+
