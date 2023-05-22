@@ -20,6 +20,7 @@ export class ChoixTypeQuestion implements OnInit {
     const nouvelleQuestion: Question = {
         id:  12,
         label: '',
+        theme:'',
         type:type,
         answers: [
             {

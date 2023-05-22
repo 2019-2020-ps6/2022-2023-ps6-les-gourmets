@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Answer } from 'src/models/question.model';
 import { Question } from 'src/models/question.model';
 import { JouerService } from 'src/service/jouer.service';
 
@@ -28,7 +27,7 @@ import { JouerService } from 'src/service/jouer.service';
 
     answerSelected(answer: boolean): void {
       this.jouerService.playButtonSimpleSound();
-      this.nextQuestion.emit(answer)
+      this.nextQuestion.emit(answer);
 
       
     }

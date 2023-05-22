@@ -13,8 +13,8 @@ export const USERS: User[] = [
         passivity : 0.2
     },
     {
-        name: 'Palmade',
-        surname: 'Pierre',
+        name: 'Louis',
+        surname: 'Paul',
         quizzes: JSON.parse(JSON.stringify(QUIZ_LIST)),
         aggressivness : 0.2,
         answerDisplay : false,
