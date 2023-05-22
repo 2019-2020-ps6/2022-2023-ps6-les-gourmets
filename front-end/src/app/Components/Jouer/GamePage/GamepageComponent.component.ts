@@ -75,7 +75,7 @@ export class GamePageComponent implements OnInit {
     }
 
     NextQuestion(): void {
-      
+
       if (!this.answers[this.currentQuestionIndex]){
         this.quiz.questions.push(this.currentQuestion);
       }
@@ -83,7 +83,6 @@ export class GamePageComponent implements OnInit {
       this.ChangeQuestion();
     }
     SkipQuestion(){
-      
       this.quiz.questions.push(this.currentQuestion);
       this.ChangeQuestion();
     }
