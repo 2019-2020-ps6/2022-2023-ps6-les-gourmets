@@ -3,10 +3,9 @@ $white:white;
 
 
 h1{
-  color: #ffffff;
-  font-size: 48px;
-  margin-bottom: 50px;
-  color: #ffffff;
+  color: #fff;
+  margin-top: 30px;
+  text-align: center;
 }
 
 .quiz-list {
@@ -56,4 +55,19 @@ button:hover {
   cursor: pointer;
   background-color: #7f858ed1;
   color: #F2F2F2;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+h2 {
+  color: #fff;
+  text-align: center;
+  margin-top: 30px;
 }

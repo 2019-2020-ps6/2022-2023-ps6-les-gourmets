@@ -5,6 +5,8 @@
 </div>
 <div>
     <button class="button-card" (click)="changeAffichage()">Trier par theme</button>
+    <h2>: {{this.theme}}</h2>
 </div>
 <app-ListeTheme *ngIf="afficheTheme" (themeSelected)="chooseTheme($event)"> </app-ListeTheme>
+<button class="button-card" (click)="annulerTheme()">Annuler la recherche</button>
 <app-ListeQuestion [theme]="this.theme"> </app-ListeQuestion>
