@@ -47,7 +47,7 @@ router.delete('/:userId', (req, res) => {
     }
 })
 
-router.patch('/:userId', (req, res) => {
+router.put('/:userId', (req, res) => {
     try {
         const user = User.update(req.params.userId, req.body)
         res.status(201).json(user)

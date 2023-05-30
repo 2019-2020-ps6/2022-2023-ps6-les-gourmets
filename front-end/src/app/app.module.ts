@@ -31,6 +31,7 @@ import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.co
 import { QuizEditComponent } from './Components/Quizs/QuizEdit/quizEdit.component';
 import { ListeQuestionAdable } from './Components/Quizs/ListQuestionAdable/ListeQuestionAdable.component';
 import { ListeTheme } from './Components/Questions/ListeTheme/ListeTheme.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { ListeTheme } from './Components/Questions/ListeTheme/ListeTheme.compone
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

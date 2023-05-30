@@ -4,6 +4,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { USERS } from 'src/mocks/UserList.mocks';
 import { Quiz } from 'src/models/quiz.model';
 import { Question } from 'src/models/question.model';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -19,7 +20,7 @@ export class UserService {
     }
 
     //The list of User. The list is retrieved from the mock.
-private Users: User[] = USERS; // Ici on initialise la valeur avec un mock User_LIST
+private Users: User[] = []; // Ici on initialise la valeur avec un mock User_LIST
 private UserSelected!: User; // Ici on initialise la valeur avec un mock User
 
 public Users$: BehaviorSubject<User[]> = new BehaviorSubject(this.Users); // Ici on crée un observable qui va permettre de récupérer la liste des User
@@ -27,21 +28,24 @@ public UserSelected$: BehaviorSubject<User> = new BehaviorSubject(this.UserSelec
 
 private idCPT: number = 5;
 
-private UserUrl = "http://localhost:4200" + '/Users';
+private UserUrl = "http://localhost:9428/api" + '/users';
 
 // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
-constructor() { }
+constructor(private http: HttpClient) {
+  this.retrieveUsers();
+}
 
-
-retrieveUseres(): void {
+retrieveUsers(): void {
+  this.http.get<User[]>(this.UserUrl).subscribe((quizList) => {
+    this.Users = quizList;
+    this.Users$.next(this.Users);
+  });
 }
 
 addUser(value : User) {
-  value.id = this.idCPT;
-  this.idCPT++;
-  this.Users.push(value);
-  this.Users$.next(this.Users);
+  this.http.post<User>(this.UserUrl, value).subscribe(() => this.retrieveUsers());
 }
+
 updateUser(userTochange : User, value : User) {
   this.Users = this.Users.filter(u => u.id !== userTochange.id);
   this.Users.push(value);
