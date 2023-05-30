@@ -64,6 +64,9 @@ export class JouerService {
     constructor(private userService :UserService){
     }
 
+    
+
+
     public setTimeout(nb: number){
         this.timeout = nb;
     }

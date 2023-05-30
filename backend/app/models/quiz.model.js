@@ -1,3 +1,4 @@
+
 const Joi = require('joi')
 const BaseModel = require('../utils/base-model.js')
 const number = require('joi/lib/types/number/index.js')

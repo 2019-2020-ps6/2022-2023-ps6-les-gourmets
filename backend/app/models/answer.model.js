@@ -7,6 +7,12 @@ const Answer = new BaseModel('Answer', {
     isCorrect: Joi.boolean().required(),
     })
 
+const answerSchema = {
+    type: Joi.string(),
+    value: Joi.string().required(),
+    isCorrect: Joi.boolean().required(),
+};  
 module.exports = {
+    answerSchema,
     Answer
 }
