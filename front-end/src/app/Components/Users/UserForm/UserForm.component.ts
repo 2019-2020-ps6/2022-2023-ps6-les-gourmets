@@ -25,6 +25,7 @@ export class UserForm implements OnInit {
         aggressivness: 0.5,
         music : [[]],
         answerDisplay: false,
+        passivity: 0.5,
       });
     }
 
@@ -36,12 +37,12 @@ export class UserForm implements OnInit {
       // initialize the quizzes list empty
       userToCreate.quizzes = [];
       this.userService.addUser(userToCreate);
-      this.userService.selectUser(userToCreate);
+      //this.userService.selectUser(userToCreate);
     }
 
 toggleAnswerDisplay() {
   if(this.userForm.get('answerDisplay')!=null){
-    
+
     if(this.userForm.get('answerDisplay')?.value == false){
       this.userForm.get('answerDisplay')?.setValue(true);
     }

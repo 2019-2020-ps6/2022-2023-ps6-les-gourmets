@@ -4,13 +4,13 @@
   <button [routerLink]="['/UserStatsPage']"(click)="switchPage()">Stats</button>
 </div>
 
-
+<ng-container *ngIf="userReady">
 <form [formGroup]="modifs" class="formC">
 
   <div>
-    <input type="text" value={{UserModified.surname}} placeholder={{UserModified.surname}}
+    <input type="text" [value]="UserModified.surname" [placeholder]="UserModified.surname"
       [formControlName]="'surname'" />
-    <input type="text" value={{UserModified.name}} placeholder={{UserModified.name}} [formControlName]="'name'" />
+    <input type="text" [value]="UserModified.name" [placeholder]="UserModified.name" [formControlName]="'name'" />
   </div>
   <div>
     <h2>Agressivité de l'utilisateur </h2>
@@ -33,7 +33,7 @@
   <div *ngFor="let music of UserModified.music">
     <button (click)="deleteMusic(music)"> Retirer {{music}}</button>
   </div>
-  
+
 
 </form>
 <div class="userquizzes">
@@ -54,3 +54,4 @@
   <button (click)="applyChanges()" [routerLink]="['/ListeUserPage']">confirmer les changements</button>
   <button (click)="cancelChanges()">annuler les changements</button>
 </div>
+</ng-container>
