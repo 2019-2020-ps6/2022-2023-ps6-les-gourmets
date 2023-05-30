@@ -18,8 +18,12 @@ export class ListeQuestionAdable implements OnInit {
     public questionList: Question[] = [];
     public quizTemp!: Quiz;
     public QuestionSelectable: Question[] = [];
+    theme:string;
+    afficheTheme:boolean;
 
     constructor(public questionService: QuestionService, public quizService: QuizService,private jouerService: JouerService) {
+      this.theme = "";
+      this.afficheTheme=false;
       this.questionService.questions$.subscribe((questionList: Question[]) => {
         this.questionList = questionList;
       });
@@ -58,5 +62,25 @@ export class ListeQuestionAdable implements OnInit {
     }
     playBackSound(){
       this.jouerService.playButtonSimpleSound(ButtonSound.back)
+    }
+
+    annulerTheme(): void{
+      this.theme="";
+    }
+
+    chooseTheme(theme:string): void{
+      this.theme=theme;
+      this.afficheTheme=false;
+    }
+
+    changeAffichage(): void{
+      this.afficheTheme=!this.afficheTheme;
+    }
+
+    themeSelected(question: Question): boolean {
+      if(this.theme==""){
+        return true;
+      }
+      return question.themes.includes(this.theme);
     }
   }

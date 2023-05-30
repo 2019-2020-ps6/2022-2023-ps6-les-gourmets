@@ -1,8 +1,13 @@
 <h1>{{quiz.name}}</h1>
 
 <button class="button-card" [routerLink]="['/QuizEditComponent']"(click)="playBackSound()">Retour</button>
+<div>
+  <button class="button-card" (click)="changeAffichage()">Trier par theme</button>
+  <h2>: {{this.theme}}</h2>
+</div>
+<app-ListeTheme *ngIf="afficheTheme" (themeSelected)="chooseTheme($event)"> </app-ListeTheme>
 <div class="Question-List">
   <div class="Question" *ngFor="let question of QuestionSelectable">
-    <app-Question [question]="question" (deleteQuestion)="addQuestionToQuiz($event)"></app-Question>
+    <app-Question *ngIf="themeSelected(question)" [question]="question" (deleteQuestion)="addQuestionToQuiz($event)"></app-Question>
   </div>
 </div>
