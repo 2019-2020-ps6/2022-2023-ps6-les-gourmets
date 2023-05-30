@@ -46,7 +46,6 @@ retrieveUsersAndSelect(value: User): void {
     this.Users$.next(this.Users);
     this.UserSelected = value;
     this.UserSelected$.next(this.UserSelected);
-    console.log(this.UserSelected);
   });
 }
 
@@ -67,7 +66,6 @@ deleteUser(value: User) {
   this.http.get<User>(this.UserUrl + '/' + value.id).subscribe((user) => {
   this.UserSelected = user;
   this.UserSelected$.next(this.UserSelected);
-  console.log(this.UserSelected);
   });
  }
 
