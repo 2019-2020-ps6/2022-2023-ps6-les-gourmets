@@ -15,6 +15,7 @@ export class QuestionFormComponent implements OnInit {
   public questionForm: FormGroup;
   private question!:Question;
   private edit!:boolean;
+  public themes!:string[];
   constructor(public formBuilder: FormBuilder, private questionService: QuestionService) {
     this.questionService.questionSelected$.subscribe((question: Question) => {
       this.question = JSON.parse(JSON.stringify(question));
@@ -52,6 +53,7 @@ export class QuestionFormComponent implements OnInit {
       trueAnswer: 0,
       falseAnswer: 0
     });
+    this.themes= this.question.themes;
   }
 
   ngOnInit(): void {
@@ -59,11 +61,13 @@ export class QuestionFormComponent implements OnInit {
 
   addQuestion(): void {
     const questionToCreate: Question = this.questionForm.getRawValue() as Question;
+    questionToCreate.themes = this.themes;
     this.questionService.addQuestion(questionToCreate);
   }
 
   updateQuestion(): void {
     const questionToCreate: Question = this.questionForm.getRawValue() as Question;
+    questionToCreate.themes = this.themes;
     this.questionService.updateQuestion(this.question,questionToCreate);
   }
 
@@ -90,9 +94,12 @@ export class QuestionFormComponent implements OnInit {
     const input = document.getElementById(
         'theme',
       ) as HTMLInputElement;
+      if(!this.themes.includes(input.value)){
+        this.themes.push(input.value);
+    }
 }
-deleteMusic(value : string) : void{
-  this.UserModified.themes= this.UserModified.music.filter(m => m!== value);
+deleteTheme(value : string) : void{
+  this.themes= this.themes.filter(m => m!== value);
 }
 
 }
