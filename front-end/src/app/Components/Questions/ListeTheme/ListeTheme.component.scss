@@ -1,0 +1,28 @@
+div{
+    display: flex;
+    flex-direction: column;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    width: vw;
+    
+  }
+  
+  button{
+    background-color: #4d535dc6;
+    border: solid 1px #F2F2F2;
+    color:#f2f2f2;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    margin-top: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    width: 300px;
+  }
+
+  .button-card:hover {
+    cursor: pointer;
+    background-color: #7f858ed1;
+    color: #F2F2F2;
+}

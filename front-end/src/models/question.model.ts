@@ -6,7 +6,7 @@ export interface Answer {
 
 export interface Question {
     id: number;
-    theme: string;
+    themes: string[];
     type?: string;
     images?: string[];
     label: string | undefined;

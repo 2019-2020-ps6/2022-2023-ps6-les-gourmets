@@ -30,6 +30,7 @@ import { ListeQuizAdable } from './Components/Users/ListQuizAdable/ListeQuizAdab
 import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.component';
 import { QuizEditComponent } from './Components/Quizs/QuizEdit/quizEdit.component';
 import { ListeQuestionAdable } from './Components/Quizs/ListQuestionAdable/ListeQuestionAdable.component';
+import { ListeTheme } from './Components/Questions/ListeTheme/ListeTheme.component';
 
 
 @NgModule({
@@ -62,7 +63,7 @@ import { ListeQuestionAdable } from './Components/Quizs/ListQuestionAdable/Liste
     ListeQuestion,
     ListeQuestionPage,
     ChoixTypeQuestion,
-
+    ListeTheme,
     ChoixUser,
     ChoixQuiz,
     QuizEditComponent

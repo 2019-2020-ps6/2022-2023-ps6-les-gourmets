@@ -15,6 +15,7 @@ export class QuestionFormComponent implements OnInit {
   public questionForm: FormGroup;
   private question!:Question;
   private edit!:boolean;
+  public themes!:string[];
   constructor(public formBuilder: FormBuilder, private questionService: QuestionService) {
     this.questionService.questionSelected$.subscribe((question: Question) => {
       this.question = JSON.parse(JSON.stringify(question));
@@ -25,6 +26,7 @@ export class QuestionFormComponent implements OnInit {
     this.questionForm = this.formBuilder.group({
       id: this.question.id,
       label: [this.question.label],
+      themes: [this.question.themes],
       estFacile:[false],
       answers: this.formBuilder.array([
         this.formBuilder.group({
@@ -51,6 +53,7 @@ export class QuestionFormComponent implements OnInit {
       trueAnswer: 0,
       falseAnswer: 0
     });
+    this.themes= this.question.themes;
   }
 
   ngOnInit(): void {
@@ -58,11 +61,13 @@ export class QuestionFormComponent implements OnInit {
 
   addQuestion(): void {
     const questionToCreate: Question = this.questionForm.getRawValue() as Question;
+    questionToCreate.themes = this.themes;
     this.questionService.addQuestion(questionToCreate);
   }
 
   updateQuestion(): void {
     const questionToCreate: Question = this.questionForm.getRawValue() as Question;
+    questionToCreate.themes = this.themes;
     this.questionService.updateQuestion(this.question,questionToCreate);
   }
 
@@ -84,5 +89,17 @@ export class QuestionFormComponent implements OnInit {
       answersFormArray.at(i).patchValue({ isCorrect: i === index });
     }
   }
+
+  addTheme() : void{
+    const input = document.getElementById(
+        'theme',
+      ) as HTMLInputElement;
+      if(!this.themes.includes(input.value)){
+        this.themes.push(input.value);
+    }
+}
+deleteTheme(value : string) : void{
+  this.themes= this.themes.filter(m => m!== value);
+}
 
 }

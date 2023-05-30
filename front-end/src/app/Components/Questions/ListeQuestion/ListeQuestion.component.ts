@@ -1,5 +1,6 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+
 import { QuestionService } from 'src/service/question.service';
 import { Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
@@ -12,6 +13,8 @@ import { Question } from 'src/models/question.model';
     styleUrls: ['./ListeQuestion.component.scss']
 })
 export class ListeQuestion implements OnInit {
+
+    @Input() theme!: string;
     public quizQuestion: Question[] = [];
 
     constructor(private router: Router, public questionService: QuestionService) {
@@ -31,5 +34,12 @@ export class ListeQuestion implements OnInit {
 
     deleteQuestion(question: Question): void {
       this.questionService.deleteQuestion(question);
+    }
+
+    themeSelected(question: Question): boolean {
+      if(this.theme==""){
+        return true;
+      }
+      return question.themes.includes(this.theme);
     }
   }
