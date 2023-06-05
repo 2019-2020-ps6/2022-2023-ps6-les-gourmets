@@ -47,9 +47,31 @@ router.delete('/:quizId', (req, res) => {
     }
 })
 
-router.patch('/:quizId', (req, res) => {
+/*router.patch('/:quizId', (req, res) => {
     try {
         const quiz = Quiz.update(req.params.quizId, req.body)
+        res.status(201).json(quiz)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})*/
+
+router.put('/:quizId', (req, res) => {
+    try {
+        const quiz = Quiz.updateAttribute(req.params.quizId,"questions", req.body)
+        res.status(201).json(quiz)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
+
+router.patch('/:quizId', (req, res) => {
+    try {
+        const quiz = Quiz.updateAttribute(req.params.quizId,"easyQuestions", req.body)
         res.status(201).json(quiz)
     }
     catch (err) {

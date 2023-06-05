@@ -76,4 +76,18 @@ module.exports = class BaseModel {
     this.items = this.items.filter((item) => item.id !== -1)
     this.save();
   }
+
+  updateAttribute(id, attribute, value) {
+    if (typeof id === 'string') id = parseInt(id, 10)
+    const prevObjIndex = this.items.findIndex((item) => item.id === id)
+    if (prevObjIndex === -1) throw new NotFoundError(`Cannot update ${this.name} id=${id} : not found`)
+    const updatedItem = { ...this.items[prevObjIndex], [attribute]: value }
+    const { error } = Joi.validate(updatedItem, this.schema)
+    if (error) throw new ValidationError(`Update Error : Object ${JSON.stringify(obj)} does not match schema of model ${this.name}`, error)
+    this.items[prevObjIndex] = updatedItem
+    this.save()
+    return updatedItem
+  }
+
+
 }
