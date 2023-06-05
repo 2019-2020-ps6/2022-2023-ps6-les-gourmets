@@ -111,18 +111,23 @@ deleteQuiz(quiz: Quiz) {
     quizModified.questions.forEach(question => {
       questionIds.push(question.id);
     });
-    console.log(JSON.stringify(questionIds));
+    /* console.log(JSON.stringify(questionIds));
     const newQuizz:string = JSON.stringify(quizModified);
     var ids:number[];
     ids = JSON.parse(newQuizz).questions;
     
     var ids2:number[];
     const newQuizz2:string = JSON.stringify(ids);
-    console.log(newQuizz2);
+    console.log(newQuizz2);*/
+
+    const easyQuestionIds:number[] = [];
+    quizModified.easyQuestions.forEach(question => {
+      easyQuestionIds.push(question.id);
+    });
     
    // console.log(newQuizz);
-    this.http.put<Quiz>(this.QuizUrl + '/' + quizModified.id, questionIds).subscribe(() => this.retrieveQuizes());
-    
+    this.http.put<Quiz>(this.QuizUrl + '/' + quizModified.id , questionIds).subscribe(() => this.retrieveQuizes());
+    this.http.patch<Quiz>(this.QuizUrl + '/' + quizModified.id , easyQuestionIds).subscribe(() => this.retrieveQuizes());
    // this.http.patch<Quiz>(this.QuizUrl + '/' + quizModified.id, quizModified).subscribe(() => this.retrieveQuizes());
     /*
     this.userService.getUsers().forEach(user=>{
