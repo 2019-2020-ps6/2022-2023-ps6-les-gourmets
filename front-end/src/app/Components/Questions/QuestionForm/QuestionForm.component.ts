@@ -94,8 +94,8 @@ export class QuestionFormComponent implements OnInit {
     const input = document.getElementById(
         'theme',
       ) as HTMLInputElement;
-      if(!this.themes.includes(input.value)){
-        this.themes.push(input.value);
+      if(!this.themes.includes(input.value.toLowerCase())){
+        this.themes.push(input.value.toLowerCase());
     }
 }
 deleteTheme(value : string) : void{

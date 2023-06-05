@@ -22,14 +22,16 @@ export class ListeQuestionPage implements OnInit {
       this.jouerService.playButtonSimpleSound(ButtonSound.SelectingObject)
     }
 
+    annulerTheme(): void{
+      this.theme="";
+    }
+
     chooseTheme(theme:string): void{
-      console.log("oui");
       this.theme=theme;
       this.afficheTheme=false;
     }
 
     changeAffichage(): void{
-      console.log(this.afficheTheme);
       this.afficheTheme=!this.afficheTheme;
     }
 
