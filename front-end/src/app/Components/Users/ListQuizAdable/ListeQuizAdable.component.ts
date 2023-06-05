@@ -39,6 +39,8 @@ export class ListeQuizAdable implements OnInit {
       this.userService.selectUser(this.userTemp);
       //this.userService.updateUser(this.user, this.userTemp);
       //this.user = this.userTemp;
+      this.userService.selectUser(this.userTemp);
+      this.userService.addQuizForProfile(quiz);
     }
 
     updateQuizSelectable(): void {

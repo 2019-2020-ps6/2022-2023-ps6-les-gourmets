@@ -58,4 +58,16 @@ router.put('/:userId', (req, res) => {
     }
 })
 
+router.patch('/:userId', (req, res) => {
+    try {
+        const user = User.updateAttribute(req.params.userId,"quizzes", req.body)
+        res.status(201).json(user)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
+
+
 module.exports = router

@@ -72,6 +72,22 @@ deleteUser(value: User) {
  deleteQuizForProfile(value : Quiz){
   this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value.id !== quiz.id);
   this.UserSelected$.next(this.UserSelected);
+  this.updateQuizForProfile();
+ }
+
+ addQuizForProfile(value : Quiz){
+  this.UserSelected.quizzes.push(value);
+  this.UserSelected$.next(this.UserSelected);
+  this.updateQuizForProfile();
+  }
+
+ updateQuizForProfile(){
+  const quizIds:number[] = [];
+    this.UserSelected.quizzes.forEach(quiz => {
+      quizIds.push(quiz.id);
+    });
+    this.http.patch<User>(this.UserUrl + '/' + this.UserSelected.id, quizIds).subscribe(() =>
+    this.retrieveUsers());
  }
 
  updateUserStats(quiz: Quiz,questions: Question[],answers: boolean[]){
