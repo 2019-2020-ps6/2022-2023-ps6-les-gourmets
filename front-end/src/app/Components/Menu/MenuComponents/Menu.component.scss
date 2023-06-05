@@ -26,24 +26,9 @@ h1 {
 }
 
 .button-card {
-  display: inline-block;
-  border: none;
-  border-radius: 5px;
   font-size: 24px;
-  color: #ffffff;
-  text-align: center;
   height: 30vh;
   width: 60vw;
   font-size: calc(0.6rem + 3vw);
-  padding: 15px 0;
-  margin: 10px;
-  cursor: pointer;
-  background-color: #393e46;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.button-card:hover {
-  background-color: #00adb5;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }

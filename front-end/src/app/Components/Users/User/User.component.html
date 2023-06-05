@@ -3,10 +3,10 @@
     Prénom : {{User.surname}}<br>
     <div *ngIf="isMod">
       Taux d'agressivité : {{User.aggressivness}}<br>
-      <button (click)="delete()">Supprimer</button>
-      <button (click)="selectUser()" [routerLink]="['/UserProfilePage']">Éditer</button>
+      <button class="soft" (click)="delete()">Supprimer</button>
+      <button class="soft" (click)="selectUser()" [routerLink]="['/UserProfilePage']">Éditer</button>
     </div>
     <div *ngIf="isMod == false">
-      <button (click)="selectUser()" [routerLink]="['/ChoixQuiz']">Sélectionner</button>
+      <button class="soft" (click)="selectUser()" [routerLink]="['/ChoixQuiz']">Sélectionner</button>
     </div>
 </div>

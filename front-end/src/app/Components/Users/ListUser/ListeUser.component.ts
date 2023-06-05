@@ -7,7 +7,7 @@ import { UserService } from 'src/service/user.service';
 @Component({
     selector: 'app-ListeUser',
     templateUrl: './ListeUser.component.html',
-    styleUrls: ['./ListeUser.component.scss']
+    styleUrls: ['../../../../styles.scss','./ListeUser.component.scss']
 })
 export class ListeUser implements OnInit {
     public UserList: User[] = [];

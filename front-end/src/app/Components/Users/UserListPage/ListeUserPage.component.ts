@@ -6,7 +6,7 @@ import { JouerService } from 'src/service/jouer.service';
 @Component({
     selector: 'app-ListeUserPage',
     templateUrl: './ListeUserPage.component.html',
-    styleUrls: ['./ListeUserPage.component.scss']
+    styleUrls: ['../../../../styles.scss','./ListeUserPage.component.scss']
 })
 export class ListeUserPage implements OnInit {
 

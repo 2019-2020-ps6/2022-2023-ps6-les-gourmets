@@ -7,7 +7,7 @@ import { UserService } from 'src/service/user.service';
 @Component({
     selector: 'app-EndPage',
     templateUrl: './EndPageComponent.component.html',
-    styleUrls: ['./EndPageComponent.component.scss']
+    styleUrls: ['../../../../styles.scss','./EndPageComponent.component.scss']
   })
 
   export class EndPageComponent implements OnInit {

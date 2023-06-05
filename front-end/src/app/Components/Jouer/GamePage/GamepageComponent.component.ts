@@ -15,7 +15,7 @@ import { ButtonSound } from 'src/models/ButtonSound';
 @Component({
   selector: 'app-GamePage',
   templateUrl: './GamePageComponent.component.html',
-  styleUrls: ['./GamePageComponent.component.scss']
+  styleUrls: ['../../../../styles.scss','./GamePageComponent.component.scss']
 })
 
 export class GamePageComponent implements OnInit {

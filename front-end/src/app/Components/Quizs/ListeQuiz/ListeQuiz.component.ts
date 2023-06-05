@@ -9,7 +9,7 @@ import { ButtonSound } from 'src/models/ButtonSound';
 @Component({
     selector: 'app-ListeQuiz',
     templateUrl: './ListeQuiz.component.html',
-    styleUrls: ['./ListeQuiz.component.scss']
+    styleUrls: ['../../../../styles.scss','./ListeQuiz.component.scss']
 })
 export class ListeQuiz implements OnInit {
     public quizList: Quiz[] = [];

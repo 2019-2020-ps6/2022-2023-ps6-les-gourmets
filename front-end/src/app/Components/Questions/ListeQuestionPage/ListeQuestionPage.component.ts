@@ -5,7 +5,7 @@ import { JouerService } from 'src/service/jouer.service';
 @Component({
     selector: 'app-ListeQuestionPage',
     templateUrl: './ListeQuestionPage.component.html',
-    styleUrls: ['./ListeQuestionPage.component.scss']
+    styleUrls: ['../../../../styles.scss','./ListeQuestionPage.component.scss']
 })
 export class ListeQuestionPage implements OnInit {
     public themeSelected:string;

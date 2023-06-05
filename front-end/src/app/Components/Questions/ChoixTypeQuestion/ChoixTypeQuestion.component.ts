@@ -7,7 +7,7 @@ import { QuestionService } from 'src/service/question.service';
 @Component({
     selector: 'app-ChoixTypeQuestion',
     templateUrl: './ChoixTypeQuestion.component.html',
-    styleUrls: ['./ChoixTypeQuestion.component.scss']
+    styleUrls: ['../../../../styles.scss','./ChoixTypeQuestion.component.scss']
 })
 export class ChoixTypeQuestion implements OnInit {
 

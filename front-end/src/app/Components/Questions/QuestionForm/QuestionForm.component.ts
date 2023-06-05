@@ -8,7 +8,7 @@ import { QuestionService } from 'src/service/question.service';
 @Component({
     selector: 'app-QuestionForm',
     templateUrl: './QuestionForm.component.html',
-    styleUrls: ['./QuestionForm.component.scss']
+    styleUrls: ['../../../../styles.scss','./QuestionForm.component.scss']
 })
 export class QuestionFormComponent implements OnInit {
 

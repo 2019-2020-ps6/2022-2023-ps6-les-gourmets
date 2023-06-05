@@ -11,7 +11,7 @@ import { JouerService } from 'src/service/jouer.service';
 @Component({
     selector: 'app-ListeQuestionAdable',
     templateUrl: './ListeQuestionAdable.component.html',
-    styleUrls: ['./ListeQuestionAdable.component.scss']
+    styleUrls: ['../../../../styles.scss','./ListeQuestionAdable.component.scss']
 })
 export class ListeQuestionAdable implements OnInit {
     public quiz!: Quiz;

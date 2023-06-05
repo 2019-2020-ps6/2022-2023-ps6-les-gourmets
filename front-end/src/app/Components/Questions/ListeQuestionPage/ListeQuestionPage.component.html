@@ -4,5 +4,6 @@
     <button class="button-card" [routerLink]="['/ChoixTypeQuestion']" (click)="playAddSound()">Ajouter une question</button>
     <button class="button-card" [routerLink]="['/ChoixTheme']" (click)="playAddSound()">Choisir un theme</button>
 </div>
+<h1>Themes</h1>
 <app-ListeTheme>(themeChosen)="chooseTheme($event)"</app-ListeTheme>
 <app-ListeQuestion> [theme]="this.themeSelected" </app-ListeQuestion>

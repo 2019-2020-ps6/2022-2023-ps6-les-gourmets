@@ -9,7 +9,7 @@ import { UserService } from 'src/service/user.service';
 @Component({
   selector: 'app-ChoixQuiz',
   templateUrl: './ChoixQuiz.component.html',
-  styleUrls: ['./ChoixQuiz.component.scss']
+  styleUrls: ['../../../../styles.scss','./ChoixQuiz.component.scss']
 })
 
 export class ChoixQuiz implements OnInit {

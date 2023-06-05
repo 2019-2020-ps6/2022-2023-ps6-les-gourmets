@@ -10,7 +10,7 @@ import { Question } from 'src/models/question.model';
 @Component({
     selector: 'app-ListeQuestion',
     templateUrl: './ListeQuestion.component.html',
-    styleUrls: ['./ListeQuestion.component.scss']
+    styleUrls: ['../../../../styles.scss','./ListeQuestion.component.scss']
 })
 export class ListeQuestion implements OnInit {
 

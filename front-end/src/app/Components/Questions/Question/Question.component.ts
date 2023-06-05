@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-Question',
     templateUrl: './Question.component.html',
-    styleUrls: ['./Question.component.scss']
+    styleUrls: ['../../../../styles.scss','./Question.component.scss']
 })
 
 export class QuestionComponent implements OnInit {

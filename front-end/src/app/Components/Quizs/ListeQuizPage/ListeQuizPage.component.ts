@@ -4,7 +4,7 @@ import { JouerService } from 'src/service/jouer.service';
 @Component({
     selector: 'app-ListeQuizPage',
     templateUrl: './ListeQuizPage.component.html',
-    styleUrls: ['./ListeQuizPage.component.scss']
+    styleUrls: ['../../../../styles.scss','./ListeQuizPage.component.scss']
 })
 export class ListeQuizPage implements OnInit {
     constructor(private jouerService :JouerService) {}
