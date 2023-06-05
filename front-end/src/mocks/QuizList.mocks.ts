@@ -3,7 +3,7 @@ import { Quiz } from "src/models/quiz.model";
 
 export const QUESTION_ACTOR: Question = {
     id: 0,
-    theme:"acteurs",
+    themes:["acteurs"],
     label: 'Jean Gabin a joué dans...',
     answers: [
         {
@@ -35,7 +35,7 @@ export const QUESTION_ACTOR: Question = {
 export const QUESTIONLIST_ACTOR: Question[] = [
   {
     id: 1,
-    theme:"acteurs",
+    themes:["acteurs"],
     label: 'Jean Gabin a joué dans...',
     answers: [
         {
@@ -66,7 +66,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
   {
     id: 2,
     label: 'Jean Reno a joué dans...',
-    theme:"acteurs",
+    themes:["acteurs"],
     answers: [
         {
             type: 'text',
@@ -97,7 +97,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
   {
     id:3,
     label: 'Jean Dujardin a joué dans...',
-    theme: "acteurs",
+    themes: ["acteurs"],
     answers: [
         {
             type: 'text',
@@ -127,7 +127,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
   },
   {
     id: 4,
-    theme:"acteurs",
+    themes:["acteurs"],
     label: 'Lequel de ces acteurs est Louis de Funès',
     answers: [
         {
@@ -169,7 +169,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
     {
       id: 5,
       label: 'la capitale de la France est...',
-      theme:"geographie",
+      themes:["geographie"],
       answers: [
           {
               type : 'text',
@@ -199,7 +199,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
     {
       id: 6,
       label: 'Le mer est ',
-      theme: "couleur",
+      themes: ["couleur","géographie"],
       answers: [
           {
               type : 'text',

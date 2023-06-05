@@ -1,10 +1,10 @@
 div{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-flow: wrap;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    width: 100%;
     width: vw;
     
   }
@@ -12,3 +12,9 @@ div{
   button{
     font-weight: bold;
   }
+
+  .button-card:hover {
+    cursor: pointer;
+    background-color: #7f858ed1;
+    color: #F2F2F2;
+}

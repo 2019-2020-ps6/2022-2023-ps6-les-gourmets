@@ -1,6 +1,6 @@
 <h1>Liste des questions</h1>
 <div class="question-List">
   <div class="Question" *ngFor="let question of quizQuestion">
-    <app-Question [question]="question" (deleteQuestion)="deleteQuestion($event)"></app-Question>
+    <app-Question *ngIf="themeSelected(question)" [question]="question" (deleteQuestion)="deleteQuestion($event)"></app-Question>
   </div>
 </div>

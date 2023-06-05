@@ -2,8 +2,11 @@
 <div>
     <button class="button-card" [routerLink]="['/MenuChoixCreation']" (click)="playBackSound()">Retour</button>
     <button class="button-card" [routerLink]="['/ChoixTypeQuestion']" (click)="playAddSound()">Ajouter une question</button>
-    <button class="button-card" [routerLink]="['/ChoixTheme']" (click)="playAddSound()">Choisir un theme</button>
 </div>
-<h1>Themes</h1>
-<app-ListeTheme>(themeChosen)="chooseTheme($event)"</app-ListeTheme>
-<app-ListeQuestion> [theme]="this.themeSelected" </app-ListeQuestion>
+<div>
+    <button class="button-card" (click)="changeAffichage()">Trier par theme</button>
+    <h2>: {{this.theme}}</h2>
+</div>
+<app-ListeTheme *ngIf="afficheTheme" (themeSelected)="chooseTheme($event)"> </app-ListeTheme>
+<button class="button-card" (click)="annulerTheme()">Annuler la recherche</button>
+<app-ListeQuestion [theme]="this.theme"> </app-ListeQuestion>
