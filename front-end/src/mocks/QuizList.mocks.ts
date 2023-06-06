@@ -33,6 +33,131 @@ export const QUESTION_ACTOR: Question = {
 };
 
 export const QUESTIONLIST_ACTOR: Question[] = [
+    {
+      id: 1,
+      themes:["acteurs"],
+      label: 'Jean Gabin a joué dans...',
+      answers: [
+          {
+              type: 'text',
+              value: 'Les tuches II',
+              isCorrect: false,
+          },
+          {
+              type: 'text',
+              value: 'La grande illusion',
+              isCorrect: true,
+          },    
+          {
+              type: 'text',
+              value: 'Le parrain',
+              isCorrect: false,
+          },  
+          { 
+              type: 'text',
+              value: 'Le parrain',
+              isCorrect: false,
+          }
+        ],
+        trueAnswer: 10,
+        falseAnswer: 0,
+        estFacile: false,
+    },
+    {
+      id: 2,
+      label: 'Jean Reno a joué dans...',
+      themes:["acteurs"],
+      answers: [
+          {
+              type: 'text',
+              value: 'Les tuches III',
+              isCorrect: false,
+          },
+          {
+              type: 'text',
+              value: 'La grande illusion',
+              isCorrect: false,
+          },
+          {
+              type: 'text',
+              value: 'Le parrain',
+              isCorrect: false,
+          },
+          {
+              type: 'text',
+              value: 'Leon',
+              isCorrect: true,
+          }
+        ],
+  
+        trueAnswer: 5,
+        falseAnswer: 5,
+        estFacile: false,
+    },
+    {
+      id:3,
+      label: 'Jean Dujardin a joué dans...',
+      themes: ["acteurs"],
+      answers: [
+          {
+              type: 'text',
+              value: 'Les tuches II',
+              isCorrect: false,
+          },
+          {
+              type: 'text',
+              value: 'La grande illusion',
+              isCorrect: false,
+          },
+          {
+              type: 'text',
+              value: 'Le parrain',
+              isCorrect: false,
+          },
+          {
+              type: 'text',
+              value: 'The Artist',
+              isCorrect: true,
+          }
+          ],
+          trueAnswer: 8,
+          falseAnswer: 9,
+          estFacile: false,
+  
+    },
+    {
+      id: 4,
+      themes:["acteurs"],
+      label: 'Lequel de ces acteurs est Louis de Funès',
+      answers: [
+          {
+              type: 'image',
+              value: 'assets/Image/Charlie-Chaplin.jpg',
+              isCorrect: false,
+          },
+          {
+              type: 'image',
+              value: 'assets/Image/defunès.jpg',
+              isCorrect: true,
+          },    
+          {
+              type: 'image',
+              value: 'assets/Image/jean-Reno.jpg',
+              isCorrect: false,
+          },  
+          { 
+              type: 'image',
+              value: 'assets/Image/Jean-Gabin.jpg',
+              isCorrect: false,
+          }
+        ],
+        trueAnswer: 4,
+        falseAnswer: 2,
+        estFacile: false,
+    },
+]
+
+export const QUESTIONLIST: Question[] = [
   {
     id: 1,
     themes:["acteurs"],
@@ -155,6 +280,67 @@ export const QUESTIONLIST_ACTOR: Question[] = [
       falseAnswer: 2,
       estFacile: false,
   },
+  {
+    id: 5,
+    label: 'la capitale de la France est...',
+    themes:["géographie"],
+    answers: [
+        {
+            type : 'text',
+            value: 'Lyon',
+            isCorrect: false,
+        },
+        {
+            type : 'text',
+            value: 'Paris',
+            isCorrect: true,
+        },    
+        {
+            type : 'text',
+            value: 'Pégomas',
+            isCorrect: false,
+        },  
+        { 
+            type : 'text', 
+            value: 'Marseille',
+            isCorrect: false,
+        }
+      ],
+      trueAnswer: 10,
+      falseAnswer: 25,
+      estFacile: true,
+  },
+  {
+    id: 6,
+    label: 'Le mer est ',
+    themes: ["couleur","géographie"],
+    answers: [
+        {
+            type : 'text',
+            value: 'rouge',
+            isCorrect: false,
+        },
+        {
+            type : 'text',
+            value: 'jaune',
+            isCorrect: false,
+        },
+        {
+            type : 'text',
+            value: 'verte',
+            isCorrect: false,
+        },
+        {
+            type : 'text',
+            value: 'Bleue',
+            isCorrect: true,
+        }
+      ],
+
+      trueAnswer: 5,
+      falseAnswer: 17,
+      estFacile: true,
+  }
 
   ];
 
@@ -169,7 +355,7 @@ export const QUESTIONLIST_ACTOR: Question[] = [
     {
       id: 5,
       label: 'la capitale de la France est...',
-      themes:["geographie"],
+      themes:["géographie"],
       answers: [
           {
               type : 'text',

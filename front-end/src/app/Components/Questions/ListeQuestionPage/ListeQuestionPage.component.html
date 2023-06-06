@@ -8,5 +8,5 @@
     <h2>: {{this.theme}}</h2>
 </div>
 <app-ListeTheme *ngIf="afficheTheme" (themeSelected)="chooseTheme($event)"> </app-ListeTheme>
-<button class="button-card" (click)="annulerTheme()">Annuler la recherche</button>
+<button *ngIf="theme!=''" class="button-card" (click)="annulerTheme()">Annuler la recherche</button>
 <app-ListeQuestion [theme]="this.theme"> </app-ListeQuestion>

@@ -6,6 +6,7 @@
   <h2>: {{this.theme}}</h2>
 </div>
 <app-ListeTheme *ngIf="afficheTheme" (themeSelected)="chooseTheme($event)"> </app-ListeTheme>
+<button *ngIf="theme!=''" class="button-card" (click)="annulerTheme()">Annuler la recherche</button>
 <div class="Question-List">
   <div class="Question" *ngFor="let question of QuestionSelectable">
     <app-Question *ngIf="themeSelected(question)" [question]="question" (deleteQuestion)="addQuestionToQuiz($event)"></app-Question>

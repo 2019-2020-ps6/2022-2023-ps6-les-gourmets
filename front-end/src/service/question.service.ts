@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { QUESTIONLIST_ACTOR } from 'src/mocks/QuizList.mocks';
+import { QUESTIONLIST } from 'src/mocks/QuizList.mocks';
 import { Question } from 'src/models/question.model';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -11,7 +11,7 @@ import { Quiz } from 'src/models/quiz.model';
   })
     export class QuestionService {  
     //The list of question. The list is retrieved from the mock.
-    private questions: Question[] = JSON.parse(JSON.stringify(QUESTIONLIST_ACTOR)); // Ici on initialise la valeur avec un mock QUESTIONLIST
+    private questions: Question[] = JSON.parse(JSON.stringify(QUESTIONLIST)); // Ici on initialise la valeur avec un mock QUESTIONLIST
     private questionSelected!: Question;
     private edit!: boolean;
     private id:number =100;

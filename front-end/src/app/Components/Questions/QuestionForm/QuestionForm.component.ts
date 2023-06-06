@@ -94,7 +94,7 @@ export class QuestionFormComponent implements OnInit {
     const input = document.getElementById(
         'theme',
       ) as HTMLInputElement;
-      if(!this.themes.includes(input.value.toLowerCase())){
+      if(!((this.themes.includes(input.value.toLowerCase()))||input.value=="")){
         this.themes.push(input.value.toLowerCase());
     }
 }
