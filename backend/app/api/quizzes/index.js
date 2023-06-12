@@ -23,5 +23,62 @@ router.post('/', (req, res) => {
             res.status(500).json({message: 'Something went wrong', err})  
             }
          } )
+router.delete('/', (req, res) => {
+    try {
+        const id = req.body.id
+        Quiz.delete(id)
+        res.status(201).end()
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
+
+router.delete('/:quizId', (req, res) => {
+    try {
+        
+        Quiz.delete(req.params.quizId)
+        res.status(201).end()
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
+
+/*router.patch('/:quizId', (req, res) => {
+    try {
+        const quiz = Quiz.update(req.params.quizId, req.body)
+        res.status(201).json(quiz)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})*/
+
+router.put('/:quizId', (req, res) => {
+    try {
+        const quiz = Quiz.updateAttribute(req.params.quizId,"questions", req.body)
+        res.status(201).json(quiz)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
+
+router.patch('/:quizId', (req, res) => {
+    try {
+        const quiz = Quiz.updateAttribute(req.params.quizId,"easyQuestions", req.body)
+        res.status(201).json(quiz)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
+
 
 module.exports = router

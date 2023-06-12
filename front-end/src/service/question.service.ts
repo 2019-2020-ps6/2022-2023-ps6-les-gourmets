@@ -19,26 +19,36 @@ import { Quiz } from 'src/models/quiz.model';
     public questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions); // Ici on crée un observable qui va permettre de récupérer la liste des suestions
     public questionSelected$: Subject<Question> = new BehaviorSubject(this.questionSelected);
     public edit$: Subject<boolean> = new BehaviorSubject(this.edit);
-    private questionUrl = "http://localhost:4200" + '/questions';
+    private questionUrl = "http://localhost:9428/api" + '/questions';
 
     // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
-    constructor(private quizService: QuizService) {
+    constructor(private quizService: QuizService, private http: HttpClient) {
+      this.retrieveQuestions();
      }
 
 
     retrieveQuestions(): void {
+      this.http.get<Question[]>(this.questionUrl).subscribe((questionList) => {
+        this.questions = questionList;
+        this.questions$.next(this.questions);
+      });
     }
 
+
     addQuestion(question : Question) {
+      this.http.post<Question>(this.questionUrl, question).subscribe(() => this.retrieveQuestions());
+      /*
       this.id++;
       question.id=this.id;
       this.questions.push(question);
-      this.questions$.next(this.questions);
+      this.questions$.next(this.questions);*/
     }
 
     deleteQuestion(question: Question) {
+      this.http.delete<Question>(this.questionUrl + '/' + question.id).subscribe(() => this.retrieveQuestions());
+      /*
         this.questions = this.questions.filter(q => q.id !== question.id);
-        this.questions$.next(this.questions);
+        this.questions$.next(this.questions);*/
     }
 
     selectQuestion(question: Question) {

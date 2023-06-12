@@ -4,6 +4,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Question } from 'src/models/question.model';
 import { UserService } from './user.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -20,23 +21,33 @@ public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes); //
 public quizSelected$: BehaviorSubject<Quiz> = new BehaviorSubject(this.quizSelected); // Ici on crée un observable qui va permettre de récupérer un quiz sélectionné
 
 // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
-constructor(private userService: UserService) {
-
+constructor(private userService: UserService, private http: HttpClient) {
+  this.retrieveQuizes();
  }
 
+ private QuizUrl = "http://localhost:9428/api" + '/quizzes';
+
 retrieveQuizes(): void {
+  this.http.get<Quiz[]>(this.QuizUrl).subscribe((quizList) => {
+    this.quizzes = quizList;
+    this.quizzes$.next(this.quizzes);
+  });
 }
 
 addQuiz(quiz : Quiz) {
+  
+  this.http.post<Quiz>(this.QuizUrl, quiz).subscribe(() => this.retrieveQuizes());
+  /*
   this.id++;
   quiz.id=this.id;
   this.quizzes.push(quiz);
-  this.quizzes$.next(this.quizzes);
+  this.quizzes$.next(this.quizzes);*/
 }
 
 deleteQuiz(quiz: Quiz) {
-  this.quizzes = this.quizzes.filter(q => q !== quiz);
-  this.quizzes$.next(this.quizzes);
+  this.http.delete<Quiz>(this.QuizUrl + '/' + quiz.id).subscribe(() => this.retrieveQuizes());
+  /*this.quizzes = this.quizzes.filter(q => q !== quiz);
+  this.quizzes$.next(this.quizzes);*/
  }
 
  selectQuiz(quiz: Quiz) {
@@ -45,6 +56,7 @@ deleteQuiz(quiz: Quiz) {
   }
 
   addQuestionForQuiz(question : Question){
+    
     if(question.estFacile){
       if(this.quizSelected.easyQuestions.indexOf(question)==-1){
         this.quizSelected.easyQuestions.push(question) ;
@@ -95,6 +107,29 @@ deleteQuiz(quiz: Quiz) {
   }
 
   QuizUpdate(quizModified: Quiz){
+    const questionIds:number[] = [];
+    quizModified.questions.forEach(question => {
+      questionIds.push(question.id);
+    });
+    /* console.log(JSON.stringify(questionIds));
+    const newQuizz:string = JSON.stringify(quizModified);
+    var ids:number[];
+    ids = JSON.parse(newQuizz).questions;
+    
+    var ids2:number[];
+    const newQuizz2:string = JSON.stringify(ids);
+    console.log(newQuizz2);*/
+
+    const easyQuestionIds:number[] = [];
+    quizModified.easyQuestions.forEach(question => {
+      easyQuestionIds.push(question.id);
+    });
+    
+   // console.log(newQuizz);
+    this.http.put<Quiz>(this.QuizUrl + '/' + quizModified.id , questionIds).subscribe(() => this.retrieveQuizes());
+    this.http.patch<Quiz>(this.QuizUrl + '/' + quizModified.id , easyQuestionIds).subscribe(() => this.retrieveQuizes());
+   // this.http.patch<Quiz>(this.QuizUrl + '/' + quizModified.id, quizModified).subscribe(() => this.retrieveQuizes());
+    /*
     this.userService.getUsers().forEach(user=>{
       user.quizzes.forEach((quiz:Quiz,index:number)=>{
         if(quiz.id==quizModified.id){
@@ -102,7 +137,7 @@ deleteQuiz(quiz: Quiz) {
           
         }
       })
-    })
+    })*/
 
   }
 }

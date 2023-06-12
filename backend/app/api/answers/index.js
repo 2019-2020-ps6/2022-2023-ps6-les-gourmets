@@ -1,22 +1,33 @@
 const { Router } = require('express')
 
-const { Question, Questions } = require('../../models')
+const { Answer } = require('../../models')
 
 const router = new Router();
 
 router.get('/', (req, res) => {
     try {
-        res.status(200).json(Question.get())
+        res.status(200).json(Answer.get())
     } 
     catch (err) {
             console.log(err)
             res.status(500).json({message: 'Something went wrong', err})  
             }
          } )
+
+router.get('/:answerId', (req, res) => {
+    try {
+        res.status(200).json(Answer.getById(req.params.answerId))
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+    }   )
+
 router.post('/', (req, res) => {
     try {
-        const question = Question.create(req.body)
-        res.status(201).json(Questions)
+        const answer = Answer.create(req.body)
+        res.status(201).json(answer)
     } 
     catch (err) {
             console.log(err)
@@ -24,10 +35,9 @@ router.post('/', (req, res) => {
             }
          } )
 
-
-router.delete('/:questionId', (req, res) => {
+router.delete('/:answerId', (req, res) => {
     try {
-        Question.delete(req.params.questionId)
+        Answer.delete(req.params.answerId)
         res.status(201).end()
     }
     catch (err) {
@@ -36,14 +46,17 @@ router.delete('/:questionId', (req, res) => {
     }
 })
 
-router.patch('/:questionId', (req, res) => {
+router.patch('/:answerId', (req, res) => {
     try {
-        const question = Question.update(req.params.questionId, req.body)
-        res.status(201).json(question)
+        const answer = Answer.update(req.params.answerId, req.body)
+        res.status(201).json(answer)
     }
     catch (err) {
         console.log(err)
         res.status(500).json({message: 'Something went wrong', err})
     }
 })
+
 module.exports = router
+
+//test

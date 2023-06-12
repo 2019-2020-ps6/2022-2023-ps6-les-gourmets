@@ -18,9 +18,6 @@ export class ListeUserPage implements OnInit {
         this.jouerService.playButtonSimpleSound(ButtonSound.SelectingObject)
     }
 
-    SelectUser(user : User) : void {
-        
-    }
     playBackSound(){
         this.jouerService.playButtonSimpleSound(ButtonSound.back)
     }

@@ -1,10 +1,11 @@
 const Joi = require('joi')
 const BaseModel = require('../utils/base-model.js')
+const number = require('joi/lib/types/number/index.js')
 
 module.exports = new BaseModel('Quiz', {
     name: Joi.string().required(),
-    questions: Joi.array().required(),
-    easyQuestions: Joi.array().required(),
+    questions: Joi.array().items(number).required(),
+    easyQuestions: Joi.array().items(number).required(),
     timerMoyen: Joi.number().required(),
     times: Joi.number().required(),
     })
