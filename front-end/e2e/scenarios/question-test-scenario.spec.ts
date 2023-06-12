@@ -24,7 +24,7 @@ test.describe('Test de création de question', () => {
     await page.getByTestId('estFacile').check();
     await page.getByRole('button', {name: 'Créer'}).click();
 
-    const questionTest = await page.getByText('Question de test(facile)');
+    const questionTest = await page.getByText('Question de test(facile)').first();
     expect(questionTest).toBeVisible();
 
   });
