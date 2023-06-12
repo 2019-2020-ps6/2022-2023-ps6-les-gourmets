@@ -20,11 +20,11 @@
           
       
           <td>{{question.label}}</td>
-          <td>{{question.trueAnswer / (question.falseAnswer + question.trueAnswer) * 100}}%</td>
+          <td>{{(question.trueAnswer / (question.falseAnswer + question.trueAnswer)) | percent}}</td>
         </tr>
       
     
-      <h2>temps moyen : {{quiz.timerMoyen/1000}} secondes</h2>
+      <h2>temps moyen : {{quiz.timerMoyen/1000 | number: '1.0-0'}} secondes</h2>
     </span>
 </table>
 </div>

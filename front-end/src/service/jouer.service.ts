@@ -121,14 +121,17 @@ export class JouerService {
 
     public playBackgroundMusic(){
         this.stopMusic(this.UserMusic);
+        if(!this.musicActivated) return
         if(this.backgroundMusic!=null && !this.backgroundMusic.paused)return;
         const path = this.mainMusics.sort(() => Math.random()-0.5)[0];
         this.backgroundMusic = new AudioFade('assets/Music/'+path);
+
         this.backgroundMusic.play(0.5);
     }
 
     public playUserMusic(path : string|null){
         this.stopMusic(this.backgroundMusic);
+        if(!this.musicActivated) return
         if(path!=null){
             this.UserMusic = new AudioFade('assets/Music/'+path);
         }

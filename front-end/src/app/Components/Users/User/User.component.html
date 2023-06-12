@@ -2,7 +2,6 @@
     Nom : {{User.name}}<br>
     Prénom : {{User.surname}}<br>
     <div *ngIf="isMod">
-      Taux d'agressivité : {{User.aggressivness}}<br>
       <button (click)="delete()">Supprimer</button>
       <button (click)="selectUser()" [routerLink]="['/UserProfilePage']">Éditer</button>
     </div>

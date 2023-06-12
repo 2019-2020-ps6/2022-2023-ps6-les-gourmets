@@ -58,5 +58,16 @@ router.patch('/:quizId', (req, res) => {
     }
 })
 
+router.put(aa, (req, res) => {
+    try {
+        const quiz = Quiz.update(req.params.quizId, req.body)
+        res.status(201).json(quiz)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
+
 
 module.exports = router
