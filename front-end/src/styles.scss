@@ -1,43 +1,69 @@
-/* You can add global styles to this file, and also import other style files */
-:root{
-    --bouton_couleur_principale:#494949;
-    --bouton_couleur_principale_accentuation:#f2f2f2;
+@import "./variable.scss";
 
-    --bouton_hard_couleur_hover:#00adb5;
-    --bouton_hard_couleur_hover_accentuation:#494949;
+html{
+  background-color: $c_darkBackground;
 }
 
-html{background-color: #222831;}
+*{
+    transition: all 0.3s ease;
+}
 
 button {
     border-radius: 5px;
-    color: var(--bouton_couleur_principale_accentuation);
-    background-color: var(--bouton_couleur_principale);
+    color: $c_white;
+    background-color: $c_grey;
     padding: 0.5em 1em;
     margin: 0.5em 1em;
     display: inline-block;
     text-align: center;
-    transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    border: solid 1px var(--bouton_couleur_principale_accentuation);
+    border: solid 1px $c_white;
+
+    &:hover{
+      background-color: lighten($c_grey,$c_percentageOnHover);
+      cursor: pointer;
+    }
 
 }
 
 button.hard{
+    color: $c_grey;
+    background-color: $c_cyan;
     border: none;
+    font-size: calc(0.6rem + 3vw);
+
+    &:hover {
+      color: darken($c_grey,$c_percentageOnHover);
+      background-color: saturate($c_cyan,$c_percentageOnHover);
+    }
 }
 
 button.soft{
-    border: solid 1px var(--bouton_couleur_principale_accentuation);
+    border: solid 1px $c_white;
+
+    &:hover{
+      background-color: lighten($c_grey,$c_percentageOnHover);
+    }
 }
 
-button:hover {
-    cursor: pointer;
+input{
+  padding: 1em;
+  width: 33vw;
+  margin: 1vw;
+  background: #0000002b;
+  color: white;
 }
 
-button.hard:hover {
-  background-color: var(--bouton_hard_couleur_hover);
-  color: var(--bouton_hard_couleur_hover_accentuation)
+.card{
+  background-color: $c_darkPanel;
+  border: solid 1px #f2f2f2;
+  border-radius: 8px;
+  display: flex;
+  margin: 1rem;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  padding: 0 1em 1em 1em;
+  flex-direction: column;
+  padding:1em;
 }
 
 /* copy paste this switch button
@@ -54,12 +80,12 @@ button.hard:hover {
     width: 42px;
     height: 24px;
     margin-bottom: 20px;
-  }
-  
-  .switch input {
+
+    & input{
     opacity: 0;
     width: 0;
     height: 0;
+    }
   }
   
   .switch_handle {
@@ -69,22 +95,22 @@ button.hard:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: grey;
+    background-color: $c_grey;
     border-radius: 34px;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  .switch_handle:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.4s;
+
+    &:before{
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: $c_white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
   }
   
   input:checked + .switch_handle {
