@@ -1,23 +1,38 @@
 import { E2EComponentFixture } from "e2e/e2e-component.fixture";
 
 export class AppFixture extends E2EComponentFixture {
-  getTitle() {
-    return this.page.getByRole('heading', { name: 'Hello World!' });
+
+  getCreerButton() {
+    return this.page.getByRole('button', { name: 'Créer' });
   }
 
-  getDescription() {
-    return this.page.getByText('Start your first app!', { exact: true });
+  clickOnCreerButton() {
+    return this.getCreerButton().click();
   }
 
-  getShowButton() {
-    return this.page.getByRole('button', { name: 'Show success!' });
+  getQuestionButton() {
+    return this.page.getByRole('button', { name: 'Question' });
   }
 
-  clickOnShowButton() {
-      return this.getShowButton().click();
+  clickOnQuestionButton() {
+    return this.getQuestionButton().click();
   }
 
-  getSuccessMessage() {
-    return this.page.getByText('Wow!');
+  getAjouterQuestionButton() {
+    return this.page.getByRole('button', { name: 'Ajouter une question' });
   }
+
+  clickOnAjouterQuestionButton() {
+    return this.getAjouterQuestionButton().click();
+  }
+
+  getAjouterQuestionTestButton() {
+    return this.page.getByTestId('textanswer');
+  }
+
+  clickOnAjouterQuestionTestButton() {
+    return this.getAjouterQuestionTestButton().click();
+  }
+
+
 }

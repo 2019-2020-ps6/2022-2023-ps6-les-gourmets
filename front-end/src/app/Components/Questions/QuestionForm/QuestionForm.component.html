@@ -3,7 +3,7 @@
 </div>
 <div class="page">
 <div class="card">
-  
+
     <h2>Créer une nouvelle question</h2>
     <form class="question-form" [formGroup]="questionForm">
       <label for="title">
@@ -19,19 +19,19 @@
       </label>
       <div formArrayName="answers">
         <div [formGroupName]="0">
-          <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
+          <input class="input-custom" type="text" id="name1" formControlName="value"><br><br>
         </div>
         réponse 2 <br>
         <div [formGroupName]="1">
-          <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
+          <input class="input-custom" type="text" id="name2" formControlName="value"><br><br>
         </div>
         réponse 3 <br>
         <div [formGroupName]="2">
-          <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
+          <input class="input-custom" type="text" id="name3" formControlName="value"><br><br>
         </div>
         réponse 4 <br>
         <div [formGroupName]="3">
-          <input class="input-custom" type="text" id="name" formControlName="value"><br><br>
+          <input class="input-custom" type="text" id="name4" formControlName="value"><br><br>
         </div>
       </div>
       <fieldset>
@@ -39,13 +39,13 @@
         <div>
           <input type="radio" name="answer" id="Choice1" (change)="onAnswerSelected(0)" />
           <label for="Choice1">1</label>
-      
+
           <input type="radio" name="answer" id="Choice2" (change)="onAnswerSelected(1)" />
           <label for="Choice2">2</label>
-      
+
           <input type="radio" name="answer" id="Choice3" (change)="onAnswerSelected(2)" />
           <label for="Choice3">3</label>
-      
+
           <input type="radio" name="answer" id="Choice4" (change)="onAnswerSelected(3)" />
           <label for="Choice4">4</label>
         </div>
@@ -60,7 +60,7 @@
       <button *ngIf="getEdit()" type="submit" class="button-card" (click)="updateQuestion()" [routerLink]="['/ListeQuestionPage']">Modifier</button>
     </form>
 </div>
-    
+
   <div class="card">
     <h2>Preview</h2>
     <div class = "preview">
