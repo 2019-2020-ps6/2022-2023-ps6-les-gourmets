@@ -1,0 +1,34 @@
+[
+    {
+      "id": 1685951375731,
+      "label": "qui est le plus moche ?",
+      "themes": [
+        "beauté"
+      ],
+      "estFacile": true,
+      "answers": [
+        {
+          "type": "text",
+          "value": "Arnaud",
+          "isCorrect": true
+        },
+        {
+          "type": "text",
+          "value": "Pispo",
+          "isCorrect": false
+        },
+        {
+          "type": "text",
+          "value": "Pael",
+          "isCorrect": false
+        },
+        {
+          "type": "text",
+          "value": "Parpo",
+          "isCorrect": false
+        }
+      ],
+      "trueAnswer": 0,
+      "falseAnswer": 0
+    }
+  ]

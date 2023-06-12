@@ -5,10 +5,10 @@
 <span>
     <div class="card">
         <h2>Réponses Texte</h2>
-        <button type="submit" class="button-card" (click)="selectType('text')"  [routerLink]="['/QuestionForm']">Select</button>
+        <button data-testid="textanswer" type="submit" class="button-card" (click)="selectType('text')"  [routerLink]="['/QuestionForm']">Select</button>
     </div>
     <div class="card">
         <h2>Réponses Image</h2>
-        <button type="submit" class="button-card" (click)="selectType('image')"  [routerLink]="['/QuestionForm']">Select</button>
+        <button data-testid="imageanswer" type="submit" class="button-card" (click)="selectType('image')"  [routerLink]="['/QuestionForm']">Select</button>
     </div>
 </span>
