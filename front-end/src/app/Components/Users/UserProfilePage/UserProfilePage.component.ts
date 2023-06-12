@@ -25,7 +25,6 @@ export class UserProfilePage implements OnInit {
       if (UserSelected) {
 
         this.UserModified = UserSelected;
-        console.log(this.UserModified)
 
         this.User = JSON.parse(JSON.stringify(this.UserModified));
         this.modifs = this.formBuilder.group({

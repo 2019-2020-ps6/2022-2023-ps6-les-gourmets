@@ -37,7 +37,9 @@ retrieveUsers(): void {
   this.http.get<User[]>(this.UserUrl).subscribe((userList) => {
     this.Users = userList;
     this.Users$.next(this.Users);
+    
   });
+
 }
 
 retrieveUsersAndSelect(value: User): void {
@@ -60,19 +62,65 @@ updateUser(userTochange : User, value : User) {
 
 deleteUser(value: User) {
   this.http.delete<User>(this.UserUrl + '/' + value.id).subscribe(() => this.retrieveUsers());
+  this.updateUserQuizzes();
  }
 
  selectUser(value: User) {
   this.http.get<User>(this.UserUrl + '/' + value.id).subscribe((user) => {
   this.UserSelected = user;
-  this.UserSelected$.next(this.UserSelected);
   });
+  this.http.get<Quiz[]>(this.UserUrl + '/' + value.id + '/quizzes').subscribe((quizzes) => {
+  this.UserSelected.quizzes = quizzes;
+  });
+  console.log(this.UserSelected.quizzes);
+  this.UserSelected$.next(this.UserSelected);
  }
 
  deleteQuizForProfile(value : Quiz){
   this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value.id !== quiz.id);
   this.UserSelected$.next(this.UserSelected);
+  this.updateUserQuizzes();
  }
+
+ addQuizForUser(value : Quiz){
+  this.UserSelected.quizzes.push(value);
+  this.updateUserQuizzes();
+ /* console.log("bjr");
+  value.quizzes.forEach(quiz => {
+    this.UserSelected.quizzes.push(quiz);
+  }); 
+  const quizId = value.quizzes.id;
+  const quizzIds = this.UserSelected.quizzes.map(quiz => quiz.id);
+ // quizzIds.push(quizId);
+  this.http.patch<User>(this.UserUrl + '/' + this.UserSelected.id +  quizId, value).subscribe(() =>
+  //this.http.patch<User>(this.UserUrl + '/' + this.UserSelected.id +  quizId, value).subscribe(() =>
+  //this.http.patch<User>(this.UserUrl + '/' + this.UserSelected.id + '/quizzes/' + quizId, value).subscribe(() =>
+  //this.http.put<User>(this.UserUrl + '/' + this.UserSelected.id + '/quizzes/' + value.id, value).subscribe(() =>
+  this.retrieveUsersAndSelect(this.UserSelected));*/
+
+  /*
+  this.UserSelected.quizzes.push(value);
+  this.UserSelected$.next(this.UserSelected);*/
+  }
+
+  updateUserQuizzes(){
+    const quizIds:number[] = [];
+    this.UserSelected.quizzes.forEach(quiz => {
+      quizIds.push(quiz.id);
+    });
+    console.log(this.UserSelected.quizzes);
+    console.log(quizIds);
+
+
+
+    
+    this.http.patch<Quiz>(this.UserUrl + '/' + this.UserSelected.id , quizIds).subscribe(() => this.selectUser(this.UserSelected));
+    
+  
+    console.log(this.UserSelected.quizzes)  ;
+
+  }
+
 
  updateUserStats(quiz: Quiz,questions: Question[],answers: boolean[]){
   for(let i=0; i< this.UserSelected.quizzes.length;i++){

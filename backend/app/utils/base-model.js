@@ -11,9 +11,12 @@ module.exports = class BaseModel {
     if (!schema) throw new Error('You must provide a schema in constructor of BaseModel')
     this.schema = Joi.object().keys({ ...schema, id: Joi.number().required() })
     this.items = []
+    this.quizItems = []
     this.name = name
     this.filePath = `${__dirname}/../../database/${this.name.toLowerCase()}.data.json`
+    this.quizPath = `${__dirname}/../../database/quiz.data.json`
     this.load()
+    this.loadQuiz()
   }
 
   load() {
@@ -23,6 +26,15 @@ module.exports = class BaseModel {
       if (err.message === 'Unexpected end of JSON input') logger.log(`Warning : ${this.filePath} has wrong JSON format`)
     }
   }
+
+  loadQuiz()  {
+    try {
+      this.quizItems = JSON.parse(fs.readFileSync(this.quizPath, 'utf8'))
+    } catch (err) {
+      if (err.message === 'Unexpected end of JSON input') logger.log(`Warning : ${this.quizPath} has wrong JSON format`)
+    }
+  }
+
 
   save() {
     try {
@@ -37,6 +49,13 @@ module.exports = class BaseModel {
   }
 
   getById(id) {
+    if (typeof id === 'string') id = parseInt(id, 10)
+    const item = this.items.find((i) => i.id === id)
+    if (!item) throw new NotFoundError(`Cannot get ${this.name} id=${id} : not found`)
+    return item
+  }
+
+  getQuizById(id) {
     if (typeof id === 'string') id = parseInt(id, 10)
     const item = this.items.find((i) => i.id === id)
     if (!item) throw new NotFoundError(`Cannot get ${this.name} id=${id} : not found`)
