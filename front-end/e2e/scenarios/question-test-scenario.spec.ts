@@ -7,10 +7,7 @@ test.describe('Test de création de question', () => {
     await page.goto(testUrl);
     const appComponentFixture = new AppFixture(page);
 
-    await appComponentFixture.clickOnCreerButton();
-    await appComponentFixture.clickOnQuestionButton();
-    await appComponentFixture.clickOnAjouterQuestionButton();
-    await appComponentFixture.clickOnAjouterQuestionTestButton();
+    await appComponentFixture.goToQuestionTextForm();
 
     selectors.setTestIdAttribute('id');
     await page.getByTestId('label').fill('Question de test');
@@ -26,8 +23,48 @@ test.describe('Test de création de question', () => {
 
     const questionTest = await page.getByText('Question de test(facile)').first();
     expect(questionTest).toBeVisible();
-    await page.getByRole('button', {name: 'Supprimer'}).click();
+    await page.locator('app-question').filter({ hasText: 'Question de test(facile).ModifierSupprimer' }).getByRole('button', { name: 'Supprimer' }).click();
     expect(questionTest).not.toBeVisible();
+
+  });
+
+
+
+  test('should create a quiz and add a question to it', async ({ page }) => {
+    await page.goto(testUrl);
+    const appComponentFixture = new AppFixture(page);
+
+    await appComponentFixture.goToQuestionTextForm();
+
+    await selectors.setTestIdAttribute('id');
+
+    await appComponentFixture.fillQuestionForm('cacatest');
+
+
+
+    const questionTest = await page.getByText('Question de test(facile)').first();
+    expect(questionTest).toBeVisible();
+
+    //await page.getByRole('button', {name: 'Supprimer'}).click();
+    //expect(questionTest).not.toBeVisible();
+
+    await page.goto(testUrl);
+    await appComponentFixture.goToQuizForm();
+
+    await page.getByTestId('name').fill('Quiz de test');
+    await page.getByRole('button', { name: 'Create' }).click();
+    await page.getByRole('button', { name: 'Modifier' }).first().click();
+    await page.getByRole('button', { name: 'Ajouter' }).click();
+
+    const questionTestSelect = await page.getByText('Question de test(facile)').first();
+    expect(questionTestSelect).toBeVisible();
+    await page.getByRole('button', { name: 'Ajouter' }).first().click();
+    await page.getByRole('button', { name: 'Retour' }).first().click();
+    const questionTestSelected = await page.getByText('Question de test(facile)').first();
+    expect(questionTestSelected).toBeVisible();
+
+
+
 
   });
 });
