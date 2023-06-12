@@ -26,6 +26,8 @@ test.describe('Test de création de question', () => {
 
     const questionTest = await page.getByText('Question de test(facile)').first();
     expect(questionTest).toBeVisible();
+    await page.getByRole('button', {name: 'Supprimer'}).click();
+    expect(questionTest).not.toBeVisible();
 
   });
 });
