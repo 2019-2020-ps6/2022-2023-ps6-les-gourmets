@@ -1,7 +1,7 @@
 const { Router } = require('express')
 
 const { User } = require('../../models')
-const { buildUser, buildUsers } = require('./manager')
+const { buildUser, buildUsers, IdTransform } = require('./manager')
 const QuizzesRouter = require('../quizzes')
 const router = new Router();
 
@@ -52,7 +52,8 @@ router.delete('/:userId', (req, res) => {
 
 router.put('/:userId', (req, res) => {
     try {
-        const user = User.update(req.params.userId, req.body)
+        goodUser = IdTransform(req.body)
+        const user = User.update(req.params.userId, goodUser)
         res.status(201).json(user)
     }
     catch (err) {

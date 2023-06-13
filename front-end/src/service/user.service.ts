@@ -59,7 +59,7 @@ addUser(value : User) {
   this.http.post<User>(this.UserUrl, value).subscribe((value) => this.retrieveUsersAndSelect(value));
 }
 
-updateUser(userTochange : User, value : User) {
+updateUser(value : User) {
   const quizIds:number[] = [];
     this.UserSelected.quizzes.forEach(quiz => {
       quizIds.push(quiz.id);
@@ -81,13 +81,11 @@ deleteUser(value: User) {
  deleteQuizForProfile(value : Quiz){
   this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value.id !== quiz.id);
   this.updateUserQuizzes();
-  this.UserSelected$.next(this.UserSelected);
  }
 
  addQuizForUser(value : Quiz){
   this.UserSelected.quizzes.push(value);
   this.updateUserQuizzes();
-  this.UserSelected$.next(this.UserSelected);
   }
 
   updateUserQuizzes(){
@@ -95,7 +93,10 @@ deleteUser(value: User) {
     this.UserSelected.quizzes.forEach(quiz => {
       quizIds.push(quiz.id);
     });
-    this.http.patch<Quiz>(this.UserUrl + '/' + this.UserSelected.id , quizIds).subscribe(() => this.retrieveUsers());
+    this.http.patch<User>(this.UserUrl + '/' + this.UserSelected.id , quizIds).subscribe(() => {
+      this.retrieveUsers();
+      this.selectUser(this.UserSelected);
+    });
 
   }
 

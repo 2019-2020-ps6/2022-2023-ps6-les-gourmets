@@ -134,6 +134,51 @@ module.exports = class BaseModel {
     this.save();
   }
 
+  containsIdForAttribute(id, attribute) {
+    
+    return contains;
+  }
+
+    
+
+  changeAttribute(id,attribute1,attribute2) {
+    if (typeof id === 'string') {
+      id = parseInt(id, 10);
+    }
+
+    let contains = false;
+    this.items.forEach((obj) => {
+      Object.keys(obj).forEach((key) => {
+        if (key === attribute1) {
+          if (Array.isArray(obj[key])) {
+            obj[key].find((ref) => {
+              if (ref === id) {
+                obj[key] = obj[key].filter((ref) => ref !== id);
+                contains = true;
+              }
+            });
+          } else if (obj[key] === id) {
+            contains = true;
+            obj[key] = null;
+          }
+        }
+      });
+      if (contains === true) {
+        Object.keys(obj).forEach((key) => {
+          if (key === attribute2) {
+            if (Array.isArray(obj[key])) {
+              obj[key].push(id);
+            } else if (obj[key] === null) {
+              obj[key] = id;
+            }
+          }
+        });
+      }
+    });
+
+
+  }
+
   updateAttribute(id, attribute, value) {
     if (typeof id === 'string') id = parseInt(id, 10)
     const prevObjIndex = this.items.findIndex((item) => item.id === id)

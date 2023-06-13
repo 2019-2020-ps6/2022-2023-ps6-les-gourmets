@@ -21,13 +21,14 @@ export class GamePageComponent implements OnInit {
   quiz!: Quiz;
   currentQuestionIndex = 0;
   answers: boolean[] = [];
-  currentQuestion: Question;
+  currentQuestion!: Question;
   validate: boolean = false;
   end: boolean = false;
-  nbAnswers: number;
+  nbAnswers!: number;
   quitPopup !: boolean;
   PopupVisibility: string = "hidden";
   ezActivited: boolean = false;
+  public quizReady: boolean = false;
 
   @HostListener("document:mousedown",['$event'])
   onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
@@ -47,29 +48,30 @@ export class GamePageComponent implements OnInit {
 
     constructor(private router: Router,public quizService:QuizService, public userService:UserService,public jouerService:JouerService) {
       this.userService.UserSelected$.subscribe((user: User) => {
-        this.user = user;
+        if(user){
+          this.user = user;
+          const timeout = this.userService.getCurrentUser().passivity * 20000 + 15000;
+          this.jouerService.setTimeout(timeout);
+        }
       });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
-        this.quiz = quiz;
+        if(quiz){
+          this.quiz = quiz;
+          this.currentQuestion = this.quiz.questions[0];
+          this.nbAnswers = this.quiz.questions.length;
+          this.quizReady = true;
+          this.quiz.questions.sort(() => {
+            return Math.random() - 0.5;
+          });
+        }
       });
       this.jouerService.quitPopup$.subscribe((appearance: boolean) => {
         this.quitPopup = appearance;
       });
-      // Randomise question order
-      this.quiz.questions.sort(() => {
-        return Math.random() - 0.5;
-      });
-      const timeout = this.userService.getCurrentUser().passivity * 20000 + 15000;
-      this.jouerService.setTimeout(timeout);
-      this.currentQuestion = this.quiz.questions[0];
-      this.nbAnswers = this.quiz.questions.length;
       jouerService.quizLaunch();
     }
 
     ngOnInit(): void {
-
-      this.currentQuestion = this.quiz.questions[0];
-
     }
 
     NextQuestion(): void {

@@ -15,14 +15,16 @@ export class ChoixQuiz implements OnInit {
 
   public quizs: Quiz[] = [];
   public user!: User;
+  public quizReady: boolean = false;
 
     constructor(public userService: UserService, private jouerService: JouerService) {
       this.userService.UserSelected$.subscribe((user: User) => {
-        this.user = user;
+        if(user){
+          this.user = user;
+          this.quizs = this.user.quizzes;
+          this.quizReady = true;
+        }
       });
-      console.log(this.user)
-
-      this.quizs = this.user.quizzes;
     }
 
     ngOnInit(): void {}

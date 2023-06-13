@@ -41,6 +41,8 @@ router.delete('/:questionId', (req, res) => {
 router.put('/:questionId', (req, res) => {
     try {
         const question = Question.update(req.params.questionId, req.body)
+        if(question.estFacile) { Quiz.changeAttribute(req.params.questionId, "questions", "easyQuestions") }
+        else(Quiz.changeAttribute(req.params.questionId, "easyQuestions", "questions") )
         res.status(201).json(question)
     }
     catch (err) {
