@@ -61,7 +61,7 @@ router.put('/:userId', (req, res) => {
     }
 })
 
-router.put('/:userId/quizzes', (req, res) => {
+router.patch('/:userId', (req, res) => {
     try {
         const user = User.updateAttribute(req.params.userId,"quizzes", req.body)
         res.status(201).json(user)
