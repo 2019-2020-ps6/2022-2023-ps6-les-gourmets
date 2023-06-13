@@ -35,7 +35,7 @@ export class JouerService {
     onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
   */
 
-    private mainMusics : string[] = ["MainTheme.mp3"]
+    private mainMusics : string[] = ["assets/Music/MainTheme.mp3"]
     private UserMusic !: AudioFade ;
     private backgroundMusic !: AudioFade ;
     public musicActivated = true;
@@ -125,7 +125,7 @@ export class JouerService {
         if(!this.musicActivated)return;
         if(this.backgroundMusic!=null && !this.backgroundMusic.paused)return;
         const path = this.mainMusics.sort(() => Math.random()-0.5)[0];
-        this.backgroundMusic = new AudioFade('assets/Music/'+path);
+        this.backgroundMusic = new AudioFade(path);
         this.backgroundMusic.play(0.5);
     }
 
@@ -133,7 +133,7 @@ export class JouerService {
         this.stopMusic(this.backgroundMusic);
         if(!this.musicActivated)return;
         if(path!=null){
-            this.UserMusic = new AudioFade('assets/Music/'+path);
+            this.UserMusic = new AudioFade(path);
         }
         if(this.UserMusic!=undefined){
           this.UserMusic.play(0.5);

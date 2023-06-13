@@ -3,10 +3,13 @@
 html{
   background-color: $c_darkBackground;
 }
-
+body {
+  overflow-x : hidden;
+}
 *{
     transition: all 0.3s ease;
     color:$c_white;
+    
 }
 
 h1{
@@ -26,6 +29,7 @@ button {
     color: $c_white;
     text-align: center;
     font-weight: bold;
+    white-space: break-spaces;
 
     &:hover{
       background-color: lighten($c_grey,$c_percentageOnHover);
