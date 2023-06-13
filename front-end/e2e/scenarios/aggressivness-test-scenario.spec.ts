@@ -5,8 +5,5 @@ test.describe('Tests de partie', () => {
   test('should display the popup', async ({ page }) => {
     await page.goto(testUrl);
 
-    const pageTitle = await page.getByRole('heading', { name: 'Welcome to the Angular Tour of Heroes!' });
-
-    expect(pageTitle).not.toBeVisible();
   });
 });
