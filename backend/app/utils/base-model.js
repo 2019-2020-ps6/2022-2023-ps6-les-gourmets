@@ -13,9 +13,7 @@ module.exports = class BaseModel {
     this.items = []
     this.attributeItems = []
     this.name = name
-    this.attribute = ""
-    this.filePath = `${__dirname}/../../database/${this.name.toLowerCase()}.data.json`
-    this.attributePath = `${__dirname}/../../database/${this.attribute.toLowerCase()}.data.json`
+    this.filePath = `${__dirname}/../../database/${process.env.DB_FOLDER ?? ''}${this.name.toLowerCase()}.data.json`
     this.load()
     this.loadItems()
   }
