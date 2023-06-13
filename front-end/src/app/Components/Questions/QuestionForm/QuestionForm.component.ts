@@ -27,7 +27,7 @@ export class QuestionFormComponent implements OnInit {
       id: this.question.id,
       label: [this.question.label],
       themes: [this.question.themes],
-      estFacile:[false],
+      estFacile:[this.question.estFacile],
       answers: this.formBuilder.array([
         this.formBuilder.group({
           type: [this.question.answers[0].type],

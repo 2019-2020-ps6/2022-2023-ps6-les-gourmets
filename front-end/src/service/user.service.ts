@@ -36,8 +36,14 @@ constructor(private http: HttpClient) {
 retrieveUsers(): void {
   this.http.get<User[]>(this.UserUrl).subscribe((userList) => {
     this.Users = userList;
+    this.Users.forEach(user =>{
+      this.http.get<Quiz[]>(this.UserUrl + '/' + user.id + '/quizzes').subscribe((quizzes) => {
+        user.quizzes = quizzes;
+        });
+    })
     this.Users$.next(this.Users);
   });
+
 }
 
 retrieveUsersAndSelect(value: User): void {
@@ -53,26 +59,47 @@ addUser(value : User) {
   this.http.post<User>(this.UserUrl, value).subscribe((value) => this.retrieveUsersAndSelect(value));
 }
 
-updateUser(userTochange : User, value : User) {
-  this.http.put<User>(this.UserUrl + '/' + value.id, value).subscribe(() =>
-  this.retrieveUsers());
+updateUser(value : User) {
+  const quizIds:number[] = [];
+    this.UserSelected.quizzes.forEach(quiz => {
+      quizIds.push(quiz.id);
+    });
+  this.http.put<User>(this.UserUrl + '/' + value.id, value).subscribe(() => this.retrieveUsers());
 }
 
 deleteUser(value: User) {
   this.http.delete<User>(this.UserUrl + '/' + value.id).subscribe(() => this.retrieveUsers());
+  this.updateUserQuizzes();
  }
 
  selectUser(value: User) {
   this.http.get<User>(this.UserUrl + '/' + value.id).subscribe((user) => {
   this.UserSelected = user;
   this.UserSelected$.next(this.UserSelected);
-  });
- }
+ })}
 
  deleteQuizForProfile(value : Quiz){
   this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value.id !== quiz.id);
-  this.UserSelected$.next(this.UserSelected);
+  this.updateUserQuizzes();
  }
+
+ addQuizForUser(value : Quiz){
+  this.UserSelected.quizzes.push(value);
+  this.updateUserQuizzes();
+  }
+
+  updateUserQuizzes(){
+    const quizIds:number[] = [];
+    this.UserSelected.quizzes.forEach(quiz => {
+      quizIds.push(quiz.id);
+    });
+    this.http.patch<User>(this.UserUrl + '/' + this.UserSelected.id , quizIds).subscribe(() => {
+      this.retrieveUsers();
+      this.selectUser(this.UserSelected);
+    });
+
+  }
+
 
  updateUserStats(quiz: Quiz,questions: Question[],answers: boolean[]){
   for(let i=0; i< this.UserSelected.quizzes.length;i++){

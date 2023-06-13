@@ -1,6 +1,6 @@
 const { Router } = require('express')
-
-const { Question, Questions } = require('../../models')
+const { filterQuestionsFromQuizz, getQuestionFromQuiz } = require('./manager')
+const { Question, Questions, Quiz } = require('../../models')
 
 const router = new Router();
 
@@ -27,6 +27,8 @@ router.post('/', (req, res) => {
 
 router.delete('/:questionId', (req, res) => {
     try {
+        Quiz.deleteIdForAttribute(req.params.questionId, "questions")
+        Quiz.deleteIdForAttribute(req.params.questionId, "easyQuestions")
         Question.delete(req.params.questionId)
         res.status(201).end()
     }
@@ -36,9 +38,11 @@ router.delete('/:questionId', (req, res) => {
     }
 })
 
-router.patch('/:questionId', (req, res) => {
+router.put('/:questionId', (req, res) => {
     try {
         const question = Question.update(req.params.questionId, req.body)
+        if(question.estFacile) { Quiz.changeAttribute(req.params.questionId, "questions", "easyQuestions") }
+        else(Quiz.changeAttribute(req.params.questionId, "easyQuestions", "questions") )
         res.status(201).json(question)
     }
     catch (err) {

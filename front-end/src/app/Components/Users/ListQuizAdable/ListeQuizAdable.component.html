@@ -1,4 +1,6 @@
+<ng-container *ngIf="userReady">
 <h1>Selectionnez les quiz à ajouter à {{user.name}}</h1>
+<ng-container *ngIf="quizReady">
 <button class="button-card" [routerLink]="['/UserProfilePage']"(click)="playBackSound()">Retour</button>
 <div class="quiz-List">
   <div class="Quiz" *ngFor="let quiz of QuizSelectable">
@@ -6,3 +8,5 @@
     
   </div>
 </div>
+</ng-container>
+</ng-container>

@@ -11,7 +11,7 @@ import { Quiz } from 'src/models/quiz.model';
   })
     export class QuestionService {  
     //The list of question. The list is retrieved from the mock.
-    private questions: Question[] = JSON.parse(JSON.stringify(QUESTIONLIST_ACTOR)); // Ici on initialise la valeur avec un mock QUESTIONLIST
+    private questions: Question[] = [];
     private questionSelected!: Question;
     private edit!: boolean;
     private id:number =100;
@@ -37,18 +37,10 @@ import { Quiz } from 'src/models/quiz.model';
 
     addQuestion(question : Question) {
       this.http.post<Question>(this.questionUrl, question).subscribe(() => this.retrieveQuestions());
-      /*
-      this.id++;
-      question.id=this.id;
-      this.questions.push(question);
-      this.questions$.next(this.questions);*/
     }
 
     deleteQuestion(question: Question) {
       this.http.delete<Question>(this.questionUrl + '/' + question.id).subscribe(() => this.retrieveQuestions());
-      /*
-        this.questions = this.questions.filter(q => q.id !== question.id);
-        this.questions$.next(this.questions);*/
     }
 
     selectQuestion(question: Question) {
@@ -57,10 +49,7 @@ import { Quiz } from 'src/models/quiz.model';
       }
 
     updateQuestion(questionToChange : Question, newQuestion : Question) {
-        this.questions = this.questions.filter(u => u.id !== questionToChange.id);
-        this.questions.push(newQuestion)
-        this.quizService.updateQuestionForQuiz(questionToChange,newQuestion);
-        this.questions$.next(this.questions);
+      this.http.put<Question>(this.questionUrl + '/' + questionToChange.id,newQuestion).subscribe(() => this.retrieveQuestions());
       }
 
     canEdit(edit: boolean){

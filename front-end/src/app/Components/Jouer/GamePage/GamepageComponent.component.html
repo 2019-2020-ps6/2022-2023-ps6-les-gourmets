@@ -1,12 +1,13 @@
-<div class="popup" [ngStyle]="{'display': quitPopup ? 'flex' : 'none'}">
-  <h1>Voulez-vous continuer le Quiz ?</h1>
-  <!-- button with label test that put popup visibility to none on click -->
-  <button (click)="hidepopup()">Continuer</button>
-  <button [routerLink]="'/Menu'" (click)="hidepopup()" >Arrêter</button>
-</div>
+<ng-container *ngIf="quizReady">
+  <div class="popup" [ngStyle]="{'display': quitPopup ? 'flex' : 'none'}">
+    <h1>Voulez-vous continuer le Quiz ?</h1>
+    <!-- button with label test that put popup visibility to none on click -->
+    <button (click)="hidepopup()">Continuer</button>
+    <button [routerLink]="'/Menu'" (click)="hidepopup()">Arrêter</button>
+  </div>
 
-<div class="blur" *ngIf="quitPopup">
-</div>
+  <div class="blur" *ngIf="quitPopup">
+  </div>
 
 
   <h1>{{quiz.name}}</h1>
@@ -23,4 +24,4 @@
     <button *ngIf="!validate" type="submit" class="next" (click)="SkipQuestion()">Passer la question</button>
 
   </footer>
-
+</ng-container>

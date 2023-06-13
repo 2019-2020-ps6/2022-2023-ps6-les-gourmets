@@ -1,3 +1,4 @@
+<ng-container *ngIf="quizReady">
 <h1>{{currentQuiz.name}}</h1>
 
 <button class="button-card" [routerLink]="['/ListeQuizPage']"(click)="playBackSound()">Retour</button>
@@ -17,3 +18,4 @@
             </div>
         </span>
     </div>
+</ng-container>

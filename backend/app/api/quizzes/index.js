@@ -1,18 +1,33 @@
 const { Router } = require('express')
-
-const { Quiz } = require('../../models')
+const { Quiz, User } = require('../../models')
+const { buildQuizz, buildQuizzes } = require('./manager')
+const QuestionsRouter = require('../questions')
 
 const router = new Router();
 
+router.use('/:quizId/questions', QuestionsRouter)
+
 router.get('/', (req, res) => {
     try {
-        res.status(200).json(Quiz.get())
-    } 
-    catch (err) {
-            console.log(err)
-            res.status(500).json({message: 'Something went wrong', err})  
-            }
-         } )
+      const quizzes = buildQuizzes()
+      res.status(200).json(quizzes)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})  
+    }
+  })
+  
+  router.get('/:quizId', (req, res) => {
+    try {
+      const quizz = buildQuizz(req.params.quizId)
+      res.status(200).json(quizz)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})  
+    }
+  })
+
+
 router.post('/', (req, res) => {
     try {
         const quiz = Quiz.create(req.body)
@@ -37,7 +52,7 @@ router.delete('/', (req, res) => {
 
 router.delete('/:quizId', (req, res) => {
     try {
-        
+        User.deleteIdForAttribute(req.params.quizId, "quizzes")
         Quiz.delete(req.params.quizId)
         res.status(201).end()
     }
@@ -46,17 +61,6 @@ router.delete('/:quizId', (req, res) => {
         res.status(500).json({message: 'Something went wrong', err})
     }
 })
-
-/*router.patch('/:quizId', (req, res) => {
-    try {
-        const quiz = Quiz.update(req.params.quizId, req.body)
-        res.status(201).json(quiz)
-    }
-    catch (err) {
-        console.log(err)
-        res.status(500).json({message: 'Something went wrong', err})
-    }
-})*/
 
 router.put('/:quizId', (req, res) => {
     try {

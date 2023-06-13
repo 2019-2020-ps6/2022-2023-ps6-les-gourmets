@@ -1,29 +1,32 @@
 const { Router } = require('express')
 
 const { User } = require('../../models')
-
+const { buildUser, buildUsers, IdTransform } = require('./manager')
+const QuizzesRouter = require('../quizzes')
 const router = new Router();
+
+router.use('/:userId/quizzes', QuizzesRouter)
 
 router.get('/', (req, res) => {
     try {
-        res.status(200).json(User.get())
-    } 
-    catch (err) {
-            console.log(err)
-            res.status(500).json({message: 'Something went wrong', err})  
-            }
-         } )
-
-router.get('/:userId', (req, res) => {
-    try {
-        res.status(200).json(User.getById(req.params.userId))
-    }
-    catch (err) {
+      const users = buildUsers()
+      res.status(200).json(users)
+    } catch (err) {
         console.log(err)
-        res.status(500).json({message: 'Something went wrong', err})
+        res.status(500).json({message: 'Something went wrong', err})  
     }
-    }   )
-
+  })
+  
+  router.get('/:quizId', (req, res) => {
+    try {
+      const user = buildUser(req.params.quizId)
+      res.status(200).json(user)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})  
+    }
+  })
+    
 
 router.post('/', (req, res) => {
     try {
@@ -49,7 +52,8 @@ router.delete('/:userId', (req, res) => {
 
 router.put('/:userId', (req, res) => {
     try {
-        const user = User.update(req.params.userId, req.body)
+        goodUser = IdTransform(req.body)
+        const user = User.update(req.params.userId, goodUser)
         res.status(201).json(user)
     }
     catch (err) {
@@ -57,5 +61,17 @@ router.put('/:userId', (req, res) => {
         res.status(500).json({message: 'Something went wrong', err})
     }
 })
+
+router.patch('/:userId', (req, res) => {
+    try {
+        const user = User.updateAttribute(req.params.userId,"quizzes", req.body)
+        res.status(201).json(user)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({message: 'Something went wrong', err})
+    }
+})
+
 
 module.exports = router

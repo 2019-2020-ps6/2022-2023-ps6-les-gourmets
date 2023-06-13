@@ -35,15 +35,16 @@
       <fieldset>
         <legend>Cocher la bonne réponse:</legend>
         <div>
+
           <input type="radio" name="answer" id="Choice1" (change)="onAnswerSelected(0)" />
           <label for="Choice1">1</label>
-      
+
           <input type="radio" name="answer" id="Choice2" (change)="onAnswerSelected(1)" />
           <label for="Choice2">2</label>
-      
+
           <input type="radio" name="answer" id="Choice3" (change)="onAnswerSelected(2)" />
           <label for="Choice3">3</label>
-      
+
           <input type="radio" name="answer" id="Choice4" (change)="onAnswerSelected(3)" />
           <label for="Choice4">4</label>
         </div>
@@ -59,9 +60,10 @@
       <button *ngIf="!getEdit()" type="submit" class="button-card soft submitButton" (click)="addQuestion()" [routerLink]="['/ListeQuestionPage']">Créer</button>
       <button *ngIf="getEdit()" type="submit" class="button-card soft submitButton" (click)="updateQuestion()" [routerLink]="['/ListeQuestionPage']">Modifier</button>
       <button class="button-card soft submitButton" [routerLink]="['/ListeQuestionPage']">Annuler</button>
+
     </form>
 </div>
-    
+
   <div class="card">
     <h2>Apercu de la question</h2>
     <div class = "preview">

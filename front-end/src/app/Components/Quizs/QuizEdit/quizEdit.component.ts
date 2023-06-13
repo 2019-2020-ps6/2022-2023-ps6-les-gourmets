@@ -12,10 +12,16 @@ import { QuizService } from 'src/service/quiz.service';
 })
 export class QuizEditComponent {
   
-  public currentQuiz: Quiz;
+  public currentQuiz!: Quiz;
+  public quizReady: boolean = false;
 
   constructor(private quizService: QuizService, private jouerService : JouerService) {
-    this.currentQuiz = quizService.quizSelected$.getValue();
+    this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
+      if (quiz) {
+        this.currentQuiz = quiz;
+        this.quizReady = true;
+      }
+    });
     
   }
 

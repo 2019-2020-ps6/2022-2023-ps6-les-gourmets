@@ -20,16 +20,25 @@ export class ListeQuestionAdable implements OnInit {
     public QuestionSelectable: Question[] = [];
     theme:string;
     afficheTheme:boolean;
+    quizReady: boolean = false;
+    questionReady: boolean = false;
 
     constructor(public questionService: QuestionService, public quizService: QuizService,private jouerService: JouerService) {
       this.theme = "";
       this.afficheTheme=false;
-      this.questionService.questions$.subscribe((questionList: Question[]) => {
-        this.questionList = questionList;
-      });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
-        this.quiz = quiz;
-        this.updateQuestionSelectable();
+        if (quiz) {
+          this.quiz = quiz;
+          this.quizReady = true;
+          this.updateQuestionSelectable();
+        }
+      });
+      this.questionService.questions$.subscribe((questionList: Question[]) => {
+        if(questionList && this.quiz){
+          this.questionList = questionList;
+          this.questionReady = true;
+          this.updateQuestionSelectable();
+        }
       });
     }
 
@@ -44,19 +53,14 @@ export class ListeQuestionAdable implements OnInit {
 
     updateQuestionSelectable(): void {
       this.QuestionSelectable = this.questionList;
-      console.log(this.QuestionSelectable);
       this.quiz.questions.forEach(q=>{
         this.QuestionSelectable = this.QuestionSelectable.filter(
           question => q.id!=question.id
         );
-        console.log(this.QuestionSelectable);
-        console.log(this.quiz.questions);
-        console.log(this.questionList);
       })
       this.quiz.easyQuestions.forEach(q=>{
         this.QuestionSelectable = this.QuestionSelectable.filter(
           question => q.id!=question.id
-          
         );
       })
     }
