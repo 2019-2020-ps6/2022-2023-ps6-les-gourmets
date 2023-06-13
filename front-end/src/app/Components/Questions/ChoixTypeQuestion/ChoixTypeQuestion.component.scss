@@ -1,7 +1,6 @@
 @import "../../../../variable.scss";
 
 div{
-  background-color: $app-background-color;
 
   align-items: center;
   color: $c_textColor;
@@ -12,7 +11,7 @@ h2{
   margin: 0;
   text-align: center;
   color:$c_textColor;
-  
+
 }
 
 label{
@@ -29,7 +28,7 @@ label{
 .edit {
   margin-left: 0.3em;
   align-items: center;
- 
+
 }
 
 legend{

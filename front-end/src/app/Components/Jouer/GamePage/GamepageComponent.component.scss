@@ -1,9 +1,11 @@
+@import "../../../../variable.scss";
+
 .popup {
   top: 50%;
   left: 50%;
   width: 25%;
   height: 25%;
-  background-color :$c_textColorfff;
+  background-color :$c_textColor;
   // put in the middle of the screen
   transform: translate(-50%, -50%);
   position: absolute;
@@ -44,7 +46,7 @@ label {
 span{
   display: flex;
   flex-direction: column;
-  margin-left: 10px; 
+  margin-left: 10px;
   color :$c_textColor;
   font-size: 20px;
 }
