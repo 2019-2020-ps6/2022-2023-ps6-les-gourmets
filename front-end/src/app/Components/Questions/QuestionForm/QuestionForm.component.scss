@@ -14,6 +14,10 @@ h2{
   
 }
 
+h3{
+  margin:0;
+}
+
 .input-custom{
   width: 33vw;
   margin: 1vw;
@@ -44,4 +48,8 @@ legend{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+#ThemeList{
+  display: contents;
 }

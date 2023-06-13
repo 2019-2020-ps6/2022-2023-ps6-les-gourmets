@@ -30,10 +30,18 @@ h3{
   margin-left: 0.3em;
 }
 div{
-  background-color: #222831;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
 
+}
+
+#iconImage{
+  position: absolute;
+  top: -1em;
+  right: -1em;
+  width: 4em;
+  height: 4em;
+}
+
+#SupressButton:hover{
+  background-color: $c_deepRed;
 }
