@@ -43,6 +43,33 @@ export class AppFixture extends E2EComponentFixture {
     await this.clickOnAjouterQuestionTestButton();
   }
 
+  async goToUserForm() {
+
+    await this.clickOnCreerButton();
+    await this.clickOnProfilButton();
+    await this.clickOnAjouterUserButton();
+  }
+
+  getProfilButton() {
+    return this.page.getByRole('button', { name: 'Profil' });
+  }
+
+  clickOnProfilButton() {
+    return this.getProfilButton().click();
+  }
+
+
+  getAjouterUserButton() {
+    return this.page.getByRole('button', { name: 'Ajouter un profil' });
+  }
+
+  clickOnAjouterUserButton() {
+    return this.getAjouterUserButton().click();
+  }
+
+
+
+
   ClickOnRetourButton(){
     return this.page.getByRole('button', { name: 'Retour' }).click();
   }
