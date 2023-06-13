@@ -1,8 +1,4 @@
-h1{
-    color: #fff;
-    margin-top: 30px;
-    text-align: center;
-}
+@import "../../../../variable.scss";
 
 div{
     display: flex;
@@ -14,22 +10,11 @@ div{
 }
 
 input{
-    padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.25rem;
     font-size: 1rem;
 }
 
-button{
-    background-color: #4d535dc6;
-    border: solid 1px #F2F2F2;
-    color:#f2f2f2;
-    font-weight: bold;
-    padding: 0.5em 1em;
-    margin-top: 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-}
 
 div{
     display: flex;
@@ -40,23 +25,21 @@ div{
     
 }
 h2{
-    color: #fff;
+    color :$c_textColor;
     margin-top: 30px;
     text-align: center;
 }
 th, td {
     padding: 0.5rem;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid $c_textColor;
   }
   
   th {
-    background-color: #4d535dc6;
-    color: #fff;
+    color :$c_textColor;
   }
   
   td {
-    color: #fff;
+    color :$c_textColor;
     font-size: 1.2rem;
-    background-color: #0a0d11c6;
   }

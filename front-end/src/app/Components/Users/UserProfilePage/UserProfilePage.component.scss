@@ -1,5 +1,5 @@
 h1,h2{
-    color: #fff;
+    color :$c_textColor;
     margin-top: 30px;
     text-align: center;
 }
@@ -11,8 +11,6 @@ div{
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: vw;
-
 }
 
 
@@ -23,8 +21,6 @@ div{
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: vw;
-
 }
 
 span{
@@ -35,52 +31,29 @@ span{
     justify-content: center;
     height: 100%;
 }
-
+/*
 input{
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.25rem;
     font-size: 1rem;
-}
+}*/
 
-.input-checkbox{
-    position: relative;
-    size: 100%;
-}
-
-button{
-    background-color: #4d535dc6;
-    border: solid 1px #F2F2F2;
-    color:#f2f2f2;
-    font-weight: bold;
-    padding: 0.5em 1em;
-    margin-top: 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-}
 
 .addButton{
     margin-top:0;
 }
-
-button:hover {
-    cursor: pointer;
-    background-color: #7f858ed1;
-    color: #F2F2F2;
-}
-
 .formC {
   width: 75%;
   //center
   margin: 0 auto;
   //border: 1px solid #ccc;
   padding: 1rem;
-  background-color: #445570;
   border-radius: 4px;
   margin-bottom: 1rem;
   margin: 0;
-  color:#f2f2f2;
+  color:$c_textColor;
   position: relative;
   left: 12.5%;
-  border: solid 1px #f2f2f2;
+  border: solid 1px $c_textColor;
 }

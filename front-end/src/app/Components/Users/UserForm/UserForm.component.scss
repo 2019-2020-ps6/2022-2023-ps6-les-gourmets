@@ -2,7 +2,6 @@ h1,h2 {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 1rem;
-    color: #f2f2f2
   }
   
   form {
@@ -16,26 +15,14 @@ h1,h2 {
     margin-bottom: 1rem;
   }
   
-  .input-custom {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-    font-size: 1rem;
-  }
-  
   .button-card {
-    background-color: #7f858ed1;
-    color: #fff;
+    color :$c_textColor;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
-  }
-  
-  .button-card:hover {
-    background-color: #a6a8abd1;
   }
   
   pre {

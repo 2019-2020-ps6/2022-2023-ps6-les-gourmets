@@ -1,2 +1,139 @@
-/* You can add global styles to this file, and also import other style files */
-html{background-color: #222831;}
+@import "./variable.scss";
+
+html{
+  background-color: $c_darkBackground;
+}
+body {
+  overflow-x : hidden;
+}
+*{
+    transition: all 0.3s ease;
+    color:$c_textColor;
+    
+}
+
+h1{
+  text-align : center;
+  color : $c_textColor;
+  margin : 1em;
+}
+
+button {
+    background-color: $c_buttonColor;
+    padding: 0.5em 1em;
+    margin: 0.5em 1em;
+    border: solid 1px $c_textColor;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    color: $c_textColor;
+    text-align: center;
+    font-weight: bold;
+    white-space: break-spaces;
+
+    &:hover{
+      background-color: accentuate($c_buttonColor,$c_percentageOnHover);
+      color: accentuate($c_textColor,$c_percentageOnHover);
+      cursor: pointer;
+    }
+
+}
+
+button.hard{
+    background-color: $c_ButtonHardColor;
+    border: none;
+    font-size: calc(4vw);
+
+    &:hover {
+      background-color: accentuate($c_ButtonHardColor,$c_percentageOnHover);
+    }
+}
+
+button.soft{
+    border: none;
+    font-size: 0.8em;
+}
+
+input{
+  padding: 1em;
+  margin: 1vw;
+  background: #0000002b;
+  border: solid 1px $c_textColor;
+  color: $c_textColor;
+  border-radius: 8px;
+  & [type]:not([type="checkbox"]){//Tout les inputs qui ne sont pas des checkbox
+    width: 33vw;
+  }
+}
+
+.card{
+  background-color: changeOpacityTo($c_cardColor, $c_percentageCardAlpha);
+  border: solid 1px $c_textColor;
+  border-radius: 8px;
+  display: flex;
+  margin: 1rem;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  padding: 1em;
+  flex-direction: column;
+}
+
+/* copy paste this switch button
+    <label class="switch">
+        <input type="checkbox" >// your input
+        <span class="switch_handle"></span>
+    </label>
+
+*/
+.switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 42px;
+    height: 24px;
+    margin-bottom: 20px;
+
+    & input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+  }
+  
+  .switch_handle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $c_buttonColor;
+    border-radius: 34px;
+    -webkit-transition: .4s;
+    transition: .4s;
+
+    &:before{
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: $c_textColor;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+  }
+  
+  input:checked + .switch_handle {
+    background-color: green;
+  }
+  
+  input:focus + .switch_handle {
+    box-shadow: 0 0 1px green;
+  }
+  
+  input:checked + .switch_handle:before {
+    -webkit-transform: translateX(18px);
+    -ms-transform: translateX(18px);
+    transform: translateX(18px);
+  }

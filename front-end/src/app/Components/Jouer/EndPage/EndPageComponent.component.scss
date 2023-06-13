@@ -1,7 +1,5 @@
 h1 {
-    color: #fff;
     font-size: 3em;
-    text-align: center;
     margin-top: 0;
     margin-bottom: 0;
     padding-top: 0;
@@ -11,7 +9,7 @@ h1 {
   }
 
   li{
-    color: #fff;
+    color :$c_textColor;
     margin-top: 30px;
     text-align: center;
 }
@@ -24,21 +22,5 @@ h1 {
     flex-direction: column;
     gap: 15px; 
     margin-top: 30px;
-  }
-  
-  button {
-    background-color: #00adb5;
-    border: none;
-    color: #fff;
-    padding: 15px 30px; 
-    border-radius: 25px; 
-    font-size: 1.2em; 
-    width: 250px;
-    text-align: center;
-    transition: background-color 0.3s; 
-  }
-  
-  button:hover {
-    background-color: #1edec7; 
   }
   

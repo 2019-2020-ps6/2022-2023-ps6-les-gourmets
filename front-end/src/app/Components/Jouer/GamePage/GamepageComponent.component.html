@@ -23,18 +23,5 @@
     <button *ngIf="validate && end" type="submit" class="next" (click)="endQuiz()">finir le quiz</button>
     <button *ngIf="!validate" type="submit" class="next" (click)="SkipQuestion()">Passer la question</button>
 
-
-    <div class="music">
-      <span>
-        <span>musique : </span>
-        <label class="switch">
-          <input type="checkbox" (change)="ChangeMusic($event)" [checked]="getMusicActivated()">
-          <span class="slider"></span>
-        </label>
-
-
-      </span>
-    </div>
-
   </footer>
 </ng-container>

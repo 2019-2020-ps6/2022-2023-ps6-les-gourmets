@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ButtonSound } from 'src/models/ButtonSound';
-import { Quiz } from 'src/models/quiz.model';
 import { User } from 'src/models/User.model';
 import { JouerService } from 'src/service/jouer.service';
 import { UserService } from 'src/service/user.service';

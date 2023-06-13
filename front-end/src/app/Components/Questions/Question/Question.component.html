@@ -1,9 +1,10 @@
 <div class="card">
+    <img *ngIf="question.estFacile" id="iconImage" alt="(question facile)" src="../../../../assets/Image/EasyIcon.png"/>
     <h2>
         <i class="fab fa-leanpub"></i>
-        {{question.label}}<span *ngIf="question.estFacile">(facile).</span>
+        {{question.label}}
     </h2>
     <button class="button-card" *ngIf="isMod" (click)="selectQuestion()" [routerLink]="['/QuestionForm']">Modifier</button>
-    <button class="button-card"  (click)="remove()">{{DeleteorAdd}}</button>
+    <button id="SupressButton" class="button-card"  (click)="remove()">{{DeleteorAdd}}</button>
   </div>
   

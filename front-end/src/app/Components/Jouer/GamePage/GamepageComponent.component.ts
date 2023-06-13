@@ -173,12 +173,6 @@ export class GamePageComponent implements OnInit {
       this.currentQuestionIndex++;
     }
 
-    ChangeMusic(event : any){
-      this.jouerService.setMusicActivated(event.target.checked);
-    }
-    getMusicActivated() : boolean {
-      return this.jouerService.musicActivated;
-    }
 
     hidepopup(){
       this.jouerService.playButtonSimpleSound(ButtonSound.back)

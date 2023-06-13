@@ -1,7 +1,7 @@
-$white: white;
+@import "../../../../variable.scss";
 
-h1,h2{
-    color: #fff;
+h2{
+    color: $c_textColor;
     margin-top: 30px;
     text-align: center;
 }
@@ -13,7 +13,6 @@ div{
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: vw;
 
 }
 
@@ -23,7 +22,6 @@ span{
     align-items: center;
     flex-flow: wrap;
     justify-content: center;
-    background-color: #222831;
     height: 100%;
 }
 
@@ -37,37 +35,7 @@ span{
     width: vw;
 
 }
-
-.button-card {
-    background-color: #4d535dc6;
-    border: solid 1px $white;
-    color:#f2f2f2;
-    font-weight: bold;
-    padding: 0.5em 1em;
-    margin-top: 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-  }
   
   .button-card:hover {
-    cursor: pointer;
-    background-color: #00ff008a;
-    color: $white;
+    background-color: $c_buttonAccept;
   }
-
-  button{
-    background-color: #4d535dc6;
-    border: solid 1px #F2F2F2;
-    color:#f2f2f2;
-    font-weight: bold;
-    padding: 0.5em 1em;
-    margin-top: 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-button:hover {
-    cursor: pointer;
-    background-color: #7f858ed1;
-    color: #F2F2F2;
-}
