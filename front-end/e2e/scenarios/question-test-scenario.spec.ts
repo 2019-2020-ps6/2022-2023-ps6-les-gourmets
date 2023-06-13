@@ -13,17 +13,17 @@ test.describe('Test de création de question', () => {
     await page.getByTestId('label').fill('Question de test');
     await page.getByTestId('theme').fill('Theme test');
     await page.getByRole('button', {name: 'Ajouter'}).click();
-    await page.getByTestId('name1').fill('Reponse 1 test');
-    await page.getByTestId('name2').fill('Reponse 2 test');
-    await page.getByTestId('name3').fill('Reponse 3 test');
-    await page.getByTestId('name4').fill('Reponse 4 test');
+    await page.getByPlaceholder('réponse 1').fill('Reponse 1 test');
+    await page.getByPlaceholder('réponse 2').fill('Reponse 2 test');
+    await page.getByPlaceholder('réponse 3').fill('Reponse 3 test');
+    await page.getByPlaceholder('réponse 4').fill('Reponse 4 test');
     await page.getByTestId('Choice1').check();
-    await page.getByTestId('estFacile').check();
+    await page.getByTestId('fillForm').locator('span').click();
     await page.getByRole('button', {name: 'Créer'}).click();
 
-    const questionTest = await page.getByText('Question de test(facile)').first();
+    const questionTest = await page.getByText('Question de test').first();
     await expect(questionTest).toBeVisible();
-    await page.locator('app-question').filter({ hasText: 'Question de test(facile).ModifierSupprimer' }).getByRole('button', { name: 'Supprimer' }).click();
+    await page.locator('app-question').filter({ hasText: 'Question de test ModifierSupprimer' }).getByTestId('SupressButton').click();
     await expect(questionTest).not.toBeVisible();
 
   });
@@ -47,12 +47,14 @@ test.describe('Test de création de question', () => {
     await page.locator('app-quiz').filter({ hasText: 'Quiz de test ModifierSupprimer' }).getByRole('button', { name: 'Modifier' }).first().click();
     await page.getByRole('button', { name: 'Ajouter' }).click();
 
-    const questionTestSelect = await page.getByText('qui est le plus moche ?(facile)').first();
+    const questionTestSelect = await page.getByText('qui est le plus moche ?').first();
     await expect(questionTestSelect).toBeVisible();
     await page.getByRole('button', { name: 'Ajouter' }).first().click();
     await page.getByRole('button', { name: 'Retour' }).first().click();
-    const questionTestSelected = await page.getByText('qui est le plus moche ?(facile)').first();
+    const questionTestSelected = await page.getByText('qui est le plus moche ?').first();
     await expect(questionTestSelected).toBeVisible();
-
+    await page.getByTestId('SupressButton').click();
+    await page.getByRole('button', { name: 'Retour' }).first().click();
+    await page.locator('app-quiz').filter({ hasText: 'Quiz de test ModifierSupprimer' }).getByRole('button', { name: 'Supprimer' }).first().click();
   });
 });

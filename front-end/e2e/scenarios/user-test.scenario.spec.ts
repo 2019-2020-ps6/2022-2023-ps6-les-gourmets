@@ -42,9 +42,10 @@ test.describe('Test d\'édition des user', () => {
 
     await page.getByRole('button', { name: 'confirmer les changements' }).click();
     const userTest = await page.getByText('UserNameTest2');
-    expect(userTest).toBeVisible();
+    await expect(userTest).toBeVisible();
     const userTest2 = await page.getByText('Taux d\'agressivité : 1SupprimerÉditer');
-    expect(userTest2).toBeVisible();
+    await expect(userTest2).toBeVisible();
+    await page.locator('app-user').filter({ hasText: 'Nom : UserNameTest2 Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdit' }).getByRole('button', { name: 'Supprimer' }).first().click();
 
   });
 
@@ -65,23 +66,24 @@ test.describe('Test de création de question', () => {
 
     await page.getByRole('button', { name: 'Créer' }).click();
     const sliderTrack = await page.locator('form div').filter({ hasText: 'Agressivité de l\'utilisateur' }).getByRole('slider');
-    const sliderOffsetWidth = await sliderTrack.evaluate(el => {
-    return el.getBoundingClientRect().width;
-  });
-
-
-    await sliderTrack.hover({ force: true, position: { x: 0, y: 0 } })
-    await page.mouse.down()
-    await sliderTrack.hover({ force: true, position: { x: sliderOffsetWidth, y: 0 } })
-    await page.mouse.up()
+    const sliderBoundingBox = await sliderTrack.boundingBox();
+    if(sliderBoundingBox !=null){
+      await sliderTrack.dragTo(sliderTrack,{
+        force : true,
+        targetPosition : {
+          x : sliderBoundingBox.width,
+          y:0,
+        },
+      });
+    }
 
     await page.getByRole('button', { name: 'confirmer les changements' }).click();
 
 
-    const userTest = await page.getByText('Nom : UserNameTest2 Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdit');
-    expect(userTest).toBeVisible();
-    await page.locator('app-user').filter({ hasText: 'Nom : UserNameTest2 Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdit' }).getByRole('button', { name: 'Supprimer' }).first().click();
-    expect(userTest).not.toBeVisible();
+    const userTest = await page.getByText('Nom : UserNameTest Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdit');
+    await expect(userTest).toBeVisible();
+    await page.locator('app-user').filter({ hasText: 'Nom : UserNameTest Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdite' }).getByRole('button', { name: 'Supprimer' }).first().click();
+    await expect(userTest).not.toBeVisible();
 
   });
 });
