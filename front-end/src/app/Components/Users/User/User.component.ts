@@ -37,8 +37,8 @@ export class UserComponent implements OnInit {
   }
 
   selectUser() : void {
-    this.jouerService.playButtonSimpleSound(ButtonSound.SelectingObject);
     this.userService.selectUser(this.User);
+    this.jouerService.playButtonSimpleSound(ButtonSound.SelectingObject);
   }
 
   edit() : void {

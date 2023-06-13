@@ -37,7 +37,6 @@ export class UserForm implements OnInit {
       // initialize the quizzes list empty
       userToCreate.quizzes = [];
       this.userService.addUser(userToCreate);
-      //this.userService.selectUser(userToCreate);
     }
 
 toggleAnswerDisplay() {

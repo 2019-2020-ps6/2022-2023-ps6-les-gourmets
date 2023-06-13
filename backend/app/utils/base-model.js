@@ -11,9 +11,11 @@ module.exports = class BaseModel {
     if (!schema) throw new Error('You must provide a schema in constructor of BaseModel')
     this.schema = Joi.object().keys({ ...schema, id: Joi.number().required() })
     this.items = []
+    this.attributeItems = []
     this.name = name
     this.filePath = `${__dirname}/../../database/${process.env.DB_FOLDER ?? ''}${this.name.toLowerCase()}.data.json`
     this.load()
+    this.loadItems()
   }
 
   load() {
@@ -23,6 +25,16 @@ module.exports = class BaseModel {
       if (err.message === 'Unexpected end of JSON input') logger.log(`Warning : ${this.filePath} has wrong JSON format`)
     }
   }
+
+  loadItems()  {
+    try {
+      this.attributePath = `${__dirname}/../../database/${this.attribute.toLowerCase()}.data.json`
+      this.attributeItems = JSON.parse(fs.readFileSync(this.attributePath, 'utf8'))
+    } catch (err) {
+      if (err.message === 'Unexpected end of JSON input') logger.log(`Warning : ${this.quizPath} has wrong JSON format`)
+    }
+  }
+
 
   save() {
     try {
@@ -39,6 +51,15 @@ module.exports = class BaseModel {
   getById(id) {
     if (typeof id === 'string') id = parseInt(id, 10)
     const item = this.items.find((i) => i.id === id)
+    if (!item) throw new NotFoundError(`Cannot get ${this.name} id=${id} : not found`)
+    return item
+  }
+
+  getAttributeById(attribute,id) {
+    if (typeof id === 'string') id = parseInt(id, 10)
+    this.attribute=attribute
+    loadItems()
+    const item = this.attributeItems.find((i) => i.id === id)
     if (!item) throw new NotFoundError(`Cannot get ${this.name} id=${id} : not found`)
     return item
   }
@@ -64,6 +85,18 @@ module.exports = class BaseModel {
     return updatedItem
   }
 
+  updateWithId(id, obj) {
+    if (typeof id === 'string') id = parseInt(id, 10)
+    const prevObjIndex = this.items.findIndex((item) => item.id === id)
+    if (prevObjIndex === -1) throw new NotFoundError(`Cannot update ${this.name} id=${id} : not found`)
+    const updatedItem = { ...this.items[prevObjIndex], ...obj}
+    const { error } = Joi.validate(updatedItem, this.schema)
+    if (error) throw new ValidationError(`Update Error : Object ${JSON.stringify(obj)} does not match schema of model ${this.name}`, error)
+    this.items[prevObjIndex] = updatedItem
+    this.save()
+    return updatedItem
+  }
+
   delete(id) {
     if (typeof id === 'string') id = parseInt(id, 10)
     const objIndex = this.items.findIndex((item) => item.id === id)
@@ -71,10 +104,77 @@ module.exports = class BaseModel {
     this.items = this.items.filter((item) => item.id !== id)
     this.save()
   }
-
+  
   deleteAll() {
     this.items = this.items.filter((item) => item.id !== -1)
     this.save();
+  }
+
+  deleteIdForAttribute(id, attribute) {
+    if (typeof id === 'string') {
+      id = parseInt(id, 10);
+    }
+  
+    // Remove the ID from the attribute in all users
+    this.items.forEach((obj) => {
+      Object.keys(obj).forEach((key) => {
+        if (key === attribute) {
+          if (Array.isArray(obj[key])) {
+            obj[key] = obj[key].filter((ref) => ref !== id);
+          } else if (obj[key] === id) {
+            obj[key] = null;
+          }
+        }
+      });
+    });
+  
+     
+    this.save();
+  }
+
+  containsIdForAttribute(id, attribute) {
+    
+    return contains;
+  }
+
+    
+
+  changeAttribute(id,attribute1,attribute2) {
+    if (typeof id === 'string') {
+      id = parseInt(id, 10);
+    }
+
+    let contains = false;
+    this.items.forEach((obj) => {
+      Object.keys(obj).forEach((key) => {
+        if (key === attribute1) {
+          if (Array.isArray(obj[key])) {
+            obj[key].find((ref) => {
+              if (ref === id) {
+                obj[key] = obj[key].filter((ref) => ref !== id);
+                contains = true;
+              }
+            });
+          } else if (obj[key] === id) {
+            contains = true;
+            obj[key] = null;
+          }
+        }
+      });
+      if (contains === true) {
+        Object.keys(obj).forEach((key) => {
+          if (key === attribute2) {
+            if (Array.isArray(obj[key])) {
+              obj[key].push(id);
+            } else if (obj[key] === null) {
+              obj[key] = id;
+            }
+          }
+        });
+      }
+    });
+
+
   }
 
   updateAttribute(id, attribute, value) {

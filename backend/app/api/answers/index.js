@@ -46,7 +46,7 @@ router.delete('/:answerId', (req, res) => {
     }
 })
 
-router.patch('/:answerId', (req, res) => {
+router.put('/:answerId', (req, res) => {
     try {
         const answer = Answer.update(req.params.answerId, req.body)
         res.status(201).json(answer)

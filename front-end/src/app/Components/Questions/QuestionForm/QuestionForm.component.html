@@ -1,10 +1,11 @@
 <div>
-  <button class="button-card" [routerLink]="['/ListeQuestionPage']">Annuler</button>
+  <button class="button-card" [routerLink]="['/ListeQuestionPage']">Retour</button>
 </div>
 <div class="page">
 <div class="card">
+  
+    <h2>Votre question</h2>
 
-    <h2>Créer une nouvelle question</h2>
     <form class="question-form" [formGroup]="questionForm">
       <label for="title">
         Question <br>
@@ -37,6 +38,7 @@
       <fieldset>
         <legend>Cocher la bonne réponse:</legend>
         <div>
+
           <input type="radio" name="answer" id="Choice1" (change)="onAnswerSelected(0)" />
           <label for="Choice1">1</label>
 
@@ -56,6 +58,7 @@
         <input class="choice" type="checkbox" id="estFacile" formControlName="estFacile">
       </label>
       <br><br>
+      <button class="button-card" [routerLink]="['/ListeQuestionPage']">Annuler</button>
       <button *ngIf="!getEdit()" type="submit" class="button-card" (click)="addQuestion()" [routerLink]="['/ListeQuestionPage']">Créer</button>
       <button *ngIf="getEdit()" type="submit" class="button-card" (click)="updateQuestion()" [routerLink]="['/ListeQuestionPage']">Modifier</button>
     </form>
