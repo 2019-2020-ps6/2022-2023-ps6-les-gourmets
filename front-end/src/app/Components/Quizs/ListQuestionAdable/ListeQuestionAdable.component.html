@@ -1,5 +1,6 @@
+<ng-container *ngIf="quizReady">
 <h1>{{quiz.name}}</h1>
-
+<ng-container *ngIf="questionReady">
 <button class="button-card" [routerLink]="['/QuizEditComponent']"(click)="playBackSound()">Retour</button>
 <div>
   <button class="button-card" (click)="changeAffichage()">Trier par theme</button>
@@ -11,3 +12,5 @@
     <app-Question *ngIf="themeSelected(question)" [question]="question" (deleteQuestion)="addQuestionToQuiz($event)"></app-Question>
   </div>
 </div>
+</ng-container>
+</ng-container>

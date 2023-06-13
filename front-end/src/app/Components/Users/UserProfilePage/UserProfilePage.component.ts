@@ -25,7 +25,6 @@ export class UserProfilePage implements OnInit {
       if (UserSelected) {
 
         this.UserModified = UserSelected;
-        console.log(this.UserModified)
 
         this.User = JSON.parse(JSON.stringify(this.UserModified));
         this.modifs = this.formBuilder.group({
@@ -42,13 +41,6 @@ export class UserProfilePage implements OnInit {
 
       }
     });
-
-    //if(this.UserModified != undefined && this.UserModified != null) {
-
-    //}
-
-
-    // userService.selectUser(this.UserModified);
   }
   ngOnInit(): void { }
 
@@ -66,13 +58,13 @@ export class UserProfilePage implements OnInit {
     this.UserModified.quizzes = JSON.parse(JSON.stringify(Quizzs));
     this.UserModified.music = JSON.parse(JSON.stringify(musics));
 
-    this.userService.updateUser(this.User, this.UserModified);
+    this.userService.updateUser(this.UserModified);
     this.User = JSON.parse(JSON.stringify(this.UserModified));
     this.userService.selectUser(this.UserModified);
   }
   cancelChanges(): void {
     this.UserModified = JSON.parse(JSON.stringify(this.User));;
-    this.userService.updateUser(this.UserModified, this.User);
+    this.userService.updateUser(this.User);
     this.userService.selectUser(this.UserModified);
     this.modifs['controls']['name'].setValue(this.User.name);
     this.modifs['controls']['surname'].setValue(this.User.surname);

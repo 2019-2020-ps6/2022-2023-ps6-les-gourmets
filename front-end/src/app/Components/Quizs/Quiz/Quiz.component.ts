@@ -47,8 +47,8 @@ export class QuizComponent implements OnInit {
   }
 
   selectQuiz(): void {
-    this.jouerService.playButtonSimpleSound(ButtonSound.SelectingObject);
     this.quizService.selectQuiz(this.quiz);
+    this.jouerService.playButtonSimpleSound(ButtonSound.SelectingObject);
   }
 
   edit(): void {

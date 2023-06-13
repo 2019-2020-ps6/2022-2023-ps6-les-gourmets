@@ -16,29 +16,33 @@ import { ButtonSound } from 'src/models/ButtonSound';
 export class ListeQuizAdable implements OnInit {
     public quizList: Quiz[] = [];
     public user!: User;
-    public userTemp!: User;
     public QuizSelectable: Quiz[] = [];
     public DeleteorAdd: String = "Add";
+    public userReady: boolean = false;
+    public quizReady: boolean = false;
 
 
     constructor(public userService: UserService, public quizService: QuizService, private jouerService : JouerService) {
-      this.quizService.quizzes$.subscribe((quizList: Quiz[]) => {
-        this.quizList = quizList;
-      });
       this.userService.UserSelected$.subscribe((user: User) => {
+        if(user) {
         this.user = user;
+        this.userReady = true;
         this.updateQuizSelectable();
+        }
+      });
+      this.quizService.quizzes$.subscribe((quizList: Quiz[]) => {
+        if(quizList && this.user){
+        this.quizList = quizList;
+        this.quizReady = true;
+        this.updateQuizSelectable();
+        }
       });
     }
 
     ngOnInit(): void {}
 
     addQuizToUser(quiz: Quiz): void {
-      this.userTemp = this.user;
-      this.userTemp.quizzes.push(quiz);
-      this.userService.selectUser(this.userTemp);
-      //this.userService.updateUser(this.user, this.userTemp);
-      //this.user = this.userTemp;
+      this.userService.addQuizForUser(quiz);
     }
 
     updateQuizSelectable(): void {
@@ -48,7 +52,10 @@ export class ListeQuizAdable implements OnInit {
         quiz => q.id!==quiz.id
       );
       })
+
     }
+
+
     playBackSound(){
       this.jouerService.playButtonSimpleSound(ButtonSound.back);
     }
