@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const { filterQuestionsFromQuizz, getQuestionFromQuiz } = require('./manager')
-const { Question, Questions } = require('../../models')
+const { Question, Questions, Quiz } = require('../../models')
 
 const router = new Router();
 
@@ -27,6 +27,8 @@ router.post('/', (req, res) => {
 
 router.delete('/:questionId', (req, res) => {
     try {
+        Quiz.deleteIdForAttribute(req.params.questionId, "questions")
+        Quiz.deleteIdForAttribute(req.params.questionId, "easyQuestions")
         Question.delete(req.params.questionId)
         res.status(201).end()
     }

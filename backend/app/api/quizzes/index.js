@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { Quiz } = require('../../models')
+const { Quiz, User } = require('../../models')
 const { buildQuizz, buildQuizzes } = require('./manager')
 const QuestionsRouter = require('../questions')
 
@@ -52,7 +52,7 @@ router.delete('/', (req, res) => {
 
 router.delete('/:quizId', (req, res) => {
     try {
-        
+        User.deleteIdForAttribute(req.params.quizId, "quizzes")
         Quiz.delete(req.params.quizId)
         res.status(201).end()
     }

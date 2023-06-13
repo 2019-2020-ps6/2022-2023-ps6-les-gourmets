@@ -112,6 +112,28 @@ module.exports = class BaseModel {
     this.save();
   }
 
+  deleteIdForAttribute(id, attribute) {
+    if (typeof id === 'string') {
+      id = parseInt(id, 10);
+    }
+  
+    // Remove the ID from the attribute in all users
+    this.items.forEach((obj) => {
+      Object.keys(obj).forEach((key) => {
+        if (key === attribute) {
+          if (Array.isArray(obj[key])) {
+            obj[key] = obj[key].filter((ref) => ref !== id);
+          } else if (obj[key] === id) {
+            obj[key] = null;
+          }
+        }
+      });
+    });
+  
+     
+    this.save();
+  }
+
   updateAttribute(id, attribute, value) {
     if (typeof id === 'string') id = parseInt(id, 10)
     const prevObjIndex = this.items.findIndex((item) => item.id === id)
