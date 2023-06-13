@@ -36,8 +36,12 @@ constructor(private http: HttpClient) {
 retrieveUsers(): void {
   this.http.get<User[]>(this.UserUrl).subscribe((userList) => {
     this.Users = userList;
+    this.Users.forEach(user =>{
+      this.http.get<Quiz[]>(this.UserUrl + '/' + user.id + '/quizzes').subscribe((quizzes) => {
+        user.quizzes = quizzes;
+        });
+    })
     this.Users$.next(this.Users);
-    
   });
 
 }
@@ -56,8 +60,11 @@ addUser(value : User) {
 }
 
 updateUser(userTochange : User, value : User) {
-  this.http.put<User>(this.UserUrl + '/' + value.id, value).subscribe(() =>
-  this.retrieveUsers());
+  const quizIds:number[] = [];
+    this.UserSelected.quizzes.forEach(quiz => {
+      quizIds.push(quiz.id);
+    });
+  this.http.put<User>(this.UserUrl + '/' + value.id, value).subscribe(() => this.retrieveUsers());
 }
 
 deleteUser(value: User) {
@@ -68,39 +75,19 @@ deleteUser(value: User) {
  selectUser(value: User) {
   this.http.get<User>(this.UserUrl + '/' + value.id).subscribe((user) => {
   this.UserSelected = user;
-  });
-  this.http.get<Quiz[]>(this.UserUrl + '/' + value.id + '/quizzes').subscribe((quizzes) => {
-  this.UserSelected.quizzes = quizzes;
-  });
-  console.log(this.UserSelected.quizzes);
   this.UserSelected$.next(this.UserSelected);
- }
+ })}
 
  deleteQuizForProfile(value : Quiz){
   this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value.id !== quiz.id);
-  this.UserSelected$.next(this.UserSelected);
   this.updateUserQuizzes();
+  this.UserSelected$.next(this.UserSelected);
  }
 
  addQuizForUser(value : Quiz){
   this.UserSelected.quizzes.push(value);
   this.updateUserQuizzes();
- /* console.log("bjr");
-  value.quizzes.forEach(quiz => {
-    this.UserSelected.quizzes.push(quiz);
-  }); 
-  const quizId = value.quizzes.id;
-  const quizzIds = this.UserSelected.quizzes.map(quiz => quiz.id);
- // quizzIds.push(quizId);
-  this.http.patch<User>(this.UserUrl + '/' + this.UserSelected.id +  quizId, value).subscribe(() =>
-  //this.http.patch<User>(this.UserUrl + '/' + this.UserSelected.id +  quizId, value).subscribe(() =>
-  //this.http.patch<User>(this.UserUrl + '/' + this.UserSelected.id + '/quizzes/' + quizId, value).subscribe(() =>
-  //this.http.put<User>(this.UserUrl + '/' + this.UserSelected.id + '/quizzes/' + value.id, value).subscribe(() =>
-  this.retrieveUsersAndSelect(this.UserSelected));*/
-
-  /*
-  this.UserSelected.quizzes.push(value);
-  this.UserSelected$.next(this.UserSelected);*/
+  this.UserSelected$.next(this.UserSelected);
   }
 
   updateUserQuizzes(){
@@ -108,16 +95,7 @@ deleteUser(value: User) {
     this.UserSelected.quizzes.forEach(quiz => {
       quizIds.push(quiz.id);
     });
-    console.log(this.UserSelected.quizzes);
-    console.log(quizIds);
-
-
-
-    
-    this.http.patch<Quiz>(this.UserUrl + '/' + this.UserSelected.id , quizIds).subscribe(() => this.selectUser(this.UserSelected));
-    
-  
-    console.log(this.UserSelected.quizzes)  ;
+    this.http.patch<Quiz>(this.UserUrl + '/' + this.UserSelected.id , quizIds).subscribe(() => this.retrieveUsers());
 
   }
 

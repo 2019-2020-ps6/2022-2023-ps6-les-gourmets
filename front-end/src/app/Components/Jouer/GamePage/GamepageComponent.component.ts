@@ -47,10 +47,10 @@ export class GamePageComponent implements OnInit {
 
     constructor(private router: Router,public quizService:QuizService, public userService:UserService,public jouerService:JouerService) {
       this.userService.UserSelected$.subscribe((user: User) => {
-        this.user = JSON.parse(JSON.stringify(user));
+        this.user = user;
       });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
-        this.quiz = JSON.parse(JSON.stringify(quiz));
+        this.quiz = quiz;
       });
       this.jouerService.quitPopup$.subscribe((appearance: boolean) => {
         this.quitPopup = appearance;

@@ -3,7 +3,6 @@ import { ButtonSound } from 'src/models/ButtonSound';
 import { User } from 'src/models/User.model';
 import { Quiz } from 'src/models/quiz.model';
 import { JouerService } from 'src/service/jouer.service';
-import { QuizService } from 'src/service/quiz.service';
 import { UserService } from 'src/service/user.service';
 
 @Component({
@@ -21,6 +20,7 @@ export class ChoixQuiz implements OnInit {
       this.userService.UserSelected$.subscribe((user: User) => {
         this.user = user;
       });
+      console.log(this.user)
 
       this.quizs = this.user.quizzes;
     }

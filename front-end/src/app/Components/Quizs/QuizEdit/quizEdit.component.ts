@@ -12,10 +12,13 @@ import { QuizService } from 'src/service/quiz.service';
 })
 export class QuizEditComponent {
   
-  public currentQuiz: Quiz;
+  public currentQuiz!: Quiz;
 
   constructor(private quizService: QuizService, private jouerService : JouerService) {
-    this.currentQuiz = quizService.quizSelected$.getValue();
+    this.quizService.quizSelected$.subscribe();
+    this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
+      this.currentQuiz = quiz;
+    });
     
   }
 

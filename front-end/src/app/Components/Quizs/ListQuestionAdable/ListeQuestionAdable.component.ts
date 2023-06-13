@@ -44,19 +44,14 @@ export class ListeQuestionAdable implements OnInit {
 
     updateQuestionSelectable(): void {
       this.QuestionSelectable = this.questionList;
-      console.log(this.QuestionSelectable);
       this.quiz.questions.forEach(q=>{
         this.QuestionSelectable = this.QuestionSelectable.filter(
           question => q.id!=question.id
         );
-        console.log(this.QuestionSelectable);
-        console.log(this.quiz.questions);
-        console.log(this.questionList);
       })
       this.quiz.easyQuestions.forEach(q=>{
         this.QuestionSelectable = this.QuestionSelectable.filter(
           question => q.id!=question.id
-          
         );
       })
     }

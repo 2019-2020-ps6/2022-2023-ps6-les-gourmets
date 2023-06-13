@@ -16,7 +16,6 @@ import { ButtonSound } from 'src/models/ButtonSound';
 export class ListeQuizAdable implements OnInit {
     public quizList: Quiz[] = [];
     public user!: User;
-    public userTemp!: User;
     public QuizSelectable: Quiz[] = [];
     public DeleteorAdd: String = "Add";
 
@@ -34,13 +33,8 @@ export class ListeQuizAdable implements OnInit {
     ngOnInit(): void {}
 
     addQuizToUser(quiz: Quiz): void {
-      console.log(this.user);
-      this.userTemp = this.user;
+      this.userService.selectUser(this.user);
       this.userService.addQuizForUser(quiz);
-      //this.userTemp.quizzes.push(quiz);
-      this.userService.selectUser(this.userTemp);
-      //this.userService.updateUser(this.user, this.userTemp);
-      //this.user = this.userTemp;
     }
 
     updateQuizSelectable(): void {
@@ -51,6 +45,8 @@ export class ListeQuizAdable implements OnInit {
       );
       })
     }
+
+
     playBackSound(){
       this.jouerService.playButtonSimpleSound(ButtonSound.back);
     }

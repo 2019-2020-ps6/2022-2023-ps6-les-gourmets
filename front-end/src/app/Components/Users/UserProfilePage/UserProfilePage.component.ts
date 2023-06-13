@@ -41,13 +41,6 @@ export class UserProfilePage implements OnInit {
 
       }
     });
-
-    //if(this.UserModified != undefined && this.UserModified != null) {
-
-    //}
-
-
-    // userService.selectUser(this.UserModified);
   }
   ngOnInit(): void { }
 

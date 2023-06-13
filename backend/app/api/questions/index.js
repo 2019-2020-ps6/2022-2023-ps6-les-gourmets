@@ -1,5 +1,5 @@
 const { Router } = require('express')
-
+const { filterQuestionsFromQuizz, getQuestionFromQuiz } = require('./manager')
 const { Question, Questions } = require('../../models')
 
 const router = new Router();
@@ -36,7 +36,7 @@ router.delete('/:questionId', (req, res) => {
     }
 })
 
-router.patch('/:questionId', (req, res) => {
+router.put('/:questionId', (req, res) => {
     try {
         const question = Question.update(req.params.questionId, req.body)
         res.status(201).json(question)
