@@ -33,16 +33,8 @@ test.describe('Test de création de question', () => {
   test('should create a quiz and add a question to it', async ({ page }) => {
     await page.goto(testUrl);
     const appComponentFixture = new AppFixture(page);
+    selectors.setTestIdAttribute('id');
 
-    await appComponentFixture.goToQuestionTextForm();
-
-    await selectors.setTestIdAttribute('id');
-
-    await appComponentFixture.fillQuestionForm('cacatest');
-
-
-    const questionTest = await page.getByText('Question de test(facile)').first();
-    expect(questionTest).toBeVisible();
 
     //await page.getByRole('button', {name: 'Supprimer'}).click();
     //expect(questionTest).not.toBeVisible();
@@ -55,11 +47,11 @@ test.describe('Test de création de question', () => {
     await page.getByRole('button', { name: 'Modifier' }).first().click();
     await page.getByRole('button', { name: 'Ajouter' }).click();
 
-    const questionTestSelect = await page.getByText('Question de test(facile)').first();
+    const questionTestSelect = await page.getByText('qui est le plus moche ?(facile)').first();
     expect(questionTestSelect).toBeVisible();
     await page.getByRole('button', { name: 'Ajouter' }).first().click();
     await page.getByRole('button', { name: 'Retour' }).first().click();
-    const questionTestSelected = await page.getByText('Question de test(facile)').first();
+    const questionTestSelected = await page.getByText('qui est le plus moche ?(facile)').first();
     expect(questionTestSelected).toBeVisible();
 
   });

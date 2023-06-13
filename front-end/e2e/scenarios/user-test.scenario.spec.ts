@@ -14,7 +14,7 @@ test.describe('Test de création de question', () => {
     await page.getByRole('button', { name: 'Créer' }).click();
     const sliderTrack = await page.locator('form div').filter({ hasText: 'Agressivité de l\'utilisateur' }).getByRole('slider');
     const sliderOffsetWidth = await sliderTrack.evaluate(el => {
-      return el.getBoundingClientRect().width
+      return el.getBoundingClientRect().width;
   });
 
     await sliderTrack.hover({ force: true, position: { x: 0, y: 0 } })
@@ -26,7 +26,7 @@ test.describe('Test de création de question', () => {
 
     const userTest = await page.getByText('Taux d\'agressivité : 1SupprimerÉditer');
     expect(userTest).toBeVisible();
-    await page.getByRole('button', { name: 'Supprimer' }).first().click();
+    await page.locator('app-user').filter({ hasText: 'Nom : UserNameTest Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdite' }).getByRole('button', { name: 'Supprimer' }).first().click();
     expect(userTest).not.toBeVisible();
 
   });

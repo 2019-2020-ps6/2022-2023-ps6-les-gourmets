@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, selectors} from '@playwright/test';
 import { testUrl } from 'e2e/e2e.config';
 
 test.describe('Tests de partie', () => {
