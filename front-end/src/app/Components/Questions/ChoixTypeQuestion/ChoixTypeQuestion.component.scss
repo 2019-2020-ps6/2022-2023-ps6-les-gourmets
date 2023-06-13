@@ -4,19 +4,19 @@ div{
   background-color: $app-background-color;
 
   align-items: center;
-  color: $c_white;
+  color: $c_textColor;
 }
 
 h2{
   font-size: 1.5em;
   margin: 0;
   text-align: center;
-  color:$c_white;
+  color:$c_textColor;
   
 }
 
 label{
-  color: $c_white;
+  color: $c_textColor;
   align-items: center;
 }
 
@@ -33,7 +33,7 @@ label{
 }
 
 legend{
-  color: $c_white;
+  color: $c_textColor;
   align-items: center;
 }
 

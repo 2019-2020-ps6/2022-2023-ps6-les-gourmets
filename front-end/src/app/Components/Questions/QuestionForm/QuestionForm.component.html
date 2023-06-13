@@ -6,30 +6,32 @@
   
     <h1>Créer une nouvelle question</h1>
     <form class="question-form" [formGroup]="questionForm">
-      <label for="title">
+      <label for="title" class="section">
         <h3>Question</h3>
-        <input class="input-custom" type="text" id="label" formControlName="label"><br><br><br>
+        <input class="input-custom" type="text" id="label" formControlName="label"><br>
         <h3>Thèmes</h3>
         <input class="input-custom" type="text" id="theme" formControlName="themes">
-        <button class="button-card" (click)="addTheme()"> Ajouter</button><br><br>
+        <button class="button-card" (click)="addTheme()"> Ajouter</button><br>
         <div id="ThemeList" *ngFor="let theme of this.themes">
           <button class="button-card" (click)="deleteTheme(theme)"> Retirer {{theme}}</button>
         </div>
       </label>
-      <div id="answer_part"formArrayName="answers">
-        <div [formGroupName]="0">
-          <input class="input-custom" type="text" placeholder = "réponse 1" id="name" formControlName="value"><br><br>
+        <div class="section">
+        <h3>Réponses</h3>
+        <div id="answer_part"formArrayName="answers">
+          <div [formGroupName]="0">
+            <input class="input-custom" type="text" placeholder = "réponse 1" id="name" formControlName="value"><br><br>
+          </div>
+          <div [formGroupName]="1">
+            <input class="input-custom" type="text" placeholder = "réponse 2" id="name" formControlName="value"><br><br>
+          </div>
+          <div [formGroupName]="2">
+            <input class="input-custom" type="text" placeholder = "réponse 3" id="name" formControlName="value"><br><br>
+          </div>
+          <div [formGroupName]="3">
+            <input class="input-custom" type="text" placeholder = "réponse 4" id="name" formControlName="value"><br><br>
+          </div>
         </div>
-        <div [formGroupName]="1">
-          <input class="input-custom" type="text" placeholder = "réponse 2" id="name" formControlName="value"><br><br>
-        </div>
-        <div [formGroupName]="2">
-          <input class="input-custom" type="text" placeholder = "réponse 3" id="name" formControlName="value"><br><br>
-        </div>
-        <div [formGroupName]="3">
-          <input class="input-custom" type="text" placeholder = "réponse 4" id="name" formControlName="value"><br><br>
-        </div>
-      </div>
       <fieldset>
         <legend>Cocher la bonne réponse:</legend>
         <div>
@@ -53,14 +55,15 @@
           <span class="switch_handle"></span>
         </label>
       </label>
-      <button *ngIf="!getEdit()" type="submit" class="button-card soft" (click)="addQuestion()" [routerLink]="['/ListeQuestionPage']">Créer</button>
-      <button *ngIf="getEdit()" type="submit" class="button-card soft" (click)="updateQuestion()" [routerLink]="['/ListeQuestionPage']">Modifier</button>
-      <button class="button-card soft" [routerLink]="['/ListeQuestionPage']">Annuler</button>
+      </div>
+      <button *ngIf="!getEdit()" type="submit" class="button-card soft submitButton" (click)="addQuestion()" [routerLink]="['/ListeQuestionPage']">Créer</button>
+      <button *ngIf="getEdit()" type="submit" class="button-card soft submitButton" (click)="updateQuestion()" [routerLink]="['/ListeQuestionPage']">Modifier</button>
+      <button class="button-card soft submitButton" [routerLink]="['/ListeQuestionPage']">Annuler</button>
     </form>
 </div>
     
   <div class="card">
-    <h2>Preview</h2>
+    <h2>Apercu de la question</h2>
     <div class = "preview">
       <app-GameQuestion [answer_selected]="true" [question]="getPreview()"></app-GameQuestion>
     </div>

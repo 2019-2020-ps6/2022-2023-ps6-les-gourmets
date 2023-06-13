@@ -2,7 +2,7 @@
 div{
 
   align-items: center;
-  color: $c_white;
+  color: $c_textColor;
 }
 
 
@@ -10,7 +10,7 @@ h2{
   font-size: 1.5em;
   margin: 0;
   text-align: center;
-  color:$c_white;
+  color:$c_textColor;
   
 }
 
@@ -24,7 +24,7 @@ h3{
 }
 
 label{
-  color:$c_white;
+  color:$c_textColor;
   align-items: center;
 }
 
@@ -36,7 +36,7 @@ label{
 }
 
 legend{
-  color: $c_white;
+  color: $c_textColor;
   align-items: center;
 }
 
@@ -52,4 +52,12 @@ legend{
 
 #ThemeList{
   display: contents;
+}
+
+.section{
+  margin: 1em;
+}
+
+.submitButton{
+  padding:1em;
 }

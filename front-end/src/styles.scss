@@ -8,45 +8,44 @@ body {
 }
 *{
     transition: all 0.3s ease;
-    color:$c_white;
+    color:$c_textColor;
     
 }
 
 h1{
   text-align : center;
-  color : $c_white;
+  color : $c_textColor;
   margin : 1em;
 }
 
 button {
-    background-color: $c_grey;
+    background-color: $c_buttonColor;
     padding: 0.5em 1em;
     margin: 0.5em 1em;
-    border: solid 1px $c_white;
+    border: solid 1px $c_textColor;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     display: inline-block;
-    color: $c_white;
+    color: $c_textColor;
     text-align: center;
     font-weight: bold;
     white-space: break-spaces;
 
     &:hover{
-      background-color: lighten($c_grey,$c_percentageOnHover);
+      background-color: accentuate($c_buttonColor,$c_percentageOnHover);
+      color: accentuate($c_textColor,$c_percentageOnHover);
       cursor: pointer;
     }
 
 }
 
 button.hard{
-    color: $c_grey;
-    background-color: $c_cyan;
+    background-color: $c_ButtonHardColor;
     border: none;
     font-size: calc(4vw);
 
     &:hover {
-      color: darken($c_grey,$c_percentageOnHover);
-      background-color: saturate($c_cyan,$c_percentageOnHover);
+      background-color: accentuate($c_ButtonHardColor,$c_percentageOnHover);
     }
 }
 
@@ -59,8 +58,8 @@ input{
   padding: 1em;
   margin: 1vw;
   background: #0000002b;
-  border: solid 1px $c_white;
-  color: $c_white;
+  border: solid 1px $c_textColor;
+  color: $c_textColor;
   border-radius: 8px;
   & [type]:not([type="checkbox"]){//Tout les inputs qui ne sont pas des checkbox
     width: 33vw;
@@ -68,8 +67,8 @@ input{
 }
 
 .card{
-  background-color: $c_darkPanel;
-  border: solid 1px $c_white;
+  background-color: changeOpacityTo($c_cardColor, $c_percentageCardAlpha);
+  border: solid 1px $c_textColor;
   border-radius: 8px;
   display: flex;
   margin: 1rem;
@@ -107,7 +106,7 @@ input{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: $c_grey;
+    background-color: $c_buttonColor;
     border-radius: 34px;
     -webkit-transition: .4s;
     transition: .4s;
@@ -119,7 +118,7 @@ input{
       width: 16px;
       left: 4px;
       bottom: 4px;
-      background-color: $c_white;
+      background-color: $c_textColor;
       border-radius: 50%;
       transition: 0.4s;
     }

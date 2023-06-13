@@ -1,5 +1,6 @@
+@import "../../../../variable.scss";
 h1{
-    color: #fff;
+    color :$c_textColor;
     margin-top: 30px;
     text-align: center;
 }

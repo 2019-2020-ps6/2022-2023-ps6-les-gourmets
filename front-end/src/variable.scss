@@ -1,9 +1,50 @@
 $c_darkBackground : #222831;
-$c_grey : #454545;
-$c_white : #f2f2f2;
-$c_cyan : #4aa6ab;
-$c_cyan_hover : #28f4ff;
+$c_buttonColor : #454545;
+$c_textColor : #f2f2f2;
+$c_ButtonHardColor : #4aa6ab;
 $c_percentageOnHover : 30;
-$c_darkPanel : #1818185d;
-$c_darkPanelPlain : #181818;
+$c_cardColor : #7fa8ae;
+$c_percentageCardAlpha : 50;
+$c_deepRed : #b10f0f;
+$c_buttonAccept : #34a938;
+
+
+@function changeOpacityTo($hex, $opacity) {
+    $red: red($hex);
+    $green: green($hex);
+    $blue: blue($hex);
+    $rgba: rgba($red, $green, $blue, calc($opacity/100));
+    @return $rgba;
+  }
+
+  @function accentuate($color, $percentage) {
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+
+    @if $red==$green and $red==$blue{
+        $grayLevel: round(calc(($red + $green + $blue) / 3));
+        @if $grayLevel < 60 {
+            @return darken($color, $percentage);
+        } @else {
+            @return lighten($color, $percentage);
+        }
+    }
+    @else {
+      @return saturate($color, $percentage);
+    }
+    @return $color;
+  
+  }
+
+  /**
+  theme oasis :)
+  $c_darkBackground : #fffaee;
+$c_buttonColor : rgb(144, 205, 218);
+$c_textColor : #232323;
+$c_ButtonHardColor : #4aa6ab;
+$c_percentageOnHover : 30;
+$c_cardColor : #ffdcb9;
+$c_percentageCardAlpha : 50;
 $c_deepRed : #c40000;
+**/

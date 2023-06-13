@@ -1,7 +1,7 @@
 @import "../../../../variable.scss";
 
 h2{
-    color: $c_white;
+    color: $c_textColor;
     margin-top: 30px;
     text-align: center;
 }
@@ -22,7 +22,6 @@ span{
     align-items: center;
     flex-flow: wrap;
     justify-content: center;
-    background-color: #222831;
     height: 100%;
 }
 
@@ -38,5 +37,5 @@ span{
 }
   
   .button-card:hover {
-    background-color: #00ff008a;
+    background-color: $c_buttonAccept;
   }
