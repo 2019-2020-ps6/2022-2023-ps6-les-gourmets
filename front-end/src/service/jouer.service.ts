@@ -39,6 +39,7 @@ export class JouerService {
     private UserMusic !: AudioFade ;
     private backgroundMusic !: AudioFade ;
     public musicActivated = true;
+    public effectsActivated: boolean = true;
     private rage = false;
     private dateTab : number[] = [];
     private quitPopup = false;
@@ -121,6 +122,7 @@ export class JouerService {
 
     public playBackgroundMusic(){
         this.stopMusic(this.UserMusic);
+        if(!this.musicActivated)return;
         if(this.backgroundMusic!=null && !this.backgroundMusic.paused)return;
         const path = this.mainMusics.sort(() => Math.random()-0.5)[0];
         this.backgroundMusic = new AudioFade('assets/Music/'+path);
@@ -129,6 +131,7 @@ export class JouerService {
 
     public playUserMusic(path : string|null){
         this.stopMusic(this.backgroundMusic);
+        if(!this.musicActivated)return;
         if(path!=null){
             this.UserMusic = new AudioFade('assets/Music/'+path);
         }
@@ -153,6 +156,9 @@ export class JouerService {
             else this.playBackgroundMusic();
         }
         else this.stopAllMusic();
+    }
+    public setEffectsActivated(checked: boolean) {
+      this.effectsActivated = checked;
     }
 
     public resetClickCounter(){
@@ -225,28 +231,29 @@ export class JouerService {
       this.buttonSound.pause();
       this.buttonSound.currentTime = 0;
     }
-    this.buttonSound.src="assets/Sounds/"
+    if(!this.effectsActivated) return;
+
     switch(AudioType){
       case ButtonSound.SelectAnswer:
-        this.buttonSound.src += "simpleButtonClick1.mp3";
+        this.buttonSound.src = "assets/Sounds/simpleButtonClick1.mp3";
         break;
       case ButtonSound.MainMenuCreate:
-        this.buttonSound.src += "MainMenuCreate.mp3";
+        this.buttonSound.src = "assets/Sounds/MainMenuCreate.mp3";
         break;
       case ButtonSound.MainMenuPlay:
-        this.buttonSound.src += "MainMenuPlay.mp3";
+        this.buttonSound.src = "assets/Sounds/MainMenuPlay.mp3";
         break;
       case ButtonSound.deleteSound:
-        this.buttonSound.src += "deleteSound.mp3";
+        this.buttonSound.src = "assets/Sounds/deleteSound.mp3";
       break;
       case ButtonSound.SelectingObject:
-        this.buttonSound.src += "selectObject.wav"
+        this.buttonSound.src = "assets/Sounds/selectObject.wav"
       break;
       case ButtonSound.NextQuestion:
-        this.buttonSound.src += "NextQuestion.mp3"
+        this.buttonSound.src = "assets/Sounds/NextQuestion.mp3"
       break;
       case ButtonSound.back:
-        this.buttonSound.src += "back.mp3"
+        this.buttonSound.src = "assets/Sounds/back.mp3"
         break;
     }
     this.buttonSound.play();

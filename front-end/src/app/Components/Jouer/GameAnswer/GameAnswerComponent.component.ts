@@ -6,7 +6,7 @@ import { JouerService } from 'src/service/jouer.service';
 @Component({
     selector: 'app-GameAnswer',
     templateUrl: './GameAnswerComponent.component.html',
-    styleUrls: ['../../../../styles.scss','./GameAnswerComponent.component.scss']
+    styleUrls: ['./GameAnswerComponent.component.scss']
   })
 
   export class GameAnswerComponent implements OnInit {

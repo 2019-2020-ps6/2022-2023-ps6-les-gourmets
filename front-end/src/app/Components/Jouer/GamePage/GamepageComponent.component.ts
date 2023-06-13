@@ -13,7 +13,7 @@ import { ButtonSound } from 'src/models/ButtonSound';
 @Component({
   selector: 'app-GamePage',
   templateUrl: './GamePageComponent.component.html',
-  styleUrls: ['../../../../styles.scss','./GamePageComponent.component.scss']
+  styleUrls: ['./GamePageComponent.component.scss']
 })
 
 export class GamePageComponent implements OnInit {
@@ -171,12 +171,6 @@ export class GamePageComponent implements OnInit {
       this.currentQuestionIndex++;
     }
 
-    ChangeMusic(event : any){
-      this.jouerService.setMusicActivated(event.target.checked);
-    }
-    getMusicActivated() : boolean {
-      return this.jouerService.musicActivated;
-    }
 
     hidepopup(){
       this.jouerService.playButtonSimpleSound(ButtonSound.back)

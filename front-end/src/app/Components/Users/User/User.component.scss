@@ -1,3 +1,4 @@
+@import "../../../../variable.scss";
 .profile {
     background: #5373a3;
     border-radius: 4px;
@@ -10,8 +11,6 @@
     color:#f2f2f2;
 
     button {
-      font-size: 0.9rem;
-      font-weight: bold;
 
       &:hover {
         background-color: #00ff008a;

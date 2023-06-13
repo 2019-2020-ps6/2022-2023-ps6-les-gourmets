@@ -5,7 +5,7 @@ import { JouerService } from 'src/service/jouer.service';
 @Component({
   selector: 'app-MenuChoixCreation',
   templateUrl: './MenuChoixCreation.component.html',
-  styleUrls: ['../../../../styles.scss','./MenuChoixCreation.component.scss']
+  styleUrls: ['./MenuChoixCreation.component.scss']
 })
 
 export class MenuChoixCreation implements OnInit {

@@ -11,7 +11,7 @@ import { ButtonSound } from 'src/models/ButtonSound';
 @Component({
     selector: 'app-ListeQuizAdable',
     templateUrl: './ListeQuizAdable.component.html',
-    styleUrls: ['../../../../styles.scss','./ListeQuizAdable.component.scss']
+    styleUrls: ['./ListeQuizAdable.component.scss']
 })
 export class ListeQuizAdable implements OnInit {
     public quizList: Quiz[] = [];

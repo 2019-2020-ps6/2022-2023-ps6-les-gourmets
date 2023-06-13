@@ -6,7 +6,7 @@ import { UserService } from 'src/service/user.service';
 @Component({
     selector: 'app-UserStatsPage',
     templateUrl: './UserStatsPage.component.html',
-    styleUrls: ['../../../../styles.scss','./UserStatsPage.component.scss']
+    styleUrls: ['./UserStatsPage.component.scss']
 })
 export class UserStatsPage implements OnInit {
 

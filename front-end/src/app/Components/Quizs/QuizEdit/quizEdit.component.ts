@@ -8,7 +8,7 @@ import { QuizService } from 'src/service/quiz.service';
 @Component({
   selector: 'app-quizEdit',
   templateUrl: './quizEdit.component.html',
-  styleUrls: ['../../../../styles.scss','./quizEdit.component.scss']
+  styleUrls: ['./quizEdit.component.scss']
 })
 export class QuizEditComponent {
   

@@ -1,11 +1,8 @@
-$app-background-color: #222831;
-$white: white;
-
+@import "../../../../variable.scss";
 div{
-  background-color: $app-background-color;
 
   align-items: center;
-  color: #f2f2f2;
+  color: $c_white;
 }
 
 
@@ -13,14 +10,8 @@ h2{
   font-size: 1.5em;
   margin: 0;
   text-align: center;
-  color:#f2f2f2;
+  color:$c_white;
   
-}
-input{
-  background-color: #f2f2f2;
-  border: solid 1px #f2f2f2;
-  border-radius: 16px;
-  align-items: center;
 }
 
 .input-custom{
@@ -29,35 +20,10 @@ input{
 }
 
 label{
-  color: #f2f2f2;
+  color:$c_white;
   align-items: center;
 }
 
-.card {    
-  border: solid 1px #f2f2f2;
-  border-radius: 8px;
-  display: flex;
-  margin: 1rem;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
-  padding: 0 1em 1em 1em;
-  flex-direction: column;
-}
-
-.button-card {
-  background-color: #4d535dc6;
-  border: solid 1px #f2f2f2;
-  border-radius: 16px ;
-  color: $white;
-  font-weight: bold;
-  padding: 0.5em 1em;
-  align-items: center;
-}
-
-.button-card:hover {
-  cursor: pointer;
-    background-color: #7f858ed1;
-    
-}
 
 .edit {
   margin-left: 0.3em;
@@ -66,7 +32,7 @@ label{
 }
 
 legend{
-  color: #f2f2f2;
+  color: $c_white;
   align-items: center;
 }
 

@@ -1,12 +1,4 @@
-$grey-background-color: #f2f2f2;
-$white:white;
-
-
-h1{
-  color: #fff;
-  margin-top: 30px;
-  text-align: center;
-}
+@import "../../../../variable.scss";
 
 .quiz-list {
   display: flex;
@@ -17,44 +9,14 @@ h1{
   padding: 2rem;
 }
 
-.button-card {
-  background-color: #4d535dc6;
-  border: solid 1px $white;
-  color:#f2f2f2;
-  font-weight: bold;
-  padding: 0.5em 1em;
-  margin-top: 1rem;
-  border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
 .button-card:hover {
-  cursor: pointer;
   background-color: #00ff008a;
-  color: $white;
 }
 
 .Quiz {
   flex-basis: calc(33% - 1rem);
   max-width: calc(33% - 1rem);
   
-}
-
-button{
-  background-color: #4d535dc6;
-  border: solid 1px #F2F2F2;
-  color:#f2f2f2;
-  font-weight: bold;
-  padding: 0.5em 1em;
-  margin-top: 1rem;
-  border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: #7f858ed1;
-  color: #F2F2F2;
 }
 
 div {
@@ -67,7 +29,7 @@ div {
 }
 
 h2 {
-  color: #fff;
+  color: $c_white;
   text-align: center;
   margin-top: 30px;
 }

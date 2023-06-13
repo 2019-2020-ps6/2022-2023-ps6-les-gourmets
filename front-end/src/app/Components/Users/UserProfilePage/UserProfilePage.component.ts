@@ -6,7 +6,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { User } from 'src/models/User.model';
 import { JouerService } from 'src/service/jouer.service';
 import { UserService } from 'src/service/user.service';
-@Component(
+@Component({
   selector: 'app-UserProfilePage',
   templateUrl: './UserProfilePage.component.html',
   styleUrls: ['./UserProfilePage.component.scss']

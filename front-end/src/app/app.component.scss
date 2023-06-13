@@ -1,3 +1,25 @@
-.main-content {
-    background-color: #222831;
+@import "../variable.scss";
+$musicPanelSize:10em;
+
+#musicPanel{
+  background-color: $c_darkPanelPlain;
+  position: fixed;
+  top: 10px;
+  width: $musicPanelSize;
+  right: - $musicPanelSize;
+  transition: transform 0.5s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+  margin: 0;
+  & button{
+    height: auto;
+    margin: 0;
+    position: relative;
+    right: 2.3em;
   }
+}
+
+.slide-in {
+  transform: translateX(-$musicPanelSize);
+}

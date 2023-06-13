@@ -1,5 +1,5 @@
 <div>
-  <button class="button-card soft" [routerLink]="['/ListeQuestionPage']">Annuler</button>
+  <button class="button-card soft" [routerLink]="['/ListeQuestionPage']">Retour</button>
 </div>
 <div class="page">
 <div id="fillForm" class="card">
@@ -58,6 +58,7 @@
       <br><br>
       <button *ngIf="!getEdit()" type="submit" class="button-card soft" (click)="addQuestion()" [routerLink]="['/ListeQuestionPage']">Créer</button>
       <button *ngIf="getEdit()" type="submit" class="button-card soft" (click)="updateQuestion()" [routerLink]="['/ListeQuestionPage']">Modifier</button>
+      <button class="button-card soft" [routerLink]="['/ListeQuestionPage']">Annuler</button>
     </form>
 </div>
     

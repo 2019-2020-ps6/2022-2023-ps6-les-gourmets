@@ -11,7 +11,7 @@ import { JouerService } from 'src/service/jouer.service';
 @Component({
     selector: 'app-UserForm',
     templateUrl: './UserForm.component.html',
-    styleUrls: ['../../../../styles.scss','./UserForm.component.scss']
+    styleUrls: ['./UserForm.component.scss']
 })
 export class UserForm implements OnInit {
 

@@ -1,8 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 html,
 body {
@@ -18,38 +14,12 @@ div{
   height: 100%;
 
 }
-h1{
-  color: #fff;
-  margin-top: 30px;
-  text-align: center;
-}
 
 .retour {
 
   justify-content: flex-start;
 }
 
-.button-back {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 24px;
-  color: #ffffff;
-  text-align: center;
-  width: 50px;
-  padding: 5px 0;
-  cursor: pointer;
-  background-color: #5987c4;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.button-card-return:hover {
-  background-color: #00adb5;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
 
 .menu {
   display: flex;
@@ -62,39 +32,7 @@ h1{
 
 .button-card {
   display: inline-block;
-  border: none;
-  border-radius: 5px;
-  color: #ffffff;
-  text-align: center;
   width: 30vw;
   height: 30vw;
-  padding: 15px 0;
-  margin: 10px;
-  cursor: pointer;
-  background-color:  #54709e;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  font-size: calc(0.6rem + 3vw);
 
-}
-
-.button-card-return {
-  display: inline-block;
-  border: none;
-  border-radius: 5px;
-  font-size: 24px;
-  color: #ffffff;
-  text-align: center;
-  width: 200px;
-  padding: 15px 0;
-  margin: 10px;
-  cursor: pointer;
-  background-color: #54709e;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.button-card:hover {
-  background-color: #00adb5;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }

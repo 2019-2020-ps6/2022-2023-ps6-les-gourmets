@@ -9,7 +9,7 @@ import { QuizService } from 'src/service/quiz.service';
 @Component({
     selector: 'app-QuizForm',
     templateUrl: './QuizForm.component.html',
-    styleUrls: ['../../../../styles.scss','./QuizForm.component.scss']
+    styleUrls: ['./QuizForm.component.scss']
 })
 export class QuizFormComponent implements OnInit {
 

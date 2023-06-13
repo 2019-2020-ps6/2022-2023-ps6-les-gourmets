@@ -3,7 +3,6 @@ button.answer_selected_true {
 }
 
 button {
-    font-weight: bold;
     img {
       height: 100%;
     }
@@ -16,8 +15,6 @@ button {
 
 
 button.answer {
-  cursor: pointer;
-  transition: all 0.3s ease;
   &:hover {
     background-color: #00959d; 
   }

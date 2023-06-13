@@ -35,40 +35,18 @@ span{
     justify-content: center;
     height: 100%;
 }
-
+/*
 input{
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.25rem;
     font-size: 1rem;
-}
+}*/
 
-.input-checkbox{
-    position: relative;
-    size: 100%;
-}
-
-button{
-    background-color: #4d535dc6;
-    border: solid 1px #F2F2F2;
-    color:#f2f2f2;
-    font-weight: bold;
-    padding: 0.5em 1em;
-    margin-top: 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-}
 
 .addButton{
     margin-top:0;
 }
-
-button:hover {
-    cursor: pointer;
-    background-color: #7f858ed1;
-    color: #F2F2F2;
-}
-
 .formC {
   width: 75%;
   //center

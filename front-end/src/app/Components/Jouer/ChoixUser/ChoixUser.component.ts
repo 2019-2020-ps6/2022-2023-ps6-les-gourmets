@@ -5,7 +5,7 @@ import { JouerService } from 'src/service/jouer.service';
 @Component({
   selector: 'app-ChoixUser',
   templateUrl: './ChoixUser.component.html',
-  styleUrls: ['../../../../styles.scss','./ChoixUser.component.scss']
+  styleUrls: ['./ChoixUser.component.scss']
 })
 
 export class ChoixUser implements OnInit {

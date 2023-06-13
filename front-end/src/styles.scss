@@ -6,18 +6,26 @@ html{
 
 *{
     transition: all 0.3s ease;
+    color:$c_white;
+}
+
+h1{
+  text-align : center;
+  color : $c_white;
+  margin : 1em;
 }
 
 button {
-    border-radius: 5px;
-    color: $c_white;
     background-color: $c_grey;
     padding: 0.5em 1em;
     margin: 0.5em 1em;
-    display: inline-block;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     border: solid 1px $c_white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    color: $c_white;
+    text-align: center;
+    font-weight: bold;
 
     &:hover{
       background-color: lighten($c_grey,$c_percentageOnHover);
@@ -30,7 +38,7 @@ button.hard{
     color: $c_grey;
     background-color: $c_cyan;
     border: none;
-    font-size: calc(0.6rem + 3vw);
+    font-size: calc(4vw);
 
     &:hover {
       color: darken($c_grey,$c_percentageOnHover);
@@ -39,31 +47,31 @@ button.hard{
 }
 
 button.soft{
-    border: solid 1px $c_white;
-
-    &:hover{
-      background-color: lighten($c_grey,$c_percentageOnHover);
-    }
+    border: none;
+    font-size: 0.8em;
 }
 
 input{
   padding: 1em;
-  width: 33vw;
   margin: 1vw;
   background: #0000002b;
-  color: white;
+  border: solid 1px $c_white;
+  color: $c_white;
+  border-radius: 8px;
+  & [type]:not([type="checkbox"]){//Tout les inputs qui ne sont pas des checkbox
+    width: 33vw;
+  }
 }
 
 .card{
   background-color: $c_darkPanel;
-  border: solid 1px #f2f2f2;
+  border: solid 1px $c_white;
   border-radius: 8px;
   display: flex;
   margin: 1rem;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
-  padding: 0 1em 1em 1em;
+  padding: 1em;
   flex-direction: column;
-  padding:1em;
 }
 
 /* copy paste this switch button
