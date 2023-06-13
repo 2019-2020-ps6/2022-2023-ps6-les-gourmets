@@ -22,9 +22,9 @@ test.describe('Test de création de question', () => {
     await page.getByRole('button', {name: 'Créer'}).click();
 
     const questionTest = await page.getByText('Question de test(facile)').first();
-    expect(questionTest).toBeVisible();
+    await expect(questionTest).toBeVisible();
     await page.locator('app-question').filter({ hasText: 'Question de test(facile).ModifierSupprimer' }).getByRole('button', { name: 'Supprimer' }).click();
-    expect(questionTest).not.toBeVisible();
+    await expect(questionTest).not.toBeVisible();
 
   });
 
@@ -44,15 +44,15 @@ test.describe('Test de création de question', () => {
 
     await page.getByTestId('name').fill('Quiz de test');
     await page.getByRole('button', { name: 'Create' }).click();
-    await page.getByRole('button', { name: 'Modifier' }).first().click();
+    await page.locator('app-quiz').filter({ hasText: 'Quiz de test ModifierSupprimer' }).getByRole('button', { name: 'Modifier' }).first().click();
     await page.getByRole('button', { name: 'Ajouter' }).click();
 
     const questionTestSelect = await page.getByText('qui est le plus moche ?(facile)').first();
-    expect(questionTestSelect).toBeVisible();
+    await expect(questionTestSelect).toBeVisible();
     await page.getByRole('button', { name: 'Ajouter' }).first().click();
     await page.getByRole('button', { name: 'Retour' }).first().click();
     const questionTestSelected = await page.getByText('qui est le plus moche ?(facile)').first();
-    expect(questionTestSelected).toBeVisible();
+    await expect(questionTestSelected).toBeVisible();
 
   });
 });

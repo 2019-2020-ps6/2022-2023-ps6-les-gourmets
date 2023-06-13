@@ -7,25 +7,25 @@ test.describe('Test d\'édition des user', () => {
   test('should modify the user name and aggressiveness', async ({ page }) => {
     await page.goto(testUrl);
     const appComponentFixture = new AppFixture(page);
-  
+
     await appComponentFixture.goToProfilForm();
 
 
     await page.locator('#name').fill('UserNameTest');
     await page.locator('#surname').fill('UserSurnameTest');
-  
+
     await page.getByRole('button', { name: 'Créer' }).click();
 
-  
+
     await page.getByRole('button', { name: 'confirmer les changements' }).click();
 
     selectors.setTestIdAttribute('id');
-  
 
 
-    
-    await page.getByRole('button', { name: 'Éditer' }).first().click();
-    
+
+
+    await page.locator('app-user').filter({ hasText: 'Nom : UserNameTest Prénom : UserSurnameTest Taux d\'agressivité : 0.5SupprimerÉdi' }).getByRole('button', { name: 'Éditer' }).first().click();
+
     await page.getByPlaceholder('UserNameTest').fill('UserNameTest2');
     const sliderTrack = await page.locator('form div').filter({ hasText: 'Agressivité de l\'utilisateur' }).getByRole('slider');
     const sliderBoundingBox = await sliderTrack.boundingBox();
@@ -36,7 +36,7 @@ test.describe('Test d\'édition des user', () => {
           x : sliderBoundingBox.width,
           y:0,
         },
-  
+
       });
     }
 
@@ -45,7 +45,7 @@ test.describe('Test d\'édition des user', () => {
     expect(userTest).toBeVisible();
     const userTest2 = await page.getByText('Taux d\'agressivité : 1SupprimerÉditer');
     expect(userTest2).toBeVisible();
-    
+
   });
 
 });
@@ -78,9 +78,9 @@ test.describe('Test de création de question', () => {
     await page.getByRole('button', { name: 'confirmer les changements' }).click();
 
 
-    const userTest = await page.getByText('Taux d\'agressivité : 1SupprimerÉditer');
+    const userTest = await page.getByText('Nom : UserNameTest2 Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdit');
     expect(userTest).toBeVisible();
-    await page.locator('app-user').filter({ hasText: 'Nom : UserNameTest Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdite' }).getByRole('button', { name: 'Supprimer' }).first().click();
+    await page.locator('app-user').filter({ hasText: 'Nom : UserNameTest2 Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdit' }).getByRole('button', { name: 'Supprimer' }).first().click();
     expect(userTest).not.toBeVisible();
 
   });
