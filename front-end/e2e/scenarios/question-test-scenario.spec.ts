@@ -41,7 +41,6 @@ test.describe('Test de création de question', () => {
     await appComponentFixture.fillQuestionForm('cacatest');
 
 
-
     const questionTest = await page.getByText('Question de test(facile)').first();
     expect(questionTest).toBeVisible();
 
@@ -62,9 +61,6 @@ test.describe('Test de création de question', () => {
     await page.getByRole('button', { name: 'Retour' }).first().click();
     const questionTestSelected = await page.getByText('Question de test(facile)').first();
     expect(questionTestSelected).toBeVisible();
-
-
-
 
   });
 });
