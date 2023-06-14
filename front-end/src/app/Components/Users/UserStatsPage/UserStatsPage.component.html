@@ -1,7 +1,8 @@
 <button [routerLink]="['/UserProfilePage']"(clic)="switchPage()">Retour</button>
 <br>
-  <h2>Statistique du profil "{{User.surname}} {{User.name}}" </h2>
 <div class="card">
+  <h2>Statistique du profil "{{User.surname}} {{User.name}}" </h2>
+  <div class="tileList">
   <div *ngFor="let quiz of User.quizzes" >
     <table class="card stats">
       <h2>{{quiz.name}}</h2>
@@ -22,6 +23,8 @@
         <h2>temps moyen : {{quiz.timerMoyen/1000}} secondes</h2>
       </span>
   </table>
+  </div>
+
   </div>
 
 </div>
