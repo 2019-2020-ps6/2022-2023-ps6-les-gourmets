@@ -5,7 +5,7 @@ test.describe('Tests de partie', () => {
   test('should display the popup', async ({ page }) => {
     await page.goto(testUrl);
     await page.getByRole('button', { name: 'Jouer' }).click();
-    await page.locator('app-user').filter({ hasText: 'Nom : Arnaud Prénom : DumanoisSélectionner' }).getByRole('button', { name: 'Sélectionner' }).click();
+    await page.locator('app-user').filter({ hasText: 'ArnaudDumanois' }).getByRole('button', { name: 'Sélectionner' }).click();
 
   });
 });

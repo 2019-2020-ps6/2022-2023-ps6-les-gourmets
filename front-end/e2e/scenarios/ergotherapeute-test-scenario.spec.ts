@@ -82,7 +82,7 @@ test.describe('Test de création et d\'édition des user', () => {
   
   
   
-      await page.locator('app-user').filter({ hasText: 'Nom : UserNameTest Prénom : Marco Taux d\'agressivité : 0.5SupprimerÉdi' }).getByRole('button', { name: 'Éditer' }).first().click();
+      await page.locator('app-user').filter({ hasText: 'UserNameTest' }).getByRole('button', { name: 'Éditer' }).first().click();
   
       await page.getByPlaceholder('UserNameTest').fill('Laclavere');
       const sliderTrack = await page.locator('form div').filter({ hasText: 'Agressivité de l\'utilisateur' }).getByRole('slider');
@@ -98,7 +98,7 @@ test.describe('Test de création et d\'édition des user', () => {
         });
       }
 
-      await page.getByTestId('answerDisplay').click();
+      await page.locator('form span').click();
   
       await page.getByRole('button', { name: 'confirmer les changements' }).click();
       const userTest = await page.getByText('Marco');
@@ -130,9 +130,9 @@ test.describe('Test de création et d\'édition des user', () => {
       
   
   
-      const userTest3 = await page.getByText('Laclavere Prénom : Marco Taux d\'agressivité : 1SupprimerÉdit');
+      const userTest3 = await page.getByText('Marco');
       await expect(userTest3).toBeVisible();
-      await page.locator('app-user').filter({ hasText: 'Nom : Laclavere Prénom : Marco Taux d\'agressivité : 1SupprimerÉdit' }).getByRole('button', { name: 'Éditer' }).first().click();
+      await page.locator('app-user').filter({ hasText: 'Laclavere'}).getByRole('button', { name: 'Éditer' }).first().click();
       await page.getByRole("button",{name:"Ajouter un quiz"}).click();
       await expect(page.locator('app-quiz').filter({ hasText: 'Quiz de test' })).toBeVisible();
       await page.locator('app-quiz').filter({ hasText: 'Quiz de test' }).getByRole('button', { name: 'Ajouter' }).first().click();
