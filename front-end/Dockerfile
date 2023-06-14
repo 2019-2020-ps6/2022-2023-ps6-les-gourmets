@@ -13,3 +13,4 @@ CMD [ "npm","run","build" ]
 
 FROM nginx:1.25.1-alpine
 COPY --from=front-end /app/dist/front-end /usr/share/nginx/html
+COPY --from=front-end /app/default.conf /etc/nginx/conf.d/default.conf
