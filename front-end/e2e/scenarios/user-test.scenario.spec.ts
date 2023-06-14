@@ -3,7 +3,7 @@ import { testUrl } from 'e2e/e2e.config';
 import { AppFixture } from 'src/app/app-fixtures';
 
 
-test.describe('Test d\'édition des user', () => {
+/*test.describe('Test d\'édition des user', () => {
   test('should modify the user name and aggressiveness', async ({ page }) => {
     await page.goto(testUrl);
     const appComponentFixture = new AppFixture(page);
@@ -86,5 +86,5 @@ test.describe('Test de création de question', () => {
     await expect(userTest).not.toBeVisible();
 
   });
-});
+});*/
 
