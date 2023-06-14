@@ -1,30 +1,27 @@
-<h1>Stats de l'utilisateur</h1>
-<div>
-  <button [routerLink]="['/UserProfilePage']"(clic)="switchPage()">Retour</button>
-</div>
+<button [routerLink]="['/UserProfilePage']"(clic)="switchPage()">Retour</button>
 <br>
-<div>
-  <input type="text" value={{User.surname}} placeholder={{User.surname}} />
-  <input type="text" value={{User.name}} placeholder={{User.name}} />
-</div>
-<div *ngFor="let quiz of User.quizzes">
-  <table>
-    <h2>{{quiz.name}}</h2>
-    <tr>
+  <h2>Statistique du profil "{{User.surname}} {{User.name}}" </h2>
+<div class="card">
+  <div *ngFor="let quiz of User.quizzes" >
+    <table class="card stats">
+      <h2>{{quiz.name}}</h2>
+      <tr>
+        
+        <th>Questions et taux de réussite</th>
+        
+      </tr>
+      <span>
+          <tr *ngFor="let question of quiz.questions">
+            
+        
+            <td>{{question.label}}</td>
+            <td>{{question.trueAnswer / (question.falseAnswer + question.trueAnswer) * 100}}%</td>
+          </tr>
+        
       
-      <th>Questions et taux de réussite</th>
-      
-    </tr>
-    <span>
-        <tr *ngFor="let question of quiz.questions">
-          
-      
-          <td>{{question.label}}</td>
-          <td>{{question.trueAnswer / (question.falseAnswer + question.trueAnswer) * 100}}%</td>
-        </tr>
-      
-    
-      <h2>temps moyen : {{quiz.timerMoyen/1000}} secondes</h2>
-    </span>
-</table>
+        <h2>temps moyen : {{quiz.timerMoyen/1000}} secondes</h2>
+      </span>
+  </table>
+  </div>
+
 </div>

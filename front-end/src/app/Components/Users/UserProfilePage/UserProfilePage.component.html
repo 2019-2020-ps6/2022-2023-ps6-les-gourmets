@@ -1,16 +1,13 @@
-<h1>Page de l'utilisateur</h1>
-<div>
-  <button [routerLink]="['/ListeUserPage']"(click)="playBackSound()">Retour</button>
-  <button [routerLink]="['/UserStatsPage']"(click)="switchPage()">Stats</button>
-</div>
+<button [routerLink]="['/ListeUserPage']"(click)="playBackSound()">Retour</button>
+<button [routerLink]="['/UserStatsPage']"(click)="switchPage()">Stats</button>
 
 <ng-container *ngIf="userReady">
-<form [formGroup]="modifs" class="formC">
+<form [formGroup]="modifs" class="formC card">
 
   <div>
-    <input type="text" [value]="UserModified.surname" [placeholder]="UserModified.surname"
+    <input class="name" type="text" [value]="UserModified.surname" [placeholder]="UserModified.surname"
       [formControlName]="'surname'" />
-    <input type="text" [value]="UserModified.name" [placeholder]="UserModified.name" [formControlName]="'name'" />
+    <input class="name" type="text" [value]="UserModified.name" [placeholder]="UserModified.name" [formControlName]="'name'" />
   </div>
   <div>
     <h2>Agressivité de l'utilisateur </h2>
@@ -22,10 +19,13 @@
     <input type="range" class="slider" name="Name" min="0" max="1" step="0.1" [formControlName]="'passivity'" />
   </div>
   <div class="input-checkbox">
-    <h2>Afficher les réponses justes : </h2>
-    <input class="input-custom" type="checkbox" id="answerDisplay" [formControlName]="'answerDisplay'">
+    <h2>Afficher les réponses justes</h2>
+    <label class="switch">
+      <input class="input-custom" type="checkbox" id="answerDisplay" [formControlName]="'answerDisplay'">
+      <span class="switch_handle"></span>
+    </label>
   </div>
-  <h2>Liste des musiques : </h2><br>
+  <h2>Liste des musiques</h2><br>
   <div>
     <input class="input-custom" type="text" id="music" >
     <button class="addButton" (click)="addMusic()"> Ajouter</button>

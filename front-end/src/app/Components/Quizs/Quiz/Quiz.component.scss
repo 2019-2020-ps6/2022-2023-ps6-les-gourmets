@@ -1,7 +1,5 @@
 @import  "../../../../variable.scss";
 
-$card-hover-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
-
 .card {
   justify-content: space-between;
   position: relative;
@@ -9,13 +7,13 @@ $card-hover-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
-  box-shadow: $card-hover-shadow;
+  box-shadow: $c_shadow;
 }
 
 h2 {
   font-size: 1.5em;
   margin: 0;
-  color: $c_textColor;
+  color: $c_textLightColor;
 }
 
 .button-card:hover {

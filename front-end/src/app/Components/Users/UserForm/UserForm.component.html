@@ -1,6 +1,5 @@
-<h1>Créer un profil</h1>
 <button class="button-card" [routerLink]="['/ListeUserPage']"(click)="playBackSound()">Retour</button>
-<form [formGroup]="userForm">
+<form [formGroup]="userForm" class="card">
     <label for="title">
     <h2>Nom : </h2>
     <input class="input-custom" type="text" id="name" [formControlName]="'name'">

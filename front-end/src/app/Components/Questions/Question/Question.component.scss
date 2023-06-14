@@ -1,5 +1,4 @@
 @import "../../../../variable.scss";
-$card-hover-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
 
 .card {
   justify-content: space-between;
@@ -7,19 +6,19 @@ $card-hover-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
-  box-shadow: $card-hover-shadow;
+  box-shadow: $c_shadow;
 }
 
 h2 {
   font-size: 1.5em;
   margin: 0;
-  color:$c_textColor
+  color:$c_textLightColor
 }
 
 h3{
   font-size: 1.2em;
   margin: 0;
-  color:$c_textColor
+  color:$c_textLightColor
 }
 
 .button-card:hover {
@@ -35,11 +34,12 @@ div{
 }
 
 #iconImage{
+  $size:3em;
   position: absolute;
-  top: -1em;
-  right: -1em;
-  width: 4em;
-  height: 4em;
+  top: calc(-1*($size/3));
+  right: calc(-1*($size/3));
+  width: $size;
+  height: $size;
 }
 
 #SupressButton:hover{
