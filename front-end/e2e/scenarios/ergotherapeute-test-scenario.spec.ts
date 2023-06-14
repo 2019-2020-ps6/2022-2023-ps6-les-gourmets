@@ -119,28 +119,17 @@ test.describe('Test de création et d\'édition des user', () => {
       const appComponentFixture = new AppFixture(page);
   
       await appComponentFixture.goToProfilForm();
-      await page.locator('#name').fill('UserNameTest');
-      await page.locator('#surname').fill('UserSurnameTest');
+
   
-      await page.getByRole('button', { name: 'Créer' }).click();
-      const sliderTrack = await page.locator('form div').filter({ hasText: 'Agressivité de l\'utilisateur' }).getByRole('slider');
-      const sliderBoundingBox = await sliderTrack.boundingBox();
-      if(sliderBoundingBox !=null){
-        await sliderTrack.dragTo(sliderTrack,{
-          force : true,
-          targetPosition : {
-            x : sliderBoundingBox.width,
-            y:0,
-          },
-        });
-      }
+      await page.getByRole('button', { name: 'Retour' }).click();
+
   
-      await page.getByRole('button', { name: 'confirmer les changements' }).click();
+      
   
   
-      const userTest = await page.getByText('Nom : UserNameTest Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdit');
+      const userTest = await page.getByText('Nom : Laclavere Prénom : Marco Taux d\'agressivité : 1SupprimerÉdit');
       await expect(userTest).toBeVisible();
-      await page.locator('app-user').filter({ hasText: 'Nom : UserNameTest Prénom : UserSurnameTest Taux d\'agressivité : 1SupprimerÉdite' }).getByRole('button', { name: 'Supprimer' }).first().click();
+      await page.locator('app-user').filter({ hasText: 'Nom : Lalavere Prénom : Marco Taux d\'agressivité : 1SupprimerÉdite' }).getByRole('button', { name: 'Supprimer' }).first().click();
       await expect(userTest).not.toBeVisible();
   
     });
