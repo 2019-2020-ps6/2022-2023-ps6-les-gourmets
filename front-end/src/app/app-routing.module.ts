@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ListeQuizPage } from './Components/Quizs/ListeQuizPage/ListeQuizPage.component';
 import { ListeUserPage } from './Components/Users/UserListPage/ListeUserPage.component';
-import { GamePageComponent } from './Components/Jouer/GamePage/GamepageComponent.component';
 import { EndPageComponent } from './Components/Jouer/EndPage/EndPageComponent.component';
 import { MenuComponent } from './Components/Menu/MenuComponents/Menu.component';
 import { MenuChoixCreation } from './Components/Menu/MenuChoixCreationComponent/MenuChoixCreation.component';
@@ -19,6 +18,7 @@ import { ListeQuizAdable } from './Components/Users/ListQuizAdable/ListeQuizAdab
 import { ChoixTypeQuestion } from './Components/Questions/ChoixTypeQuestion/ChoixTypeQuestion.component';
 import { ListeQuestionAdable } from './Components/Quizs/ListQuestionAdable/ListeQuestionAdable.component';
 import { QuizEditComponent } from './Components/Quizs/QuizEdit/quizEdit.component';
+import { GamePageComponent } from './Components/Jouer/GamePage/GamePageComponent.component';
 
 
 const routes: Routes = [
