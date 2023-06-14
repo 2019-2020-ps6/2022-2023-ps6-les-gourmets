@@ -56,7 +56,6 @@ export class GamePageComponent implements OnInit {
       });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
         if(quiz){
-          console.log(quiz.questions)
           this.quiz = JSON.parse(JSON.stringify(quiz));
           this.nbAnswers = this.quiz.questions.length;
           this.quizReady = true;
@@ -64,8 +63,6 @@ export class GamePageComponent implements OnInit {
             return Math.random() - 0.5;
           });
           this.currentQuestion = this.quiz.questions[0];
-          console.log(this.quiz.questions);
-          console.log(this.currentQuestion);
         }
       });
       this.jouerService.quitPopup$.subscribe((appearance: boolean) => {
@@ -148,9 +145,6 @@ export class GamePageComponent implements OnInit {
       }
       if (i>=this.nbAnswers) {
         this.end = true;
-        if(!this.user.answerDisplay){
-          this.endQuiz();
-        }
       }
       if(!this.user.answerDisplay){
         this.NextQuestion();
@@ -169,9 +163,9 @@ export class GamePageComponent implements OnInit {
     }
 
     endQuiz():void{
+      
       this.jouerService.updateResults(this.quiz.questions,this.answers);
-      this.userService.updateUserStats(this.quizService.quizSelected$.getValue(),this.quiz.questions,this.answers);
-      this.userService.updateUserTimer(this.quizService.quizSelected$.getValue(),this.jouerService.getTimer());
+      this.userService.updateUserStats(this.quizService.quizSelected$.getValue(),this.quiz.questions,this.answers,this.jouerService.getTimer());
       this.router.navigate(['/EndPageComponent']);
     }
 

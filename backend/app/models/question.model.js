@@ -9,8 +9,6 @@ module.exports = new BaseModel('Question', {
   images: Joi.array(),
   label: Joi.string().required(),
   answers: Joi.array().items(AnswerSchema).required(),
-  trueAnswer: Joi.number().required(),
-  falseAnswer: Joi.number().required(),
   estFacile: Joi.boolean().required(),
 })
 

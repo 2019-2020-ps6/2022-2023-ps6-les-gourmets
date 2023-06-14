@@ -21,8 +21,6 @@ export class QuizFormComponent implements OnInit {
       name: [''],
       questions: [[]],
       easyQuestions: [[]],
-      timerMoyen: 0,
-      times: 0,
     });
   }
 

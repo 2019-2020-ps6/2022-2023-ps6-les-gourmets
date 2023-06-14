@@ -27,8 +27,6 @@ export const QUESTION_ACTOR: Question = {
             isCorrect: false,
       }
   ],
-  trueAnswer:0,
-  falseAnswer:0,
   estFacile: false,
 };
 
@@ -59,8 +57,6 @@ export const QUESTIONLIST_ACTOR: Question[] = [
             isCorrect: false,
         }
       ],
-      trueAnswer: 10,
-      falseAnswer: 0,
       estFacile: false,
   },
   {
@@ -89,9 +85,6 @@ export const QUESTIONLIST_ACTOR: Question[] = [
             isCorrect: true,
         }
       ],
-
-      trueAnswer: 5,
-      falseAnswer: 5,
       estFacile: false,
   },
   {
@@ -120,8 +113,6 @@ export const QUESTIONLIST_ACTOR: Question[] = [
             isCorrect: true,
         }
         ],
-        trueAnswer: 8,
-        falseAnswer: 9,
         estFacile: false,
 
   },
@@ -151,8 +142,6 @@ export const QUESTIONLIST_ACTOR: Question[] = [
             isCorrect: false,
         }
       ],
-      trueAnswer: 4,
-      falseAnswer: 2,
       estFacile: false,
   },
 
@@ -192,8 +181,6 @@ export const QUESTIONLIST_ACTOR: Question[] = [
               isCorrect: false,
           }
         ],
-        trueAnswer: 10,
-        falseAnswer: 25,
         estFacile: true,
     },
     {
@@ -222,9 +209,6 @@ export const QUESTIONLIST_ACTOR: Question[] = [
               isCorrect: true,
           }
         ],
-
-        trueAnswer: 5,
-        falseAnswer: 17,
         estFacile: true,
     }
   
@@ -236,8 +220,6 @@ export const QUIZ_LIST: Quiz[] = [
     name: 'Les Acteurs',
     questions: JSON.parse(JSON.stringify(QUESTIONLIST_ACTOR)),
     easyQuestions: JSON.parse(JSON.stringify(EZQUESTIONLIST_ACTOR)),
-    timerMoyen:45000,
-    times:2
   },
 
   {
@@ -245,8 +227,6 @@ export const QUIZ_LIST: Quiz[] = [
     name: 'Les technos WEB',
     questions: [],
     easyQuestions: [],
-    timerMoyen:0,
-    times:0
   }
 ];
 

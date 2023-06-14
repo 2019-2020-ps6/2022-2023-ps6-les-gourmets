@@ -11,11 +11,9 @@ module.exports = class BaseModel {
     if (!schema) throw new Error('You must provide a schema in constructor of BaseModel')
     this.schema = Joi.object().keys({ ...schema, id: Joi.number().required() })
     this.items = []
-    this.attributeItems = []
     this.name = name
-    this.filePath = `${__dirname}/../../database/${process.env.DB_FOLDER ?? ''}${this.name.toLowerCase()}.data.json`
+    this.filePath = `${__dirname}/../../database/${this.name.toLowerCase()}.data.json`
     this.load()
-    this.loadItems()
   }
 
   load() {
@@ -25,16 +23,6 @@ module.exports = class BaseModel {
       if (err.message === 'Unexpected end of JSON input') logger.log(`Warning : ${this.filePath} has wrong JSON format`)
     }
   }
-
-  loadItems()  {
-    try {
-      this.attributePath = `${__dirname}/../../database/${this.attribute.toLowerCase()}.data.json`
-      this.attributeItems = JSON.parse(fs.readFileSync(this.attributePath, 'utf8'))
-    } catch (err) {
-      if (err.message === 'Unexpected end of JSON input') logger.log(`Warning : ${this.quizPath} has wrong JSON format`)
-    }
-  }
-
 
   save() {
     try {
@@ -55,14 +43,28 @@ module.exports = class BaseModel {
     return item
   }
 
-  getAttributeById(attribute,id) {
-    if (typeof id === 'string') id = parseInt(id, 10)
-    this.attribute=attribute
-    loadItems()
-    const item = this.attributeItems.find((i) => i.id === id)
-    if (!item) throw new NotFoundError(`Cannot get ${this.name} id=${id} : not found`)
-    return item
+
+  getByAttributesId(attributes, ids) {
+    //check in items if attributes value is equal to ids value and adds the object to the res array if all attributes are equal
+    const res = []
+    ids.forEach((id) => {
+      if (typeof id === 'string') id = parseInt(id, 10)
+    })
+    this.items.forEach((item) => {
+      let valid = true
+      for(let i=0; i<attributes.length; i++){
+        if (Array.isArray(item[attributes[i]])) {
+          if (!item[attributes[i]].includes(ids[i])) valid = false
+        } else if (item[attributes[i]] != ids[i]) valid = false
+      }
+      if (valid) {
+        res.push(item)
+      }
+    } )
+    return res
   }
+
+  
 
   create(obj = {}) {
     const item = { ...obj, id: Date.now() }
@@ -85,17 +87,6 @@ module.exports = class BaseModel {
     return updatedItem
   }
 
-  updateWithId(id, obj) {
-    if (typeof id === 'string') id = parseInt(id, 10)
-    const prevObjIndex = this.items.findIndex((item) => item.id === id)
-    if (prevObjIndex === -1) throw new NotFoundError(`Cannot update ${this.name} id=${id} : not found`)
-    const updatedItem = { ...this.items[prevObjIndex], ...obj}
-    const { error } = Joi.validate(updatedItem, this.schema)
-    if (error) throw new ValidationError(`Update Error : Object ${JSON.stringify(obj)} does not match schema of model ${this.name}`, error)
-    this.items[prevObjIndex] = updatedItem
-    this.save()
-    return updatedItem
-  }
 
   delete(id) {
     if (typeof id === 'string') id = parseInt(id, 10)
@@ -104,6 +95,25 @@ module.exports = class BaseModel {
     this.items = this.items.filter((item) => item.id !== id)
     this.save()
   }
+
+  deleteByAttributesId(attributes, ids) {
+    ids.forEach((id) => {
+      if (typeof id === 'string') id = parseInt(id, 10)
+    })
+    //check in items if attributes value is equal to ids value and delets the object from items if all attributes are equal
+    this.items.forEach((item) => {
+      let valid = true
+      for(let i=0; i<attributes.length; i++){
+        
+        if (item[attributes[i]] != ids[i]) valid = false
+      }
+      if (valid){
+        this.delete(item.id)
+      }
+    } )
+  }
+
+
   
   deleteAll() {
     this.items = this.items.filter((item) => item.id !== -1)
@@ -114,8 +124,6 @@ module.exports = class BaseModel {
     if (typeof id === 'string') {
       id = parseInt(id, 10);
     }
-  
-    // Remove the ID from the attribute in all users
     this.items.forEach((obj) => {
       Object.keys(obj).forEach((key) => {
         if (key === attribute) {
@@ -130,11 +138,6 @@ module.exports = class BaseModel {
   
      
     this.save();
-  }
-
-  containsIdForAttribute(id, attribute) {
-    
-    return contains;
   }
 
     

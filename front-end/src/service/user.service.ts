@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/models/User.model';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { USERS } from 'src/mocks/UserList.mocks';
 import { Quiz } from 'src/models/quiz.model';
 import { Question } from 'src/models/question.model';
+import { Stat } from 'src/models/stat.model';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -20,13 +20,18 @@ export class UserService {
     }
 
     //The list of User. The list is retrieved from the mock.
-private Users: User[] = []; // Ici on initialise la valeur avec un mock User_LIST
-private UserSelected!: User; // Ici on initialise la valeur avec un mock User
+private Users: User[] = [];
+private UserSelected!: User;
 
-public Users$: BehaviorSubject<User[]> = new BehaviorSubject(this.Users); // Ici on crée un observable qui va permettre de récupérer la liste des User
-public UserSelected$: BehaviorSubject<User> = new BehaviorSubject(this.UserSelected); // Ici on crée un observable qui va permettre de récupérer un User sélectionné
+private UserStats: Stat[] = [];
+
+
+public Users$: BehaviorSubject<User[]> = new BehaviorSubject(this.Users);
+public UserSelected$: BehaviorSubject<User> = new BehaviorSubject(this.UserSelected);
+public UserStats$: BehaviorSubject<Stat[]> = new BehaviorSubject(this.UserStats);
 
 private UserUrl = "http://localhost:9428/api" + '/users';
+private StatUrl = "http://localhost:9428/api" + '/stats';
 
 // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
 constructor(private http: HttpClient) {
@@ -43,8 +48,15 @@ retrieveUsers(): void {
     })
     this.Users$.next(this.Users);
   });
-
 }
+
+retrieveUserStats(): void {
+  this.http.get<Stat[]>(this.StatUrl + '/' + this.UserSelected.id).subscribe((statList) => {
+    this.UserStats = statList;
+    this.UserStats$.next(this.UserStats);
+  });
+}
+
 
 retrieveUsersAndSelect(value: User): void {
   this.http.get<User[]>(this.UserUrl).subscribe((userList) => {
@@ -80,11 +92,17 @@ deleteUser(value: User) {
 
  deleteQuizForProfile(value : Quiz){
   this.UserSelected.quizzes = this.UserSelected.quizzes.filter(quiz => value.id !== quiz.id);
+  this.http.delete<Stat>(this.StatUrl + '/' + this.UserSelected.id + '/' + value.id).subscribe(() => {
+    this.retrieveUserStats();
+  });
   this.updateUserQuizzes();
  }
 
  addQuizForUser(value : Quiz){
   this.UserSelected.quizzes.push(value);
+  this.http.post<Stat>(this.StatUrl, {userId: this.UserSelected.id, quizId: value.id}).subscribe(() => {
+    this.retrieveUserStats();
+  });
   this.updateUserQuizzes();
   }
 
@@ -101,31 +119,8 @@ deleteUser(value: User) {
   }
 
 
- updateUserStats(quiz: Quiz,questions: Question[],answers: boolean[]){
-  for(let i=0; i< this.UserSelected.quizzes.length;i++){
-    if(quiz.id==this.UserSelected.quizzes[i].id){
-      for(let j=0; j<answers.length; j++){
-        for(let k=0; k<this.UserSelected.quizzes[i].questions.length; k++){
-          if(this.UserSelected.quizzes[i].questions[k].id==questions[j].id){
-            if (answers[j]){
-              this.UserSelected.quizzes[i].questions[k].trueAnswer+=1;
-            } else {
-              this.UserSelected.quizzes[i].questions[k].falseAnswer+=1;
-            }
-          }
-        }
-      }
-    }
-  }
+ updateUserStats(quiz: Quiz,questions: Question[],answers: boolean[], timer: number){
+  this.http.put(this.StatUrl + '/' + this.UserSelected.id + '/answers', {quizId: quiz.id, questions: questions, answers: answers}).subscribe();
+  this.http.put(this.StatUrl + '/' + this.UserSelected.id + '/timer', {quizId: quiz.id, timer: timer}).subscribe();
  }
-
- updateUserTimer(quiz: Quiz,timer: number){
-  for(let i=0; i< this.UserSelected.quizzes.length;i++){
-    if(quiz.id==this.UserSelected.quizzes[i].id){
-      this.UserSelected.quizzes[i].timerMoyen=((this.UserSelected.quizzes[i].timerMoyen*this.UserSelected.quizzes[i].times)+timer)/(this.UserSelected.quizzes[i].times+1);
-      this.UserSelected.quizzes[i].times+=1;
-  }
- }
-}
-
 }

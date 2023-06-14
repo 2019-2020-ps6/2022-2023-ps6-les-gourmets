@@ -6,6 +6,4 @@ module.exports = new BaseModel('Quiz', {
     name: Joi.string().required(),
     questions: Joi.array().items(number).required(),
     easyQuestions: Joi.array().items(number).required(),
-    timerMoyen: Joi.number().required(),
-    times: Joi.number().required(),
     })

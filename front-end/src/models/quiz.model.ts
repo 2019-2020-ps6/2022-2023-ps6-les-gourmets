@@ -5,6 +5,4 @@ export interface Quiz {
     name: string;
     questions: Question[];
     easyQuestions: Question[];
-    timerMoyen: number;
-    times: number;
 }

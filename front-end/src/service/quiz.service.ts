@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { QUIZ_LIST } from 'src/mocks/QuizList.mocks';
 import { Quiz } from 'src/models/quiz.model';
+import { Stat } from 'src/models/stat.model';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Question } from 'src/models/question.model';
 import { UserService } from './user.service';
@@ -26,6 +26,7 @@ constructor(private userService: UserService, private http: HttpClient) {
  }
 
  private QuizUrl = "http://localhost:9428/api" + '/quizzes';
+ private StatUrl = "http://localhost:9428/api" + '/stats';
 
 retrieveQuizes(): void {
   this.http.get<Quiz[]>(this.QuizUrl).subscribe((quizList) => {
@@ -85,6 +86,8 @@ deleteQuiz(quiz: Quiz) {
     });
     this.http.put<Quiz>(this.QuizUrl + '/' + quizModified.id , questionIds).subscribe(() => this.selectQuiz(this.quizSelected));
     this.http.patch<Quiz>(this.QuizUrl + '/' + quizModified.id , easyQuestionIds).subscribe(() => this.selectQuiz(this.quizSelected));
+    this.http.patch<Stat>(this.StatUrl + '/' + quizModified.id , quizModified).subscribe();
+
 
   }
 }

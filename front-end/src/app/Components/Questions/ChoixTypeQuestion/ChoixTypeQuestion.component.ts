@@ -44,8 +44,6 @@ export class ChoixTypeQuestion implements OnInit {
                 isCorrect: false,
           }
       ],
-      trueAnswer:0,
-      falseAnswer:0,
       estFacile:false
     };
     this.questionService.selectQuestion(nouvelleQuestion);
