@@ -56,13 +56,16 @@ export class GamePageComponent implements OnInit {
       });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
         if(quiz){
-          this.quiz = quiz;
-          this.currentQuestion = this.quiz.questions[0];
+          console.log(quiz.questions)
+          this.quiz = JSON.parse(JSON.stringify(quiz));
           this.nbAnswers = this.quiz.questions.length;
           this.quizReady = true;
           this.quiz.questions.sort(() => {
             return Math.random() - 0.5;
           });
+          this.currentQuestion = this.quiz.questions[0];
+          console.log(this.quiz.questions);
+          console.log(this.currentQuestion);
         }
       });
       this.jouerService.quitPopup$.subscribe((appearance: boolean) => {
@@ -155,6 +158,9 @@ export class GamePageComponent implements OnInit {
     }
 
     onPreviousQuestion(): void {
+      if(!this.answers[this.currentQuestionIndex-1]){
+        this.quiz.questions.pop();
+      }
       this.currentQuestionIndex--;
       if (this.currentQuestionIndex >= 0) {
         this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
@@ -170,7 +176,7 @@ export class GamePageComponent implements OnInit {
     }
 
     quitQuiz():void{
-      this.currentQuestionIndex++;
+      this.router.navigate(['/ChoixQuiz']);
     }
 
 
