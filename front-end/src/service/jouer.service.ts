@@ -99,9 +99,7 @@ export class JouerService {
         this.resetClickCounter();
         if(this.rage) {this.quitPopupVisibility(true);}
         else{
-            console.log(this.userService.getCurrentUser().music);
             const path = this.userService.getCurrentUser().music.sort(() => Math.random()-0.5)[0];
-            console.log("choosen: "+path)
             this.playUserMusic(path);
             this.rage = true;
         }
@@ -132,10 +130,8 @@ export class JouerService {
     }
 
     public playUserMusic(path : string|null){
-      console.log("here");
         this.stopMusic(this.backgroundMusic);
         if(!this.musicActivated)return;
-        console.log("path:"+path);
         if(path!=null){
           this.UserMusic = new AudioFade(path);
           this.UserMusic.play(0.5);
@@ -273,7 +269,6 @@ class AudioFade extends Audio{
 
     public override play(volume : number =1): Promise<void> {
       this.muted = true;
-      console.log("playing: "+this.src)
       var result = super.play()
       this.fadeVolume(true,volume);
       this.muted=false;

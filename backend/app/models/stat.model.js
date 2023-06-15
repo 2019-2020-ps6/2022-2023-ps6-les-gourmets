@@ -9,5 +9,6 @@ module.exports = new BaseModel('Stat', {
     bonnesReponses : Joi.array().items(number).required(),
     mauvaisesReponses : Joi.array().items(number).required(),
     timerMoyen : Joi.number(),
-    times : Joi.number()
+    times : Joi.number(),
+    nbQuit : Joi.number()
     })
