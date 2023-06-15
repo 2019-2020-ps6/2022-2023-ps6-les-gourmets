@@ -7,14 +7,38 @@ test.describe('Tests de partie', () => {
     await page.getByRole('button', { name: 'Jouer' }).click();
     await page.locator('app-user').filter({ hasText: 'ArnaudDumanois' }).getByRole('button', { name: 'Sélectionner' }).click();
     await page.locator('app-quiz').filter({ hasText: 'Quiz de Arnaud' }).getByRole('button', { name: 'Choisir' }).click();
-    for(let i = 0; i < 100; i++){//activer la detection de l'agressivité
-      await page.getByRole('button',{name:"Passer la question"}).click();
+    let continueQuizVisible = false;
+
+   /* async function playQuestions(page: any) {
+      const continueQuizVisible = await page.isVisible('Voulez-vous continuer le Quiz');
+      if (continueQuizVisible) {
+        return;
+      } else {
+        await page.getByRole('button', { name: 'Passer la question' }).click();
+        await playQuestions(page);
+      }
+    }*/
+  
+    for(let i = 0; i < 12; i++){
+      await page.getByRole('button', { name: 'Passer la question' }).click();
     }
+
+    /*
+    while (!continueQuizVisible) {
+      continueQuizVisible = await page.isVisible('Voulez-vous continuer le Quiz');
+      if(!continueQuizVisible){
+        await page.getByRole('button', { name: 'Passer la question' }).click();
+      }
+      continueQuizVisible = await page.isVisible('Voulez-vous continuer le Quiz');
+    }*/
+
+
     await expect(page.getByText('Voulez-vous continuer le Quiz')).toBeVisible();//la popup a du s'afficher
     await page.getByRole('button',{name:'Continuer'}).click();
     await expect(page.getByText('est le plus')).toBeVisible();// on revient sur la question
-    await page.waitForTimeout(250);
+    //await page.waitForTimeout(250);
     await page.getByRole('button',{name:"Arnaud"}).click();//bonne réponse
+
     await expect(page.getByText('Combien font')).toBeVisible();//la question suivante est la facile
     //attendre que le boutton continuer soit visible
     await page.waitForTimeout(15000);
@@ -23,11 +47,10 @@ test.describe('Tests de partie', () => {
     await expect(page.getByText('Liste Quiz')).toBeVisible();//on est revenu sur la page des quiz
 
   
-    
-
-
-
-
+  
 
   });
+
+
 });
+

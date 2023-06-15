@@ -12,6 +12,7 @@
 
     <h1>{{quiz.name}}</h1>
 
+
     <app-GameQuestion (nextQuestion)="validateQuestion($event)" [answer_selected]="validate"
       [question]="currentQuestion"></app-GameQuestion>
 
