@@ -1,6 +1,6 @@
-dist/
+dist/front-end/
 node_modules/
 test-results/
-.angular/
+.angular/cache/15.2.1/
 .gitignore
 .Dockerignore
