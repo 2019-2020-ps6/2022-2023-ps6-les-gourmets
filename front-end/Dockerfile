@@ -6,7 +6,7 @@ COPY --chown=node:node ./package*.json .
 RUN npm install
 COPY --chown=node:node . .
 USER node
-CMD [ "npm","run","build" ]
+RUN npm run build
 
 
 # PUT THE WEBSITE IN NGINX
