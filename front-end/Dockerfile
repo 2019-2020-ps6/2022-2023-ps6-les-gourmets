@@ -1,8 +1,14 @@
 # BUILD THE WEBSITE
 
 FROM node:16.20-alpine3.17 AS build-front
-WORKDIR /app
+ARG TEST_URL
+ARG PROD_URL
+ARG ENV
+ENV TEST_URL=$TEST_URL
+ENV PROD_URL=$PROD_URL
+ENV ENV=$ENV
 USER node
+WORKDIR /app
 COPY --chown=node:node package*.json ./
 RUN npm install
 COPY --chown=node:node . .
