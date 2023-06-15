@@ -163,7 +163,7 @@ export class GamePageComponent implements OnInit {
     }
 
     endQuiz():void{
-      
+
       this.jouerService.updateResults(this.quiz.questions,this.answers);
       this.userService.updateUserStats(this.quizService.quizSelected$.getValue(),this.quiz.questions,this.answers,this.jouerService.getTimer());
       this.router.navigate(['/EndPageComponent']);
