@@ -5,7 +5,7 @@
       "themes": [
         "beauté"
       ],
-      "estFacile": true,
+      "estFacile": false,
       "answers": [
         {
           "type": "text",
@@ -27,8 +27,71 @@
           "value": "Parpo",
           "isCorrect": false
         }
+      ]
+    },
+
+
+    {
+      "id": 1685951375742,
+      "label": "qui est le plus grand ?",
+      "themes": [
+        "grandeur"
       ],
-      "trueAnswer": 0,
-      "falseAnswer": 0
+      "estFacile": false,
+      "answers": [
+        {
+          "type": "text",
+          "value": "Pipope",
+          "isCorrect": false
+        },
+
+        {
+          "type": "text",
+          "value": "Arnaud",
+          "isCorrect": true
+        },
+        {
+          "type": "text",
+          "value": "Pael",
+          "isCorrect": false
+        },
+        {
+          "type": "text",
+          "value": "Parpo",
+          "isCorrect": false
+        }
+      ]
+    },
+
+    {
+      "id": 1685951375753,
+      "label": "Combien font 2+2 ?",
+      "themes": [
+        "nombres"
+      ],
+      "estFacile": true,
+      "answers": [
+        {
+          "type": "text",
+          "value": "8",
+          "isCorrect": false
+        },
+        
+        {
+          "type": "text",
+          "value": "Arnaud",
+          "isCorrect": false
+        },
+        {
+          "type": "text",
+          "value": "4",
+          "isCorrect": true
+        },
+        {
+          "type": "text",
+          "value": "2",
+          "isCorrect": false
+        }
+      ]
     }
   ]

@@ -2,10 +2,10 @@
     {
       "name": "Arnaud",
       "surname": "Dumanois",
-      "quizzes": [],
+      "quizzes": [1685955518802],
       "aggressivness": 0.9,
       "music": [],
-      "answerDisplay": true,
+      "answerDisplay": false,
       "passivity": 0,
       "id": 1685438248739
     }
