@@ -8,15 +8,21 @@ h1{
 
 .question{
   display: grid;
-  grid-template-columns: repeat(2, minmax(40%, 50%));
   gap: 1rem;
-  justify-items: center;
-  height: 100%;
-  line-height: 100%;
-  margin-bottom: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 .reponses{
   width: 100%;
-  height: 25vh;
+  height: 100%;
+  max-width: 400px; /* Largeur maximale pour les colonnes */
+  max-height: 400px;
+}
+
+
+app-GameAnswer{
+  display:inline-grid;
+  width:100%;
+  height:100%;
 }
