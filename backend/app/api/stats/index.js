@@ -1,5 +1,5 @@
 const { Router, request } = require('express')
-const { createDefaultStats,updatedStats, updatedTimer, buildStats, resetStats } = require('./manager')
+const { createDefaultStats,updatedStats, updatedTimer, updatedQuit, buildStats, resetStats } = require('./manager')
 const { Stat, Quiz } = require('../../models');
 
 const router = new Router();
@@ -67,6 +67,10 @@ router.put('/:userId/:type', (req, res) => {
                 const resstatQuestions = Stat.update(stat[0].id, statUpdatedQuestions[0])
                 res.status(201).json(resstatQuestions)
                 break; 
+            case "quit":
+                const statUpdatedQuit = updatedQuit(stat, req.body.questions, req.body.answers)
+                const resstatQuit = Stat.update(stat[0].id, statUpdatedQuit[0])
+                res.status(201).json(resstatQuit)
             default:
                 break;
         }

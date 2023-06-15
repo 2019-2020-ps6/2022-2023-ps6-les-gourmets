@@ -8,5 +8,7 @@ export interface Stat {
     bonnesReponses: number[],
     mauvaisesReponses: number[],
     timerMoyen: number,
-    times: Date
+    times: number,
+    nbQuit: number
+    
 }

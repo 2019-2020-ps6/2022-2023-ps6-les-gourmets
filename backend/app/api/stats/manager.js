@@ -34,6 +34,11 @@ const updatedTimer = (stats,timer) => {
     return stats
 }
 
+const updatedQuit = (stats) => {
+    stats[0].nbQuit+=1
+    return stats
+}
+
 const buildStat = (statId) => {
     const stat = Stat.getById(statId)
     const quiz = buildQuizz(stat.quiz)
@@ -58,7 +63,7 @@ const createDefaultStats = (quizId,userId) => {
         bonnesReponses.push(0)
         mauvaisesReponses.push(0)
     })
-    return { quiz: quizId, user: userId, bonnesReponses: bonnesReponses, mauvaisesReponses: mauvaisesReponses, times:0, timerMoyen:0}
+    return { quiz: quizId, user: userId, bonnesReponses: bonnesReponses, mauvaisesReponses: mauvaisesReponses, times:0, timerMoyen:0, nbQuit:0}
 }
 
 const resetStats = (stats) => {
@@ -76,7 +81,7 @@ const resetStats = (stats) => {
             bonnesReponses.push(0)
             mauvaisesReponses.push(0)
         })
-        res.push({...stat, bonnesReponses: bonnesReponses, mauvaisesReponses: mauvaisesReponses, times:0, timerMoyen:0})
+        res.push({...stat, bonnesReponses: bonnesReponses, mauvaisesReponses: mauvaisesReponses, times:0, timerMoyen:0, nbQuit:0})
     });
     return res
 }
@@ -89,6 +94,7 @@ module.exports = {
     buildStats,
     updatedStats,
     updatedTimer,
+    updatedQuit,
     createDefaultStats,
     resetStats
 }
