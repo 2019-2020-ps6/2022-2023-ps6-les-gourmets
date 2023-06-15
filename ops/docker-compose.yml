@@ -4,13 +4,13 @@ services:
     build: 
       context: ./../front-end/
       dockerfile: Dockerfile
-    image: frontend:5.0.0
+    image: frontend:6.6.6
     ports:
       - "8080:80"
   back-end:
     build: 
       context: ./../backend/
       dockerfile: Dockerfile
-    image: backend:5.0.0
+    image: backend:6.6.6
     ports:
       - "9428:9428"

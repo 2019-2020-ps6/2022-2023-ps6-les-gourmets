@@ -12,7 +12,7 @@ import { QuestionComponent } from 'src/app/Components/Questions/Question/Questio
 import { ListeQuestion } from 'src/app/Components/Questions/ListeQuestion/ListeQuestion.component';
 import { QuestionFormComponent } from 'src/app/Components/Questions/QuestionForm/QuestionForm.component';
 import { ChoixTypeQuestion } from './Components/Questions/ChoixTypeQuestion/ChoixTypeQuestion.component';
-import { GamePageComponent } from './Components/Jouer/GamePage/GamePageComponent.component';
+import { GamePageComponent } from './Components/Jouer/GamePage/caca';
 import { MenuComponent } from './Components/Menu/MenuComponents/Menu.component';
 import { MenuChoixCreation } from './Components/Menu/MenuChoixCreationComponent/MenuChoixCreation.component';
 import { ListeUserPage } from './Components/Users/UserListPage/ListeUserPage.component';
