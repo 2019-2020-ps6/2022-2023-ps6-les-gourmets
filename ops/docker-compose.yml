@@ -1,0 +1,16 @@
+version: "2.4"
+services:
+  front-end:
+    build: 
+      context: ./../front-end/
+      dockerfile: Dockerfile
+    image: frontend:5.0.0
+    ports:
+      - "8080:80"
+  back-end:
+    build: 
+      context: ./../backend/
+      dockerfile: Dockerfile
+    image: backend:5.0.0
+    ports:
+      - "9428:9428"
