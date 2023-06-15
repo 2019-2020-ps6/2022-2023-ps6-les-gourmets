@@ -4,7 +4,7 @@ import { Question } from 'src/models/question.model';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { QuizService } from './quiz.service';
-import { Quiz } from 'src/models/quiz.model';
+import { Stat } from 'src/models/stat.model';
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +20,7 @@ import { Quiz } from 'src/models/quiz.model';
     public questionSelected$: Subject<Question> = new BehaviorSubject(this.questionSelected);
     public edit$: Subject<boolean> = new BehaviorSubject(this.edit);
     private questionUrl = "http://localhost:9428/api" + '/questions';
+    private statUrl = "http://localhost:9428/api" + '/stats';
 
     // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
     constructor(private quizService: QuizService, private http: HttpClient) {
@@ -41,6 +42,7 @@ import { Quiz } from 'src/models/quiz.model';
 
     deleteQuestion(question: Question) {
       this.http.delete<Question>(this.questionUrl + '/' + question.id).subscribe(() => this.retrieveQuestions());
+      this.http.patch<Stat>(this.statUrl + '/' + question.id, question).subscribe();
     }
 
     selectQuestion(question: Question) {
@@ -50,6 +52,7 @@ import { Quiz } from 'src/models/quiz.model';
 
     updateQuestion(questionToChange : Question, newQuestion : Question) {
       this.http.put<Question>(this.questionUrl + '/' + questionToChange.id,newQuestion).subscribe(() => this.retrieveQuestions());
+      this.http.patch<Stat>(this.statUrl + '/', newQuestion).subscribe();
       }
 
     canEdit(edit: boolean){

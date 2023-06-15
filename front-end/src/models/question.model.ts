@@ -11,7 +11,5 @@ export interface Question {
     images?: string[];
     label: string | undefined;
     answers: Answer[];
-    trueAnswer: number;
-    falseAnswer: number;
     estFacile: boolean;
 }

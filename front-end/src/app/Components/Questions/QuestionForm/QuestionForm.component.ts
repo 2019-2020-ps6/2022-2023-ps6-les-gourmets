@@ -50,8 +50,6 @@ export class QuestionFormComponent implements OnInit {
           isCorrect: [this.question.answers[3].isCorrect],
         }),
       ]),
-      trueAnswer: 0,
-      falseAnswer: 0
     });
     this.themes= this.question.themes;
   }

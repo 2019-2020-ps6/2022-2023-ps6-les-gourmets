@@ -15,13 +15,12 @@
     <app-GameQuestion (nextQuestion)="validateQuestion($event)" [answer_selected]="validate"
       [question]="currentQuestion"></app-GameQuestion>
 
-    <footer>
-      <button *ngIf="!validate && !user.answerDisplay" type="submit" class="previous"
-        (click)="onPreviousQuestion()">Question precedente</button>
-      <button *ngIf="validate && !end" type="submit" class="next" (click)="NextQuestion()">Question suivante</button>
-      <button *ngIf="validate && end" type="submit" class="next" (click)="endQuiz()">finir le quiz</button>
-      <button *ngIf="!validate" type="submit" class="next" (click)="SkipQuestion()">Passer la question</button>
-
+  <footer>
+    <button *ngIf="!validate && !user.answerDisplay && currentQuestionIndex!=0" type="submit" class="previous"
+      (click)="onPreviousQuestion()">Question precedente</button>
+    <button *ngIf="validate && !end" type="submit" class="next" (click)="NextQuestion()">Question suivante</button>
+    <button *ngIf="validate && end" type="submit" class="next" (click)="endQuiz()">finir le quiz</button>
+    <button *ngIf="!validate" type="submit" class="next" (click)="SkipQuestion()">Passer la question</button>
     </footer>
 
   </div>

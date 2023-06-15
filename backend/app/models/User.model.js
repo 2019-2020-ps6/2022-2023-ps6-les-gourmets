@@ -10,5 +10,6 @@ module.exports = new BaseModel('User', {
     answerDisplay: Joi.boolean().required(),
     quizzes : Joi.array().items(number).required(),
     music : Joi.array().items(string).required(),
-    passivity : Joi.number()
+    passivity : Joi.number(), 
+
 })

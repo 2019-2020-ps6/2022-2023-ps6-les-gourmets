@@ -1,27 +1,41 @@
 <button [routerLink]="['/UserProfilePage']"(clic)="switchPage()">Retour</button>
 <br>
+
 <div class="card">
   <h2>Statistique du profil "{{User.surname}} {{User.name}}" </h2>
   <div class="tileList">
-  <div *ngFor="let quiz of User.quizzes" >
-    <table class="card stats">
-      <h2>{{quiz.name}}</h2>
-      <tr>
-        
-        <th>Questions et taux de réussite</th>
-        
-      </tr>
-      <span>
-          <tr *ngFor="let question of quiz.questions">
-            
-        
-            <td>{{question.label}}</td>
-            <td>{{question.trueAnswer / (question.falseAnswer + question.trueAnswer) * 100}}%</td>
-          </tr>
-        
+<div *ngFor="let stat of Stats">
+  <table>
+    <h2>{{stat.quiz.name}}</h2>
+    <tr>
       
-        <h2>temps moyen : {{quiz.timerMoyen/1000}} secondes</h2>
-      </span>
+      <th>Questions normales et taux de réussite</th>
+      
+    </tr>
+    <span>
+        <tr *ngFor="let question of stat.quiz.questions; let i=index;">
+          
+      
+          <td>{{question.label}}</td>
+          <td>{{stat.bonnesReponses[i] / (stat.mauvaisesReponses[i] + stat.bonnesReponses[i]) * 100}}%</td>
+        </tr>
+      
+    </span>
+    <tr>
+      
+      <th>Questions faciles et taux de réussite</th>
+      
+    </tr>
+    <span>
+      <tr *ngFor="let question of stat.quiz.easyQuestions; let i=index;">
+        
+    
+        <td>{{question.label}}</td>
+        <td>{{stat.bonnesReponses[i+stat.quiz.questions.length] / (stat.mauvaisesReponses[i+stat.quiz.questions.length] + stat.bonnesReponses[i+stat.quiz.questions.length]) * 100}}%</td>
+      </tr>
+
+  </span>
+  <h2>temps moyen : {{stat.timerMoyen/1000}} secondes</h2>
   </table>
   </div>
 

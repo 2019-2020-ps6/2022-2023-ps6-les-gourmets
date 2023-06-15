@@ -17,12 +17,7 @@ const filterQuestionsFromQuizz = (quizId) => {
   return questions.filter((question) => question.quizId === parsedId)
 }
 
-/**
- * getQuestionFromQuiz.
- * This function retrieves a question from a quiz. It will throw a not found exception if the quizId in the question is different from the one provided in parameter.
- * @param quizId
- * @param questionId
- */
+
 const getQuestionFromQuiz = (quizId) => {
   const quiz = Quiz.getById(quizId)
   const quizIdQuestions = quiz.questions

@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { Quiz, User } = require('../../models')
+const { Quiz,User,Stat } = require('../../models')
 const { buildQuizz, buildQuizzes } = require('./manager')
 const QuestionsRouter = require('../questions')
 
@@ -38,22 +38,12 @@ router.post('/', (req, res) => {
             res.status(500).json({message: 'Something went wrong', err})  
             }
          } )
-router.delete('/', (req, res) => {
-    try {
-        const id = req.body.id
-        Quiz.delete(id)
-        res.status(201).end()
-    }
-    catch (err) {
-        console.log(err)
-        res.status(500).json({message: 'Something went wrong', err})
-    }
-})
 
 router.delete('/:quizId', (req, res) => {
     try {
         User.deleteIdForAttribute(req.params.quizId, "quizzes")
         Quiz.delete(req.params.quizId)
+        Stat.deleteByAttributesId(["quiz"], [req.params.quizId])
         res.status(201).end()
     }
     catch (err) {

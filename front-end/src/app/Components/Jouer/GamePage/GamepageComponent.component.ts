@@ -56,13 +56,13 @@ export class GamePageComponent implements OnInit {
       });
       this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
         if(quiz){
-          this.quiz = quiz;
-          this.currentQuestion = this.quiz.questions[0];
+          this.quiz = JSON.parse(JSON.stringify(quiz));
           this.nbAnswers = this.quiz.questions.length;
           this.quizReady = true;
           this.quiz.questions.sort(() => {
             return Math.random() - 0.5;
           });
+          this.currentQuestion = this.quiz.questions[0];
         }
       });
       this.jouerService.quitPopup$.subscribe((appearance: boolean) => {
@@ -145,9 +145,6 @@ export class GamePageComponent implements OnInit {
       }
       if (i>=this.nbAnswers) {
         this.end = true;
-        if(!this.user.answerDisplay){
-          this.endQuiz();
-        }
       }
       if(!this.user.answerDisplay){
         this.NextQuestion();
@@ -155,6 +152,9 @@ export class GamePageComponent implements OnInit {
     }
 
     onPreviousQuestion(): void {
+      if(!this.answers[this.currentQuestionIndex-1]){
+        this.quiz.questions.pop();
+      }
       this.currentQuestionIndex--;
       if (this.currentQuestionIndex >= 0) {
         this.currentQuestion = this.quiz.questions[this.currentQuestionIndex];
@@ -163,14 +163,14 @@ export class GamePageComponent implements OnInit {
     }
 
     endQuiz():void{
+      
       this.jouerService.updateResults(this.quiz.questions,this.answers);
-      this.userService.updateUserStats(this.quizService.quizSelected$.getValue(),this.quiz.questions,this.answers);
-      this.userService.updateUserTimer(this.quizService.quizSelected$.getValue(),this.jouerService.getTimer());
+      this.userService.updateUserStats(this.quizService.quizSelected$.getValue(),this.quiz.questions,this.answers,this.jouerService.getTimer());
       this.router.navigate(['/EndPageComponent']);
     }
 
     quitQuiz():void{
-      this.currentQuestionIndex++;
+      this.router.navigate(['/ChoixQuiz']);
     }
 
 

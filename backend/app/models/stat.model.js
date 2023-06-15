@@ -5,13 +5,9 @@ const number = require('joi/lib/types/number/index.js')
 
 module.exports = new BaseModel('Stat', {
     quiz : Joi.number().required(),
-    score : Joi.array().items(number).required(),
-    time : Joi.number()
+    user : Joi.number().required(),
+    bonnesReponses : Joi.array().items(number).required(),
+    mauvaisesReponses : Joi.array().items(number).required(),
+    timerMoyen : Joi.number(),
+    times : Joi.number()
     })
-
-const StatSchema = {
-    quiz : Joi.number().required(),
-    score : Joi.array().items(number).required(),
-    time : Joi.number()
-
-}
