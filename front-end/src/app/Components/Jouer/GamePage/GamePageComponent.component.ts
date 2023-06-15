@@ -104,18 +104,6 @@ export class GamePageComponent implements OnInit {
 
     }
 
-    InsertEasyQuestion(){
-      this.jouerService.untriggerRage();
-      var eznumber = this.quiz.easyQuestions.length;
-      var number =this.quiz.questions.length;
-      for(var i = 0; i < eznumber; i++){
-        this.quiz.questions.push(this.quiz.easyQuestions[i]);
-        this.InvertQuestion(this.quiz.questions[number+i],this.quiz.questions[this.currentQuestionIndex+i]);
-        this.nbAnswers++;
-      }
-
-    }
-
     InsertEasyQuestion2(){
       this.jouerService.untriggerRage();
       const eznumber = this.quiz.easyQuestions.length;
@@ -125,12 +113,6 @@ export class GamePageComponent implements OnInit {
         this.quiz.questions.splice(currentIndex + 1 + i, 0, this.quiz.easyQuestions[i]);
         this.nbAnswers++;
       }
-    }
-
-    InvertQuestion(q1:Question,q2:Question): void {
-      let temp: Question = q1;
-      q1 = q2;
-      q2 = temp;
     }
 
     validateQuestion(answer:boolean): void {

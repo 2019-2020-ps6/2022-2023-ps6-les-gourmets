@@ -103,13 +103,6 @@ export class JouerService {
             this.playUserMusic(path);
             this.rage = true;
         }
-
-        const currentQuestionIndex = this.results$.value.findIndex(result => !result);
-        if (currentQuestionIndex >= 0) {
-            const easyQuestions = this.easyQuestions.slice();
-            const remainingQuestions = this.questions$.value.slice(currentQuestionIndex + 1);
-            this.questions$.value.splice(currentQuestionIndex + 1, this.questions$.value.length - currentQuestionIndex - 1, ...easyQuestions, ...remainingQuestions);
-        }
     }
 
     public untriggerRage(){
