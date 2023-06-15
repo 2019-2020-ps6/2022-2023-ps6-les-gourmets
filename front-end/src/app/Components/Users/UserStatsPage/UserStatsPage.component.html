@@ -1,12 +1,9 @@
-<h1>Stats de l'utilisateur</h1>
-<div>
-  <button [routerLink]="['/UserProfilePage']"(clic)="switchPage()">Retour</button>
-</div>
+<button [routerLink]="['/UserProfilePage']"(clic)="switchPage()">Retour</button>
 <br>
-<div>
-  <input type="text" value={{User.surname}} placeholder={{User.surname}} />
-  <input type="text" value={{User.name}} placeholder={{User.name}} />
-</div>
+
+<div class="card">
+  <h2>Statistique du profil "{{User.surname}} {{User.name}}" </h2>
+  <div class="tileList">
 <div *ngFor="let stat of Stats">
   <table>
     <h2>{{stat.quiz.name}}</h2>
@@ -39,5 +36,9 @@
 
   </span>
   <h2>temps moyen : {{stat.timerMoyen/1000}} secondes</h2>
-</table>
+  </table>
+  </div>
+
+  </div>
+
 </div>

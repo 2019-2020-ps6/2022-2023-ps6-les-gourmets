@@ -1,24 +1,5 @@
 @import "../../../../variable.scss";
 
-.popup {
-  top: 50%;
-  left: 50%;
-  width: 25%;
-  height: 25%;
-  background-color :$c_textColor;
-  // put in the middle of the screen
-  transform: translate(-50%, -50%);
-  position: absolute;
-  z-index: 1;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  //align the button inside at the center
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  //hide the popup
-}
-
 .blur {
   width: 100vw;
   height: 100vh;
@@ -39,7 +20,7 @@ footer{
 
 label {
   margin: 10px 0;
-  color :$c_textColor;
+  color :$c_textLightColor;
   display: flex;
 }
 
@@ -47,12 +28,12 @@ span{
   display: flex;
   flex-direction: column;
   margin-left: 10px;
-  color :$c_textColor;
+  color :$c_textLightColor;
   font-size: 20px;
 }
 
 h1 {
-  color :$c_textColor;
+  color :$c_textLightColor;
 }
 
 

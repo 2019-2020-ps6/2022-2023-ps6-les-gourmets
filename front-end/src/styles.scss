@@ -1,39 +1,40 @@
 @import "./variable.scss";
 
 html{
-  background-color: $c_darkBackground;
+  background-color: $c_Background;
+  color: TextColor($c_Background)
 }
 body {
   overflow-x : hidden;
 }
 *{
     transition: all 0.3s ease;
-    color:$c_textColor;
+    color:inherit;
     
 }
 
 h1{
   text-align : center;
-  color : $c_textColor;
+  color : inherit;
   margin : 1em;
 }
 
 button {
     background-color: $c_buttonColor;
+    color: TextColor($c_buttonColor);
     padding: 0.5em 1em;
     margin: 0.5em 1em;
-    border: solid 1px $c_textColor;
+    border: solid 1px $c_textLightColor;
     border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: $c_shadow;
     display: inline-block;
-    color: $c_textColor;
     text-align: center;
     font-weight: bold;
     white-space: break-spaces;
 
     &:hover{
       background-color: accentuate($c_buttonColor,$c_percentageOnHover);
-      color: accentuate($c_textColor,$c_percentageOnHover);
+      color: accentuate(TextColor($c_buttonColor),$c_percentageOnHover);
       cursor: pointer;
     }
 
@@ -41,6 +42,7 @@ button {
 
 button.hard{
     background-color: $c_ButtonHardColor;
+    color: TextColor($c_ButtonHardColor);
     border: none;
     font-size: calc(4vw);
 
@@ -58,8 +60,8 @@ input{
   padding: 1em;
   margin: 1vw;
   background: #0000002b;
-  border: solid 1px $c_textColor;
-  color: $c_textColor;
+  border: solid 1px $c_textLightColor;
+  color: $c_textLightColor;
   border-radius: 8px;
   & [type]:not([type="checkbox"]){//Tout les inputs qui ne sont pas des checkbox
     width: 33vw;
@@ -68,13 +70,32 @@ input{
 
 .card{
   background-color: changeOpacityTo($c_cardColor, $c_percentageCardAlpha);
-  border: solid 1px $c_textColor;
+  color : TextColor($c_cardColor);
+  border: solid 1px $c_textLightColor;
   border-radius: 8px;
   display: flex;
   margin: 1rem;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
   padding: 1em;
   flex-direction: column;
+  &:hover{
+    box-shadow: BorderColor($c_cardColor);
+  }
+}
+
+.side-card{
+  z-index: 10;
+  background-color: changeOpacityTo($c_cardColor, $c_percentageCardAlpha);
+  color : TextColor($c_cardColor);
+  border: solid 1px $c_textLightColor;
+  border-radius: 8px;
+  display: flex;
+  margin: 1rem;
+  padding: 1em;
+  flex-direction: column;
+  &:hover{
+    box-shadow: BorderColor($c_cardColor);
+  }
+
 }
 
 /* copy paste this switch button
@@ -90,8 +111,7 @@ input{
     align-items: center;
     width: 42px;
     height: 24px;
-    margin-bottom: 20px;
-
+    box-shadow: none;
     & input{
     opacity: 0;
     width: 0;
@@ -118,7 +138,7 @@ input{
       width: 16px;
       left: 4px;
       bottom: 4px;
-      background-color: $c_textColor;
+      background-color: $c_textLightColor;
       border-radius: 50%;
       transition: 0.4s;
     }
@@ -129,11 +149,35 @@ input{
   }
   
   input:focus + .switch_handle {
-    box-shadow: 0 0 1px green;
+    box-shadow: $c_shadow;
   }
   
   input:checked + .switch_handle:before {
     -webkit-transform: translateX(18px);
     -ms-transform: translateX(18px);
     transform: translateX(18px);
+  }
+
+  .popupBack{
+    background-color: #00000063;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup{
+    z-index: 10;
+    background-color: $c_cardColor;
+    color:TextColor($c_cardColor);
+    display: flex;
+    flex-direction: column;
+    border-radius: 2em;
+    align-items: center;
+    border:solid 3px $c_textLightColor;
+    box-shadow: $c_shadow;
   }

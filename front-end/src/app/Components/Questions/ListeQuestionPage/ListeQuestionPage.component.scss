@@ -1,7 +1,7 @@
 @import "../../../../variable.scss";
 
 h2 {
-    color :$c_textColor;
+    color :$c_textLightColor;
     text-align: center;
     margin-top: 30px;
 }
@@ -15,15 +15,11 @@ app-ListeQuestion {
 }
 
 div {
-    display: flex;
-    flex-direction: row;
-    flex-flow: wrap;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
 }
 
 #themeEntete{
-    display:flex;
-    flex-direction: column;
+    display:grid;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }

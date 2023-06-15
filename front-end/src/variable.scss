@@ -1,12 +1,15 @@
-$c_darkBackground : #222831;
-$c_buttonColor : #454545;
-$c_textColor : #f2f2f2;
+$c_Background : #222831;
+$c_textNoCardColor : #181818;
+$c_buttonColor : #a4a4a4;
+$c_cardColor : #7fa8ae;
+$c_textLightColor : #e5e5e5;
+$c_textDarkColor: #181818;
 $c_ButtonHardColor : #4aa6ab;
 $c_percentageOnHover : 30;
-$c_cardColor : #7fa8ae;
-$c_percentageCardAlpha : 50;
+$c_percentageCardAlpha : 80;
 $c_deepRed : #b10f0f;
 $c_buttonAccept : #34a938;
+$c_shadow: 0 2px 3px;
 
 
 @function changeOpacityTo($hex, $opacity) {
@@ -24,10 +27,10 @@ $c_buttonAccept : #34a938;
 
     @if $red==$green and $red==$blue{
         $grayLevel: round(calc(($red + $green + $blue) / 3));
-        @if $grayLevel < 60 {
-            @return darken($color, $percentage);
-        } @else {
-            @return lighten($color, $percentage);
+        @if $grayLevel < 60 { //si sombre
+            @return mix($color, black, $percentage*1%);
+        } @else { //si clair
+            @return mix($color, white, $percentage*1%);
         }
     }
     @else {
@@ -37,11 +40,24 @@ $c_buttonAccept : #34a938;
   
   }
 
+  @function TextColor($color) {
+    $grayLevel: round(calc((red($color) + green($color) + blue($color)) / 3));
+    @if $grayLevel < 60 {
+        @return $c_textLightColor
+    } @else {
+        @return $c_textDarkColor;
+    }
+  }
+
+  @function BorderColor($color){
+    @return #{$c_shadow} TextColor($color);
+  }
+
   /**
   theme oasis :)
-  $c_darkBackground : #fffaee;
+  $c_Background : #fffaee;
 $c_buttonColor : rgb(144, 205, 218);
-$c_textColor : #232323;
+$c_textLightColor : #232323;
 $c_ButtonHardColor : #4aa6ab;
 $c_percentageOnHover : 30;
 $c_cardColor : #ffdcb9;

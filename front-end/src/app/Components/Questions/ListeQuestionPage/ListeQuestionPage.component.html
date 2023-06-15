@@ -1,12 +1,7 @@
-<h1>Page des questions</h1>
-<div>
-    <button class="button-card" [routerLink]="['/MenuChoixCreation']" (click)="playBackSound()">Retour</button>
-    <button class="button-card" [routerLink]="['/ChoixTypeQuestion']" (click)="playAddSound()">Ajouter une question</button>
-</div>
-<div id="themeEntete">
-    <button class="button-card" (click)="changeAffichage()">Trier par theme</button>
-    <h2 *ngIf="this.theme!=''">Questions avec le theme "{{this.theme}}"</h2>
-</div>
+<button class="button-card" [routerLink]="['/MenuChoixCreation']" (click)="playBackSound()">Retour</button>
+<button class="button-card" [routerLink]="['/ChoixTypeQuestion']" (click)="playAddSound()">Ajouter une question</button>
+<button class="button-card" (click)="changeAffichage()" >Trier par theme</button>
+<h2 *ngIf="this.theme!=''">Questions avec le theme "{{this.theme}}"</h2>
 <app-ListeTheme class="card" *ngIf="afficheTheme" (themeSelected)="chooseTheme($event)"> </app-ListeTheme>
 <button *ngIf="theme!=''" class="button-card" (click)="annulerTheme()">Annuler la recherche</button>
 <app-ListeQuestion [theme]="this.theme"> </app-ListeQuestion>

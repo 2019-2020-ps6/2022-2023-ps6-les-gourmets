@@ -1,9 +1,9 @@
-<div class = "profile">
-    Nom : {{User.name}}<br>
-    Prénom : {{User.surname}}<br>
+<div class = "profile card">
+    <strong>{{User.name}}</strong>
+    <strong>{{User.surname}}</strong>
     <div *ngIf="isMod">
       Taux d'agressivité : {{User.aggressivness}}<br>
-      <button class="soft" (click)="delete()">Supprimer</button>
+      <button class="soft" id="SupressButton" (click)="delete()">Supprimer</button>
       <button class="soft" (click)="selectUser()" [routerLink]="['/UserProfilePage']">Éditer</button>
     </div>
     <div *ngIf="isMod == false">
