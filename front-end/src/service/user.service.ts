@@ -123,4 +123,8 @@ deleteUser(value: User) {
   this.http.put(this.StatUrl + '/' + this.UserSelected.id + '/answers', {quizId: quiz.id, questions: questions, answers: answers}).subscribe();
   this.http.put(this.StatUrl + '/' + this.UserSelected.id + '/timer', {quizId: quiz.id, timer: timer}).subscribe();
  }
+
+ updateQuit(quiz: Quiz){
+  this.http.put(this.StatUrl + '/' + this.UserSelected.id + '/quit', {quizId: quiz.id}).subscribe();
+ }
 }

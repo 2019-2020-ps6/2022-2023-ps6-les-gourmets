@@ -170,6 +170,7 @@ export class GamePageComponent implements OnInit {
     }
 
     quitQuiz():void{
+      this.userService.updateQuit(this.quizService.quizSelected$.getValue());
       this.router.navigate(['/ChoixQuiz']);
     }
 
