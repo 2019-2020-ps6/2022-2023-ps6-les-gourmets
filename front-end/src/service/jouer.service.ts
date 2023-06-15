@@ -5,6 +5,54 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { ButtonSound } from 'src/models/ButtonSound';
 
 
+class AudioFade extends Audio{
+  public fade :any;
+  constructor(path : string) {
+      super(path);
+      this.reset();
+  }
+
+  public override play(volume : number =1): Promise<void> {
+    this.muted = true;
+    var result = super.play()
+    this.fadeVolume(true,volume);
+    this.muted=false;
+    return result
+  }
+  override pause(): void {
+      this.fadeVolume(false);
+  }
+
+  public reset(){
+      this.currentTime = 0;
+      this.autoplay=true;
+      this.loop = true;
+      this.volume=0;
+  }
+
+  public fadeVolume(fadeIn:boolean, volume :number = 1){
+    const interval = 20;
+    const increment = fadeIn ? 0.01 : -0.01;
+    clearInterval(this.fade);
+
+    this.fade = setInterval(() => {
+      if (fadeIn && this.volume+increment >= volume) {
+        this.volume = volume;
+        clearInterval(this.fade);
+      }
+      else if (!fadeIn && this.volume+increment <= 0) {
+      this.volume = 0;
+        clearInterval(this.fade);
+        this.reset()
+        return super.pause();
+      }
+      else this.volume += increment;
+    }, interval);
+  }
+}
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,9 +83,9 @@ export class JouerService {
     onClick(event: MouseEvent){this.jouerService.mouseClickInQuiz(event);}
   */
 
-    private mainMusics : string[] = ["assets/Music/MainTheme.mp3"]
-    private UserMusic !: AudioFade ;
-    private backgroundMusic !: AudioFade ;
+    static mainMusics : string[] = ["assets/Music/MainTheme.mp3"]
+    static UserMusic : AudioFade = new AudioFade(JouerService.mainMusics[0]);
+    static backgroundMusic : AudioFade = new AudioFade(JouerService.mainMusics[0]);
     public musicActivated = true;
     public effectsActivated: boolean = true;
     private rage = false;
@@ -114,27 +162,28 @@ export class JouerService {
     }
 
     public playBackgroundMusic(){
-        this.stopMusic(this.UserMusic);
+        this.stopMusic(JouerService.UserMusic);
         if(!this.musicActivated)return;
-        if(this.backgroundMusic!=null && !this.backgroundMusic.paused)return;
-        const path = this.mainMusics.sort(() => Math.random()-0.5)[0];
-        this.backgroundMusic = new AudioFade(path);
-        this.backgroundMusic.play(0.5);
+        if(JouerService.backgroundMusic!=null && !JouerService.backgroundMusic.paused)return;
+        const path = JouerService.mainMusics.sort(() => Math.random()-0.5)[0];
+        JouerService.backgroundMusic = new AudioFade(path);
+        JouerService.backgroundMusic.play(0.5);
     }
 
     public playUserMusic(path : string|null){
-        this.stopMusic(this.backgroundMusic);
+        this.stopMusic(JouerService.backgroundMusic);
         if(!this.musicActivated)return;
         if(path!=null){
-          this.UserMusic = new AudioFade(path);
-          this.UserMusic.play(0.5);
+          JouerService.UserMusic = new AudioFade(path);
+          console.log("play user");
+          JouerService.UserMusic.play(0.5);
         }
     }
 
 
     public stopAllMusic(){
-        this.stopMusic(this.UserMusic);
-        this.stopMusic(this.backgroundMusic);
+        this.stopMusic(JouerService.UserMusic);
+        this.stopMusic(JouerService.backgroundMusic);
     }
     public stopMusic(music : AudioFade){
         if(music!=null)music.pause()
@@ -168,6 +217,14 @@ export class JouerService {
         }
         this.rage = false;
         this.resetClickCounter();
+    }
+    
+    static isAudioPlaying(): boolean {
+      return !(JouerService.UserMusic.paused && JouerService.backgroundMusic.paused);
+    }
+    
+    static isSoundPlaying(): boolean {
+      return !JouerService.buttonSound.paused;
     }
 
 
@@ -216,85 +273,40 @@ export class JouerService {
     this.relaunchTimer();
   }
 
-  private buttonSound = new Audio();
+  static buttonSound = new Audio();
   public playButtonSimpleSound(AudioType:ButtonSound = ButtonSound.SelectAnswer){
-    if (!this.buttonSound.paused) {
-      this.buttonSound.pause();
-      this.buttonSound.currentTime = 0;
+    if (!JouerService.buttonSound.paused) {
+      JouerService.buttonSound.pause();
+      JouerService.buttonSound.currentTime = 0;
     }
     if(!this.effectsActivated) return;
 
     switch(AudioType){
       case ButtonSound.SelectAnswer:
-        this.buttonSound.src = "assets/Sounds/simpleButtonClick1.mp3";
+        JouerService.buttonSound.src = "assets/Sounds/simpleButtonClick1.mp3";
         break;
       case ButtonSound.MainMenuCreate:
-        this.buttonSound.src = "assets/Sounds/MainMenuCreate.mp3";
+        JouerService.buttonSound.src = "assets/Sounds/MainMenuCreate.mp3";
         break;
       case ButtonSound.MainMenuPlay:
-        this.buttonSound.src = "assets/Sounds/MainMenuPlay.mp3";
+        JouerService.buttonSound.src = "assets/Sounds/MainMenuPlay.mp3";
         break;
       case ButtonSound.deleteSound:
-        this.buttonSound.src = "assets/Sounds/deleteSound.mp3";
+        JouerService.buttonSound.src = "assets/Sounds/deleteSound.mp3";
       break;
       case ButtonSound.SelectingObject:
-        this.buttonSound.src = "assets/Sounds/selectObject.wav"
+        JouerService.buttonSound.src = "assets/Sounds/selectObject.wav"
       break;
       case ButtonSound.NextQuestion:
-        this.buttonSound.src = "assets/Sounds/NextQuestion.mp3"
+        JouerService.buttonSound.src = "assets/Sounds/NextQuestion.mp3"
       break;
       case ButtonSound.back:
-        this.buttonSound.src = "assets/Sounds/back.mp3"
+        JouerService.buttonSound.src = "assets/Sounds/back.mp3"
         break;
     }
-    this.buttonSound.play();
+    JouerService.buttonSound.play();
   }
 }
 
 
 
-class AudioFade extends Audio{
-    public fade :any;
-    constructor(path : string) {
-        super(path);
-        this.reset();
-    }
-
-    public override play(volume : number =1): Promise<void> {
-      this.muted = true;
-      var result = super.play()
-      this.fadeVolume(true,volume);
-      this.muted=false;
-      return result
-    }
-    override pause(): void {
-        this.fadeVolume(false);
-    }
-
-    public reset(){
-        this.currentTime = 0;
-        this.autoplay=true;
-        this.loop = true;
-        this.volume=0;
-    }
-
-    public fadeVolume(fadeIn:boolean, volume :number = 1){
-      const interval = 20;
-      const increment = fadeIn ? 0.01 : -0.01;
-      clearInterval(this.fade);
-
-      this.fade = setInterval(() => {
-        if (fadeIn && this.volume+increment >= volume) {
-          this.volume = volume;
-          clearInterval(this.fade);
-        }
-        else if (!fadeIn && this.volume+increment <= 0) {
-        this.volume = 0;
-          clearInterval(this.fade);
-          this.reset()
-          return super.pause();
-        }
-        else this.volume += increment;
-      }, interval);
-    }
-}
