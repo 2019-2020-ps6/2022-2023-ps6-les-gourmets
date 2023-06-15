@@ -18,7 +18,7 @@ import { ListeQuizAdable } from './Components/Users/ListQuizAdable/ListeQuizAdab
 import { ChoixTypeQuestion } from './Components/Questions/ChoixTypeQuestion/ChoixTypeQuestion.component';
 import { ListeQuestionAdable } from './Components/Quizs/ListQuestionAdable/ListeQuestionAdable.component';
 import { QuizEditComponent } from './Components/Quizs/QuizEdit/quizEdit.component';
-import { GamePageComponent } from './Components/Jouer/GamePage/caca';
+import { GamePageComponent } from './Components/Jouer/GamePage/GamePageComponent.component';
 
 
 const routes: Routes = [
