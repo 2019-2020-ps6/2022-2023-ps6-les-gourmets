@@ -10,7 +10,7 @@ services:
         - ENV=:e2e
       context: ./../front-end/
       dockerfile: Dockerfile
-    image: frontend:6.6.6
+    image: frontend:9.9.9
     ports:
       - "8080:80"
     healthcheck:
@@ -25,7 +25,7 @@ services:
         - ENV=:e2e
       context: ./../backend/
       dockerfile: Dockerfile
-    image: backend:6.6.6
+    image: backend:9.9.9
     ports:
       - "8000:9428"
     healthcheck:
