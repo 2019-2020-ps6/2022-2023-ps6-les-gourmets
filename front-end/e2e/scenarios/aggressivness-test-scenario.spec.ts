@@ -31,6 +31,7 @@ test.describe('Tests de partie', () => {
     await expect(page.getByText('Combien font')).toBeVisible();//la question suivante est la facile
     //attendre que le boutton continuer soit visible
     await page.waitForTimeout(15000);
+    await expect(page.locator('popup')).toBeVisible();
     await expect(page.getByText('Voulez-vous continuer le Quiz')).toBeVisible();//la popup a du s'afficher
     await page.getByRole('button',{name:'Arrêter'}).click();
     await expect(page.getByText('Liste Quiz')).toBeVisible();//on est revenu sur la page des quiz
