@@ -5,8 +5,8 @@ services:
       - back-end
     build: 
       args:
-        - TEST_URL=http://localhost:9428
-        - PROD_URL=http://localhost:8000
+        - TEST_URL=http://back-end:9428
+        - PROD_URL=http://back-end:8000
         - ENV=:production
       context: ./../front-end/
       dockerfile: Dockerfile
