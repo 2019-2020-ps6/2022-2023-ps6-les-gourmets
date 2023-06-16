@@ -133,7 +133,7 @@ export class JouerService {
     public mouseClickInQuiz(event : MouseEvent) {
         const CurrentUser = this.userService.getCurrentUser();
         const now : number = Date.now();
-        const agressive = (CurrentUser!=undefined)? CurrentUser.aggressivness : 1;
+        const agressive = (CurrentUser!=undefined||CurrentUser==0)? CurrentUser.aggressivness : 0.05;
 
         this.relaunchTimer();
         this.dateTab = this.dateTab.filter(date => date > now - this.timeSpan * (1/agressive));

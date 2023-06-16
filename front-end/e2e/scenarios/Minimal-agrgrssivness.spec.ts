@@ -63,7 +63,7 @@ test.describe('Minimal Aggressivness Personna', () => {
         await PanelButton.click();
         await page.waitForTimeout(3000);
         // Accès au service AudioService
-        JouerService.
+        JouerService.isAudioPlaying();
 
         // Vérification de l'état de lecture de l'audio
         const isPlaying = audioService.isAudioPlaying();
