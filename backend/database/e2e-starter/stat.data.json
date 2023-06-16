@@ -1,15 +1,38 @@
-[{
+[
+  {
     "quiz": 1685955518802,
     "user": 1685438248739,
     "bonnesReponses": [
-      1
+      0,
+      0,
+      0
     ],
     "mauvaisesReponses": [
-      3
+      0,
+      0,
+      0
     ],
-    "times": 1,
-    "timerMoyen": 5372,
-    "id": 1686819160873,
-    "nbQuit": 0
+    "times": 0,
+    "timerMoyen": 0,
+    "nbQuit": 0,
+    "id": 1686926544937
+  },
+  {
+    "quiz": 1685955518802,
+    "user": 1685438248743,
+    "bonnesReponses": [
+      0,
+      0,
+      0
+    ],
+    "mauvaisesReponses": [
+      0,
+      0,
+      0
+    ],
+    "times": 0,
+    "timerMoyen": 0,
+    "nbQuit": 0,
+    "id": 1686926617127
   }
 ]
