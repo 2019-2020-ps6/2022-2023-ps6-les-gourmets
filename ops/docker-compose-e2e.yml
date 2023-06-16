@@ -5,8 +5,8 @@ services:
       - back-end
     build: 
       args:
-        - TEST_URL=http://localhost:8000
-        - PROD_URL=http://localhost:8000
+        - TEST_URL=http://back-end:9428
+        - PROD_URL=http://back-end:8000
         - ENV=:e2e
       context: ./../front-end/
       dockerfile: Dockerfile
@@ -27,7 +27,7 @@ services:
       dockerfile: Dockerfile
     image: backend:9.9.9
     ports:
-      - "8000:9428"
+      - "9428:9428"
     healthcheck:
       test: curl --fail http://localhost:8000 || exit 1
       interval: 30s
