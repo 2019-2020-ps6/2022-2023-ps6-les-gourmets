@@ -40,8 +40,10 @@ services:
     depends_on:
       - front-end
     volumes:
-      - ./../front-end/playwright-report:/playwright-report:rw
+      - ./../front-end/playwright-report:/app/playwright-report:rw
    # command: npx playwright test
     build:
       context: ./../front-end/
       dockerfile: Dockerfile-e2e
+    environment:
+      - FRONT_URL=http://front-end
