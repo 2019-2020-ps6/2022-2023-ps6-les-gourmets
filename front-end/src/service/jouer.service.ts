@@ -4,59 +4,9 @@ import { Question } from 'src/models/question.model';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { ButtonSound } from 'src/models/ButtonSound';
 
-
-class AudioFade extends Audio{
-  public fade :any;
-  constructor(path : string) {
-      super(path);
-      this.reset();
-  }
-
-  public override play(volume : number =1): Promise<void> {
-    this.muted = true;
-    var result = super.play()
-    this.fadeVolume(true,volume);
-    this.muted=false;
-    return result
-  }
-  override pause(): void {
-      this.fadeVolume(false);
-  }
-
-  public reset(){
-      this.currentTime = 0;
-      this.autoplay=true;
-      this.loop = true;
-      this.volume=0;
-  }
-
-  public fadeVolume(fadeIn:boolean, volume :number = 1){
-    const interval = 20;
-    const increment = fadeIn ? 0.01 : -0.01;
-    clearInterval(this.fade);
-
-    this.fade = setInterval(() => {
-      if (fadeIn && this.volume+increment >= volume) {
-        this.volume = volume;
-        clearInterval(this.fade);
-      }
-      else if (!fadeIn && this.volume+increment <= 0) {
-      this.volume = 0;
-        clearInterval(this.fade);
-        this.reset()
-        return super.pause();
-      }
-      else this.volume += increment;
-    }, interval);
-  }
-}
-
-
-
 @Injectable({
   providedIn: 'root'
 })
-
 export class JouerService {
 
     //Musique permanence
@@ -84,8 +34,8 @@ export class JouerService {
   */
 
     static mainMusics : string[] = ["assets/Music/MainTheme.mp3"]
-    static UserMusic : AudioFade = new AudioFade(JouerService.mainMusics[0]);
-    static backgroundMusic : AudioFade = new AudioFade(JouerService.mainMusics[0]);
+    static UserMusic : AudioFade;
+    static backgroundMusic : AudioFade;
     public musicActivated = true;
     public effectsActivated: boolean = true;
     private rage = false;
@@ -309,4 +259,49 @@ export class JouerService {
 }
 
 
+class AudioFade extends Audio{
+  public fade :any;
+  constructor(path : string) {
+      super(path);
+      this.reset();
+  }
+
+  public override play(volume : number =1): Promise<void> {
+    this.muted = true;
+    var result = super.play()
+    this.fadeVolume(true,volume);
+    this.muted=false;
+    return result
+  }
+  override pause(): void {
+      this.fadeVolume(false);
+  }
+
+  public reset(){
+      this.currentTime = 0;
+      this.autoplay=true;
+      this.loop = true;
+      this.volume=0;
+  }
+
+  public fadeVolume(fadeIn:boolean, volume :number = 1){
+    const interval = 20;
+    const increment = fadeIn ? 0.01 : -0.01;
+    clearInterval(this.fade);
+
+    this.fade = setInterval(() => {
+      if (fadeIn && this.volume+increment >= volume) {
+        this.volume = volume;
+        clearInterval(this.fade);
+      }
+      else if (!fadeIn && this.volume+increment <= 0) {
+      this.volume = 0;
+        clearInterval(this.fade);
+        this.reset()
+        return super.pause();
+      }
+      else this.volume += increment;
+    }, interval);
+  }
+}
 

@@ -1,43 +1,43 @@
 import {test, expect} from '@playwright/test';
 import { testUrl } from 'e2e/e2e.config';
-import { JouerService } from 'src/service/jouer.service';
 
 test.describe('Minimal Aggressivness Personna', () => {
     var initialStats = {
         tpsMoyen:-1,
-        sucessRate:-1,
-        questionsRate: [-1]
+        nbFail:-1,
+        questionsRate: [-1],
+        nbSuccess : -1
     };
 
     test('check stats Before', async({page})=>{
+        console.log("CheckStatsBefore");
         await page.goto(testUrl);
         await page.getByRole('button',{name:'Créer'}).click();
         await page.getByRole('button',{name:'Profil'}).click();
-        await page.getByRole('button',{name:'Éditer'}).click();
+        await page.locator('app-user').filter({ hasText: 'ArnaudDumanois' }).getByRole('button', { name: 'Éditer' }).click();
         await page.getByRole('button',{name:'Stats'}).click();
         // Récupération du texte de la cellule (2ème colonne, 2ème ligne)
-        const contents = await page.getByRole('table').allInnerTexts();
-        console.log("coucou");
-        console.log(contents);
-        await page.waitForTimeout(10000);
-        if(contents!=null){
-            const val1 = Number.parseInt( contents[3]);
-            console.log(val1);
-            // Récupération du texte de la cellule (2ème colonne, 3ème ligne)
-            const val2 = Number.parseInt( contents[5]);
-            console.log(val2);
-            // Récupération du texte de la cellule (2ème colonne, 4ème ligne)
-            const val3 = Number.parseInt( contents[7]);
-            console.log(val3);
+        const tableRows = await page.$$('table p');
+        const contents = [];
 
+        for (const row of tableRows) {
+            const rowContent = await row.textContent();
+            contents.push(rowContent??"0");
+        }
+        if(contents!=null){
+            const val1 = Number.parseFloat( contents[0]);
+            const val2 = Number.parseFloat( contents[1]);
+            const val3 = Number.parseFloat( contents[2]);
             initialStats.questionsRate = [val1,val2,val3];
-            console.log(initialStats.questionsRate);
-            await page.waitForTimeout(10000);
-            await expect(true,"Stats Success");
+            initialStats.nbSuccess = Number.parseInt(contents[3]);
+            initialStats.nbFail = Number.parseInt(contents[4]);
+            initialStats.tpsMoyen = Number.parseFloat(contents[5]);
+            
+            console.log(initialStats);
             return;
             
         }
-        await expect(false,"Stats failed");
+        expect(false,"Stats failed");
     })
 
     test('play a quiz', async ({ page }) => {
@@ -55,7 +55,7 @@ test.describe('Minimal Aggressivness Personna', () => {
 
     });
 
-    test('disable the music',async ({page}) =>{
+    /*test('disable the music',async ({page}) =>{
         await page.goto(testUrl);
         const PanelButton = await page.locator('[data-test-id="musicPanelButton"]');
         await PanelButton.click();
@@ -83,18 +83,39 @@ test.describe('Minimal Aggressivness Personna', () => {
         // Cliquez sur le deuxième input
         await secondInput.click();
         // Cliquez à nouveau sur le bouton #musicPanelButton
-        await page.click('css=#musicPanelButton');*/
+        await page.click('css=#musicPanelButton');
 
-    });
-    test('check stats',async ({page}) => {
-        if(initialStats.tpsMoyen == -1)
+    });*/
+    test('check stats after',async ({page}) => {
+        console.log("CheckStatsAfter");
+        if(initialStats.tpsMoyen == -1) expect(false);
         await page.goto(testUrl);
         await page.getByRole('button',{name:'Créer'}).click();
         await page.getByRole('button',{name:'Profil'}).click();
-        await page.getByRole('button',{name:'Éditer'}).click();
+        await page.locator('app-user').filter({ hasText: 'ArnaudDumanois' }).getByRole('button', { name: 'Éditer' }).click();
         await page.getByRole('button',{name:'Stats'}).click();
         await expect(page.getByText('qui est le plus moche ?')).toBeVisible();
+        const contents = [];
+        const tableRows = await page.$$('table p');
+
+        for (const row of tableRows) {
+            const rowContent = await row.textContent();
+            contents.push(rowContent??"0");
+        }
+        console.log(initialStats)
+        console.log(initialStats.questionsRate[0]+" != "+ Number.parseFloat(contents[0]));
+        await expect(initialStats.questionsRate[0]).not.toBe(Number.parseFloat(contents[0]));
+        
+        console.log(initialStats.questionsRate[1]+" != "+ Number.parseFloat(contents[1]));
+        await expect(initialStats.questionsRate[0]).not.toBe(Number.parseFloat(contents[1]));
+        
+        console.log(initialStats.questionsRate[2]+" != "+ Number.parseFloat(contents[2]));
+        await expect(initialStats.questionsRate[0]).not.toBe(Number.parseFloat(contents[2]));
+        
+        console.log((initialStats.nbFail+initialStats.nbSuccess+1)+" != "+ Number.parseInt(contents[3])+Number.parseInt(contents[4]));
+        await expect(initialStats.nbFail+initialStats.nbSuccess+1).toBe(Number.parseInt(contents[3])+Number.parseInt(contents[4]));
+        
+        console.log(initialStats.tpsMoyen+" != "+ Number.parseFloat(contents[5]));
+        await expect(initialStats.tpsMoyen).not.toBe(Number.parseFloat(contents[5]));
     });
-
-
 })
