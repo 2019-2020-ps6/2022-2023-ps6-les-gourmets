@@ -1,6 +1,6 @@
 <!-- <h1>{{title}}</h1> -->
     <div id="musicPanel" class="side-card" [ngClass]="{'slide-in': isSlidingIn}">
-        <button (click)="toggleSlide()"></button>
+        <button data-test-id="musicPanelButton" (click)="toggleSlide()"></button>
         <div>
             Musique
             <label class="switch">

@@ -181,12 +181,6 @@ test.describe('Test de création et d\'édition des user', () => {
     test('should suppress component precedently created', async ({ page }) => {
       await page.goto(testUrl);
       const appComponentFixture = new AppFixture(page);
-  
-      
-
-
-
-
 
       await page.getByRole('button', { name: 'Créer' }).click();
       await page.getByRole('button', { name: 'Profil' }).click();

@@ -8,5 +8,15 @@
       "answerDisplay": false,
       "passivity": 0,
       "id": 1685438248739
+    },
+    {
+      "name": "Timothée",
+      "surname": "Juillet",
+      "quizzes": [1685955518802],
+      "aggressivness": 0.1,
+      "music": [],
+      "answerDisplay": false,
+      "passivity": 1,
+      "id": 1685438248743
     }
   ]
