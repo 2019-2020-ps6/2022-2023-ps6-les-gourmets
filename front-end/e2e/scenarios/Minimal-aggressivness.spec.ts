@@ -10,7 +10,6 @@ test.describe('Minimal Aggressivness Personna', () => {
     };
 
     test('check stats Before', async({page})=>{
-        console.log("CheckStatsBefore");
         await page.goto(testUrl);
         await page.getByRole('button',{name:'Créer'}).click();
         await page.getByRole('button',{name:'Profil'}).click();
@@ -33,7 +32,6 @@ test.describe('Minimal Aggressivness Personna', () => {
             initialStats.nbFail = Number.parseInt(contents[4]);
             initialStats.tpsMoyen = Number.parseFloat(contents[5]);
             
-            console.log(initialStats);
             return;
             
         }
@@ -55,39 +53,7 @@ test.describe('Minimal Aggressivness Personna', () => {
 
     });
 
-    /*test('disable the music',async ({page}) =>{
-        await page.goto(testUrl);
-        const PanelButton = await page.locator('[data-test-id="musicPanelButton"]');
-        await PanelButton.click();
-        await page.waitForTimeout(3000);
-        await PanelButton.click();
-        await page.waitForTimeout(3000);
-        // Accès au service AudioService
-        JouerService.isAudioPlaying();
-
-        // Vérification de l'état de lecture de l'audio
-        const isPlaying = audioService.isAudioPlaying();
-
-        if (isPlaying) {
-        console.log('Un son est en cours de lecture.');
-        // Effectuer des actions supplémentaires en fonction de la présence de sons
-        }
-        /*await page.locator('css=[data-test-id="musicPanelButton"]').click();
-        // Sélectionnez le premier input
-        const firstInput = await page.waitForSelector('css=#musicPanel input[type="checkbox"]:nth-of-type(1)');
-        // Cliquez sur le premier input
-        await page.click('button:below-of(getText)');
-        await firstInput.click();
-        // Sélectionnez le deuxième input
-        const secondInput = await page.waitForSelector('css=#musicPanel input[type="checkbox"]:nth-of-type(2)');
-        // Cliquez sur le deuxième input
-        await secondInput.click();
-        // Cliquez à nouveau sur le bouton #musicPanelButton
-        await page.click('css=#musicPanelButton');
-
-    });*/
     test('check stats after',async ({page}) => {
-        console.log("CheckStatsAfter");
         if(initialStats.tpsMoyen == -1) expect(false);
         await page.goto(testUrl);
         await page.getByRole('button',{name:'Créer'}).click();
@@ -102,20 +68,14 @@ test.describe('Minimal Aggressivness Personna', () => {
             const rowContent = await row.textContent();
             contents.push(rowContent??"0");
         }
-        console.log(initialStats)
-        console.log(initialStats.questionsRate[0]+" != "+ Number.parseFloat(contents[0]));
         await expect(initialStats.questionsRate[0]).not.toBe(Number.parseFloat(contents[0]));
         
-        console.log(initialStats.questionsRate[1]+" != "+ Number.parseFloat(contents[1]));
         await expect(initialStats.questionsRate[1]).not.toBe(Number.parseFloat(contents[1]));
         
-        console.log(initialStats.questionsRate[2]+" == "+ Number.parseFloat(contents[2]));
         await expect(initialStats.questionsRate[2]).toBe(Number.parseFloat(contents[2]));
         
-        console.log(initialStats.nbFail+initialStats.nbSuccess+1+" != "+ Number.parseInt(contents[3])+Number.parseInt(contents[4]));
         await expect(initialStats.nbFail+initialStats.nbSuccess+1).toBe(Number.parseInt(contents[3])+Number.parseInt(contents[4]));
         
-        console.log(initialStats.tpsMoyen+" != "+ Number.parseFloat(contents[5]));
         await expect(initialStats.tpsMoyen).not.toBe(Number.parseFloat(contents[5]));
     });
 })

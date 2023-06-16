@@ -125,7 +125,6 @@ export class JouerService {
         if(!this.musicActivated)return;
         if(path!=null){
           JouerService.UserMusic = new AudioFade(path);
-          console.log("play user");
           JouerService.UserMusic.play(0.5);
         }
     }
