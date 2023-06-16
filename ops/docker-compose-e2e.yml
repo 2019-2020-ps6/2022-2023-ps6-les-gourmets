@@ -5,9 +5,9 @@ services:
       - back-end
     build: 
       args:
-        - TEST_URL=http://localhost:9428
+        - TEST_URL=http://localhost:8000
         - PROD_URL=http://localhost:8000
-        - ENV=:production
+        - ENV=:e2e
       context: ./../front-end/
       dockerfile: Dockerfile
     image: frontend:6.6.6
@@ -22,7 +22,7 @@ services:
   back-end:
     build: 
       args:
-        - ENV=
+        - ENV=:e2e
       context: ./../backend/
       dockerfile: Dockerfile
     image: backend:6.6.6

@@ -11,7 +11,7 @@ RUN npm install
 COPY --chown=node:node . .
 RUN sed -i "s|<TEST_URL>|$TEST_URL|g" ./src/environments/environment.e2e.ts
 RUN sed -i "s|<PROD_URL>|$PROD_URL|g" ./src/environments/environment.prod.ts
-RUN npm run build
+RUN npm run build$ENV
 
 # PUT THE WEBSITE IN NGINX
 
