@@ -45,7 +45,7 @@ test.describe('Minimal Aggressivness Personna', () => {
         await page.getByRole('button', {name: 'Jouer'}).click();
         await page.locator('app-user').filter({ hasText: 'ArnaudDumanois' }).getByRole('button', { name: 'Sélectionner' }).click();
         await page.locator('app-quiz').filter({ hasText: 'Quiz de Arnaud' }).getByRole('button', { name: 'Choisir' }).click();
-        for(let i =0;i<3;i++){
+        for(let i =0;i<2;i++){
             if(await page.getByText("Combien font 2+2 ?").isVisible()) await page.getByRole('button', {name: '4'}).click();
             else await page.getByRole('button', {name: 'Arnaud'}).click();
         }
@@ -107,12 +107,12 @@ test.describe('Minimal Aggressivness Personna', () => {
         await expect(initialStats.questionsRate[0]).not.toBe(Number.parseFloat(contents[0]));
         
         console.log(initialStats.questionsRate[1]+" != "+ Number.parseFloat(contents[1]));
-        await expect(initialStats.questionsRate[0]).not.toBe(Number.parseFloat(contents[1]));
+        await expect(initialStats.questionsRate[1]).not.toBe(Number.parseFloat(contents[1]));
         
-        console.log(initialStats.questionsRate[2]+" != "+ Number.parseFloat(contents[2]));
-        await expect(initialStats.questionsRate[0]).not.toBe(Number.parseFloat(contents[2]));
+        console.log(initialStats.questionsRate[2]+" == "+ Number.parseFloat(contents[2]));
+        await expect(initialStats.questionsRate[2]).toBe(Number.parseFloat(contents[2]));
         
-        console.log((initialStats.nbFail+initialStats.nbSuccess+1)+" != "+ Number.parseInt(contents[3])+Number.parseInt(contents[4]));
+        console.log(initialStats.nbFail+initialStats.nbSuccess+1+" != "+ Number.parseInt(contents[3])+Number.parseInt(contents[4]));
         await expect(initialStats.nbFail+initialStats.nbSuccess+1).toBe(Number.parseInt(contents[3])+Number.parseInt(contents[4]));
         
         console.log(initialStats.tpsMoyen+" != "+ Number.parseFloat(contents[5]));
