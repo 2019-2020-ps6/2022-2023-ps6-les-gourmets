@@ -1,4 +1,5 @@
 node_modules/
-
 database/
 #!database/e2e-starter/
+Dockerfile
+README.md

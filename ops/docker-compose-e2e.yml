@@ -35,3 +35,13 @@ services:
       retries: 3
     volumes:
       - ./../backend/database:/app/database:rw
+  playwright:
+    image: playwright:9.9.9
+    depends_on:
+      - front-end
+    volumes:
+      - ./../front-end/playwright-report:/playwright-report:rw
+   # command: npx playwright test
+    build:
+      context: ./../front-end/
+      dockerfile: Dockerfile-e2e
