@@ -5,6 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { Question } from 'src/models/question.model';
 import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
+import { serverUrl } from 'src/configs/server.config';
 
 
 @Injectable({
@@ -25,8 +26,8 @@ constructor(private userService: UserService, private http: HttpClient) {
   this.retrieveQuizes();
  }
 
- private QuizUrl = "http://localhost:9428/api" + '/quizzes';
- private StatUrl = "http://localhost:9428/api" + '/stats';
+ private QuizUrl = serverUrl + '/quizzes';
+ private StatUrl = serverUrl + '/stats';
 
 retrieveQuizes(): void {
   this.http.get<Quiz[]>(this.QuizUrl).subscribe((quizList) => {

@@ -2,6 +2,10 @@ version: "2.4"
 services:
   front-end:
     build: 
+      args:
+        - TEST_URL=http://localhost:9428
+        - PROD_URL=http://localhost:8000
+        - ENV=prod
       context: ./../front-end/
       dockerfile: Dockerfile
     image: frontend:6.6.6
@@ -9,8 +13,10 @@ services:
       - "8080:80"
   back-end:
     build: 
+      args:
+        - DB=
       context: ./../backend/
       dockerfile: Dockerfile
     image: backend:6.6.6
     ports:
-      - "9428:9428"
+      - "8000:9428"

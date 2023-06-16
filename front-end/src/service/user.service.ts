@@ -5,6 +5,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { Question } from 'src/models/question.model';
 import { Stat } from 'src/models/stat.model';
 import { HttpClient } from '@angular/common/http';
+import { serverUrl } from 'src/configs/server.config';
 
 
 @Injectable({
@@ -30,8 +31,8 @@ public Users$: BehaviorSubject<User[]> = new BehaviorSubject(this.Users);
 public UserSelected$: BehaviorSubject<User> = new BehaviorSubject(this.UserSelected);
 public UserStats$: BehaviorSubject<Stat[]> = new BehaviorSubject(this.UserStats);
 
-private UserUrl = "http://localhost:9428/api" + '/users';
-private StatUrl = "http://localhost:9428/api" + '/stats';
+private UserUrl = serverUrl + '/users';
+private StatUrl = serverUrl + '/stats';
 
 // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
 constructor(private http: HttpClient) {

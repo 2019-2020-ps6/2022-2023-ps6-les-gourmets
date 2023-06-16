@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { QuizService } from './quiz.service';
 import { Stat } from 'src/models/stat.model';
+import { serverUrl } from 'src/configs/server.config';
 
 @Injectable({
     providedIn: 'root'
@@ -19,8 +20,8 @@ import { Stat } from 'src/models/stat.model';
     public questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions); // Ici on crée un observable qui va permettre de récupérer la liste des suestions
     public questionSelected$: Subject<Question> = new BehaviorSubject(this.questionSelected);
     public edit$: Subject<boolean> = new BehaviorSubject(this.edit);
-    private questionUrl = "http://localhost:9428/api" + '/questions';
-    private statUrl = "http://localhost:9428/api" + '/stats';
+    private questionUrl = serverUrl + '/questions';
+    private statUrl = serverUrl + '/stats';
 
     // The service's constructor. Le constructeur peut prendre en paramètre les dépendances du service - comme ici, HttpClient qui va permettre de récupérer les données d'un serveur
     constructor(private quizService: QuizService, private http: HttpClient) {
