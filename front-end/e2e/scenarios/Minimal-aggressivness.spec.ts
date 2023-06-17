@@ -52,7 +52,9 @@ test.describe('Minimal Aggressivness Personna', () => {
         }
         await expect(page.getByRole('button',{name: 'Refaire le Quiz'})).toBeVisible()
         await expect(page.getByRole('button',{name: 'Choisir un autre quiz'})).toBeVisible()
-        await expect(page.getByRole('button',{name: 'Afficher les réponses'})).toBeVisible()
+        await page.getByRole('button',{name: 'Afficher les réponses'}).click()
+        await expect(page.getByRole('heading', { name: 'qui est le plus moche ? : Arnaud' })).toBeVisible()
+        await expect(page.getByRole('heading', { name: 'qui est le plus grand ? : Arnaud' })).toBeVisible()
 
     });
 
