@@ -58,7 +58,7 @@ test.describe('Tests de partie', () => {
     await page.getByRole('button',{name:'Continuer'}).click();
 
     await page.waitForTimeout(17000);
-    await expect(page.getByText('Voulez-vous continuer le Quiz')).not.toBeVisible();//la popup a du s'afficher
+    await expect(page.getByText('Voulez-vous continuer le Quiz')).not.toBeVisible();//la popup a du ne pas s'afficher parce que passivité différente
 
   });
 
