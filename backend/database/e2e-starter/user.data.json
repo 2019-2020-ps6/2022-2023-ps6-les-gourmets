@@ -18,5 +18,17 @@
       "answerDisplay": false,
       "passivity": 1,
       "id": 1685438248743
+    },
+    {
+      "name": "Remi",
+      "surname": "De La Hellerie",
+      "quizzes": [
+        1685955518802
+      ],
+      "aggressivness": 0.5,
+      "music": [],
+      "answerDisplay": true,
+      "passivity": 0.5,
+      "id": 1687003853489
     }
   ]
