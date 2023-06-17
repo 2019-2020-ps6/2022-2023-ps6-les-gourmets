@@ -3,6 +3,7 @@
 FROM node:16.20-alpine3.17 as back-end
 ARG ENV
 ENV ENV_VAR=$ENV
+RUN apk add curl
 USER node
 WORKDIR /app
 COPY --chown=node:node package*.json .

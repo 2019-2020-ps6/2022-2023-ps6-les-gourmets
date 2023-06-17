@@ -4,6 +4,7 @@ FROM node:16.20-alpine3.17 AS build-front
 ARG TEST_URL
 ARG PROD_URL
 ARG ENV
+RUN apk add curl
 USER node
 WORKDIR /app
 COPY --chown=node:node package*.json ./
