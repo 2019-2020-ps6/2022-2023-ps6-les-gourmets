@@ -41,7 +41,7 @@ test.describe('Tests de partie', () => {
 
   });
 
-  test('should wait more display popup', async ({ page }) => {//on teste la popup avec un profil moins aggressif
+  test('should display popup for this user', async ({ page }) => {//on teste la popup avec un profil moins aggressif
     await page.goto(testUrl);
     await page.getByRole('button', { name: 'Jouer' }).click();
     await page.locator('app-user').filter({ hasText: 'TimothéeJuillet' }).getByRole('button', { name: 'Sélectionner' }).click();
@@ -51,13 +51,14 @@ test.describe('Tests de partie', () => {
   
     for(let i = 0; i < 12; i++){
       await page.getByRole('button', { name: 'Passer la question' }).click();
+      await page.waitForTimeout(2500);
     }
 
     await expect(page.getByText('Voulez-vous continuer le Quiz')).toBeVisible();//la popup a du s'afficher parce que agressivité différente
     await page.getByRole('button',{name:'Continuer'}).click();
 
     await page.waitForTimeout(17000);
-    await expect(page.getByText('Voulez-vous continuer le Quiz')).not.toBeVisible();//la popup a du s'afficher
+    await expect(page.getByText('Voulez-vous continuer le Quiz')).not.toBeVisible();//la popup a du ne pas s'afficher parce que passivité différente
 
   });
 
