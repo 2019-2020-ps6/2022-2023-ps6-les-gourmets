@@ -13,7 +13,7 @@
     <span>
         <tr *ngFor="let question of stat.quiz.questions; let i=index;">
           <td>{{question.label}}</td>
-          <td><p>{{stat.bonnesReponses[i] / (stat.mauvaisesReponses[i] + stat.bonnesReponses[i]) * 100}}</p>%</td>
+          <td><p>{{stat.bonnesReponses[i] / (stat.mauvaisesReponses[i] + stat.bonnesReponses[i]) | percent}}</p></td>
         </tr>
       
     </span>
@@ -27,13 +27,13 @@
         
     
         <td>{{question.label}}</td>
-        <td><p>{{stat.bonnesReponses[i+stat.quiz.questions.length] / (stat.mauvaisesReponses[i+stat.quiz.questions.length] + stat.bonnesReponses[i+stat.quiz.questions.length]) * 100}}</p>%</td>
+        <td><p>{{stat.bonnesReponses[i+stat.quiz.questions.length] / (stat.mauvaisesReponses[i+stat.quiz.questions.length] + stat.bonnesReponses[i+stat.quiz.questions.length]) | percent}}</p></td>
       </tr>
 
   </span>
   <h2>Nombre de fois terminés : <p>{{stat.times}}</p></h2>
   <h2>Nombre de fois interrompus : <p>{{stat.nbQuit}}</p></h2>
-  <h2>temps moyen : <p>{{stat.timerMoyen/1000}}</p> secondes</h2>
+  <h2>temps moyen : <p>{{stat.timerMoyen/1000 | number: '1.0-0'}}</p> secondes</h2>
   </table>
   </div>
 
