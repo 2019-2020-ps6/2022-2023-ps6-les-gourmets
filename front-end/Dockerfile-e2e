@@ -1,7 +1,10 @@
 # BUILD THE WEBSITE
 FROM mcr.microsoft.com/playwright:v1.34.0-jammy as playwright
+#USER pwuser
 WORKDIR /app
 COPY package*.json .
+#COPY --chown pwuser:pwuser package*.json .
 RUN npm install
 COPY . .
+#COPY --chown pwuser:pwuser . .
 CMD ["npm", "run", "test:e2e"]
