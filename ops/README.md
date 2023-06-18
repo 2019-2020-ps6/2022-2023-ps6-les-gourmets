@@ -19,3 +19,7 @@ Les services du front-end et back-end utilise l'utilisateur node tandis que le s
 ## ports et urls
 
 Pour utiliser le site il faut aller sur le port 8080 (http://localhost:8080) de la machine en cas de production et sur le port 8081 dans le cas d'un lancement avec la database de test (http://localhost:8081)
+
+## Script .sh
+
+Nous n'avons pas pu tester les .sh (problème de vm linux et wsl) donc si ils ne fonctionnent pas lancer la commande dans les .sh (docker compose)
